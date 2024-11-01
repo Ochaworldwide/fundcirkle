@@ -4,28 +4,50 @@ import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Button from "/src/Component/Botton/Button";
+import { motion } from "framer-motion";
 
 function GetStarted() {
   return (
-    <div className=" bg-white w-[100%]  flex flex-col justify-center h-screen ">
-      <LazyLoadImage
+    <motion.div
+      className=" bg-white w-[100%]  flex flex-col justify-center h-screen "
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      {/* <LazyLoadImage
         alt="Description"
         effect="blur"
-        src={sign} // Use optimized images here
+        src={sign}
         className="absolute -top-72 right-0 "
+      /> */}
+
+      {/* <img alt="Description" src={sign} className="absolute -top-72 right-0 " /> */}
+
+      <motion.img
+        src={sign}
+        alt=""
+        className="absolute -top-0 right-0"
+        initial={{ opacity: 0, x: 50, y: 0 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       />
 
       <div className="flex flex-col items-center">
         <LazyLoadImage
           alt="Description"
           effect="blur"
-          src={logo} // Use optimized images here
+          src={logo}
           className="w-[100%] mx-auto mb-5"
         />
 
-        <h1 className="text-lg font-normal mb-5 text-center">
+        <motion.h1
+          className="text-lg font-normal mb-5 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           Interest-free social microloan
-        </h1>
+        </motion.h1>
 
         <Link to="/sign-up">
           <Button
@@ -40,7 +62,7 @@ function GetStarted() {
           />
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

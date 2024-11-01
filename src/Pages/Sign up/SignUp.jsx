@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import Button from "../../Component/Botton/Button";
 import { Link } from "react-router-dom";
 import CustomForm from "../../Component/Form/CustomForm";
+import { motion } from "framer-motion";
 
 function SignUp() {
   const [fullName, setFullName] = useState("");
@@ -51,7 +52,12 @@ function SignUp() {
     <div className="">
       <NavBar backLink="/get-started" />
 
-      <div className="w-[90%] mx-auto flex flex-col">
+      <motion.div
+        className="w-[90%] mx-auto flex flex-col"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <h1 className="font-bold text-2xl mb-2 poppins">Getting Started</h1>
 
         <p>Lets Create your account here</p>
@@ -146,7 +152,7 @@ function SignUp() {
 
           <p className='mt-5'>Already have an account ? <span className='text-red-500'>  <Link to="/sign-in"> Sign In</Link>  </span></p>
         </form> */}
-      </div>
+      </motion.div>
     </div>
   );
 }

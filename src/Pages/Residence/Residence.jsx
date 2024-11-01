@@ -3,6 +3,7 @@ import NavBar from "../Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
 import { Link } from "react-router-dom";
 import CustomForm from "../../Component/Form/CustomForm";
+import { motion } from "framer-motion";
 
 function Residence() {
   const [country, setCountry] = useState("option1");
@@ -36,9 +37,16 @@ function Residence() {
       <NavBar backLink="/sign-up" />
 
       <div className="w-[90%] mx-auto">
-        <h1 className="font-bold text-2xl mb-5 poppins">
+        
+
+        <motion.h1
+          className="font-bold text-2xl mb-5 poppins"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           Country of Residence
-        </h1>
+        </motion.h1>
 
         <p>
           The terms and services which apply to you, will depend on your country
