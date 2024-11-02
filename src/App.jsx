@@ -7,6 +7,7 @@ import SignIn from "./Pages/Sign in/SignIn";
 import Residence from "./Pages/Residence/Residence";
 import Authentication from "./Pages/Authentication/Authentication";
 import ResetFrom from "./Pages/Reset/ResetFrom";
+import FirstSplash from "./Pages/Splash/FirstSplash";
 // import Residence from "./Component/Residence/Residence";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/residence" element={<Residence />} />
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/reset" element={<ResetFrom />} />
+        <Route path="/first" element={<FirstSplash />} />
         {/* Add more routes for additional screens as needed */}
       </Routes>
     </Router>
