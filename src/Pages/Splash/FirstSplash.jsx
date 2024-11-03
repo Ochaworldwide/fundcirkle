@@ -44,45 +44,50 @@ const FirstSpalsh = () => {
   const images = [
     {
       src: "/src/assets/images/pro1.png",
-      translateX: "-50%",
-      translateY: "-90%",
-      size: "w-20 h-20",
+      translateX: "300%",
+      translateY: "0%",
+      initialX: "500%",
+      size: "w-32 h-32",
     },
     {
       src: "/src/assets/images/pro2.png",
-      translateX: "50%",
-      translateY: "-70%",
+      translateX: "110%",
+      translateY: "-40%",
+      initialX: "0%",
       size: "w-24 h-24",
     },
     {
       src: "/src/assets/images/pro3.png",
       translateX: "90%",
-      translateY: "-80%",
+      translateY: "-50%",
+      initialY: "-200%",
+      initialX: "90%",
       size: "w-28 h-28",
     },
     {
       src: "/src/assets/images/pro4.png",
-      translateX: "30%",
-      translateY: "70%",
+      translateX: "0%",
+      translateY: "40%",
       size: "w-32 h-32",
     },
     {
       src: "/src/assets/images/pro5.png",
       translateX: "-200%",
-      translateY: "5%",
+      translateY: "-20%",
       size: "w-20",
     },
     {
       src: "/src/assets/images/pro6.png",
-      translateX: "-320%",
+      translateX: "-350%",
       translateY: "40%",
       size: "w-20",
     },
     {
       src: "/src/assets/images/pro7.png",
-      translateX: "-285%",
-      translateY: "70%",
-      size: "w-52",
+      translateX: "-290%",
+      translateY: "45%",
+      initialX: "-500%",
+      size: "w-32 h-32",
     },
   ];
 
@@ -95,7 +100,7 @@ const FirstSpalsh = () => {
             src={image.src}
             alt={`Circle ${index + 1}`}
             className={`${image.size} rounded-full border-4 border-white object-cover`}
-            initial={{ translateX: 0, translateY: 0, opacity: 0 }} // Initial center position
+            initial={{ translateX: image.initialX, translateY: image.initialY, opacity: 0 }} // Initial center position
             animate={{
               translateX: image.translateX,
               translateY: image.translateY,

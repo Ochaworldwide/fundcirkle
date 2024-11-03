@@ -69,6 +69,7 @@ const SplashScreen = () => {
         },
       ],
     },
+
     {
       backgroundImage: `url(${splashScreen})`,
       images: [
@@ -79,6 +80,7 @@ const SplashScreen = () => {
         },
       ],
     },
+    
     {
       backgroundImage: `url(${splashScreen4})`,
       images: [

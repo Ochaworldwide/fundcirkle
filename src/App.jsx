@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SplashScreen from "./Pages/Splash/SplashScreen";
-import GetStarted from "./Pages/Home/GetStarted";
+// import GetStarted from "./Pages/Home/GetStarted";
 import SignUp from "./Pages/Sign up/SignUp";
 import SignIn from "./Pages/Sign in/SignIn";
 import Residence from "./Pages/Residence/Residence";
 import Authentication from "./Pages/Authentication/Authentication";
 import ResetFrom from "./Pages/Reset/ResetFrom";
 import FirstSplash from "./Pages/Splash/FirstSplash";
+import Home from "./Pages/Home/Home";
+import GetStarted from "./Pages/GetStarted/GetStarted";
 // import Residence from "./Component/Residence/Residence";
 
 const App = () => {
@@ -22,6 +24,7 @@ const App = () => {
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/reset" element={<ResetFrom />} />
         <Route path="/first" element={<FirstSplash />} />
+        <Route path="/home" element={<Home />} />
         {/* Add more routes for additional screens as needed */}
       </Routes>
     </Router>

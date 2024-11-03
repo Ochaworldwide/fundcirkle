@@ -58,7 +58,7 @@ function SignIn() {
         </CustomForm>
 
         <p className="mt-10 self-center">
-          Already have an account?{" "}
+          Doesn't have an account?{" "}
           <span className="text-red-500">
             <Link to="/sign-up">Sign up here</Link>
           </span>
