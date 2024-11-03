@@ -36,9 +36,12 @@ function Residence() {
     <div>
       <NavBar backLink="/sign-up" />
 
-      <div className="w-[90%] mx-auto">
-        
-
+      <motion.div
+        className="w-[90%] mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <motion.h1
           className="font-bold text-2xl mb-5 poppins"
           initial={{ opacity: 0, y: 20 }}
@@ -98,7 +101,7 @@ function Residence() {
             />
           </Link>
         </form> */}
-      </div>
+      </motion.div>
     </div>
   );
 }

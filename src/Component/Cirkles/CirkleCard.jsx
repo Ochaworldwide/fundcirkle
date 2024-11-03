@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import CircularProgress from "./CircularProgress";
+
 const CirkleCard = ({ tabs, header,  dates, members }) => {
   // Contribution & Payment Info
   const contribution = {
@@ -12,7 +13,24 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
     },
   };
 
- 
+  
+
+  const [activeTab, setActiveTab] = useState("myCirkles");
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "myCirkles":
+        return <div>My Cirkles Content</div>;
+      case "invites":
+        return <div>Invites Content</div>;
+      case "newCirkle":
+        return <div>New Cirkle Content</div>;
+      default:
+        return null;
+    }
+  };
+
+
   return (
     <motion.div
       className="p-4  mx-auto bg-white rounded-lg shadow-md"
@@ -21,12 +39,12 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {/* Header with tabs */}
-      <div className="flex justify-between mb-4 border-b border-gray-200 pb-2">
-        {tabs.map((tab, index) => (
+      <div className="flex justify-between mb-4 border-b border-gray-200 pb-2 bg-red-800 w-[100%]">
+        {/* {tabs.map((tab, index) => (
           <button
             key={index}
             className={`${
-              tab.isActive ? "text-pink-600 font-semibold" : "text-gray-400"
+              tab.isActive ? "text-pink-600 font-semibold" : "text-gray-400","bg-orange-700"
             }`}
           >
             {tab.name}
@@ -36,11 +54,65 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M10 2a2 2 0 100 4h4a2 2 0 100-4h-4zM6 10a2 2 0 100 4h12a2 2 0 100-4H6zM2 18a2 2 0 100 4h20a2 2 0 100-4H2z" />
           </svg>
+        </button> */}
+      </div>
+
+      <div className="flex  bg-gray-100 rounded-lg p-2 mb-4 w-[100%]">
+        <button
+          className={` py-2 rounded-md text-xs w-[25%] ${
+            activeTab === "myCirkles"
+              ? "bg-white text-red-500 font-semibold shadow-md"
+              : "text-red-400"
+          }`}
+          onClick={() => setActiveTab("myCirkles")}
+        >
+          My Cirkles
+        </button>
+        <button
+          className={` py-2 rounded-md text-xs w-[25%] ${
+            activeTab === "invites"
+              ? "bg-white text-red-500 font-semibold shadow-md"
+              : "text-red-400"
+          }`}
+          onClick={() => setActiveTab("invites")}
+        >
+          Invites
+        </button>
+        <button
+          className={`py-2 rounded-md text-xs w-[25%] ${
+            activeTab === "newCirkle"
+              ? "bg-white text-red-500 font-semibold shadow-md"
+              : "text-red-400"
+          }`}
+          onClick={() => setActiveTab("newCirkle")}
+        >
+          New Cirkle
+        </button>
+        {/* Search Icon */}
+        <button className="ml-auto p-2 rounded-full bg-white shadow-md">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M11 4a7 7 0 100 14 7 7 0 000-14zm0 0l7 7"
+            />
+          </svg>
         </button>
       </div>
 
-      {/* Main content */}
+      {/* Content Area */}
+      <div className="p-4 bg-gray-50 border rounded-lg shadow-sm">
+        {renderContent()}
+      </div>
 
+      {/* Main content */}
       <div className="p-2 border-[1px] rounded-[12px] flex">
         {/* Left side */}
         <div className=" w-[50%] mb-4 h-fit ">

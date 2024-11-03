@@ -90,7 +90,6 @@ function Home() {
       <CirkleCard
         tabs={tabsData}
         header={headerData}
-        // contribution={contributionData}
         dates={paymentDates}
         members={membersData}
       />

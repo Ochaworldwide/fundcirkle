@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import NavBar from "../Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Authentication = () => {
   const [otp, setOtp] = useState(Array(6).fill(""));
@@ -53,7 +54,12 @@ const Authentication = () => {
   return (
     <div>
       <NavBar backLink="/residence" />
-      <div className="w-[90%] mx-auto flex flex-col items-center">
+      <motion.div
+        className="w-[90%] mx-auto flex flex-col items-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <h1 className="font-bold text-2xl mb-5 poppins ">OTP Authentication</h1>
         <p>An Authentication code has been sent to the mobile number below</p>
         <p className="text-center my-10 font-bold text-xl tracking-widest">
@@ -98,7 +104,7 @@ const Authentication = () => {
             marginTop="mt-10"
           />
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };
