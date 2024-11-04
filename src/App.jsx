@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SplashScreen from "./Pages/Splash/SplashScreen";
-// import GetStarted from "./Pages/Home/GetStarted";
 import SignUp from "./Pages/Sign up/SignUp";
 import SignIn from "./Pages/Sign in/SignIn";
 import Residence from "./Pages/Residence/Residence";
@@ -10,24 +9,31 @@ import ResetFrom from "./Pages/Reset/ResetFrom";
 import FirstSplash from "./Pages/Splash/FirstSplash";
 import Home from "./Pages/Home/Home";
 import GetStarted from "./Pages/GetStarted/GetStarted";
-// import Residence from "./Component/Residence/Residence";
+import { ModalProvider } from "./Component/Cirkles/ModalContext";
+import ModalChat from "./Component/Cirkles/ModalChat";
+import NotificationBox from "./Component/Cirkles/NotificationBox";
+
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<SplashScreen />} />
-        <Route path="/get-started" element={<GetStarted />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/residence" element={<Residence />} />
-        <Route path="/authentication" element={<Authentication />} />
-        <Route path="/reset" element={<ResetFrom />} />
-        <Route path="/first" element={<FirstSplash />} />
-        <Route path="/home" element={<Home />} />
-        {/* Add more routes for additional screens as needed */}
-      </Routes>
-    </Router>
+    <ModalProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<SplashScreen />} />
+          <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/residence" element={<Residence />} />
+          <Route path="/authentication" element={<Authentication />} />
+          <Route path="/reset" element={<ResetFrom />} />
+          <Route path="/first" element={<FirstSplash />} />
+          <Route path="/home" element={<Home />} />
+          {/* Add more routes for additional screens as needed */}
+        </Routes>
+        <ModalChat />
+        <NotificationBox />
+      </Router>
+    </ModalProvider>
   );
 };
 

@@ -9,7 +9,7 @@ import catIcon from '/src/assets/images/cat.png';
 import moreIcon from '/src/assets/images/more.png'
 import currency from "/src/assets/images/currrency.png";
 import CircularProgress from '../../Component/Cirkles/CircularProgress';
-
+import { useModal } from "/src/Component/Cirkles/ModalContext";
 
 function Home() {
   const NotifyNum = "3";
@@ -49,6 +49,8 @@ function Home() {
     { name: "Frank", image: "/src/assets/images/member6.png" },
     { name: "Grace", image: "/src/assets/images/member7.png" },
   ];
+  
+  const { openModal } = useModal();
 
   return (
     <div>
@@ -60,7 +62,7 @@ function Home() {
         <div className="p-5 ">
           <p className="text-sm font-[400]">Welcome back</p>
 
-          <h1 className='font-bold'>Bhaavik Arhaan</h1>
+          <h1 className="font-bold">Bhaavik Arhaan</h1>
         </div>
 
         <div className="border p-1 rounded-full relative ml-auto">
@@ -73,6 +75,7 @@ function Home() {
             alt=""
             srcset=""
             className="rounded-full"
+            onClick={() => openModal("notification")}
           />
         </div>
       </div>
@@ -93,8 +96,6 @@ function Home() {
         dates={paymentDates}
         members={membersData}
       />
-
-      
     </div>
   );
 }
