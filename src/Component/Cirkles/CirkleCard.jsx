@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import CircularProgress from "./CircularProgress";
+import MyCirkles from "./MyCirkles";
 
 const CirkleCard = ({ tabs, header,  dates, members }) => {
   // Contribution & Payment Info
@@ -20,7 +21,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
   const renderContent = () => {
     switch (activeTab) {
       case "myCirkles":
-        return <div>My Cirkles Content</div>;
+        return <MyCirkles />;
       case "invites":
         return <div>Invites Content</div>;
       case "newCirkle":
@@ -39,8 +40,8 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {/* Header with tabs */}
-      <div className="flex justify-between mb-4 border-b border-gray-200 pb-2 bg-red-800 w-[100%]">
-        {/* {tabs.map((tab, index) => (
+      {/* <div className="flex justify-between mb-4 border-b border-gray-200 pb-2 bg-red-800 w-[100%]">
+        {tabs.map((tab, index) => (
           <button
             key={index}
             className={`${
@@ -54,8 +55,8 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M10 2a2 2 0 100 4h4a2 2 0 100-4h-4zM6 10a2 2 0 100 4h12a2 2 0 100-4H6zM2 18a2 2 0 100 4h20a2 2 0 100-4H2z" />
           </svg>
-        </button> */}
-      </div>
+        </button>
+      </div> */}
 
       <div className="flex  bg-gray-100 rounded-lg p-2 mb-4 w-[100%]">
         <button
@@ -108,15 +109,14 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       </div>
 
       {/* Content Area */}
-      <div className="p-4 bg-gray-50 border rounded-lg shadow-sm">
+      <div className=" ">
         {renderContent()}
       </div>
 
       {/* Main content */}
-      <div className="p-2 border-[1px] rounded-[12px] flex">
-        {/* Left side */}
+      {/* <div className="p-2 border-[1px] rounded-[12px] flex">
+        
         <div className=" w-[50%] mb-4 h-fit ">
-          {/* Header with title */}
           <div className="flex items-center w-[100%] mb-8">
             <img
               src={header.groupImage}
@@ -128,7 +128,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
             </span>
           </div>
 
-          {/* Contribution  */}
+          
           <div className="mb-5 leading-[15.75px] flex">
             <h1 className=" text-xs leading-[15.75px] font-[400]text-wrap overflow-hidden text-black">
               Contribution Amount
@@ -138,7 +138,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
               {contribution.amount}
             </p>
           </div>
-          {/* Next Payment Dates */}
+          
           <div className="flex justify-between flex-col">
             <div className="mb-5 flex text-xs leading-[15.75px] font-[400] poppins items-center">
               <p className="text-gray-600 ">Next Payment</p>
@@ -155,10 +155,10 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           </div>
         </div>
 
-        {/* right side */}
+        
 
         <div className="mb-4 h-fit w-[50%] flex flex-col items-center">
-          {/*icons */}
+          
           <div className="flex space-x-2 text-gray-600 w-[80%] justify-evenly ml-auto mt-4 mb-8">
             {header.notifications.map((notification, index) => (
               <button key={index} className="relative">
@@ -172,7 +172,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
             ))}
           </div>
 
-          {/* Payment Info */}
+          
           <div className="flex justify-between items-center mb-4  ">
             <div className="text-center">
               <p className="text-black mb-3">Payment Status</p>
@@ -185,10 +185,10 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Members */}
-      <div className="border border-gray-200 p-2 mt-3 rounded-lg">
+      {/* <div className="border border-gray-200 p-2 mt-3 rounded-lg">
         <p className="text-black">7 Members</p>
         <div className="flex mt-2 space-x-2">
           {members.map((member, index) => (
@@ -200,7 +200,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
     </motion.div>
   );
 };
