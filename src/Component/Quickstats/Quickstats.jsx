@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import currency from "/src/assets/images/currrency.png"
+import currency from "../../assets/images/currrency.png";
 
 const QuickStats = () => {
   const stats = [
