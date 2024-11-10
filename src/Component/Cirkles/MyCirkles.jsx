@@ -2,16 +2,16 @@
 
 import React, { useState } from "react";
 import CircularProgress from "./CircularProgress";
-import messageIcon from "/src/assets/images/message.png";
+import messageIcon from "/imagesimages/message.png";
 import catIcon from "../../assets/images/cat.png";
-import moreIcon from "/src/assets/images/more.png";
+import moreIcon from "/imagesimages/more.png";
 import { useModal } from "./ModalContext";
 
 const datasets = [
   {
     header: {
       groupName: "Hyderabad",
-      groupImage: "/src/assets/images/circlepeople.png",
+      groupImage: "/imagesimages/circlepeople.png",
       notifications: [
         { icon: messageIcon, count: 1 },
         { icon: catIcon },
@@ -44,7 +44,7 @@ const datasets = [
   {
     header: {
       groupName: "Hyderabad",
-      groupImage: "/src/assets/images/circlepeople2.png",
+      groupImage: "/imagesimages/circlepeople2.png",
       notifications: [{ icon: messageIcon, count: 2 }, { icon: moreIcon }],
     },
     contribution: {
@@ -63,17 +63,17 @@ const datasets = [
       { name: "Henry", image: "/images/member8.png" },
       { name: "Isabel", image: "/images/member9.png" },
       { name: "Jack", image: "/images/member10.png" },
-      { name: "Jack", image: "/src/assets/images/member11.png" },
-      { name: "Jack", image: "/src/assets/images/member12.png" },
-      { name: "Jack", image: "/src/assets/images/member13.png" },
-      { name: "Jack", image: "/src/assets/images/member14.png" },
+      { name: "Jack", image: "/imagesimages/member11.png" },
+      { name: "Jack", image: "/imagesimages/member12.png" },
+      { name: "Jack", image: "/imagesimages/member13.png" },
+      { name: "Jack", image: "/imagesimages/member14.png" },
     ],
   },
 
   {
     header: {
       groupName: "Hyderabad",
-      groupImage: "/src/assets/images/circlepeople3.png",
+      groupImage: "/imagesimages/circlepeople3.png",
       notifications: [
         { icon: messageIcon, count: 2 },
         { icon: catIcon },
@@ -93,25 +93,25 @@ const datasets = [
       yourTurn: "PAID",
     },
     members: [
-      { name: "Henry", image: "/src/assets/images/member15.png" },
-      { name: "Isabel", image: "/src/assets/images/member6.png" },
-      { name: "Jack", image: "/src/assets/images/member11.png" },
-      { name: "Jack", image: "/src/assets/images/member18.png" },
-      { name: "Jack", image: "/src/assets/images/member19.png" },
-      { name: "Jack", image: "/src/assets/images/member20.png" },
-      { name: "Jack", image: "/src/assets/images/member21.png" },
-      { name: "Henry", image: "/src/assets/images/member22.png" },
-      { name: "Isabel", image: "/src/assets/images/member23.png" },
-      { name: "Jack", image: "/src/assets/images/member24.png" },
-      { name: "Jack", image: "/src/assets/images/member25.png" },
-      { name: "Jack", image: "/src/assets/images/member26.png" },
+      { name: "Henry", image: "/imagesimages/member15.png" },
+      { name: "Isabel", image: "/imagesimages/member6.png" },
+      { name: "Jack", image: "/imagesimages/member11.png" },
+      { name: "Jack", image: "/imagesimages/member18.png" },
+      { name: "Jack", image: "/imagesimages/member19.png" },
+      { name: "Jack", image: "/imagesimages/member20.png" },
+      { name: "Jack", image: "/imagesimages/member21.png" },
+      { name: "Henry", image: "/imagesimages/member22.png" },
+      { name: "Isabel", image: "/imagesimages/member23.png" },
+      { name: "Jack", image: "/imagesimages/member24.png" },
+      { name: "Jack", image: "/imagesimages/member25.png" },
+      { name: "Jack", image: "/imagesimages/member26.png" },
     ],
   },
 
   {
     header: {
       groupName: "Hyderabad",
-      groupImage: "/src/assets/images/circlepeople4.png",
+      groupImage: "/imagesimages/circlepeople4.png",
       notifications: [{ icon: messageIcon, count: 2 }, { icon: moreIcon }],
     },
     contribution: {
@@ -127,22 +127,22 @@ const datasets = [
       yourTurn: "Dec 1, 2024",
     },
     members: [
-      { name: "Henry", image: "/src/assets/images/member27.png" },
-      { name: "Isabel", image: "/src/assets/images/member28.png" },
-      { name: "Jack", image: "/src/assets/images/member29.png" },
-      { name: "Henry", image: "/src/assets/images/member30.png" },
-      { name: "Isabel", image: "/src/assets/images/member31.png" },
-      { name: "Jack", image: "/src/assets/images/member32.png" },
-      { name: "Henry", image: "/src/assets/images/member11.png" },
-      { name: "Isabel", image: "/src/assets/images/member34.png" },
-      { name: "Jack", image: "/src/assets/images/member35.png" },
+      { name: "Henry", image: "/imagesimages/member27.png" },
+      { name: "Isabel", image: "/imagesimages/member28.png" },
+      { name: "Jack", image: "/imagesimages/member29.png" },
+      { name: "Henry", image: "/imagesimages/member30.png" },
+      { name: "Isabel", image: "/imagesimages/member31.png" },
+      { name: "Jack", image: "/imagesimages/member32.png" },
+      { name: "Henry", image: "/imagesimages/member11.png" },
+      { name: "Isabel", image: "/imagesimages/member34.png" },
+      { name: "Jack", image: "/imagesimages/member35.png" },
     ],
   },
 
   {
     header: {
       groupName: "Hyderabad",
-      groupImage: "/src/assets/images/circlepeople5.png",
+      groupImage: "/imagesimages/circlepeople5.png",
       notifications: [
         { icon: messageIcon, count: 2 },
         { icon: catIcon },
@@ -162,14 +162,14 @@ const datasets = [
       yourTurn: "PAID",
     },
     members: [
-      { name: "Henry", image: "/src/assets/images/member36.png" },
-      { name: "Isabel", image: "/src/assets/images/member37.png" },
-      { name: "Jack", image: "/src/assets/images/member11.png" },
-      { name: "Henry", image: "/src/assets/images/member39.png" },
-      { name: "Isabel", image: "/src/assets/images/member40.png" },
-      { name: "Jack", image: "/src/assets/images/member41.png" },
-      { name: "Henry", image: "/src/assets/images/member42.png" },
-      { name: "Isabel", image: "/src/assets/images/member43.png" },
+      { name: "Henry", image: "/imagesimages/member36.png" },
+      { name: "Isabel", image: "/imagesimages/member37.png" },
+      { name: "Jack", image: "/imagesimages/member11.png" },
+      { name: "Henry", image: "/imagesimages/member39.png" },
+      { name: "Isabel", image: "/imagesimages/member40.png" },
+      { name: "Jack", image: "/imagesimages/member41.png" },
+      { name: "Henry", image: "/imagesimages/member42.png" },
+      { name: "Isabel", image: "/imagesimages/member43.png" },
     ],
   },
   // Additional datasets can be structured similarly
