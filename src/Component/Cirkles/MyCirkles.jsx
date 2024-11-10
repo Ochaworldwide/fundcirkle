@@ -1,15 +1,17 @@
+
+
 import React, { useState } from "react";
 import CircularProgress from "./CircularProgress";
-import messageIcon from "../../assets/images/message.png";
+import messageIcon from "/src/assets/images/message.png";
 import catIcon from "../../assets/images/cat.png";
-import moreIcon from "../../assets/images/more.png";
+import moreIcon from "/src/assets/images/more.png";
 import { useModal } from "./ModalContext";
 
 const datasets = [
   {
     header: {
       groupName: "Hyderabad",
-      groupImage: "../../assets/images/circlepeople.png",
+      groupImage: "/src/assets/images/circlepeople.png",
       notifications: [
         { icon: messageIcon, count: 1 },
         { icon: catIcon },
@@ -29,13 +31,13 @@ const datasets = [
       yourTurn: "Nov 1, 2024",
     },
     members: [
-      { name: "Alice", image: "../../assets/images/member1.png" },
-      { name: "Bob", image: "../../assets/images/member2.png" },
-      { name: "Carol", image: "../../assets/images/member3.png" },
-      { name: "Dave", image: "../../assets/images/member4.png" },
-      { name: "Eve", image: "../../assets/images/member5.png" },
-      { name: "Frank", image: "../../assets/images/member6.png" },
-      { name: "Grace", image: "../../assets/images/member7.png" },
+      { name: "Alice", image: "/images/member1.png" },
+      { name: "Bob", image: "/src/assets/images/member2.png" },
+      { name: "Carol", image: "/src/assets/images/member3.png" },
+      { name: "Dave", image: "/src/assets/images/member4.png" },
+      { name: "Eve", image: "/src/assets/images/member5.png" },
+      { name: "Frank", image: "/src/assets/images/member6.png" },
+      { name: "Grace", image: "/src/assets/images/member7.png" },
     ],
   },
 
@@ -58,13 +60,13 @@ const datasets = [
       yourTurn: "Dec 1, 2024",
     },
     members: [
-      { name: "Henry", image: "../../assets/images/member8.png" },
-      { name: "Isabel", image: "../../assets/images/member9.png" },
-      { name: "Jack", image: "../../assets/images/member10.png" },
-      { name: "Jack", image: "../../assets/images/member11.png" },
-      { name: "Jack", image: "../../assets/images/member12.png" },
-      { name: "Jack", image: "../../assets/images/member13.png" },
-      { name: "Jack", image: "../../assets/images/member14.png" },
+      { name: "Henry", image: "/src/assets/images/member8.png" },
+      { name: "Isabel", image: "/src/assets/images/member9.png" },
+      { name: "Jack", image: "/src/assets/images/member10.png" },
+      { name: "Jack", image: "/src/assets/images/member11.png" },
+      { name: "Jack", image: "/src/assets/images/member12.png" },
+      { name: "Jack", image: "/src/assets/images/member13.png" },
+      { name: "Jack", image: "/src/assets/images/member14.png" },
     ],
   },
 
@@ -91,18 +93,18 @@ const datasets = [
       yourTurn: "PAID",
     },
     members: [
-      { name: "Henry", image: "../../assets/images/member15.png" },
-      { name: "Isabel", image: "../../assets/images/member6.png" },
-      { name: "Jack", image: "../../assets/images/member11.png" },
-      { name: "Jack", image: "../../assets/images/member18.png" },
-      { name: "Jack", image: "../../assets/images/member19.png" },
-      { name: "Jack", image: "../../assets/images/member20.png" },
-      { name: "Jack", image: "../../assets/images/member21.png" },
-      { name: "Henry", image: "../../assets/images/member22.png" },
-      { name: "Isabel", image: "../../assets/images/member23.png" },
-      { name: "Jack", image: "../../assets/images/member24.png" },
-      { name: "Jack", image: "../../assets/images/member25.png" },
-      { name: "Jack", image: "../../assets/images/member26.png" },
+      { name: "Henry", image: "/src/assets/images/member15.png" },
+      { name: "Isabel", image: "/src/assets/images/member6.png" },
+      { name: "Jack", image: "/src/assets/images/member11.png" },
+      { name: "Jack", image: "/src/assets/images/member18.png" },
+      { name: "Jack", image: "/src/assets/images/member19.png" },
+      { name: "Jack", image: "/src/assets/images/member20.png" },
+      { name: "Jack", image: "/src/assets/images/member21.png" },
+      { name: "Henry", image: "/src/assets/images/member22.png" },
+      { name: "Isabel", image: "/src/assets/images/member23.png" },
+      { name: "Jack", image: "/src/assets/images/member24.png" },
+      { name: "Jack", image: "/src/assets/images/member25.png" },
+      { name: "Jack", image: "/src/assets/images/member26.png" },
     ],
   },
 
@@ -125,15 +127,15 @@ const datasets = [
       yourTurn: "Dec 1, 2024",
     },
     members: [
-      { name: "Henry", image: "../../assets/images/member27.png" },
-      { name: "Isabel", image: "../../assets/images/member28.png" },
-      { name: "Jack", image: "../../assets/images/member29.png" },
-      { name: "Henry", image: "../../assets/images/member30.png" },
-      { name: "Isabel", image: "../../assets/images/member31.png" },
-      { name: "Jack", image: "../../assets/images/member32.png" },
-      { name: "Henry", image: "../../assets/images/member11.png" },
-      { name: "Isabel", image: "../../assets/images/member34.png" },
-      { name: "Jack", image: "../../assets/images/member35.png" },
+      { name: "Henry", image: "/src/assets/images/member27.png" },
+      { name: "Isabel", image: "/src/assets/images/member28.png" },
+      { name: "Jack", image: "/src/assets/images/member29.png" },
+      { name: "Henry", image: "/src/assets/images/member30.png" },
+      { name: "Isabel", image: "/src/assets/images/member31.png" },
+      { name: "Jack", image: "/src/assets/images/member32.png" },
+      { name: "Henry", image: "/src/assets/images/member11.png" },
+      { name: "Isabel", image: "/src/assets/images/member34.png" },
+      { name: "Jack", image: "/src/assets/images/member35.png" },
     ],
   },
 
@@ -187,6 +189,8 @@ function MyCirkles() {
   };
 
   const { header, contribution, dates, members } = datasets[currentIndex];
+
+
 
   const { openModal } = useModal();
 
