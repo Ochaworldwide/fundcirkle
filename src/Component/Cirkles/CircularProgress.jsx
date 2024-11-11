@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const CircularProgress = ({ contribution }) => {
   const radius = 18; // Radius of the circle
   const circumference = 2 * Math.PI * radius; // Circumference of the circle
-  const progress =
+  const progress = -
     (contribution.paymentStatus.completed / contribution.paymentStatus.total) *
     100; // Calculate progress as a percentage
   const targetStrokeDashoffset =

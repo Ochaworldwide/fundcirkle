@@ -12,6 +12,7 @@ import GetStarted from "./Pages/GetStarted/GetStarted";
 import { ModalProvider } from "./Component/Cirkles/ModalContext";
 import ModalChat from "./Component/Cirkles/ModalChat";
 import NotificationBox from "./Component/Cirkles/NotificationBox";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/reset" element={<ResetFrom />} />
           <Route path="/first" element={<FirstSplash />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* Add more routes for additional screens as needed */}
         </Routes>
         <ModalChat />
