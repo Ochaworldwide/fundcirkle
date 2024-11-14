@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import CircularProgress from "./CircularProgress";
 import MyCirkles from "./MyCirkles";
+import Invites from "./Invites";
 
 const CirkleCard = ({ tabs, header,  dates, members }) => {
   // Contribution & Payment Info
@@ -23,7 +24,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       case "myCirkles":
         return <MyCirkles />;
       case "invites":
-        return <div>Invites Content</div>;
+        return <Invites/>;
       case "newCirkle":
         return <div>New Cirkle Content</div>;
       default:

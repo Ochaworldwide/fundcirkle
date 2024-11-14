@@ -5,17 +5,17 @@ import { useModal } from "./ModalContext";
 const notifications = [
   // Notification data here
   {
-    profileImg: "/src/assets/images/notifyImg1.png",
+    profileImg: "/images/notifyImg1.svg",
     message: "New invitation from Delhi Friends Club by Amir",
     time: "15 min ago",
   },
   {
-    profileImg: "/src/assets/images/notifyImg2.png",
+    profileImg: "/images/notifyImg2.svg",
     message: "New invitation from Delhi Friends Club by Amir",
     time: "15 min ago",
   },
   {
-    profileImg: "/src/assets/images/notifyImg3.png",
+    profileImg: "/images/notifyImg3.svg",
     message: "New invitation from Delhi Friends Club by Amir",
     time: "15 min ago",
   },

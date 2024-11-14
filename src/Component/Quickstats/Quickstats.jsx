@@ -7,24 +7,24 @@ const QuickStats = () => {
     {
       label: "Currently Active Circles",
       value: "1",
-      bgColor: "bg-[#BFFFBF]",
+      bgColor: "bg-[#ECC6F3]",
     },
     {
       label: "Your Total Contributions",
       value: "120K",
-      bgColor: "bg-[#E5F8F8]",
+      bgColor: "bg-[#FBC8CE]",
       currency: currency,
     },
     {
       label: "Total Payout Amount",
       value: "420",
-      bgColor: "bg-[#F8E5F8]",
+      bgColor: "bg-[#ECC6F3]",
       currency: currency,
     },
     {
       label: "Your Total Due Payment - October",
       value: "120k",
-      bgColor: "bg-[#FFFFBF]",
+      bgColor: "bg-[#FBC8CE]",
       currency: currency,
     },
   ];

@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SplashScreen from "./Pages/Splash/SplashScreen";
-import SignUp from "./Pages/Sign up/SignUp";
-import SignIn from "./Pages/Sign in/SignIn";
+// import SignUp from "./Pages/Sign up/SignUp";
 import Residence from "./Pages/Residence/Residence";
 import Authentication from "./Pages/Authentication/Authentication";
 import ResetFrom from "./Pages/Reset/ResetFrom";
@@ -13,6 +12,9 @@ import { ModalProvider } from "./Component/Cirkles/ModalContext";
 import ModalChat from "./Component/Cirkles/ModalChat";
 import NotificationBox from "./Component/Cirkles/NotificationBox";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import SignIn from "./Pages/Authentication/SignIn";
+import SignUp from "./Pages/Authentication/SignUp";
+import CirkleDetailsModal from "./Component/Cirkles/CirkleDetailsModal";
 
 
 const App = () => {
@@ -34,6 +36,7 @@ const App = () => {
         </Routes>
         <ModalChat />
         <NotificationBox />
+        <CirkleDetailsModal />
       </Router>
     </ModalProvider>
   );

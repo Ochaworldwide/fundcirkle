@@ -6,7 +6,6 @@
 
 // function ResetFrom() {
 //   const [email, setEmail] = useState("");
-  
 
 //   const fields = [
 //     {
@@ -21,7 +20,6 @@
 //     e.preventDefault();
 //     console.log("Form submitted!");
 //   };
-
 
 //   return (
 //     <div>
@@ -52,7 +50,6 @@
 //           </p>
 //         </CustomForm>
 
-
 //         <p className="mt-10 self-center">
 //           Already have an account?{" "}
 //           <span className="text-red-500">
@@ -66,10 +63,8 @@
 
 // export default ResetFrom;
 
-
-
 import React, { useState } from "react";
-import NavBar from "../Sign up/NavBar";
+import NavBar from "../../Component/Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
 import { Link } from "react-router-dom";
 import CustomForm from "../../Component/Form/CustomForm";
@@ -119,8 +114,7 @@ function ResetFrom() {
             marginTop: "mt-10",
             onClick: () => console.log("Button clicked!"),
           }}
-        >
-        </CustomForm>
+        ></CustomForm>
 
         {/* <form onSubmit={handleFormSubmit} className="mb-4">
           <input

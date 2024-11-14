@@ -1,5 +1,5 @@
-import logo from "/src/assets/images/logo.webp";
-import sign from "/src/assets/images/Ellipse 9.webp";
+import logo from "/images/logo1.svg";
+import sign from "/images/Ellipse 9.svg";
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -14,14 +14,7 @@ function GetStarted() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      {/* <LazyLoadImage
-        alt="Description"
-        effect="blur"
-        src={sign}
-        className="absolute -top-72 right-0 "
-      /> */}
-
-      {/* <img alt="Description" src={sign} className="absolute -top-72 right-0 " /> */}
+      
 
       <motion.img
         src={sign}

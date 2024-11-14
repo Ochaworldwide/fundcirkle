@@ -182,30 +182,35 @@ function MyCirkles() {
           </div>
 
           <div className="  border rounded-full flex items-center h-10 w-[45%]">
-            <div className=" rounded-full p-1 border h-10 bg-[#FBC8CE1A]">
-              <svg
-                width="full"
-                height="full"
-                viewBox="0 0 25 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <div className=" rounded-full border h-10 bg-[#FBC8CE1A]">
+              <button
+                className=" relative  rounded-full p-1 border h-10 bg-[#FBC8CE1A]"
+                onClick={() => openModal("detail")}
               >
-                <path
-                  d="M16 6.5C16 8.433 14.433 10 12.5 10C10.567 10 9 8.433 9 6.5C9 4.567 10.567 3 12.5 3C14.433 3 16 4.567 16 6.5Z"
-                  stroke="#141B34"
-                  stroke-width="1.5"
-                />
-                <path
-                  d="M22.5 17.5C22.5 19.433 20.933 21 19 21C17.067 21 15.5 19.433 15.5 17.5C15.5 15.567 17.067 14 19 14C20.933 14 22.5 15.567 22.5 17.5Z"
-                  stroke="#141B34"
-                  stroke-width="1.5"
-                />
-                <path
-                  d="M9.5 17.5C9.5 19.433 7.933 21 6 21C4.067 21 2.5 19.433 2.5 17.5C2.5 15.567 4.067 14 6 14C7.933 14 9.5 15.567 9.5 17.5Z"
-                  stroke="#141B34"
-                  stroke-width="1.5"
-                />
-              </svg>
+                <svg
+                  width="full"
+                  height="full"
+                  viewBox="0 0 25 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 6.5C16 8.433 14.433 10 12.5 10C10.567 10 9 8.433 9 6.5C9 4.567 10.567 3 12.5 3C14.433 3 16 4.567 16 6.5Z"
+                    stroke="#141B34"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M22.5 17.5C22.5 19.433 20.933 21 19 21C17.067 21 15.5 19.433 15.5 17.5C15.5 15.567 17.067 14 19 14C20.933 14 22.5 15.567 22.5 17.5Z"
+                    stroke="#141B34"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M9.5 17.5C9.5 19.433 7.933 21 6 21C4.067 21 2.5 19.433 2.5 17.5C2.5 15.567 4.067 14 6 14C7.933 14 9.5 15.567 9.5 17.5Z"
+                    stroke="#141B34"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </button>
             </div>
 
             <p className="mx-auto">Details</p>
@@ -243,159 +248,6 @@ function MyCirkles() {
           &gt;
         </button>
       </div>
-
-      {/* <div className="border-[1px] rounded-[12px] flex bg-gray-50 p-2 shadow-sm justify-between">
-        <div className="w-[45%] mb-4 h-fit">
-          <div className="flex items-center w-[100%] mb-8">
-            <img
-              src={header.groupImage}
-              alt="Group"
-              className="w-14 h-14 rounded-full"
-            />
-            <span className="ml-3 bg-[#B41ACD] text-white px-3 py-1 tetx-[14px] rounded-[8px] text-ellipsis overflow-hidden">
-              {header.groupName}
-            </span>
-          </div>
-
-          <div className=" mb-5">
-            <h1 className="text-[40px] font-bold">
-              {contribution.currencySymbol}
-              {contribution.amount}
-            </h1>
-            <p>Cirkle Amount</p>
-          </div>
-
-          <div className=" mx-auto border rounded-full flex items-center h-fit">
-            <div className="w-[30%]">
-              <img
-                src={messageIcon}
-                alt=""
-                srcset=""
-                className=" bg-[#FBC8CE1A]  object-cover  object-center rounded-full"
-              />
-            </div>
-
-            <p className="mx-auto">Messages</p>
-          </div>
-
-          <div className="flex space-x-2 text-gray-600 w-[80%] justify-evenly ml-auto mt-4 mb-8">
-            {header.notifications.map((notification, index) => (
-              <button
-                key={index}
-                className="relative"
-                onClick={index === 0 ? () => openModal("chat") : null}
-              >
-                <img src={notification.icon} alt="" className="w-8" />
-                {notification.count && (
-                  <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                    {notification.count}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-          <div className="mb-5 leading-[15.75px] flex">
-            <h1 className="text-xs leading-[15.75px] font-[400] text-wrap overflow-hidden text-black">
-              Contribution Amount
-            </h1>
-            <p className="text-xs font-bold text-[#292D32] flex px-3">
-              {contribution.currencySymbol}
-              {contribution.amount}
-            </p>
-          </div>
-
-          <div className="flex justify-between flex-col">
-            <div className="mb-5 flex text-xs leading-[15.75px] font-[400] poppins items-center">
-              <p className="text-gray-600">Next Payment</p>
-              <p className="font-medium bg-[#FEF0F2] ml-auto p-2 border rounded-[8px] text-[#141B34]">
-                {dates.nextPayment}
-              </p>
-            </div>
-            <div className="flex text-xs leading-[15.75px] font-[400] poppins items-center">
-              <p className="text-gray-600">Your Turn</p>
-              <p className="font-medium bg-[#FEF0F2] ml-auto p-2 border rounded-[8px] text-[#141B34]">
-                {dates.yourTurn}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mb-4 h-fit w-[50%] flex flex-col items-center">
-          <div className="flex space-x-2 text-gray-600 w-[80%] justify-evenly ml-auto mt-4 mb-8">
-            {header.notifications.map((notification, index) => (
-              <button
-                key={index}
-                className="relative"
-                onClick={index === 0 ? () => openModal("chat") : null}
-              >
-                <img src={notification.icon} alt="" className="w-8" />
-                {notification.count && (
-                  <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                    {notification.count}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex justify-between items-center mb-4">
-            <div className="text-center">
-              <CircularProgress contribution={contribution} />
-
-              <p className="text-black mb-3">Payment Status</p>
-
-              <button className="mt-2 bg-[#F0243B] text-white px-4 py-3 rounded-[8px] text-xs leading-[15.75px]">
-                Make Payment
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex justify-between bg-[#FBC8CE1A] items-center mb-5 mt-5">
-        <p className="text-gray-600">Next Payment</p>
-        <p className="font-medium ml-auto p-2 border rounded-[8px] w-[50%] text-[#141B34]">
-          {dates.nextPayment}
-        </p>
-      </div>
-
-      <div className="flex items-center justify- w-[100%] mb-8">
-        <img
-          src={header.groupImage}
-          alt="Group"
-          className="w-14 h-14 rounded-full"
-        />
-        <h1 className="ml-3 bg-[#B41ACD]  text-white px-3 py-1 text-[22px] rounded-[8px]  text-ellipsis overflow-hidden">
-          {header.groupName}
-        </h1>
-      </div>
-
-      <div className="border border-gray-200 p-2 mt-3 rounded-lg">
-        <p className="text-black">{members.length} Members</p>
-        <div className="flex mt-2 space-x-2 overflow-scroll hide-scrollbar .hide-scrollbar::-webkit-scrollbar">
-          {members.map((member, index) => (
-            <img
-              key={index}
-              src={member.image}
-              alt={member.name}
-              className="w-10 h-10 rounded-full border-2 border-white object-center"
-            />
-          ))}
-        </div>
-      </div>
-
-      <button
-        onClick={handlePrevious}
-        className=" text-black bg-white px-3 py-1 font-bold text-xl border absolute top-64 -left-2 rounded-full"
-      >
-        &lt;
-      </button>
-      <button
-        onClick={handleNext}
-        className=" text-black bg-white font-bold px-3 py-1 text-xl border absolute top-64 -right-2   rounded-full t"
-      >
-        &gt;
-      </button> */}
     </div>
   );
 }

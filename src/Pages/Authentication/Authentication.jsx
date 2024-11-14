@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import NavBar from "../Sign up/NavBar";
+import NavBar from "../../Component/Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
