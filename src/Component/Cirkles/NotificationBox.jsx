@@ -28,11 +28,16 @@ const NotificationBox = () => {
 
   return (
     <motion.div
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -100, opacity: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 15 }}
-      className="fixed top-0 right-0 mt-4 mr-4 bg-white shadow-lg rounded-lg w-96 z-50 p-4"
+      initial={{ x: "100%", opacity: 0 }} // Start off-screen
+      animate={{ x: 0, opacity: 1 }} // Slide into view
+      exit={{ x: "100%", opacity: 0 }} // Slide out when unmounted
+      transition={{ duration: 0.5, ease: "easeInOut" }} // Smooth transition
+      className="fixed top-0 left-0 right-0 bg-white shadow-lg mt-4 rounded-lg mx-auto w-96 z-50 p-4"
+      // initial={{ y: -100, opacity: 0 }}
+      // animate={{ y: 0, opacity: 1 }}
+      // exit={{ y: -100, opacity: 0 }}
+      // transition={{ type: "spring", stiffness: 100, damping: 15 }}
+      // className="fixed top-0 right-0 mt-4 mr-4 bg-white shadow-lg rounded-lg w-96 z-50 p-4"
     >
       <div className="flex justify-between items-center pb-3 border-b border-gray-200">
         <h3 className="text-lg font-semibold">Notifications</h3>

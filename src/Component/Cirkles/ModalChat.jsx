@@ -13,11 +13,13 @@ const ChatModal = () => {
 
   return (
     <motion.div
-      initial={{ y: 1000, opacity: 0 }}
-      animate={{ y: 80, opacity: 1 }}
-      exit={{ y: 0, opacity: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 15 }}
-      className="fixed top-0 left-0 right-0 bg-white shadow-lg rounded-lg mx-auto max-w-md mt-4 z-50"
+      initial={{ y: "100%", opacity: 0 }} // Start off-screen
+      animate={{ y: 0, opacity: 1 }} // Slide into view
+      exit={{ y: "100%", opacity: 0 }} // Slide out when unmounted
+      transition={{ duration: 0.5, ease: "easeInOut" }} // Smooth transition
+      className="fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-lg mx-auto max-w-md z-50 h-[500px]"
+      // transition={{ type: "spring", stiffness: 100, damping: 15 }}
+     
     >
       <div className="flex w-[100%] border justify-between  px-1">
         <img src={profileImg} alt="" srcset="" />

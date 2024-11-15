@@ -131,7 +131,12 @@ function MyCirkles() {
         <div className="py-5 flex justify-between w-[95%] mx-auto">
           <div className="w-[50%] flex flex-col justify-center">
             <div className="text-[40px] font-[600] flex items-center">
-              <img src={contribution.currencySymbol} alt="" srcset="" className="h-9"/>
+              <img
+                src={contribution.currencySymbol}
+                alt=""
+                srcset=""
+                className="h-9"
+              />
 
               {contribution.amount}
             </div>
@@ -147,12 +152,14 @@ function MyCirkles() {
         </div>
 
         <div className=" flex w-[95%] mx-auto justify-between">
-          <div className="  border rounded-full flex items-center h-10 w-[45%]">
+          <div
+            className="  border rounded-full flex items-center h-10 w-[45%]"
+            onClick={() => openModal("chat")}
+          >
             <button
               className=" relative  rounded-full p-1 border h-10 bg-[#E5F4EC]"
               onClick={() => openModal("chat")}
             >
-
               <img src={messageIcon} alt="" srcset="" />
 
               <span className="absolute top-0 right-0 bg-[#00943F] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
@@ -163,13 +170,18 @@ function MyCirkles() {
             <p className="mx-auto text-[12px]">Messages</p>
           </div>
 
-          <div className="  border rounded-full flex items-center h-10 w-[45%]">
-            <div className=" rounded-full border h-10 bg-[#E5F4EC]">
+          <div
+            className="  border rounded-full flex items-center h-10 w-[45%]"
+            onClick={() => openModal("detail")}
+          >
+            <div
+              className=" rounded-full border h-10 bg-[#E5F4EC]"
+              onClick={() => openModal("detail")}
+            >
               <button
                 className=" relative  rounded-full p-1 border h-10 bg-[#E5F4EC]"
                 onClick={() => openModal("detail")}
               >
-
                 <img src={moreIcon} alt="" srcset="" />
               </button>
             </div>

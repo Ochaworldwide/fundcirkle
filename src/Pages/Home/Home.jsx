@@ -54,7 +54,7 @@ function Home() {
 
   return (
     <div className="mb-16">
-      <div className=" flex w-[95%] mx-auto  items-center  mb-5 sticky top-0 bg-white z-10">
+      <div className=" flex w-[95%] mx-auto  items-center  mb-24 sticky top-0 bg-white z-10">
         <div className="">
           <img src={profileImg} alt="" srcset="" className="rounded-full " />
         </div>
