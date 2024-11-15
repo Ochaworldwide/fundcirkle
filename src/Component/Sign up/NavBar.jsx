@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function NavBar({ backLink }) {
   return (
-    <div className="flex w-[90%] mx-auto justify-between py-10">
+    <div className="flex w-[90%] mx-auto justify-between  bg-red-500">
       <Link to={backLink}>
         <LazyLoadImage
           alt="Description"
