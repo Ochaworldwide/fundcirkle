@@ -152,27 +152,6 @@ function MyCirkles() {
               className=" relative  rounded-full p-1 border h-10 bg-[#E5F4EC]"
               onClick={() => openModal("chat")}
             >
-              {/* <svg
-                width="full"
-                height="full"
-                viewBox="0 0 25 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M20.5 9C19.7048 5.01455 16.0128 2 11.5793 2C6.56549 2 2.5 5.85521 2.5 10.61C2.5 12.8946 3.43819 14.9704 4.96855 16.5108C5.30549 16.85 5.53045 17.3134 5.43966 17.7903C5.28982 18.5701 4.95026 19.2975 4.45305 19.9037C5.76123 20.1449 7.12147 19.9277 8.28801 19.3127C8.70039 19.0954 8.90657 18.9867 9.05207 18.9646C9.15392 18.9492 9.28659 18.9636 9.5 19.0002"
-                  stroke="#141B34"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M11.5 16.2617C11.5 19.1674 13.9628 21.5234 17 21.5234C17.3571 21.5238 17.7132 21.4908 18.064 21.425C18.3165 21.3775 18.4428 21.3538 18.5309 21.3673C18.619 21.3807 18.744 21.4472 18.9938 21.58C19.7004 21.9558 20.5244 22.0885 21.3169 21.9411C21.0157 21.5707 20.81 21.1262 20.7192 20.6496C20.6642 20.3582 20.8005 20.075 21.0046 19.8677C21.9317 18.9263 22.5 17.6578 22.5 16.2617C22.5 13.356 20.0372 11 17 11C13.9628 11 11.5 13.356 11.5 16.2617Z"
-                  stroke="#141B34"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
-              </svg> */}
 
               <img src={messageIcon} alt="" srcset="" />
 
@@ -190,29 +169,6 @@ function MyCirkles() {
                 className=" relative  rounded-full p-1 border h-10 bg-[#E5F4EC]"
                 onClick={() => openModal("detail")}
               >
-                {/* <svg
-                  width="full"
-                  height="full"
-                  viewBox="0 0 25 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16 6.5C16 8.433 14.433 10 12.5 10C10.567 10 9 8.433 9 6.5C9 4.567 10.567 3 12.5 3C14.433 3 16 4.567 16 6.5Z"
-                    stroke="#141B34"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M22.5 17.5C22.5 19.433 20.933 21 19 21C17.067 21 15.5 19.433 15.5 17.5C15.5 15.567 17.067 14 19 14C20.933 14 22.5 15.567 22.5 17.5Z"
-                    stroke="#141B34"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M9.5 17.5C9.5 19.433 7.933 21 6 21C4.067 21 2.5 19.433 2.5 17.5C2.5 15.567 4.067 14 6 14C7.933 14 9.5 15.567 9.5 17.5Z"
-                    stroke="#141B34"
-                    stroke-width="1.5"
-                  />
-                </svg> */}
 
                 <img src={moreIcon} alt="" srcset="" />
               </button>
@@ -242,13 +198,13 @@ function MyCirkles() {
 
         <button
           onClick={handlePrevious}
-          className=" text-black bg-white  font-bold text-lg border absolute top-44 -left-0 rounded-full"
+          className=" text-black   font-bold text-lg  absolute top-44 -left-0 rounded-full"
         >
           &lt;
         </button>
         <button
           onClick={handleNext}
-          className=" text-black bg-white font-bold  text-lg border absolute top-44 -right-0   rounded-full t"
+          className=" text-black  font-bold  text-lg  absolute top-44 -right-0   rounded-full t"
         >
           &gt;
         </button>
