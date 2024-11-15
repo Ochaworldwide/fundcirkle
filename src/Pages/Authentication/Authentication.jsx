@@ -78,7 +78,7 @@ const Authentication = () => {
               ref={(el) => (inputRefs.current[index] = el)}
               maxLength="1"
               className={`w-12 h-12 text-center border-2 rounded-lg text-xl font-medium ${
-                digit ? "border-red-500 text-red-500" : "border-gray-300"
+                digit ? "border-[#00943F] text-[#00943F]" : "border-gray-300"
               }`}
             />
           ))}
@@ -86,7 +86,7 @@ const Authentication = () => {
 
         <p>
           DIdn't get the code ?{" "}
-          <span className="text-red-500 poppins-light-italic">
+          <span className="text-[#00943F] poppins-light-italic">
             {" "}
             <Link to=""> Resend code </Link>{" "}
           </span>
@@ -96,7 +96,7 @@ const Authentication = () => {
           <Button
             text="Verify"
             onClick={() => console.log("Button clicked!")}
-            bgColor="bg-red-500"
+            bgColor="bg-[#00943F]"
             textColor="text-white"
             padding="px-20 py-5"
             fontSize="font-bold"

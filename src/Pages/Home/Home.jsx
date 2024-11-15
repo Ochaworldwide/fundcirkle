@@ -54,7 +54,7 @@ function Home() {
 
   return (
     <div className="mb-16">
-      <div className=" flex w-[95%] mx-auto  items-center  mb-5 sticky top-0 bg-white">
+      <div className=" flex w-[95%] mx-auto  items-center  mb-5 sticky top-0 bg-white z-10">
         <div className="">
           <img src={profileImg} alt="" srcset="" className="rounded-full " />
         </div>
@@ -66,7 +66,7 @@ function Home() {
         </div>
 
         <div className="border p-1 rounded-full relative ml-auto">
-          <div className=" absolute top-0 right-0 border text-[8px] font-bold flex justify-center text-white   h-[12px] w-[12px] bg-[#F0243B] rounded-full">
+          <div className=" absolute top-0 right-0 border text-[8px] font-bold flex justify-center text-white   h-[12px] w-[12px] bg-[#00943F] rounded-full">
             {""}
             {NotifyNum}
           </div>
@@ -100,7 +100,6 @@ function Home() {
               stroke-miterlimit="10"
             />
           </svg>
-
         </div>
       </div>
 

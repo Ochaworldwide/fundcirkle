@@ -61,7 +61,7 @@ function Residence() {
           buttonText="Continue"
           buttonLink="/authentication"
           buttonProps={{
-            bgColor: "bg-red-500",
+            bgColor: "bg-[#00943F]",
             textColor: "text-white",
             padding: "px-20 py-5",
             fontSize: "font-bold",
@@ -70,37 +70,6 @@ function Residence() {
             onClick: () => console.log("Button clicked!"),
           }}
         />
-
-        {/* <form action="" className="mt-5 flex flex-col items-center">
-          <select
-            id="options"
-            name="options"
-            className="w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none bg-transparent"
-          >
-            <option value="option1">Country</option>
-            <option value="option2">Nigeria</option>
-            <option value="option3">USA</option>
-            <option value="option4">Califonia</option>
-          </select>
-          <input
-            type="number"
-            placeholder="Phone Number"
-            className="w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none"
-          />
-
-          <Link to="/authentication">
-            <Button
-              text="Continue"
-              onClick={() => console.log("Button clicked!")}
-              bgColor="bg-red-500"
-              textColor="text-white"
-              padding="px-20 py-5"
-              fontSize="font-bold"
-              borderRadius="rounded-lg"
-              marginTop="mt-10"
-            />
-          </Link>
-        </form> */}
       </motion.div>
     </div>
   );

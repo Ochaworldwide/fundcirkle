@@ -38,7 +38,7 @@ const CirkleDetailsModal = () => {
       className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center h-fit pt-20"
     >
       <div className="bg-white pb-10 rounded-lg max-w-md w-full">
-        <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[100%] rounded-xl">
+        <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[80%] mx-auto rounded-xl">
           <svg
             width="32"
             height="32"
@@ -51,7 +51,7 @@ const CirkleDetailsModal = () => {
             <circle cx="16" cy="16" r="4.83333" stroke="#F0243B" />
           </svg>
 
-          <p>{data.title}</p>
+          <p className="text-[18px] font-[400]">View Circle Details</p>
           <button onClick={closeModal} className="text-gray-500 float-right">
             <svg
               width="24"
@@ -122,7 +122,7 @@ const CirkleDetailsModal = () => {
             </div>
           </div> */}
 
-          <div className="flex justify-between items-center border rounded-lg text-red-500 font-bold mb-4 px-1">
+          <div className="flex justify-between items-center border rounded-lg text-[#00943F] font-bold mb-4 px-1">
             <div className="flex w-[50%]">
               <div className="mr-2">
                 <svg

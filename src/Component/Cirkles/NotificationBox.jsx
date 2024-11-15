@@ -38,7 +38,7 @@ const NotificationBox = () => {
         <h3 className="text-lg font-semibold">Notifications</h3>
         <button
           onClick={closeModal}
-          className="text-red-500 text-sm font-medium hover:underline"
+          className="text-[#00943F] text-sm font-medium hover:underline"
         >
           Mark all as read
         </button>

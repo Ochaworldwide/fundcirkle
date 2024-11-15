@@ -69,7 +69,7 @@ function SignUp() {
           buttonLink="/residence"
           onSubmit={handleFormSubmit}
           buttonProps={{
-            bgColor: "bg-red-500",
+            bgColor: "bg-[#00943F]",
             textColor: "text-white",
             padding: "px-20 py-5",
             fontSize: "font-bold",
@@ -90,8 +90,8 @@ function SignUp() {
             <p className="text-xs w-[90%] leading-normal">
               I am at least 18 years old, and by ticking this box, I’ve read and
               agree to the Platform’s{" "}
-              <span className="text-[#F0243B]">Terms of Service</span> and{" "}
-              <span className="text-[#F0243B]">Privacy Policy</span>.
+              <span className="text-[#00943F]">Terms of Service</span> and{" "}
+              <span className="text-[#00943F]">Privacy Policy</span>.
             </p>
           </div>
         </CustomForm>
@@ -99,60 +99,10 @@ function SignUp() {
         {/* Additional Sign-In Link */}
         <p className="mt-5 self-center">
           Already have an account?{" "}
-          <span className="text-red-500">
+          <span className="text-[#00943F]">
             <Link to="/sign-in">Sign In</Link>
           </span>
         </p>
-
-        {/* <form action="" className="mt-5 flex flex-col items-center">
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none"
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            className="w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none"
-          />
-
-          <div className="flex justify-between items-center">
-            <input type="checkbox" name="" id="" className="w-[10%]" required />
-
-            <p className="text-xs w-[90%] leading-normal mt-5">
-              I am atleast 18 years old, and by tocking this box, I’ve read and
-              agree to the Platform’s{" "}
-              <span className="text-[#F0243B]">Terms of Service</span> and{" "}
-              <span className="text-[#F0243B]">Privacy policy</span>.
-            </p>
-          </div>
-
-          <Link to="/residence">
-            <Button
-              text="Sign Up"
-              onClick={() => console.log("Button clicked!")}
-              bgColor="bg-red-500"
-              textColor="text-white"
-              padding="px-20 py-5"
-              fontSize="font-bold"
-              borderRadius="rounded-lg"
-              marginTop="mt-10"
-              
-            />
-          </Link>
-
-          <p className='mt-5'>Already have an account ? <span className='text-red-500'>  <Link to="/sign-in"> Sign In</Link>  </span></p>
-        </form> */}
       </motion.div>
     </div>
   );

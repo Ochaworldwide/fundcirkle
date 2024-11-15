@@ -33,16 +33,16 @@ function SignIn() {
       <NavBar backLink="/get-started" />
 
       <div className="mx-auto w-[90%] flex flex-col">
-        <h1 className="font-bold text-2xl mb-5 poppins">Welcome Back</h1>
+        <h1 className="font-bold text-[22px] mb-5 poppins">Welcome Back</h1>
 
-        <p>Login and get back to business</p>
+        <p className="text-[14px]">Login and get back to business</p>
         <CustomForm
           fields={fields}
           buttonText="Sign In"
           buttonLink="/authentication"
           onSubmit={handleFormSubmit}
           buttonProps={{
-            bgColor: "bg-red-500",
+            bgColor: "bg-[#00943F]",
             textColor: "text-white",
             padding: "px-20 py-5",
             fontSize: "font-bold",
@@ -52,14 +52,14 @@ function SignIn() {
           }}
         >
           {/* Additional Sign-In Link */}
-          <p className="mt-1 text-red-500 self-start">
+          <p className="mt-1 text-[#00943F] self-start">
             <Link to="/reset">Forget Password ?</Link>
           </p>
         </CustomForm>
 
         <p className="mt-10 self-center">
           Doesn't have an account?{" "}
-          <span className="text-red-500">
+          <span className="text-[#00943F]">
             <Link to="/sign-up">Sign up here</Link>
           </span>
         </p>

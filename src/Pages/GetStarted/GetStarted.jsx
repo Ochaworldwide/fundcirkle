@@ -14,8 +14,6 @@ function GetStarted() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      
-
       <motion.img
         src={sign}
         alt=""
@@ -46,7 +44,7 @@ function GetStarted() {
           <Button
             text="Get Started"
             onClick={() => console.log("Button clicked!")}
-            bgColor="bg-red-500"
+            bgColor="bg-[#00943F]"
             textColor="text-white"
             padding="px-20 py-5"
             fontSize="font-bold"

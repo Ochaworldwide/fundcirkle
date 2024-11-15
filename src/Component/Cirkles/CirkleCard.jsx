@@ -45,8 +45,8 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           <button
             className={` py-2 rounded-md text-xs w-[30%] ${
               activeTab === "myCirkles"
-                ? "bg-white text-red-500 font-semibold shadow-md"
-                : "text-red-400"
+                ? "bg-white text-[#00943F] font-semibold shadow-md"
+                : "text-[#0000004D]"
             }`}
             onClick={() => setActiveTab("myCirkles")}
           >
@@ -55,8 +55,8 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           <button
             className={` py-2 rounded-md text-xs w-[30%] ${
               activeTab === "invites"
-                ? "bg-white text-red-500 font-semibold shadow-md"
-                : "text-red-400"
+                ? "bg-white text-[#00943F] font-semibold shadow-md"
+                : "text-[#0000004D]"
             }`}
             onClick={() => setActiveTab("invites")}
           >
@@ -65,8 +65,8 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           <button
             className={`py-2 rounded-md text-xs w-[30%] ${
               activeTab === "newCirkle"
-                ? "bg-white text-red-500 font-semibold shadow-md"
-                : "text-red-400"
+                ? "bg-white text-[#00943F] font-semibold shadow-md"
+                : "text-[#0000004D]"
             }`}
             onClick={() => setActiveTab("newCirkle")}
           >
@@ -103,7 +103,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       </div>
 
       {/* Content Area */}
-      <div className=" ">{renderContent()}</div>
+      <div className="h-[400px] overflow-y-scroll ">{renderContent()}</div>
     </motion.div>
   );
 };

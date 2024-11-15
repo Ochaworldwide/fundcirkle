@@ -1,4 +1,5 @@
 import React from "react";
+import moreIcon from "/images/more.svg";
 
 const InviteCard = ({ group }) => {
   return (
@@ -19,13 +20,13 @@ const InviteCard = ({ group }) => {
           </div>
 
           <div className="text-center flex border h-fit rounded-full p-3">
-            <p className="text-red-500 font-semibold text-xs">
+            <p className="text-[#00943F] font-semibold text-xs">
               {group.currentMembers}/{group.totalMembers}
             </p>
           </div>
 
-          <div className=" rounded-full p-1 border h-10 bg-[#FBC8CE1A]">
-            <svg
+          <div className=" rounded-full p-1 border h-10 ">
+            {/* <svg
               width="full"
               height="full"
               viewBox="0 0 25 24"
@@ -47,7 +48,9 @@ const InviteCard = ({ group }) => {
                 stroke="#141B34"
                 stroke-width="1.5"
               />
-            </svg>
+            </svg> */}
+
+            <img src={moreIcon} alt="" srcset="" />
           </div>
         </div>
         <div className="py-5 flex justify-around">
@@ -73,7 +76,7 @@ const InviteCard = ({ group }) => {
             </p>
           </div>
           <div className="flex gap-2">
-            <button className="bg-red-500 text-white px-3 py-1 rounded-md text-xs font-semibold">
+            <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
               Accept
             </button>
             <button className="border border-gray-400 text-gray-600 px-3 py-1 rounded-md text-xs font-semibold">

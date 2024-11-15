@@ -18,14 +18,13 @@ function Kyc() {
 
           <Link
             to="/"
-            className="text-[14px] font-sans underline text-[#F0243B]"
+            className="text-[14px] font-sans underline text-[#00943F]"
           >
             Click here to complete KYC
           </Link>
         </div>
 
         <div className="">
-          
           <img src={kycIcon} alt="" srcset="" />
         </div>
       </motion.div>

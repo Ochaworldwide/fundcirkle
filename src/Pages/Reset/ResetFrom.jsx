@@ -97,8 +97,12 @@ function ResetFrom() {
       <NavBar backLink="/sign-in" />
 
       <div className="mx-auto w-[90%] flex flex-col">
-        <h1 className="font-bold text-2xl mb-5 poppins">Reset your Password</h1>
-        <p>Enter your registered email to receive a password reset link.</p>
+        <h1 className="font-bold text-[22px] mb-5 poppins">
+          Reset your Password
+        </h1>
+        <p className="text-[14px]">
+          Enter your registered email to receive a password reset link.
+        </p>
 
         <CustomForm
           fields={fields}
@@ -106,9 +110,9 @@ function ResetFrom() {
           buttonLink=""
           onSubmit={handleFormSubmit}
           buttonProps={{
-            bgColor: "bg-red-500",
+            bgColor: "bg-[#00943F]",
             textColor: "text-white",
-            padding: "px-20 py-5",
+            padding: "px-14 py-5",
             fontSize: "font-bold",
             borderRadius: "rounded-lg",
             marginTop: "mt-10",
@@ -116,25 +120,9 @@ function ResetFrom() {
           }}
         ></CustomForm>
 
-        {/* <form onSubmit={handleFormSubmit} className="mb-4">
-          <input
-            type="email"
-            placeholder="Enter your registered email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border p-2 rounded"
-          />
-          <button
-            type="submit"
-            className="bg-red-500 text-white rounded-lg px-5 py-2 mt-5"
-          >
-            Send Password Reset Link
-          </button>
-        </form> */}
-
         <p className="mt-10 self-center">
           Already have an account?{" "}
-          <span className="text-red-500">
+          <span className="text-[#00943F]">
             <Link to="/sign-up">Sign up here</Link>
           </span>
         </p>

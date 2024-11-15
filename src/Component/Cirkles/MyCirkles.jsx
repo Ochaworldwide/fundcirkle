@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import CircularProgress from "./CircularProgress";
-import messageIcon from "/images/chatting-icon.png";
+import messageIcon from "/images/chatting.svg";
 import catIcon from "../../assets/images/cat.png";
-import moreIcon from "/images/more-icon.png";
+import moreIcon from "/images/more.svg";
+import currency from "/images/currency.svg";
 import { useModal } from "./ModalContext";
 
 const datasets = [
@@ -16,7 +17,7 @@ const datasets = [
     },
     contribution: {
       amount: "60K",
-      currencySymbol: "₹",
+      currencySymbol: currency,
       paymentStatus: {
         completed: 5,
         total: 7,
@@ -29,13 +30,13 @@ const datasets = [
 
   {
     header: {
-      groupName: "Hyderabad",
+      groupName: "Hyderabad Pharmacis",
       groupImage: "/images/circlepeople2.svg",
       count: "2",
     },
     contribution: {
       amount: "150K",
-      currencySymbol: "₹",
+      currencySymbol: currency,
       paymentStatus: {
         completed: 1,
         total: 12,
@@ -48,13 +49,13 @@ const datasets = [
 
   {
     header: {
-      groupName: "Hyderabad",
+      groupName: "Hyderabad Pharmacis",
       groupImage: "/images/circlepeople3.svg",
       count: "3",
     },
     contribution: {
       amount: "90K",
-      currencySymbol: "₹",
+      currencySymbol: currency,
       paymentStatus: {
         completed: 1,
         total: 12,
@@ -62,19 +63,18 @@ const datasets = [
     },
     dates: {
       nextPayment: "Nov 5, 2024",
-      
     },
   },
 
   {
     header: {
-      groupName: "Hyderabad",
+      groupName: "Hyderabad Pharmacis",
       groupImage: "/images/circlepeople4.svg",
       count: "4",
     },
     contribution: {
       amount: "130K",
-      currencySymbol: "₹",
+      currencySymbol: currency,
       paymentStatus: {
         completed: 7,
         total: 9,
@@ -82,19 +82,18 @@ const datasets = [
     },
     dates: {
       nextPayment: "Nov 5, 2024",
-      
     },
   },
 
   {
     header: {
-      groupName: "Hyderabad",
+      groupName: "Hyderabad Pharmacis",
       groupImage: "/images/circlepeople5.svg",
       count: "5",
     },
     contribution: {
       amount: "70K",
-      currencySymbol: "₹",
+      currencySymbol: currency,
       paymentStatus: {
         completed: 3,
         total: 8,
@@ -102,7 +101,6 @@ const datasets = [
     },
     dates: {
       nextPayment: "OCT 1, 2024",
-      
     },
   },
   // Additional datasets can be structured similarly
@@ -131,27 +129,30 @@ function MyCirkles() {
     <div className="relative">
       <div className="flex flex-col border bg-gray-50 rounded-lg">
         <div className="py-5 flex justify-between w-[95%] mx-auto">
-          <div className="w-[50%]">
-            <h1 className="text-[40px] font-bold">
-              {contribution.currencySymbol}
+          <div className="w-[50%] flex flex-col justify-center">
+            <div className="text-[40px] font-[600] flex items-center">
+              <img src={contribution.currencySymbol} alt="" srcset="" className="h-9"/>
+
               {contribution.amount}
-            </h1>
-            <p>Cirkle Amount</p>
+            </div>
+            <p className="text-[14px] ">Cirkle Amount</p>
           </div>
           <div className="w-[50%]">
             <CircularProgress contribution={contribution} />
 
-            <p className="text-black mb-3 text-center">Payment Status</p>
+            <p className="text-black mb-3 text-center text-[14px]">
+              Payment Status
+            </p>
           </div>
         </div>
 
         <div className=" flex w-[95%] mx-auto justify-between">
           <div className="  border rounded-full flex items-center h-10 w-[45%]">
             <button
-              className=" relative  rounded-full p-1 border h-10 bg-[#FBC8CE1A]"
+              className=" relative  rounded-full p-1 border h-10 bg-[#E5F4EC]"
               onClick={() => openModal("chat")}
             >
-              <svg
+              {/* <svg
                 width="full"
                 height="full"
                 viewBox="0 0 25 24"
@@ -171,23 +172,25 @@ function MyCirkles() {
                   stroke-width="1.5"
                   stroke-linejoin="round"
                 />
-              </svg>
+              </svg> */}
 
-              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              <img src={messageIcon} alt="" srcset="" />
+
+              <span className="absolute top-0 right-0 bg-[#00943F] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                 {header.count}
               </span>
             </button>
 
-            <p className="mx-auto">Messages</p>
+            <p className="mx-auto text-[12px]">Messages</p>
           </div>
 
           <div className="  border rounded-full flex items-center h-10 w-[45%]">
-            <div className=" rounded-full border h-10 bg-[#FBC8CE1A]">
+            <div className=" rounded-full border h-10 bg-[#E5F4EC]">
               <button
-                className=" relative  rounded-full p-1 border h-10 bg-[#FBC8CE1A]"
+                className=" relative  rounded-full p-1 border h-10 bg-[#E5F4EC]"
                 onClick={() => openModal("detail")}
               >
-                <svg
+                {/* <svg
                   width="full"
                   height="full"
                   viewBox="0 0 25 24"
@@ -209,15 +212,17 @@ function MyCirkles() {
                     stroke="#141B34"
                     stroke-width="1.5"
                   />
-                </svg>
+                </svg> */}
+
+                <img src={moreIcon} alt="" srcset="" />
               </button>
             </div>
 
-            <p className="mx-auto">Details</p>
+            <p className="mx-auto text-[12px]">Details</p>
           </div>
         </div>
 
-        <div className="flex justify-between bg-[#FBC8CE1A] items-center mb-5 mt-5 mx-auto w-[95%] p-2 rounded-xl">
+        <div className="flex justify-between bg-[#E5F4EC] items-center mb-5 mt-5 mx-auto w-[95%] p-2 rounded-xl text-[10.5px]">
           <p className="text-gray-600">Next Payment</p>
           <p className="font-medium ml-auto p-2 border rounded-[8px] w-[45%] text-[#141B34]">
             {dates.nextPayment}
@@ -230,20 +235,20 @@ function MyCirkles() {
             alt="Group"
             className="w-14 h-14 rounded-full"
           />
-          <h1 className="ml-3 bg-[#B41ACD]  text-white px-3 py-1 text-[22px] rounded-[8px]  text-ellipsis overflow-hidden">
+          <h1 className="ml-3   text-black px-3 py-1 text-[22px] rounded-[8px]  text-ellipsis overflow-hidden">
             {header.groupName}
           </h1>
         </div>
 
         <button
           onClick={handlePrevious}
-          className=" text-black bg-white px-3 py-1 font-bold text-xl border absolute top-64 -left-2 rounded-full"
+          className=" text-black bg-white  font-bold text-lg border absolute top-44 -left-0 rounded-full"
         >
           &lt;
         </button>
         <button
           onClick={handleNext}
-          className=" text-black bg-white font-bold px-3 py-1 text-xl border absolute top-64 -right-2   rounded-full t"
+          className=" text-black bg-white font-bold  text-lg border absolute top-44 -right-0   rounded-full t"
         >
           &gt;
         </button>

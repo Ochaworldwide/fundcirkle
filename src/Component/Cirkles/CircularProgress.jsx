@@ -29,7 +29,7 @@ const CircularProgress = ({ contribution }) => {
           cy="20"
           r={radius}
           fill="none"
-          stroke="#8b5cf6" // Purple color for progress
+          stroke="#00AAFF" 
           strokeWidth="4"
           strokeDasharray={circumference}
           strokeDashoffset={circumference} // Start fully offset

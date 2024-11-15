@@ -1,30 +1,30 @@
 import React from "react";
 import { motion } from "framer-motion";
-import currency from "../../assets/images/currrency.png";
+import currency from "/images/currency.svg";
 
 const QuickStats = () => {
   const stats = [
     {
       label: "Currently Active Circles",
       value: "1",
-      bgColor: "bg-[#ECC6F3]",
+      bgColor: "bg-[#80D4FF33]",
     },
     {
       label: "Your Total Contributions",
       value: "120K",
-      bgColor: "bg-[#FBC8CE]",
+      bgColor: "bg-[#80C99F33]",
       currency: currency,
     },
     {
       label: "Total Payout Amount",
       value: "420",
-      bgColor: "bg-[#ECC6F3]",
+      bgColor: "bg-[#80D4FF33]",
       currency: currency,
     },
     {
       label: "Your Total Due Payment - October",
       value: "120k",
-      bgColor: "bg-[#FBC8CE]",
+      bgColor: "bg-[#80C99F33]",
       currency: currency,
     },
   ];
@@ -49,7 +49,7 @@ const QuickStats = () => {
             <p className="text-gray-700 text-xs font-[400]">{stat.label}</p>
             <p className="text-[20px] font-semibold mt-2 flex items-center justify-center text-[#292D32]">
               <span className=" text-white  ">
-                <img src={stat.currency} alt="" srcset="" />
+                <img src={stat.currency} alt="" srcset="" className="object-contain h-7" />
               </span>
               {stat.value}
             </p>

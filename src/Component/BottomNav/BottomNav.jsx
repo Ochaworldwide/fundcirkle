@@ -8,19 +8,19 @@ const BottomNav = ({ content }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center h-screen">
       <div className="w-full ">{renderContent()}</div>
 
       <div className="w-full  flex justify-around bg-white shadow-lg py-2 fixed bottom-0">
         <button
           onClick={() => setActiveTab("My Cirkles")}
           className={`flex flex-col items-center ${
-            activeTab === "My Cirkles" ? "text-red-500" : "text-gray-500"
+            activeTab === "My Cirkles" ? "text-[#00943F]" : "text-gray-500"
           }`}
         >
           <div className="w-6 h-6 mb-1">
             {/* Replace with your icon */}
-            <span className="rounded-full border border-red-500 w-6 h-6 flex items-center justify-center">
+            <span className="rounded-full border border-[#00943F] w-6 h-6 flex items-center justify-center">
               O
             </span>
           </div>
@@ -30,7 +30,7 @@ const BottomNav = ({ content }) => {
         <button
           onClick={() => setActiveTab("Discover")}
           className={`flex flex-col items-center ${
-            activeTab === "Discover" ? "text-red-500" : "text-gray-500"
+            activeTab === "Discover" ? "text-[#00943F]" : "text-gray-500"
           }`}
         >
           <div className="w-6 h-6 mb-1">
@@ -45,7 +45,7 @@ const BottomNav = ({ content }) => {
         <button
           onClick={() => setActiveTab("Payments")}
           className={`flex flex-col items-center ${
-            activeTab === "Payments" ? "text-red-500" : "text-gray-500"
+            activeTab === "Payments" ? "text-[#00943F]" : "text-gray-500"
           }`}
         >
           <div className="w-6 h-6 mb-1">
@@ -60,7 +60,7 @@ const BottomNav = ({ content }) => {
         <button
           onClick={() => setActiveTab("Settings")}
           className={`flex flex-col items-center ${
-            activeTab === "Settings" ? "text-red-500" : "text-gray-500"
+            activeTab === "Settings" ? "text-[#00943F]" : "text-gray-500"
           }`}
         >
           <div className="w-6 h-6 mb-1">
