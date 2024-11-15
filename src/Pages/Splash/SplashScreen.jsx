@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import splashCircle from "/src/assets/images/Ellipse 6.webp";
-import splashScreen from "/src/assets/images/SplashScreen1.webp";
+import splashScreen from "/images/Splash Screen.svg";
 import splashScreen2 from "/src/assets/images/Group11.webp";
 import splashScreen4 from "/src/assets/images/Splash Screen.webp";
 import pro1 from "/src/assets/images/pro1.webp";
