@@ -66,7 +66,7 @@ const Authentication = () => {
           {number}{" "}
         </p>
 
-        <div className="flex space-x-4 mt-6 mb-5">
+        <div className="flex  mt-6 mb-5 w-[95%] justify-between mx-auto">
           {otp.map((digit, index) => (
             <input
               key={index}
