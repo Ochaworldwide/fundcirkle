@@ -8,7 +8,7 @@ const BottomNav = ({ content }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center  h-screen">
       <div className="w-full ">{renderContent()}</div>
 
       <div className="w-full  flex justify-around bg-white shadow-lg py-2 fixed bottom-0">

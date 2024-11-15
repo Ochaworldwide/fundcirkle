@@ -31,14 +31,14 @@ const CirkleDetailsModal = () => {
 
   return (
     <motion.div
-      initial={{ y: 1000, opacity: 0 }}
+      initial={{ y: '100%', opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 0, opacity: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 15 }}
       className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center h-fit pt-20"
     >
       <div className="bg-white pb-10 rounded-lg max-w-md w-full">
-        <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[80%] mx-auto rounded-xl">
+        <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[95%] mx-auto rounded-xl">
           <svg
             width="32"
             height="32"

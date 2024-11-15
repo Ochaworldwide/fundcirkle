@@ -33,9 +33,6 @@ const NotificationBox = () => {
       exit={{ x: "100%", opacity: 0 }} // Slide out when unmounted
       transition={{ duration: 0.5, ease: "easeInOut" }} // Smooth transition
       className="fixed top-0 left-0 right-0 bg-white shadow-lg mt-4 rounded-lg mx-auto w-96 z-50 p-4"
-      // initial={{ y: -100, opacity: 0 }}
-      // animate={{ y: 0, opacity: 1 }}
-      // exit={{ y: -100, opacity: 0 }}
       // transition={{ type: "spring", stiffness: 100, damping: 15 }}
       // className="fixed top-0 right-0 mt-4 mr-4 bg-white shadow-lg rounded-lg w-96 z-50 p-4"
     >
