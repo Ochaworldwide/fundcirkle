@@ -109,8 +109,6 @@ const InviteCirkleDetailsModal = () => {
             <h2 className="text-lg font-bold text-gray-800 mb-2">
               {data.title}
             </h2>
-
-            
           </div>
 
           <p className="text-sm text-gray-600 mb-4">{data.description}</p>
@@ -147,15 +145,20 @@ const InviteCirkleDetailsModal = () => {
             ))}
           </div>
 
+          <div className="p-5 mx-auto flex justify-between w-[80%]">
+            <p>Contribution Amount</p>
 
-          <div className="p-5 mx-auto">
-            
 
+            <div className="flex">
+                <img src={payoutData.currency} alt="" srcset="" className="h-6" />
+                <p>{payoutData.amount}</p>
+            </div>
+
+           
           </div>
-          
 
-          <div className="flex  mt-4 justify-between w-[80%] mx-auto">
-            <button className="bg-[#00943F] text-white px-7 py-2 rounded-lg text-sm">
+          <div className="flex  mt-4 justify-between w-[90%] mx-auto">
+            <button className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm">
               Accept to join
             </button>
             <button className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm">

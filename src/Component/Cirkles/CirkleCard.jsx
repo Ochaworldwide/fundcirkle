@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import CircularProgress from "./CircularProgress";
 import MyCirkles from "./MyCirkles";
 import Invites from "./Invites";
+import NewCirkle from "../../Pages/Home/NewCirkle";
 
 const CirkleCard = ({ tabs, header,  dates, members }) => {
   // Contribution & Payment Info
@@ -26,7 +27,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       case "invites":
         return <Invites/>;
       case "newCirkle":
-        return <div>New Cirkle Content</div>;
+        return <NewCirkle />;
       default:
         return null;
     }
