@@ -137,7 +137,7 @@ function MyCirkles() {
                 srcset=""
                 className="h-9"
               />
-
+              
               {contribution.amount}
             </div>
             <p className="text-[14px] ">Cirkle Amount</p>

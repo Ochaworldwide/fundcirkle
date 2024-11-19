@@ -67,9 +67,12 @@ const ChatModal = () => {
         <input
           type="text"
           placeholder="Message..."
-          className="flex-grow p-2 rounded-md mr-2 focus:outline-none"
+          className="flex-grow p-2 rounded-md  focus:outline-none "
         />
-        <button className="">
+
+
+        <div className="">
+          <button className="">
           <svg
             width="24"
             height="24"
@@ -177,6 +180,8 @@ const ChatModal = () => {
             />
           </svg>
         </button>
+        </div>
+        
       </div>
     </motion.div>
   );

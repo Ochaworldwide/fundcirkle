@@ -40,10 +40,10 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className="flex mb-4 w-[95%] justify-between mx-auto">
-        <div className="flex w-[80%] bg-gray-100 p-1 rounded-lg justify-between">
+      <div className="flex mb-4 w-[95%]  mx-auto">
+        <div className="flex w-[100%] bg-gray-100 p-1 rounded-lg justify-between ">
           <button
-            className={` py-2 rounded-md text-xs w-[30%] ${
+            className={` py-2 rounded-md text-[14px] w-[30%] ${
               activeTab === "myCirkles"
                 ? "bg-white text-[#00943F] font-semibold shadow-md"
                 : "text-[#0000004D]"
@@ -53,7 +53,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
             My Cirkles
           </button>
           <button
-            className={` py-2 rounded-md text-xs w-[30%] ${
+            className={` py-2 rounded-md text-[14px] w-[30%] ${
               activeTab === "invites"
                 ? "bg-white text-[#00943F] font-semibold shadow-md"
                 : "text-[#0000004D]"
@@ -63,7 +63,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
             Invites
           </button>
           <button
-            className={`py-2 rounded-md text-xs w-[30%] ${
+            className={`py-2 rounded-md text-[14px] w-[30%] ${
               activeTab === "newCirkle"
                 ? "bg-white text-[#00943F] font-semibold shadow-md"
                 : "text-[#0000004D]"
@@ -75,7 +75,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
         </div>
 
         {/* Search Icon */}
-        <button className="ml-auto p-2 rounded-full bg-white shadow-md">
+        {/* <button className="ml-auto p-2 rounded-full bg-white shadow-md">
           <svg
             width="24"
             height="24"
@@ -99,7 +99,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
               stroke-linejoin="round"
             />
           </svg>
-        </button>
+        </button> */}
       </div>
 
       {/* Content Area */}
