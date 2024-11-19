@@ -73,9 +73,9 @@ const CirkleDetailsModal = () => {
         ease: "easeInOut",
       }} // Smooth transitio
       // transition={{ type: "spring", stiffness: 100, damping: 15 }}
-      className="fixed bottom-0 left-0 right-0 inset-0  bg-opacity-75 flex justify-center items-center pt-20"
+      className="fixed bottom-0 left-0 right-0 inset-0  5 rounded-lg mx-auto max-w-md z-50  bg-white"
     >
-      <div className="bg-white pb-10 rounded-lg max-w-md w-full">
+      <div className=" pb-10 rounded-lg max-w-md w-full">
         <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[100%] mx-auto rounded-xl">
           <img src="/images/tricycle.svg" alt="" srcset="" />
 
