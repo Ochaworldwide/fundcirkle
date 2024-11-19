@@ -47,7 +47,7 @@ function Invites() {
     ];
   return (
     <div>
-      <div className="p-1 bg-gray-100 min-h-screen">
+      <div className="p-1  min-h-screen">
         {groups.map((group, index) => (
           <InviteCard key={index} group={group} />
         ))}

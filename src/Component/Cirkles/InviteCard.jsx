@@ -1,7 +1,11 @@
 import React from "react";
 import moreIcon from "/images/more.svg";
+import { useModal } from "./ModalContext";
+
 
 const InviteCard = ({ group }) => {
+
+  const { openModal } = useModal();
   return (
     <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%]">
       <div className="py-5  w-[20%]">
@@ -25,7 +29,10 @@ const InviteCard = ({ group }) => {
             </p>
           </div>
 
-          <div className=" rounded-full p-1 border h-10 ">
+          <div
+            className=" rounded-full p-1 border h-10 "
+            onClick={() => openModal("invite")}
+          >
             {/* <svg
               width="full"
               height="full"

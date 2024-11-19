@@ -15,6 +15,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import SignIn from "./Pages/Authentication/SignIn";
 import SignUp from "./Pages/Authentication/SignUp";
 import CirkleDetailsModal from "./Component/Cirkles/CirkleDetailsModal";
+import InviteCirkleDetailsModal from "./Component/Cirkles/InviteCirkleDetailsModal";
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         <ModalChat />
         <NotificationBox />
         <CirkleDetailsModal />
+        <InviteCirkleDetailsModal />
       </Router>
     </ModalProvider>
   );

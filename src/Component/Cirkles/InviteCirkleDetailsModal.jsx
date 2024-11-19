@@ -4,10 +4,10 @@ import { useModal } from "./ModalContext";
 import CircularProgress from "./CircularProgress";
 import PayoutCard from "./PayoutCard";
 
-const CirkleDetailsModal = () => {
+const InviteCirkleDetailsModal = () => {
   const { isModalOpen, modalType, closeModal } = useModal();
 
-  if (!isModalOpen || modalType !== "detail") return null;
+  if (!isModalOpen || modalType !== "invite") return null;
 
   const data = {
     title: "Hyderabad Pharmacist Union",
@@ -55,7 +55,6 @@ const CirkleDetailsModal = () => {
     currency: "/images/green-currency.svg",
   };
 
-
   const payoutData = {
     progress: { current: 2, total: 7 },
     payoutDate: "25th of Nov 2024",
@@ -73,7 +72,7 @@ const CirkleDetailsModal = () => {
         ease: "easeInOut",
       }} // Smooth transition
       // transition={{ type: "spring", stiffness: 100, damping: 15 }}
-      className="fixed bottom-0 left-0 right-0   5 rounded-lg mx-auto max-w-md z-50  bg-white"
+      className="fixed bottom-0 left-0 right-0  rounded-lg mx-auto max-w-md z-50  bg-white"
     >
       <div className=" pb-10 rounded-lg max-w-md w-full">
         <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[100%] mx-auto rounded-xl">
@@ -100,7 +99,7 @@ const CirkleDetailsModal = () => {
         </div>
 
         <div className="p-3 mx-auto">
-          <div className="items-center mb-5 flex justify-between">
+          <div className="items-center mb-5 flex space-x-10">
             <img
               src={data.image}
               alt="Group"
@@ -111,27 +110,7 @@ const CirkleDetailsModal = () => {
               {data.title}
             </h2>
 
-            <svg
-              width="44"
-              height="44"
-              viewBox="0 0 44 44"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M26.4249 14.6051L27.4149 13.6151C28.2351 12.795 29.5648 12.795 30.3849 13.6151C31.205 14.4352 31.205 15.7649 30.3849 16.5851L29.3949 17.5751M26.4249 14.6051L19.7656 21.2644C19.2581 21.772 18.898 22.4078 18.724 23.1041L18 26L20.8959 25.276C21.5922 25.102 22.228 24.7419 22.7356 24.2344L29.3949 17.5751M26.4249 14.6051L29.3949 17.5751"
-                stroke="#141B34"
-                stroke-width="1.5"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M28.9999 23.5C28.9999 26.7875 28.9999 28.4312 28.092 29.5376C27.9258 29.7401 27.7401 29.9258 27.5375 30.092C26.4312 31 24.7874 31 21.4999 31H21C17.2288 31 15.3432 31 14.1716 29.8284C13 28.6569 13 26.7712 13 23V22.5C13 19.2125 13 17.5688 13.9079 16.4624C14.0742 16.2599 14.2599 16.0742 14.4624 15.9079C15.5688 15 17.2125 15 20.5 15"
-                stroke="#141B34"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            
           </div>
 
           <p className="text-sm text-gray-600 mb-4">{data.description}</p>
@@ -152,7 +131,7 @@ const CirkleDetailsModal = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto">
+          <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto opacity-[0.1]">
             {data.members.map((member, index) => (
               <div key={index} className="flex flex-col items-center">
                 <img
@@ -168,16 +147,19 @@ const CirkleDetailsModal = () => {
             ))}
           </div>
 
-          <div className="">
-            <PayoutCard data={payoutData} />
-          </div>
 
-          <div className="flex  mt-4 justify-between w-[90%] mx-auto">
-            <button className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm">
-              Pay Pie for October
+          <div className="p-5 mx-auto">
+            
+
+          </div>
+          
+
+          <div className="flex  mt-4 justify-between w-[80%] mx-auto">
+            <button className="bg-[#00943F] text-white px-7 py-2 rounded-lg text-sm">
+              Accept to join
             </button>
             <button className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm">
-              Swap Payment Month
+              Decline Invitation
             </button>
           </div>
         </div>
@@ -186,4 +168,4 @@ const CirkleDetailsModal = () => {
   );
 };
 
-export default CirkleDetailsModal;
+export default InviteCirkleDetailsModal;
