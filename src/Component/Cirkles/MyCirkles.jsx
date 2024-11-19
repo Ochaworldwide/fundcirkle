@@ -137,7 +137,7 @@ function MyCirkles() {
                 srcset=""
                 className="h-9"
               />
-              
+
               {contribution.amount}
             </div>
             <p className="text-[14px] ">Cirkle Amount</p>
@@ -210,15 +210,15 @@ function MyCirkles() {
 
         <button
           onClick={handlePrevious}
-          className=" text-black   font-bold text-lg  absolute top-44 -left-0 rounded-full"
+          className=" text-black border  font-bold text-lg  absolute top-48 p-1 -left-0 rounded-full"
         >
-          &lt;
+          <img src="/images/arrow-left.svg" alt="" srcset="" />
         </button>
         <button
           onClick={handleNext}
-          className=" text-black  font-bold  text-lg  absolute top-44 -right-0   rounded-full t"
+          className=" text-black border font-bold  text-lg  absolute top-48 -right-0 p-1  rounded-full t"
         >
-          &gt;
+          <img src="/images/arrow-right.svg" alt="" srcset="" />
         </button>
       </div>
     </div>
