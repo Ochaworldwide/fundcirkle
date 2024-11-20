@@ -381,7 +381,7 @@ const CreateNewCirkleModal = () => {
               {frequency === "Monthly" && (
                 <div>
                   <p className="text-sm mb-4 text-center">Pick a Date</p>
-                  <div className="grid grid-cols-7 gap-3 flex-wrap bg-red-400 ">
+                  <div className="grid grid-cols-7 gap-3 flex-wrap  ">
                     {[...Array(28)].map((_, i) => (
                       <button
                         key={i}
