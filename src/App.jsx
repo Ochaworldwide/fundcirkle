@@ -16,6 +16,7 @@ import SignIn from "./Pages/Authentication/SignIn";
 import SignUp from "./Pages/Authentication/SignUp";
 import CirkleDetailsModal from "./Component/Cirkles/CirkleDetailsModal";
 import InviteCirkleDetailsModal from "./Component/Cirkles/InviteCirkleDetailsModal";
+import CreateNewCirkleModal from "./Component/Cirkles/CreateNewCirkleModal";
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
         <NotificationBox />
         <CirkleDetailsModal />
         <InviteCirkleDetailsModal />
+        <CreateNewCirkleModal />
       </Router>
     </ModalProvider>
   );

@@ -124,3 +124,139 @@ function Home() {
 }
 
 export default Home
+
+
+
+// import React, { useState, useEffect } from "react";
+// import profileImg from "/images/profileImg.svg";
+// import notificationIcon from "/src/assets/images/notification-bing.png";
+// import Kyc from "../../Component/VerifyKyc/kyc";
+// import Quickstats from "../../Component/Quickstats/Quickstats";
+// import CirkleCard from "../../Component/Cirkles/CirkleCard";
+// import messageIcon from "/src/assets/images/message.png";
+// import catIcon from "/src/assets/images/cat.png";
+// import moreIcon from "/src/assets/images/more.png";
+// import currency from "/src/assets/images/currrency.png";
+// import CircularProgress from "../../Component/Cirkles/CircularProgress";
+// import { useModal } from "/src/Component/Cirkles/ModalContext";
+
+// function Home() {
+//   const [isLoading, setIsLoading] = useState(true);
+//   const { openModal } = useModal();
+//   const NotifyNum = "3";
+
+//   const tabsData = [
+//     { name: "My Cirkles", isActive: true },
+//     { name: "Invites", isActive: false },
+//     { name: "New Cirkle", isActive: false },
+//   ];
+
+//   const headerData = {
+//     groupName: "Hyderabadwwwwwwwwwwwwwwwww",
+//     groupImage: "/src/assets/images/circlepeople.png",
+//     notifications: [
+//       { icon: messageIcon, count: 1 },
+//       { icon: catIcon },
+//       { icon: moreIcon },
+//     ],
+//   };
+
+//   const paymentDates = {
+//     nextPayment: "Oct 1, 2024",
+//     yourTurn: "Nov 1, 2024",
+//   };
+
+//   const membersData = [
+//     { name: "Alice", image: "/src/assets/images/member1.png" },
+//     { name: "Bob", image: "/src/assets/images/member2.png" },
+//     { name: "Carol", image: "/src/assets/images/member3.png" },
+//     { name: "Dave", image: "/src/assets/images/member4.png" },
+//     { name: "Eve", image: "/src/assets/images/member5.png" },
+//     { name: "Frank", image: "/src/assets/images/member6.png" },
+//     { name: "Grace", image: "/src/assets/images/member7.png" },
+//   ];
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       setIsLoading(false); // Simulate data loading
+//     }, 2000); // 2-second delay for demo
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   return (
+//     <div className="">
+//       <div className="flex w-[95%] mx-auto items-center mb-5 sticky top-0 bg-white z-10">
+//         <div>
+//           <img src={profileImg} alt="" className="rounded-full" />
+//         </div>
+//         <div className="p-5">
+//           <p className="text-sm font-[400]">Welcome back</p>
+//           <h1 className="font-bold">Bhaavik Arhaan</h1>
+//         </div>
+//         <div className="border p-1 rounded-full relative ml-auto">
+//           <div className="absolute top-0 right-0 border text-[8px] font-bold flex justify-center text-white h-[12px] w-[12px] bg-[#00943F] rounded-full">
+//             {NotifyNum}
+//           </div>
+//           <svg
+//             width="24"
+//             height="25"
+//             viewBox="0 0 24 25"
+//             fill="none"
+//             xmlns="http://www.w3.org/2000/svg"
+//             className="rounded-full"
+//             onClick={() => openModal("notification")}
+//           >
+//             <path
+//               d="M12 6.94V10.27"
+//               stroke="#292D32"
+//               strokeWidth="1.5"
+//               strokeMiterlimit="10"
+//               strokeLinecap="round"
+//             />
+//             <path
+//               d="M12.0199 2.5C8.3399 2.5 5.3599 5.48 5.3599 9.16V11.26C5.3599 11.94 5.0799 12.96 4.7299 13.54L3.4599 15.66C2.6799 16.97 3.2199 18.43 4.6599 18.91C9.4399 20.5 14.6099 20.5 19.3899 18.91C20.7399 18.46 21.3199 16.88 20.5899 15.66L19.3199 13.54C18.9699 12.96 18.6899 11.93 18.6899 11.26V9.16C18.6799 5.5 15.6799 2.5 12.0199 2.5Z"
+//               stroke="#292D32"
+//               strokeWidth="1.5"
+//               strokeMiterlimit="10"
+//               strokeLinecap="round"
+//             />
+//             <path
+//               d="M15.3299 19.32C15.3299 21.15 13.8299 22.65 11.9999 22.65C11.0899 22.65 10.2499 22.27 9.64992 21.67C9.04992 21.07 8.66992 20.23 8.66992 19.32"
+//               stroke="#292D32"
+//               strokeWidth="1.5"
+//               strokeMiterlimit="10"
+//             />
+//           </svg>
+//         </div>
+//       </div>
+
+//       {/* Kyc Section */}
+//       {isLoading ? (
+//         <div className="animate-pulse p-5 bg-gray-300 rounded-md h-24"></div>
+//       ) : (
+//         <Kyc />
+//       )}
+
+//       {/* Cirkles Section */}
+//       {isLoading ? (
+//         <div className="animate-pulse p-5 bg-gray-300 rounded-md h-40"></div>
+//       ) : (
+//         <CirkleCard
+//           tabs={tabsData}
+//           header={headerData}
+//           dates={paymentDates}
+//           members={membersData}
+//         />
+//       )}
+
+//       {/* QuickStats Section */}
+//       {isLoading ? (
+//         <div className="animate-pulse p-5 bg-gray-300 rounded-md h-20"></div>
+//       ) : (
+//         <Quickstats />
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Home;
