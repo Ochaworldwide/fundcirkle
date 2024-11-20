@@ -227,6 +227,7 @@ const CreateNewCirkleModal = () => {
   const [dueDate, setDueDate] = useState(25);
   const [dueMonth, setDueMonth] = useState(24);
   const [selectedDay, setSelectedDay] = useState("Friday");
+  const [step, setStep] = useState(1); // Step state to track current view
 
   const { isModalOpen, modalType, closeModal } = useModal();
 
@@ -235,6 +236,14 @@ const CreateNewCirkleModal = () => {
   const handleSelection = (value) => {
     console.log("Selected value:", value);
   };
+
+   const handleNext = () => {
+     setStep(2); // Change step to display the next component
+   };
+
+      const handlePrev = () => {
+        setStep(1); // Change step to display the next component
+      };
 
   return (
     <motion.div
@@ -245,205 +254,257 @@ const CreateNewCirkleModal = () => {
       className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 bg-white"
     >
       <div className="pb-10 rounded-lg max-w-md w-full">
-        <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl mb-5">
-          <img src="/images/tricycle.svg" alt="Circle Icon" />
+        {/* Conditionally render based on step */}
+        {step === 1 ? (
+          <>
+            {/* Head */}
+            <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl mb-5">
+              <img src="/images/tricycle.svg" alt="Circle Icon" />
 
-          <p className="text-[18px] font-[400]">Create New Cirkle</p>
-          <button onClick={closeModal} className="text-gray-500 float-right">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
-                stroke="#141B34"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+              <p className="text-[18px] font-[400]">Create New Cirkle</p>
+              <button
+                onClick={closeModal}
+                className="text-gray-500 float-right"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
+                    stroke="#141B34"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
 
-        <div className="max-w-md mx-auto rounded-lg p-3 ">
-          <div className="flex justify-between items-center mb-4">
-            <input
-              type="text"
-              placeholder="Enter Cirkle Name"
-              value={cirkleName}
-              onChange={(e) => setCirkleName(e.target.value)}
-              className="border rounded-lg px-3 py-2 text-sm outline-none"
-            />
-            <div className="flex flex-col items-center ml-4">
-              <span className="text-[12px]">Number of Members</span>
-              <div className="flex items-center space-x-1">
-                <button
-                  onClick={() => setMembers((prev) => Math.max(1, prev - 1))}
-                  className="w-7 h-7 flex items-center justify-center border rounded-lg text-sm"
-                >
-                  -
-                </button>
-                <span className="p-1">{members}</span>
-                <button
-                  onClick={() => setMembers((prev) => prev + 1)}
-                  className="w-7 h-7 flex items-center justify-center border rounded-lg text-sm"
-                >
-                  +
-                </button>
+            {/* body */}
+
+            <div className="max-w-md mx-auto rounded-lg p-3 ">
+              <div className="flex justify-between items-center mb-4">
+                <input
+                  type="text"
+                  placeholder="Enter Cirkle Name"
+                  value={cirkleName}
+                  onChange={(e) => setCirkleName(e.target.value)}
+                  className="border rounded-lg px-3 py-2 text-sm outline-none"
+                />
+                <div className="flex flex-col items-center ml-4">
+                  <span className="text-[12px]">Number of Members</span>
+                  <div className="flex items-center space-x-2 border rounded-lg">
+                    <button
+                      onClick={() =>
+                        setMembers((prev) => Math.max(1, prev - 1))
+                      }
+                      className="w-7 h-7 flex items-center justify-center  rounded-lg text-sm"
+                    >
+                      -
+                    </button>
+                    <span className="p-1 text-[12px] bg-[#F5F5F5] rounded-full">
+                      {members}
+                    </span>
+                    <button
+                      onClick={() => setMembers((prev) => prev + 1)}
+                      className="w-7 h-7 flex items-center justify-center  rounded-lg text-sm"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <textarea
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full border rounded-lg px-3 py-2 mb-4 text-sm outline-none"
-          ></textarea>
+              <textarea
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="w-full border rounded-lg px-3 py-2 mb-4 text-sm outline-none"
+              ></textarea>
 
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center space-x-3">
-              <img src="/images/blue-currency.svg" alt="" srcset="" />
-              {/* <span className="text-2xl mr-2">₹</span> */}
-              <input
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="w-28 border rounded-lg px-3 py-2 text-sm outline-none"
-              />
-            </div>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="border rounded-lg px-3 py-2 text-[]"
-            >
-              <option value="Personal">Personal</option>
-              <option value="Business">Business</option>
-              <option value="Others">Others</option>
-            </select>
-          </div>
-          <p className="text-[12px] font-[400] mb-5">
-            Contribution Frequency and Due date
-          </p>
-          <div className="mb-4 flex justify-between h-[200px]">
-            <div className="flex flex-col space-y-2  text-[10.5px] bg-[#EBEBED] w-[25%] h-fit py-1 rounded-md">
-              {["Biweekly", "Monthly", "Quarterly"].map((freq) => (
-                <button
-                  key={freq}
-                  onClick={() => setFrequency(freq)}
-                  className={`px-3 py-2 border rounded-md w-[90%] mx-auto text-[#141B3480] ${
-                    frequency === freq ? "bg-white text-[#141B34]" : ""
-                  }`}
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center space-x-3">
+                  <img src="/images/blue-currency.svg" alt="" srcset="" />
+                  {/* <span className="text-2xl mr-2">₹</span> */}
+                  <input
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    className="w-28 border rounded-lg px-3 py-2 text-sm outline-none"
+                  />
+                </div>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="border rounded-lg px-3 py-2 text-[]"
                 >
-                  {freq}
-                </button>
-              ))}
+                  <option value="Personal">Personal</option>
+                  <option value="Business">Business</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+              <p className="text-[12px] font-[400] mb-5">
+                Contribution Frequency and Due date
+              </p>
+              <div className="mb-4 flex justify-between h-[200px]">
+                <div className="flex flex-col space-y-2  text-[10.5px] bg-[#EBEBED] w-[25%] h-fit py-1 rounded-md">
+                  {["Biweekly", "Monthly", "Quarterly"].map((freq) => (
+                    <button
+                      key={freq}
+                      onClick={() => setFrequency(freq)}
+                      className={`px-3 py-2 border rounded-md w-[90%] mx-auto text-[#141B3480] ${
+                        frequency === freq ? "bg-white text-[#141B34]" : ""
+                      }`}
+                    >
+                      {freq}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="w-[70%] ">
+                  {/* Weekday Selection for Biweekly */}
+                  {frequency === "Biweekly" && (
+                    <div className="flex flex-col items-center ">
+                      {/* <p className="text-sm mb-2">Select a Weekday</p> */}
+                      <SimpleDropdown
+                        options={["Week 1", "Week 2", "Week 3", "Week 4"]}
+                        onSelect={handleSelection}
+                        optionHeading={"Select Week"}
+                      />
+                      <div className="space-y-2 space-x-2  w-[100%]">
+                        {[
+                          "Monday",
+                          "Tuesday",
+                          "Wednesday",
+                          "Thursday",
+                          "Friday",
+                          "Saturday",
+                          "Sunday",
+                        ].map((day) => (
+                          <button
+                            key={day}
+                            onClick={() => setSelectedDay(day)}
+                            className={`px-3 py-2 border rounded-lg  text-[10.5px] w-fit ${
+                              selectedDay === day
+                                ? "bg-green-500 text-white"
+                                : ""
+                            }`}
+                          >
+                            {day}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Due Date Selection */}
+                  {frequency === "Monthly" && (
+                    <div>
+                      <p className="text-sm mb-4 text-center">Pick a Date</p>
+                      <div className="grid grid-cols-7 gap-3 flex-wrap  ">
+                        {[...Array(28)].map((_, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setDueDate(i + 1)}
+                            className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
+                              dueDate === i + 1 ? "bg-green-500 text-white" : ""
+                            }`}
+                          >
+                            {i + 1}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Due Quaterly Selection */}
+                  {frequency === "Quarterly" && (
+                    <div>
+                      {/* <p className="text-sm mb-2">Select a Due Date</p> */}
+
+                      <SimpleDropdown
+                        options={["Month 1", "Month 2", "Month 3", "Month 4"]}
+                        onSelect={handleSelection}
+                        optionHeading={"Select Month"}
+                      />
+                      <div className="grid grid-cols-7 gap-2 flex-wrap ">
+                        {[...Array(28)].map((_, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setDueMonth(i + 1)}
+                            className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
+                              dueMonth === i + 1
+                                ? "bg-green-500 text-white"
+                                : ""
+                            }`}
+                          >
+                            {i + 1}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <button
+                className="w-[90%] border border-[#00943F] text-[#00943F] py-2 rounded-lg flex justify-center relative mx-auto "
+                onClick={handleNext} // Change step to 2
+              >
+                Next
+                <img
+                  src="/images/green-arrow-right.svg"
+                  alt=""
+                  srcset=""
+                  className=" w-fit absolute right-2"
+                />
+              </button>
             </div>
+          </>
+        ) : (
+          <>
+            {/* Head */}
+            <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl mb-5">
+              <img
+                src="/images/arrowback.svg"
+                alt="Circle Icon"
+                onClick={handlePrev}
+              />
 
-            <div className="w-[70%] ">
-              {/* Weekday Selection for Biweekly */}
-              {frequency === "Biweekly" && (
-                <div className="flex flex-col items-center ">
-                  {/* <p className="text-sm mb-2">Select a Weekday</p> */}
-                  <SimpleDropdown
-                    options={["Week 1", "Week 2", "Week 3", "Week 4"]}
-                    onSelect={handleSelection}
-                    optionHeading={"Select Week"}
+              <p className="text-[18px] font-[400]">Create New Cirkle</p>
+              <button
+                onClick={closeModal}
+                className="text-gray-500 float-right"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
+                    stroke="#141B34"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
-                  <div className="space-y-2 space-x-2  w-[100%]">
-                    {[
-                      "Monday",
-                      "Tuesday",
-                      "Wednesday",
-                      "Thursday",
-                      "Friday",
-                      "Saturday",
-                      "Sunday",
-                    ].map((day) => (
-                      <button
-                        key={day}
-                        onClick={() => setSelectedDay(day)}
-                        className={`px-3 py-2 border rounded-lg  text-[10.5px] w-fit ${
-                          selectedDay === day ? "bg-green-500 text-white" : ""
-                        }`}
-                      >
-                        {day}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Due Date Selection */}
-              {frequency === "Monthly" && (
-                <div>
-                  <p className="text-sm mb-4 text-center">Pick a Date</p>
-                  <div className="grid grid-cols-7 gap-3 flex-wrap  ">
-                    {[...Array(28)].map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setDueDate(i + 1)}
-                        className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
-                          dueDate === i + 1 ? "bg-green-500 text-white" : ""
-                        }`}
-                      >
-                        {i + 1}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Due Quaterly Selection */}
-              {frequency === "Quarterly" && (
-                <div>
-                  {/* <p className="text-sm mb-2">Select a Due Date</p> */}
-
-                  <SimpleDropdown
-                    options={["Month 1", "Month 2", "Month 3", "Month 4"]}
-                    onSelect={handleSelection}
-                    optionHeading={"Select Month"}
-                  />
-                  <div className="grid grid-cols-7 gap-2 flex-wrap ">
-                    {[...Array(28)].map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setDueMonth(i + 1)}
-                        className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
-                          dueMonth === i + 1 ? "bg-green-500 text-white" : ""
-                        }`}
-                      >
-                        {i + 1}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+                </svg>
+              </button>
             </div>
-          </div>
-
-          <button
-            className="w-full bg-green-500 text-white py-2 rounded-lg flex items-center justify-center"
-            onClick={() =>
-              alert(
-                `Next clicked. Frequency: ${frequency}, ${
-                  frequency === "Biweekly"
-                    ? `Day: ${selectedDay}`
-                    : `Due Date: ${dueDate}`
-                }`
-              )
-            }
-          >
-            Next
-            <span className="ml-2">&rarr;</span>
-          </button>
-        </div>
+          </>
+        )}
       </div>
     </motion.div>
   );
 };
 
 export default CreateNewCirkleModal;
+
+
+
