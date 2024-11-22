@@ -17,6 +17,7 @@ import SignUp from "./Pages/Authentication/SignUp";
 import CirkleDetailsModal from "./Component/Cirkles/CirkleDetailsModal";
 import InviteCirkleDetailsModal from "./Component/Cirkles/InviteCirkleDetailsModal";
 import CreateNewCirkleModal from "./Component/Cirkles/CreateNewCirkleModal";
+import Discover from "./Pages/Discover/Discover";
 
 
 const App = () => {
@@ -34,6 +35,8 @@ const App = () => {
           <Route path="/first" element={<FirstSplash />} />
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/discover" element={<Discover />} />
+
           {/* Add more routes for additional screens as needed */}
         </Routes>
         <ModalChat />

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useModal } from '../../Component/Cirkles/ModalContext';
+import { Link } from 'react-router-dom';
 // import { useModal } from "./ModalContext";
 
 function NewCirkle() {
@@ -31,10 +32,12 @@ function NewCirkle() {
         >
           Create New Cirkle
         </button>
-
+        <Link to = "/discover" >
         <button className="text-[#141B34] text-sm py-3  mb-1 w-[100%] rounded-lg border">
           Join a New Cirkle
         </button>
+        </Link>
+        
       </div>
     </div>
   );

@@ -1,15 +1,12 @@
 import React from 'react'
 import BottomNav from '../../Component/BottomNav/BottomNav';
 import Home from '../Home/Home';
+import Discover from '../Discover/Discover';
 
 function Dashboard() {
     const tabContent = {
       "My Cirkles": <Home />,
-      Discover: (
-        <div className="p-4 text-center">
-          This Page is Still Under Development
-        </div>
-      ),
+      Discover: <Discover />,
       Payments: (
         <div className="p-4 text-center">
           This Page is Still Under Development
