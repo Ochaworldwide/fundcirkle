@@ -413,7 +413,7 @@ const CreateNewCirkleModal = () => {
 
             {/* public and private section */}
 
-            <div className="flex flex-col items-center justify-center  rounded-md shadow-md w-96">
+            <div className="flex flex-col items-center justify-center  rounded-md shadow-md w-[100%]">
               {/* Toggle Buttons */}
               <div className="flex bg-gray-200 rounded-lg mb-4 p-1">
                 <button
