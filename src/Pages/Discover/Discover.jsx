@@ -1,6 +1,9 @@
 import React from 'react'
 import InviteCard from '../../Component/Cirkles/InviteCard';
-import Slider from '../../Component/Slider/Slider';
+import CustomSlider from '../../Component/Slider/CustomSlider';
+import { useModal } from '../../Component/Cirkles/ModalContext';
+import FilterModal from '../../Component/DiscoverModals/FilterModal';
+// import Slider from '../../Component/Slider/Slider';
 
 function Discover() {
 
@@ -55,13 +58,18 @@ function Discover() {
         
       </div>
      )
+     
+
+     const { isModalOpen, modalType, closeModal, openModal } = useModal();
+
+     
 
 
 
   return (
     <div>
       {/* header */}
-      <div className="w-[100%] flex justify-center py-5 shadow sticky top-0 bg-white">
+      <div className="w-[100%] flex justify-center py-5  sticky top-0 bg-white">
         <p className="text-[22px] font-[600]">Discover</p>
       </div>
 
@@ -89,19 +97,23 @@ function Discover() {
             alt=""
             srcset=""
             className=""
+            onClick={() => openModal("filter")}
           />
+
+          {/* Modals */}
+          <FilterModal />
         </div>
       </div>
 
       {/* body */}
 
-      <div className="flex p-5 ">
+      <div className="flex p-5 " onClick={() => openModal("displayCategories")}>
         <p className="text-[18px] mr-5">Recommended Cirkles</p>
 
         <img src="/images/arrow-down-01.svg" alt="" srcset="" />
       </div>
 
-      <div className="h-[450px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar p-2">
+      <div className="h-[420px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar p-2">
         <div className="p-1  min-h-screen">
           {groups.map((group, index) => (
             <InviteCard key={index} group={group} buttons={buttons} />
@@ -111,15 +123,13 @@ function Discover() {
 
       {/* New Features */}
 
-      <div className='pl-5 pt-3'>
-        <h1 className='text-[18px]'>New Features and Offers</h1>
+      <div className="pl-5 pt-3">
+        <h1 className="text-[18px]">New Features and Offers</h1>
 
         {/* <Slider /> */}
+
+        <CustomSlider />
       </div>
-
-      
-
-
     </div>
   );
 }

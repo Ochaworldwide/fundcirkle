@@ -18,6 +18,10 @@ import CirkleDetailsModal from "./Component/Cirkles/CirkleDetailsModal";
 import InviteCirkleDetailsModal from "./Component/Cirkles/InviteCirkleDetailsModal";
 import CreateNewCirkleModal from "./Component/Cirkles/CreateNewCirkleModal";
 import Discover from "./Pages/Discover/Discover";
+import FilterModal from "./Component/DiscoverModals/FilterModal";
+import CirkleCategoryModal from "./Component/DiscoverModals/CirkleCategoryModal";
+import ContributionAmountRangeModal from "./Component/DiscoverModals/ContibutionAmountRangeModal";
+import DisplayCategoriesModal from "./Component/DiscoverModals/DisplayCategories.Modaal";
 
 
 const App = () => {
@@ -44,6 +48,10 @@ const App = () => {
         <CirkleDetailsModal />
         <InviteCirkleDetailsModal />
         <CreateNewCirkleModal />
+        <FilterModal />
+        <CirkleCategoryModal />
+        <ContributionAmountRangeModal />
+        <DisplayCategoriesModal />
       </Router>
     </ModalProvider>
   );

@@ -1,4 +1,5 @@
 
+import { div } from "framer-motion/client";
 import React, { useState } from "react";
 
 const LocationDropdown = () => {
@@ -35,11 +36,13 @@ const LocationDropdown = () => {
 //   };
 
   return (
-    <div className="relative w-[40%]">
+
+    <div className="">
+      <div className=" w-[100%]">
       {/* Trigger Button */}
       <button
         onClick={toggleDropdown}
-        className="px-4 w-[100%] flex justify-between py-2 text-[10.5px] text-[#505050] rounded-md border focus:outline-none"
+        className="px-4 w-[100%] flex justify-between py-2 text-[10.5px] text-[#505050] rounded-md border e"
       >
         City, States
         <img src="/images/arrow-down-01.svg" alt="" />
@@ -47,7 +50,10 @@ const LocationDropdown = () => {
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute top-12 right-0 bg-white border border-gray-200 rounded-md shadow-lg w-[350px] z-10">
+        <div
+          className="absolute top-1/2 left-1/2 bg-white border border-gray-200 rounded-md shadow-lg w-[350px] z-10 transform -translate-x-1/2 -translate-y-1/2
+"
+        >
           {/* Header with Close Button */}
           <div className="p-4 flex justify-between items-center border-b border-gray-200">
             <h2 className="text-sm font-medium text-gray-600">
@@ -123,6 +129,8 @@ const LocationDropdown = () => {
         </div>
       )}
     </div>
+    </div>
+    
   );
 };
 

@@ -40,7 +40,7 @@ const CreateNewCirkleModal = () => {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: "100%", opacity: 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 bg-white"
+      className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 bg-white "
     >
       <div className="pb-1 rounded-lg max-w-md w-full">
         {/* Conditionally render based on step */}
@@ -292,11 +292,11 @@ const CreateNewCirkleModal = () => {
             <div className=" border-y mb-2 flex justify-between w-[90%] mx-auto items-center">
               <div className="p-5 text-[12px]">Preferred Local Location</div>
 
-              {/* <div className="px-4 h-fit py-2 border rounded-lg">
-                Select States
-              </div> */}
+              <div className="w-[40%]">
+                <LocationDropdown />
+              </div>
 
-              <LocationDropdown />
+              
             </div>
 
             <div className=" mb-2 flex justify-between w-[90%] mx-auto">
