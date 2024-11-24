@@ -1,9 +1,10 @@
 import React from 'react'
 import InviteCard from '../../Component/Cirkles/InviteCard';
-import CustomSlider from '../../Component/Slider/CustomSlider';
 import { useModal } from '../../Component/Cirkles/ModalContext';
 import FilterModal from '../../Component/DiscoverModals/FilterModal';
-// import Slider from '../../Component/Slider/Slider';
+import GoalSettingSlider from '../../Component/Slider/GoalSettingSlider';
+
+
 
 function Discover() {
 
@@ -50,6 +51,34 @@ function Discover() {
        },
      ];
 
+
+     const slidesData = [
+       {
+         title: "Set A New Goal",
+         description:
+           "Our new goal-setting tool helps you ensure investment on your top priorities!",
+         buttonText: "Set A New Goal",
+         buttonAction: () => alert("Setting a new goal!"),
+         image: "/images/rings-1.svg",
+       },
+       {
+         title: "Track Your Progress",
+         description:
+           "Track your goals and stay on top of your tasks effortlessly!",
+         buttonText: "Track Now",
+         buttonAction: () => alert("Tracking progress!"),
+         image: "/images/rings-2.svg",
+       },
+       {
+         title: "Share with Friends",
+         description:
+           "You can share your progress with friends for better accountability!",
+         buttonText: "Share Now",
+         buttonAction: () => alert("Sharing with friends!"),
+         image: "/images/rings-3.svg",
+       },
+     ];
+
      const buttons = (
       <div className="flex gap-2">
         <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
@@ -67,9 +96,9 @@ function Discover() {
 
 
   return (
-    <div>
+    <div className="mb-32">
       {/* header */}
-      <div className="w-[100%] flex justify-center py-5  sticky top-0 bg-white">
+      <div className="w-[100%] flex justify-center py-5 sticky top-0 bg-white ">
         <p className="text-[22px] font-[600]">Discover</p>
       </div>
 
@@ -123,13 +152,21 @@ function Discover() {
 
       {/* New Features */}
 
-      <div className="pl-5 pt-3">
+      <div className="pl-5 pt-3  relative">
         <h1 className="text-[18px]">New Features and Offers</h1>
 
-        {/* <Slider /> */}
-
-        <CustomSlider />
+        {/* <GoalSettingSlider /> */}
       </div>
+
+      <GoalSettingSlider
+        slides={slidesData}
+        initialSlide={1}
+        slidesPerView={1.6}
+        loop={true}
+        showNavigation={true}
+        // showPagination={true}
+        className="custom-slider"
+      />
     </div>
   );
 }
