@@ -3,12 +3,14 @@ import All from "./All";
 import AllPayment from "./All";
 import Admin from "./Admin";
 import ReceivingMember from "./RecievingMember";
-// import All from "./All"; // Import the All component
-// import Admin from "./Admin"; // Import the Admin component
-// import ReceivingMember from "./ReceivingMember"; // Import the Receiving Member component
+import { useModal } from "../Cirkles/ModalContext";
+import PaymentFilterModal from "./PaymentFilterModal";
+
 
 const ManagePaymentCirkle = () => {
 
+
+     const { isModalOpen, modalType, closeModal, openModal } = useModal();
     
   const [selectedFilter, setSelectedFilter] = useState("All");
 
@@ -69,7 +71,14 @@ const ManagePaymentCirkle = () => {
         </div>
 
         {/* Filter icon */}
-        <img src="/images/payment-filter.svg" alt="" srcset="" />
+        <img
+          src="/images/payment-filter.svg"
+          alt=""
+          srcset=""
+          onClick={() => openModal("paymentfilter")}
+        />
+
+        <PaymentFilterModal />
       </div>
 
       {/* Render Content Based on Selected Filter */}
