@@ -16,7 +16,7 @@ const Admin = () => {
       num: "7/10 Paid",
       Amount: "240K",
       Due: "Due by",
-      curruency: "/images/currency-01.svg",
+      curruency: "/images/currency.svg",
       Date: "Oct, 19th",
       buttonText: "Make Payment",
       buttonAction: () => alert("Make Payment"),
@@ -36,7 +36,7 @@ const Admin = () => {
       num: "8/10 Paid",
       Amount: "240K",
       Due: "Due by",
-      curruency: "/images/currency-01.svg",
+      curruency: "/images/currency.svg",
       Date: "Oct, 19th",
       buttonText: "Make Payment",
       buttonAction: () => alert("Make Payment"),
@@ -54,7 +54,7 @@ const Admin = () => {
       num: "10/10 Paid",
       Amount: "240K",
       Due: "Due by",
-      curruency: "/images/currency-01.svg",
+      curruency: "/images/currency.svg",
       Date: "Oct, 19th",
       buttonText: "Make Payment",
       buttonAction: () => alert("Make Payment!"),
@@ -117,17 +117,9 @@ const Admin = () => {
               backgroundSize: "contain",
               backgroundPosition: "top",
               backgroundRepeat: "no-repeat",
-              //   height: "300px", // Set height for the container
-              //   color: "white",
             }}
           >
             <div className=" h-56">
-              {/* <img
-                src={slide.image}
-                alt=""
-                srcset=""
-                className="ml-auto h-16 mb-5 absolute"
-              /> */}
               <h3 className="text-[14px] font-bold leading-relaxed mb-5 w-[80%]">
                 {slide.title}
               </h3>
@@ -145,7 +137,10 @@ const Admin = () => {
               </div>
 
               <div className="flex items-center justify-between mb-5">
-                <p className="text-[14px] font-[700]">{slide.Amount}</p>
+                <div className="flex items-center">
+                  <img src={slide.curruency} alt="" srcset="" className="h-7" />
+                  <p className="text-[14px] font-[700]">{slide.Amount}</p>
+                </div>
 
                 <p className="text-[10px]">{slide.Due}</p>
 

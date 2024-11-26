@@ -16,7 +16,7 @@ const ReceivingMember = () => {
       num: "7/10 Paid",
       Amount: "240K",
       Due: "Due by",
-      curruency: "/images/currency-01.svg",
+      curruency: "/images/currency.svg",
       Date: "Oct, 19th",
       buttonText2: "Validate Payment",
       buttonAction2: () => alert("Validate Payment"),
@@ -34,7 +34,7 @@ const ReceivingMember = () => {
       num: "8/10 Paid",
       Amount: "240K",
       Due: "Due by",
-      curruency: "/images/currency-01.svg",
+      curruency: "/images/currency.svg",
       Date: "Oct, 19th",
       button2: (
         <button className="px-1 py-2  text-[#00943F] border text-[10.5px] mx-auto w-[90%] rounded-lg  transition">
@@ -50,7 +50,7 @@ const ReceivingMember = () => {
       num: "10/10 Paid",
       Amount: "240K",
       Due: "Due by",
-      curruency: "/images/currency-01.svg",
+      curruency: "/images/currency.svg",
       Date: "Oct, 19th",
       button2: (
         <button className="px-1 py-2  text-[#00943F] border text-[10.5px] mx-auto w-[90%] rounded-lg  transition">
@@ -116,12 +116,6 @@ const ReceivingMember = () => {
             }}
           >
             <div className=" h-56">
-              {/* <img
-                src={slide.image}
-                alt=""
-                srcset=""
-                className="ml-auto h-16 mb-5 absolute"
-              /> */}
               <h3 className="text-[14px] font-bold leading-relaxed mb-5 w-[80%]">
                 {slide.title}
               </h3>
@@ -139,16 +133,17 @@ const ReceivingMember = () => {
               </div>
 
               <div className="flex items-center justify-between mb-5">
-                <p className="text-[14px] font-[700]">{slide.Amount}</p>
+                <div className="flex items-center">
+                  <img src={slide.curruency} alt="" srcset="" className="h-7" />
+                  <p className="text-[14px] font-[700]">{slide.Amount}</p>
+                </div>
 
                 <p className="text-[10px]">{slide.Due}</p>
 
                 <p className="text-[14px] font-[700]">{slide.Date}</p>
               </div>
 
-              <div className="flex ">
-                {slide.button2}
-              </div>
+              <div className="flex ">{slide.button2}</div>
             </div>
           </SwiperSlide>
         ))}
