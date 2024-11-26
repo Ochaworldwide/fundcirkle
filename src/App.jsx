@@ -23,6 +23,7 @@ import CirkleCategoryModal from "./Component/DiscoverModals/CirkleCategoryModal"
 import ContributionAmountRangeModal from "./Component/DiscoverModals/ContibutionAmountRangeModal";
 import DisplayCategoriesModal from "./Component/DiscoverModals/DisplayCategories.Modaal";
 import PaymentFilterModal from "./Component/Payment/PaymentFilterModal";
+import MakePaymentModal from "./Component/Payment/MakePaymentModal";
 
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
         <ContributionAmountRangeModal />
         <DisplayCategoriesModal />
         <PaymentFilterModal />
+        <MakePaymentModal />
       </Router>
     </ModalProvider>
   );

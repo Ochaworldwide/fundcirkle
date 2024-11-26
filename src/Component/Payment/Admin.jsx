@@ -5,8 +5,11 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useModal } from "../Cirkles/ModalContext";
+import MakePaymentModal from "./MakePaymentModal";
 
 const Admin = () => {
+
   const slides = [
     {
       Background: "/images/payment-bg-3.svg",
@@ -66,6 +69,9 @@ const Admin = () => {
     },
   ];
   const middleSlideIndex = Math.floor(slides.length / 2); // Dynamically calculate the middle slide index
+
+  
+  const { openModal } = useModal();
 
   return (
     <div className={`mt-5  py-2 px-5 custom-slider relative -z-0 `}>
@@ -148,9 +154,13 @@ const Admin = () => {
               </div>
 
               <div className="flex ">
-                <button className="px-4 py-2  text-[#00943F] border text-[10.5px] mx-auto w-fit rounded-lg  transition">
+                <button
+                  className="px-4 py-2  text-[#00943F] border text-[10.5px] mx-auto w-fit rounded-lg  transition"
+                  onClick={() => openModal("makepayment")}
+                >
                   {slide.buttonText}
                 </button>
+                
 
                 {slide.button2}
               </div>
@@ -163,3 +173,5 @@ const Admin = () => {
 };
 
 export default Admin;
+
+
