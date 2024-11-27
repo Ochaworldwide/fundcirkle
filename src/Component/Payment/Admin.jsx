@@ -25,11 +25,9 @@ const Admin = () => {
       buttonAction: () => alert("Make Payment"),
       buttonText2: "Validate Payment",
       buttonAction2: () => alert("Validate Payment"),
-      button2: (
-        <button className="px-1 py-2  text-black border text-[10.5px] mx-auto w-fit rounded-lg  transition">
-          Validate Payment
-        </button>
-      ),
+      // button2: (
+        
+      // ),
     },
     {
       Background: "/images/payment-bg-2.svg",
@@ -156,13 +154,17 @@ const Admin = () => {
               <div className="flex ">
                 <button
                   className="px-4 py-2  text-[#00943F] border text-[10.5px] mx-auto w-fit rounded-lg  transition"
-                  onClick={() => openModal("makepayment")}
+                  onClick={() => openModal("make payment")}
                 >
                   {slide.buttonText}
                 </button>
-                
 
-                {slide.button2}
+                <button
+                  className="px-1 py-2  text-black border text-[10.5px] mx-auto w-fit rounded-lg  transition"
+                  onClick={() => openModal("validate payment")}
+                >
+                  Validate Payment
+                </button>
               </div>
             </div>
           </SwiperSlide>

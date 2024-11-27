@@ -6,7 +6,7 @@ import PaymentForm from "./PaymentForm";
 const MakePaymentModal = () => {
   const { isModalOpen, closeModal, modalType } = useModal();
 
-  if (!isModalOpen || modalType !== "makepayment") return null;
+  if (!isModalOpen || modalType !== "make payment") return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
@@ -27,7 +27,7 @@ const MakePaymentModal = () => {
             onClick={closeModal}
             className="text-gray-600 hover:text-gray-900"
           >
-            &times;
+            <img src="/images/arrow-down-01.svg" alt="" srcset="" />
           </button>
         </div>
 
@@ -44,15 +44,15 @@ const MakePaymentModal = () => {
           </p>
 
           {/* Payment Amount */}
-          <div className="flex justify-center space-x-2 items-center mb-4">
+          <div className="flex justify-center space-x-3 items-center mb-4">
             <span className="text-gray-600 text-sm">Amount to Pay</span>
-            <span className="font-semibold text-gray-800 text-lg">₹60,000</span>
+            <span className="font-semibold text-gray-800 text-lg flex items-center"> <img src="/images/currency.svg" alt="" srcset="" className="h-4" />60,000</span>
           </div>
 
           {/* Payment Options */}
           <div className="flex items-center justify-between gap-4 mb-4">
             <label className="flex items-center gap-2">
-              <input type="radio" name="paymentTo" className="form-radio" />
+              <input type="radio" name="paymentTo" className="form-radio b" />
               <span className="text-[10.5px] text-gray-600">Pay to Admin</span>
             </label>
             <label className="flex items-center gap-2">
@@ -73,8 +73,8 @@ const MakePaymentModal = () => {
         </div>
 
         {/* Submit Button */}
-        <div className="p-4">
-          <button className="w-full py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600">
+        <div className="p-4 w-[80%] mx-auto">
+          <button className=" w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600">
             Submit Payment Proof
           </button>
         </div>

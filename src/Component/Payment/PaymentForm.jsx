@@ -108,7 +108,6 @@ const PaymentForm = () => {
       {/* Conditional Rendering of Payment Details */}
       <div className="">
         {paymentMethod === "Bank Transfer" && (
-
           <div>
             <div className="border rounded-md">
               <div className="flex justify-between border-b px-3 py-2 items-center">
@@ -155,17 +154,11 @@ const PaymentForm = () => {
             </div>
             {/* Upload Payment Proof */}
             <div className="mt-4">
-              <label className="block text-sm font-semibold text-gray-600 mb-2">
-                {contributionDetails.uploadPaymentProof.label}
-              </label>
-              <input
-                type="file"
-                className="block w-full text-sm text-gray-600 border border-gray-300 rounded cursor-pointer"
-                accept={contributionDetails.uploadPaymentProof.acceptedFormats.join(
-                  ", "
-                )}
-              />
-              <p className="text-xs text-gray-500 mt-1">
+              <div className="border flex items-center rounded-md p-1 space-x-5">
+                <img src="/images/file-upload.svg" alt="" srcset="" />
+                <p className="text-[10.5px]">Click here to upload payment proof</p>
+              </div>
+              <p className="text-xs text-gray-500 mt-1 text-center">
                 PDF, PNG, JPG (Max:{" "}
                 {contributionDetails.uploadPaymentProof.maxFileSize})
               </p>
@@ -174,30 +167,38 @@ const PaymentForm = () => {
         )}
 
         {paymentMethod === "Paid with Cash" && (
-          <div className="border p-2 rounded-md">
+          <div className="border  rounded-md text-[10.5px] ">
+            <div className="flex border-b py-2 px-2 items-center justify-between">
+              <p>I made the payment on: </p>
 
-            <div className="flex border-b">
-                <p>I made the payment on </p>
+              <div className="border p-1 rounded-md flex items-center space-x-2">
+                <p>20-10-24</p>
+                <img
+                  src="/images/calendar-01.svg"
+                  alt=""
+                  srcset=""
+                  className="h-3"
+                />
+              </div>
             </div>
 
+            <div className="flex border-b py-2 px-2 justify-between items-center">
+              <p>To: </p>
+              <div className="px-1 py-2 w-[70%]  flex items-center space-x-1">
+                <img src="/images/person4.svg" alt="" srcset="" />
+                <p>Bhaavik Arhaan</p>
+              </div>
+            </div>
 
+            <div className="flex border-b py-2 px-2  items-center justify-between">
+              <p>Where: </p>
 
+              <p className="px-1 py-2 w-[70%] border rounded-md ">Location</p>
+            </div>
 
-
-            <p className="text-sm text-gray-600 mb-2">
-              Please deliver your cash payment to the following address:
-            </p>
-            <div className="text-sm text-gray-600">
-              <p>
-                <span className="font-semibold">Address:</span> 123 Sunshine
-                Street, Mumbai, Maharashtra
-              </p>
-              <p>
-                <span className="font-semibold">Recipient:</span> Bhaavik Arhaan
-              </p>
-              <p>
-                <span className="font-semibold">Contact:</span> +91 9876543210
-              </p>
+            <div className="flex py-2 px-2 items-center justify-between">
+              <p>Withness(es): </p>
+              <p className="px-1 py-2 w-[70%] border rounded-md ">Amit Kumar</p>
             </div>
           </div>
         )}
