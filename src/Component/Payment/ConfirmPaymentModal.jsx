@@ -1,15 +1,14 @@
 import React from "react";
 import { useModal } from "../Cirkles/ModalContext";
 
-
-const PaymentFilterModal = () => {
+const ConfirmPaymentModal = () => {
   const { isModalOpen, closeModal, modalType } = useModal();
 
-  if (!isModalOpen || modalType !== "payment filter") return null;
+  if (!isModalOpen || modalType !== "Confirm Payment") return null;
 
   return (
     <div
-      className="absolute inset-0 z-50 flex items-center h-screen justify-center bg-black bg-opacity-[0.01]"
+      className="fixed inset-0 z-[50] flex items-center h-screen justify-center bg-black bg-opacity-[0.01]"
       onClick={closeModal}
     >
       <div className="bg-white rounded-lg shadow-lg p-1 w-28 ml-auto">
@@ -38,4 +37,8 @@ const PaymentFilterModal = () => {
   );
 };
 
-export default PaymentFilterModal;
+export default ConfirmPaymentModal;
+
+
+
+

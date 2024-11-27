@@ -75,7 +75,7 @@ const ManagePaymentCirkle = () => {
           src="/images/payment-filter.svg"
           alt=""
           srcset=""
-          onClick={() => openModal("paymentfilter")}
+          onClick={() => openModal("payment filter")}
         />
 
         <PaymentFilterModal />

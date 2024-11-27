@@ -25,6 +25,7 @@ import DisplayCategoriesModal from "./Component/DiscoverModals/DisplayCategories
 import PaymentFilterModal from "./Component/Payment/PaymentFilterModal";
 import MakePaymentModal from "./Component/Payment/MakePaymentModal";
 import ValidatePaymentModal from "./Component/Payment/ValidatePaymentModal";
+import ConfirmPaymentModal from "./Component/Payment/ConfirmPaymentModal";
 
 
 const App = () => {
@@ -58,6 +59,7 @@ const App = () => {
         <PaymentFilterModal />
         <MakePaymentModal />
         <ValidatePaymentModal />
+        <ConfirmPaymentModal />
       </Router>
     </ModalProvider>
   );

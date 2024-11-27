@@ -1,4 +1,6 @@
 import React from "react";
+import { useModal } from "../Cirkles/ModalContext";
+import ConfirmPaymentModal from "./ConfirmPaymentModal";
 
 const PaymentCard = ({
   name,
@@ -11,6 +13,8 @@ const PaymentCard = ({
   proofUrl,
   isCash,
 }) => {
+
+   const { openModal } = useModal();
   return (
     <div className=" rounded-lg shadow-lg p-4 border  w-72 ">
       <div className="flex flex-col items-center space-x-4">
@@ -73,9 +77,13 @@ const PaymentCard = ({
       </div>
 
       <div className="mt-4 flex space-x-2 w-full justify-between">
-        <button className="bg-green-500 text-white text-[10.5px] px-2 py-2 rounded-lg">
+        <button
+          className="bg-green-500 text-white text-[10.5px] px-2 py-2 rounded-lg "
+          onClick={() => openModal("Confirm Payment")}
+        >
           Confirm Payment
         </button>
+        <ConfirmPaymentModal />
         <button className="border text-black text-[10.5px] px-2 py-2 rounded-lg">
           Request Re-Upload
         </button>
@@ -83,6 +91,8 @@ const PaymentCard = ({
     </div>
   );
 };
+
+
 
 const PaymentList = () => {
   const data = [

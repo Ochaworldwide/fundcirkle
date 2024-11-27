@@ -3,17 +3,14 @@ import BottomNav from '../../Component/BottomNav/BottomNav';
 import Home from '../Home/Home';
 import Discover from '../Discover/Discover';
 import Payment from '../Payment/Payment';
+import Settings from '../Settings/Settings';
 
 function Dashboard() {
     const tabContent = {
       "My Cirkles": <Home />,
       Discover: <Discover />,
       Payments: <Payment/>,
-      Settings: (
-        <div className="p-4 text-center">
-          This Page is Still Under Development
-        </div>
-      ),
+      Settings: <Settings />,
     };
   return (
     <div>
