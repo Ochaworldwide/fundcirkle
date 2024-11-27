@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
 
-const Settings = () => {
+
+const Setting = () => {
 
     const [isToggled, setIsToggled] = useState(false);
   return (
@@ -9,7 +9,7 @@ const Settings = () => {
         <h1 className="text-center">Settings</h1>
       </div>
 
-      <div className="p-3 mb-28">
+      <div className="p-3 mb-28 group">
         <div className="flex items-center bg-[#E5F7FF] border rounded-md p-3 mb-7">
           <img src="/images/person4.svg" alt="" srcset="" className="h-16" />
           <div className="ml-4">
@@ -26,6 +26,63 @@ const Settings = () => {
             className="ml-auto"
           />
         </div>
+
+        
+        
+
+        
+      </div>
+    </div>
+  );
+}
+
+
+
+
+import React, { useState } from "react";
+
+const Settings = () => {
+  // Manage the states for all toggle buttons individually
+  const [toggles, setToggles] = useState({
+    twoFactorAuth: false,
+    paymentReminders: false,
+    cirkleUpdates: false,
+    invitations: false,
+    systemAnnouncements: false,
+  });
+
+  // Function to toggle the state for a specific button
+  const handleToggle = (key) => {
+    setToggles((prevToggles) => ({
+      ...prevToggles,
+      [key]: !prevToggles[key],
+    }));
+  };
+
+  return (
+    <div>
+      <div className="p-5 border-b sticky bg-white text-[22px] font-[600] mb-5 top-0">
+        <h1 className="text-center">Settings</h1>
+      </div>
+
+      <div className="p-3 mb-28 ">
+        <div className="flex items-center bg-[#E5F7FF] border rounded-md p-3 mb-7">
+          <img src="/images/person4.svg" alt="" srcset="" className="h-16" />
+          <div className="ml-4">
+            <h1 className="text-[18px]">Bhaavik Arhaan</h1>
+            <p className="text-[#141B3480] text-[10.5px]">
+              bhaavik.arhaan@xyz.com
+            </p>
+          </div>
+
+          <img
+            src="/images/arrow-right.svg"
+            alt=""
+            srcset=""
+            className="ml-auto"
+          />
+        </div>
+
 
         {/* Privacy and Security */}
         <h1 className="mb-3 text-[14px] ml-1">Privacy and Security</h1>
@@ -70,7 +127,7 @@ const Settings = () => {
               className="ml-auto"
             />
           </div>
-
+          {/* Two-Factor Authentication */}
           <div className="flex items-center rounded-md px-5 pt-5 pb-7">
             <div>
               <h1 className="text-[14px] mb-2">
@@ -82,13 +139,13 @@ const Settings = () => {
             </div>
             <button
               className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                isToggled ? "bg-[#00AAFF]" : "bg-gray-300"
+                toggles.twoFactorAuth ? "bg-[#00AAFF]" : "bg-gray-300"
               }`}
-              onClick={() => setIsToggled(!isToggled)}
+              onClick={() => handleToggle("twoFactorAuth")}
             >
               <div
                 className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  isToggled ? "translate-x-5" : "translate-x-0"
+                  toggles.twoFactorAuth ? "translate-x-5" : "translate-x-0"
                 }`}
               ></div>
             </button>
@@ -98,7 +155,8 @@ const Settings = () => {
         {/* Notification Preferences */}
         <h1 className="mb-3 text-[14px] ml-1">Notification Preferences</h1>
         <div className="bg-[#E5F7FF] border border-[#00000026] rounded-md  px-2 mb-7">
-          <div className="flex items-center border-b border-[#00000026]  px-5 pt-5 pb-7">
+          {/* Payment Reminders */}
+          <div className="flex items-center border-b border-[#00000026] px-5 pt-5 pb-7">
             <div>
               <h1 className="text-[14px] mb-2">Payment Reminders</h1>
               <p className="text-[10.5px] text-[#141B3480]">
@@ -107,19 +165,20 @@ const Settings = () => {
             </div>
             <button
               className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                isToggled ? "bg-[#00AAFF]" : "bg-gray-300"
+                toggles.paymentReminders ? "bg-[#00AAFF]" : "bg-gray-300"
               }`}
-              onClick={() => setIsToggled(!isToggled)}
+              onClick={() => handleToggle("paymentReminders")}
             >
               <div
                 className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  isToggled ? "translate-x-5" : "translate-x-0"
+                  toggles.paymentReminders ? "translate-x-5" : "translate-x-0"
                 }`}
               ></div>
             </button>
           </div>
 
-          <div className="flex items-center border-b border-[#00000026]  px-5 pt-5 pb-7">
+          {/* Cirkle Updates */}
+          <div className="flex items-center border-b border-[#00000026] px-5 pt-5 pb-7">
             <div>
               <h1 className="text-[14px] mb-2">Cirkle Updates</h1>
               <p className="text-[10.5px] text-[#141B3480]">
@@ -128,19 +187,20 @@ const Settings = () => {
             </div>
             <button
               className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                isToggled ? "bg-[#00AAFF]" : "bg-gray-300"
+                toggles.cirkleUpdates ? "bg-[#00AAFF]" : "bg-gray-300"
               }`}
-              onClick={() => setIsToggled(!isToggled)}
+              onClick={() => handleToggle("cirkleUpdates")}
             >
               <div
                 className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  isToggled ? "translate-x-5" : "translate-x-0"
+                  toggles.cirkleUpdates ? "translate-x-5" : "translate-x-0"
                 }`}
               ></div>
             </button>
           </div>
 
-          <div className="flex items-center border-b border-[#00000026]  px-5 pt-5 pb-7">
+          {/* Invitations */}
+          <div className="flex items-center border-b border-[#00000026] px-5 pt-5 pb-7">
             <div>
               <h1 className="text-[14px] mb-2">Invitations</h1>
               <p className="text-[10.5px] text-[#141B3480]">
@@ -149,18 +209,19 @@ const Settings = () => {
             </div>
             <button
               className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                isToggled ? "bg-[#00AAFF]" : "bg-gray-300"
+                toggles.invitations ? "bg-[#00AAFF]" : "bg-gray-300"
               }`}
-              onClick={() => setIsToggled(!isToggled)}
+              onClick={() => handleToggle("invitations")}
             >
               <div
                 className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  isToggled ? "translate-x-5" : "translate-x-0"
+                  toggles.invitations ? "translate-x-5" : "translate-x-0"
                 }`}
               ></div>
             </button>
           </div>
 
+          {/* System Announcements */}
           <div className="flex items-center px-5 pt-5 pb-7">
             <div>
               <h1 className="text-[14px] mb-2">System Announcements</h1>
@@ -170,13 +231,15 @@ const Settings = () => {
             </div>
             <button
               className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                isToggled ? "bg-[#00AAFF]" : "bg-gray-300"
+                toggles.systemAnnouncements ? "bg-[#00AAFF]" : "bg-gray-300"
               }`}
-              onClick={() => setIsToggled(!isToggled)}
+              onClick={() => handleToggle("systemAnnouncements")}
             >
               <div
                 className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  isToggled ? "translate-x-5" : "translate-x-0"
+                  toggles.systemAnnouncements
+                    ? "translate-x-5"
+                    : "translate-x-0"
                 }`}
               ></div>
             </button>
@@ -263,17 +326,15 @@ const Settings = () => {
         <h1 className="mb-3 text-[14px] ml-1">Logout</h1>
         <div className="bg-[#E5F7FF] border border-[#00000026] rounded-md px-2 mb-7">
           <div className="flex items-center  border-b border-[#00000026] p-5">
-
-            <div className='flex items-center space-x-3'>
-                <img src="/images/logout-03.svg" alt="" srcset="" />
-                <div>
-                    <h1 className="text-[14px] mb-2">Logout</h1>
-                    <p className="text-[10.5px] text-[#141B3480]">
-                        Logout of FundCirkle
-                    </p>
-                </div>
+            <div className="flex items-center space-x-3">
+              <img src="/images/logout-03.svg" alt="" srcset="" />
+              <div>
+                <h1 className="text-[14px] mb-2">Logout</h1>
+                <p className="text-[10.5px] text-[#141B3480]">
+                  Logout of FundCirkle
+                </p>
+              </div>
             </div>
-           
 
             <img
               src="/images/arrow-right.svg"
@@ -286,6 +347,6 @@ const Settings = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Settings
+export default Settings;
