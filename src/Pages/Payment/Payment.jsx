@@ -3,10 +3,16 @@ import React from 'react'
 import PaymentOverview from '../../Component/Payment/PaymentOverview'
 import ManagePaymentCirkle from '../../Component/Payment/ManagePaymentCirkle';
 import PaymentTable from '../../Component/Payment/PaymentTable';
+import NavigationBar from '../../Component/BottomNav/NavigationBar';
 
 const Payment = () => {
   return (
     <div className="mb-20">
+      {/* Nav Bar */}
+      <NavigationBar />
+
+
+
       {/* heading */}
       <div className="py-5 border-b text-[22px] font-[600] mb-5 sticky top-0 bg-white z-10">
         <h1 className="text-center">Payment</h1>
@@ -15,9 +21,7 @@ const Payment = () => {
       {/* Payment Overview */}
 
       <div className="w-[100%] px-5 ">
-        <h1 className="   text-[18px] font-bold">
-          Payment Overview
-        </h1>
+        <h1 className="   text-[18px] font-bold">Payment Overview</h1>
         <PaymentOverview />
       </div>
 

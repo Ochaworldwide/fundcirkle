@@ -11,7 +11,7 @@ import GetStarted from "./Pages/GetStarted/GetStarted";
 import { ModalProvider } from "./Component/Cirkles/ModalContext";
 import ModalChat from "./Component/Cirkles/ModalChat";
 import NotificationBox from "./Component/Cirkles/NotificationBox";
-import Dashboard from "./Pages/Dashboard/Dashboard";
+// import Dashboard from "./Pages/Dashboard/Dashboard";
 import SignIn from "./Pages/Authentication/SignIn";
 import SignUp from "./Pages/Authentication/SignUp";
 import CirkleDetailsModal from "./Component/Cirkles/CirkleDetailsModal";
@@ -26,6 +26,12 @@ import PaymentFilterModal from "./Component/Payment/PaymentFilterModal";
 import MakePaymentModal from "./Component/Payment/MakePaymentModal";
 import ValidatePaymentModal from "./Component/Payment/ValidatePaymentModal";
 import ConfirmPaymentModal from "./Component/Payment/ConfirmPaymentModal";
+import Profile from "./Pages/Settings/Profile";
+import EditProfile from "./Pages/Settings/EditProfile";
+import Settings from "./Pages/Settings/Settings";
+import UpdatePassword from "./Pages/Settings/UpdatePassword";
+import Payment from "./Pages/Payment/Payment";
+import StartKyc from "./Pages/Kyc/StartKyc";
 
 
 const App = () => {
@@ -42,8 +48,13 @@ const App = () => {
           <Route path="/reset" element={<ResetFrom />} />
           <Route path="/first" element={<FirstSplash />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/discover" element={<Discover />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/setting" element={<Settings />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/editprofile" element={<EditProfile />} />
+          <Route path="/updatepassword" element={<UpdatePassword />} />
+          <Route path="/startkyc" element={<StartKyc />} />
 
           {/* Add more routes for additional screens as needed */}
         </Routes>

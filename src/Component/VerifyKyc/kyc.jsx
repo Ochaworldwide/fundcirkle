@@ -17,7 +17,7 @@ function Kyc() {
           <h2 className="font-[400] text-[16px]">Verify your Identity</h2>
 
           <Link
-            to="/"
+            to="/startkyc"
             className="text-[14px] font-sans underline text-[#00943F]"
           >
             Click here to complete KYC

@@ -92,7 +92,7 @@ const Authentication = () => {
           </span>
         </p>
 
-        <Link to="/dashboard" className="self-center">
+        <Link to="/home" className="self-center">
           <Button
             text="Verify"
             onClick={() => console.log("Button clicked!")}

@@ -3,6 +3,7 @@ import InviteCard from '../../Component/Cirkles/InviteCard';
 import { useModal } from '../../Component/Cirkles/ModalContext';
 import FilterModal from '../../Component/DiscoverModals/FilterModal';
 import GoalSettingSlider from '../../Component/Slider/GoalSettingSlider';
+import NavigationBar from '../../Component/BottomNav/NavigationBar';
 
 
 
@@ -97,6 +98,11 @@ function Discover() {
 
   return (
     <div className="mb-32">
+      {/* Nav Bar */}
+      <NavigationBar />
+
+
+    
       {/* header */}
       <div className="w-[100%] flex justify-center py-5 sticky top-0 bg-white ">
         <p className="text-[22px] font-[600]">Discover</p>
