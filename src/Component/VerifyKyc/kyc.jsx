@@ -8,7 +8,7 @@ function Kyc() {
   return (
     <div>
       <motion.div
-        className="w-[95%] flex bg-[#FBC8CE1A] mx-auto justify-between border items-center rounded-[8px] "
+        className="w-[95%] flex bg-[#80C99F1A] mx-auto justify-between border items-center rounded-[8px] "
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}

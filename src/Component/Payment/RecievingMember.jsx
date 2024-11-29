@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useModal } from "../Cirkles/ModalContext";
 
 const ReceivingMember = () => {
   const slides = [
@@ -61,6 +62,8 @@ const ReceivingMember = () => {
   ];
   const middleSlideIndex = Math.floor(slides.length / 2); // Dynamically calculate the middle slide index
 
+   const { openModal } = useModal();
+
   return (
     <div className={`mt-5  py-2 px-5 custom-slider relative -z-0 `}>
       {/* Custom Previous Button */}
@@ -111,8 +114,6 @@ const ReceivingMember = () => {
               backgroundSize: "contain",
               backgroundPosition: "top",
               backgroundRepeat: "no-repeat",
-              //   height: "300px", // Set height for the container
-              //   color: "white",
             }}
           >
             <div className=" h-56">
@@ -143,7 +144,12 @@ const ReceivingMember = () => {
                 <p className="text-[14px] font-[700]">{slide.Date}</p>
               </div>
 
-              <div className="flex ">{slide.button2}</div>
+              <div
+                className="flex "
+                onClick={() => openModal("validate payment")}
+              >
+                {slide.button2}
+              </div>
             </div>
           </SwiperSlide>
         ))}

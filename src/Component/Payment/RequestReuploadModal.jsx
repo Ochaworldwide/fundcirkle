@@ -1,19 +1,19 @@
 import React from "react";
 import { useModal } from "../Cirkles/ModalContext";
 
-const ConfirmPaymentModal = () => {
+const RequestReuploadModal = () => {
   const { isModalOpen, closeModal, modalType } = useModal();
 
-  if (!isModalOpen || modalType !== "Confirm Payment") return null;
+  if (!isModalOpen || modalType !== "Request Reupload") return null;
 
   return (
     <div className="fixed inset-0 z-[50] flex items-center h-screen justify-center bg-black bg-opacity-[0.01] ">
-      <div className="bg-white rounded-lg shadow-lg  w-[85%] ">
+      <div className="bg-white rounded-lg shadow-lg w-[85%] ">
         <div
-          className="border-b py-4 px-2 mb-6 flex justify-between"
+          className="border-b py-4 p-2 mb-6 flex justify-between"
           onClick={closeModal}
         >
-          <h1 className="text-[14px]">Confirm Payment Received</h1>
+          <h1 className="text-[18px]">Request Proof Re-Upload</h1>
 
           <svg
             width="24"
@@ -35,25 +35,27 @@ const ConfirmPaymentModal = () => {
           </svg>
         </div>
 
-        <div className="p-4">
+        <div className="p-4 ">
           <p className="mb-10 text-[14px]">
-            Are you sure you want to confirm receipt of this payment?
+            Are you sure you want to request a re-upload of the proof of
+            payment? The contributor will be notified.
           </p>
 
-          <p className="mb-2 text-[12px]">
-            Add any additional notes about this transaction for your records.
+          <p className="mb-3 text-[12px]">
+            Add a reason for requesting the re-upload to help the contributor
+            understand the issue.
           </p>
 
           <textarea
             name=""
             id=""
-            placeholder="Enter any comments about this payment"
+            placeholder="Enter reason for re-upload request"
             className=" border w-[100%] text-[10.5px] mx-auto rounded-md outline-none mb-10 px-4 py-5 "
           ></textarea>
 
           <div className="w-[90%] mx-auto flex justify-between ">
             <button className="py-3 px-7 text-[10.5px] bg-[#00943F] rounded-md text-white font-bold ">
-              Comfirm Payment
+              Request Re-Upload
             </button>
 
             <button
@@ -69,8 +71,4 @@ const ConfirmPaymentModal = () => {
   );
 };
 
-export default ConfirmPaymentModal;
-
-
-
-
+export default RequestReuploadModal;

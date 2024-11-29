@@ -7,7 +7,16 @@ import PaymentList from "./PaymentList";
 const ValidatePaymentModal = () => {
   const { isModalOpen, closeModal, modalType } = useModal();
 
-  if (!isModalOpen || modalType !== "validate payment") return null;
+  if (
+    !isModalOpen ||
+    ![
+      "Confirm Payment",
+      "validate payment",
+      "Request Reupload",
+      "View Proof",
+    ].includes(modalType)
+  )
+    return null;
 
   const cardData = [
     {

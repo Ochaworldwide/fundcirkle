@@ -32,6 +32,11 @@ import Settings from "./Pages/Settings/Settings";
 import UpdatePassword from "./Pages/Settings/UpdatePassword";
 import Payment from "./Pages/Payment/Payment";
 import StartKyc from "./Pages/Kyc/StartKyc";
+import PersonalInfo from "./Pages/Kyc/PersonalInfo";
+import RequestReuploadModal from "./Component/Payment/RequestReuploadModal";
+import ViewProofModal from "./Component/Payment/ViewProofModal";
+import UploadDocument from "./Pages/Kyc/UploadDocument";
+
 
 
 const App = () => {
@@ -55,6 +60,8 @@ const App = () => {
           <Route path="/editprofile" element={<EditProfile />} />
           <Route path="/updatepassword" element={<UpdatePassword />} />
           <Route path="/startkyc" element={<StartKyc />} />
+          <Route path="/personalinfo" element={<PersonalInfo />} />
+          <Route path="/uploaddocument" element={<UploadDocument />} />
 
           {/* Add more routes for additional screens as needed */}
         </Routes>
@@ -71,6 +78,8 @@ const App = () => {
         <MakePaymentModal />
         <ValidatePaymentModal />
         <ConfirmPaymentModal />
+        <RequestReuploadModal />
+        <ViewProofModal />
       </Router>
     </ModalProvider>
   );

@@ -64,125 +64,127 @@ const CirkleDetailsModal = () => {
   };
 
   return (
-    <motion.div
-      initial={{ y: "100%", opacity: 0 }} // Start off-screen
-      animate={{ y: 0, opacity: 1 }} // Slide into view
-      exit={{ y: "100%", opacity: 0 }} // Slide out when unmounted
-      transition={{
-        duration: 0.5,
-        ease: "easeInOut",
-      }} // Smooth transition
-      // transition={{ type: "spring", stiffness: 100, damping: 15 }}
-      className="fixed bottom-0 left-0 right-0   5 rounded-lg mx-auto max-w-md z-50  bg-white"
-    >
-      <div className=" pb-10 rounded-lg max-w-md w-full">
-        <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[100%] mx-auto rounded-xl">
-          <img src="/images/tricycle.svg" alt="" srcset="" />
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
+      <motion.div
+        initial={{ y: "100%", opacity: 0 }} // Start off-screen
+        animate={{ y: 0, opacity: 1 }} // Slide into view
+        exit={{ y: "100%", opacity: 0 }} // Slide out when unmounted
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+        }} // Smooth transition
+        // transition={{ type: "spring", stiffness: 100, damping: 15 }}
+        className="fixed bottom-0 left-0 right-0   5 rounded-lg mx-auto max-w-md z-50  bg-white"
+      >
+        <div className=" pb-10 rounded-lg max-w-md w-full">
+          <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[100%] mx-auto rounded-xl">
+            <img src="/images/tricycle.svg" alt="" srcset="" />
 
-          <p className="text-[18px] font-[400]">View Circle Details</p>
-          <button onClick={closeModal} className="text-gray-500 float-right">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
-                stroke="#141B34"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <div className="p-3 mx-auto">
-          <div className="items-center mb-5 flex justify-between">
-            <img
-              src={data.image}
-              alt="Group"
-              className="w-12 h-12 rounded-full"
-            />
-
-            <h2 className="text-lg font-bold text-gray-800 mb-2">
-              {data.title}
-            </h2>
-
-            <svg
-              width="44"
-              height="44"
-              viewBox="0 0 44 44"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M26.4249 14.6051L27.4149 13.6151C28.2351 12.795 29.5648 12.795 30.3849 13.6151C31.205 14.4352 31.205 15.7649 30.3849 16.5851L29.3949 17.5751M26.4249 14.6051L19.7656 21.2644C19.2581 21.772 18.898 22.4078 18.724 23.1041L18 26L20.8959 25.276C21.5922 25.102 22.228 24.7419 22.7356 24.2344L29.3949 17.5751M26.4249 14.6051L29.3949 17.5751"
-                stroke="#141B34"
-                stroke-width="1.5"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M28.9999 23.5C28.9999 26.7875 28.9999 28.4312 28.092 29.5376C27.9258 29.7401 27.7401 29.9258 27.5375 30.092C26.4312 31 24.7874 31 21.4999 31H21C17.2288 31 15.3432 31 14.1716 29.8284C13 28.6569 13 26.7712 13 23V22.5C13 19.2125 13 17.5688 13.9079 16.4624C14.0742 16.2599 14.2599 16.0742 14.4624 15.9079C15.5688 15 17.2125 15 20.5 15"
-                stroke="#141B34"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
-
-          <p className="text-sm text-gray-600 mb-4">{data.description}</p>
-
-          <div className="flex justify-between items-center border rounded-lg text-[#00943F] font-bold mb-8 px-1">
-            <div className="flex w-[50%] justify-evenly">
-              <div className="mr-2">
-                <img src={data.currency} alt="" srcset="" />
-              </div>
-              <div className="">
-                <p>{data.amount}</p>
-                <p className="text-xs text-black">Payment Amount</p>
-              </div>
-            </div>
-
-            <div className="py-5 text-black w-[45%]">
-              <p className="text-[18px]">{data.dateRange}</p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto">
-            {data.members.map((member, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-8 h-8 rounded-full"
+            <p className="text-[18px] font-[400]">View Circle Details</p>
+            <button onClick={closeModal} className="text-gray-500 float-right">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
+                  stroke="#141B34"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 />
-                <p className="text-xs text-gray-500">{member.name}</p>
-                <p className="bg-[#00AAFF] rounded-sm px-1 py-[1px] text-[8px] text-white">
-                  {member.memberDate}
-                </p>
+              </svg>
+            </button>
+          </div>
+
+          <div className="p-3 mx-auto">
+            <div className="items-center mb-5 flex justify-between">
+              <img
+                src={data.image}
+                alt="Group"
+                className="w-12 h-12 rounded-full"
+              />
+
+              <h2 className="text-lg font-bold text-gray-800 mb-2">
+                {data.title}
+              </h2>
+
+              <svg
+                width="44"
+                height="44"
+                viewBox="0 0 44 44"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M26.4249 14.6051L27.4149 13.6151C28.2351 12.795 29.5648 12.795 30.3849 13.6151C31.205 14.4352 31.205 15.7649 30.3849 16.5851L29.3949 17.5751M26.4249 14.6051L19.7656 21.2644C19.2581 21.772 18.898 22.4078 18.724 23.1041L18 26L20.8959 25.276C21.5922 25.102 22.228 24.7419 22.7356 24.2344L29.3949 17.5751M26.4249 14.6051L29.3949 17.5751"
+                  stroke="#141B34"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M28.9999 23.5C28.9999 26.7875 28.9999 28.4312 28.092 29.5376C27.9258 29.7401 27.7401 29.9258 27.5375 30.092C26.4312 31 24.7874 31 21.4999 31H21C17.2288 31 15.3432 31 14.1716 29.8284C13 28.6569 13 26.7712 13 23V22.5C13 19.2125 13 17.5688 13.9079 16.4624C14.0742 16.2599 14.2599 16.0742 14.4624 15.9079C15.5688 15 17.2125 15 20.5 15"
+                  stroke="#141B34"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+
+            <p className="text-sm text-gray-600 mb-4">{data.description}</p>
+
+            <div className="flex justify-between items-center border rounded-lg text-[#00943F] font-bold mb-8 px-1">
+              <div className="flex w-[50%] justify-evenly">
+                <div className="mr-2">
+                  <img src={data.currency} alt="" srcset="" />
+                </div>
+                <div className="">
+                  <p>{data.amount}</p>
+                  <p className="text-xs text-black">Payment Amount</p>
+                </div>
               </div>
-            ))}
-          </div>
 
-          <div className="">
-            <PayoutCard data={payoutData} />
-          </div>
+              <div className="py-5 text-black w-[45%]">
+                <p className="text-[18px]">{data.dateRange}</p>
+              </div>
+            </div>
 
-          <div className="flex  mt-4 justify-between w-[90%] mx-auto">
-            <button className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm">
-              Pay Pie for October
-            </button>
-            <button className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm">
-              Swap Payment Month
-            </button>
+            <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto">
+              {data.members.map((member, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <p className="text-xs text-gray-500">{member.name}</p>
+                  <p className="bg-[#00AAFF] rounded-sm px-1 py-[1px] text-[8px] text-white">
+                    {member.memberDate}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="">
+              <PayoutCard data={payoutData} />
+            </div>
+
+            <div className="flex  mt-4 justify-between w-[90%] mx-auto">
+              <button className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm">
+                Pay Pie for October
+              </button>
+              <button className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm">
+                Swap Payment Month
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 

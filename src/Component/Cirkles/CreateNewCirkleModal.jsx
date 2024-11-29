@@ -160,7 +160,7 @@ const CreateNewCirkleModal = () => {
                     <div className="flex flex-col items-center ">
                       {/* <p className="text-sm mb-2">Select a Weekday</p> */}
                       <SimpleDropdown
-                        options={["Week 1", "Week 2", "Week 3", "Week 4"]}
+                        options={["Week 1", "Week 2"]}
                         onSelect={handleSelection}
                         optionHeading={"Select Week"}
                       />
@@ -216,7 +216,7 @@ const CreateNewCirkleModal = () => {
                       {/* <p className="text-sm mb-2">Select a Due Date</p> */}
 
                       <SimpleDropdown
-                        options={["Month 1", "Month 2", "Month 3", "Month 4"]}
+                        options={["Month 1", "Month 2", "Month 3"]}
                         onSelect={handleSelection}
                         optionHeading={"Select Month"}
                       />

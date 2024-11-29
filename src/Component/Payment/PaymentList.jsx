@@ -1,6 +1,8 @@
 import React from "react";
 import { useModal } from "../Cirkles/ModalContext";
 import ConfirmPaymentModal from "./ConfirmPaymentModal";
+import RequestReuploadModal from "./RequestReuploadModal";
+
 
 const PaymentCard = ({
   name,
@@ -65,13 +67,24 @@ const PaymentCard = ({
             </p>
           </div>
         ) : (
-          <div className="mt-2">
-            <button
-              onClick={() => window.open(proofUrl, "_blank")}
-              className="text-blue-500 underline"
-            >
-              View Proof
-            </button>
+          // <div className="mt-2">
+          //   <button
+          //     onClick={() => window.open(proofUrl, "_blank")}
+          //     className="text-blue-500 underline"
+          //   >
+          //     View Proof
+          //   </button>
+          // </div>
+
+          <div
+            className="h-20 overflow-hidden relative"
+            onClick={() => openModal("View Proof")}
+          >
+            <img src="/images/proof.svg" alt="" srcset="" className="w-full" />
+            <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex  items-center">
+              <img src="/images/file-upload.svg" alt="" srcset="" />
+              <p>view proof</p>
+            </div>
           </div>
         )}
       </div>
@@ -83,8 +96,11 @@ const PaymentCard = ({
         >
           Confirm Payment
         </button>
-        <ConfirmPaymentModal />
-        <button className="border text-black text-[10.5px] px-2 py-2 rounded-lg">
+
+        <button
+          className="border text-black text-[10.5px] px-2 py-2 rounded-lg"
+          onClick={() => openModal("Request Reupload")}
+        >
           Request Re-Upload
         </button>
       </div>
