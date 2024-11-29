@@ -36,6 +36,7 @@ import PersonalInfo from "./Pages/Kyc/PersonalInfo";
 import RequestReuploadModal from "./Component/Payment/RequestReuploadModal";
 import ViewProofModal from "./Component/Payment/ViewProofModal";
 import UploadDocument from "./Pages/Kyc/UploadDocument";
+import IdentityProof from "./Pages/Kyc/IdentityProof";
 
 
 
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="/startkyc" element={<StartKyc />} />
           <Route path="/personalinfo" element={<PersonalInfo />} />
           <Route path="/uploaddocument" element={<UploadDocument />} />
+          <Route path="/identityproof" element={<IdentityProof />} />
 
           {/* Add more routes for additional screens as needed */}
         </Routes>

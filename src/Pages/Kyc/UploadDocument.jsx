@@ -27,51 +27,58 @@ const UploadDocument = () => {
           of identity and proof of address documentation.
         </p>
 
-        
-
-        <Link to="">
-        <div className="flex border bg-[#FBC8CE1A] p-3 mb-5 w-[100%] rounded-lg">
-          <img src="/images/identity-card.svg" alt="" srcset="" />
-
-          <div className="w-[70%] font-[400] mx-auto p-3">
-            <h1 className="text-[14px] mb-2">Proof of Identity</h1>
-            <p className="text-[10.5px] text-[#141B3480]">
-              Upload a Passport, Addhaar Card, Pan Card, Driving License,
-              Voter’s ...
-            </p>
-          </div>
-
-          <img
-            src="/images/arrow-right.svg"
-            alt=""
-            srcset=""
-            className="ml-auto"
-          />
-        </div>
-        </Link>
-
-        
-
-        <Link to="">
-            <div className="flex border bg-[#FBC8CE1A] p-3  w-[100%] rounded-lg">
-            <img src="/images/building-02.svg" alt="" srcset="" />
+        <Link to="/identityproof">
+          <div className="flex border bg-[#FBC8CE1A] p-3 mb-5 w-[100%] rounded-lg">
+            <img src="/images/identity-card.svg" alt="" srcset="" />
 
             <div className="w-[70%] font-[400] mx-auto p-3">
-                <h1 className="text-[14px] mb-2">Proof of Address</h1>
-                <p className="text-[10.5px] text-[#141B3480]">
-                Upload a Utility bill, Bank Statement, Registered Lease
-                Agreement....
-                </p>
+              <h1 className="text-[14px] mb-2">Proof of Identity</h1>
+              <p className="text-[10.5px] text-[#141B3480]">
+                Upload a Passport, Addhaar Card, Pan Card, Driving License,
+                Voter’s ...
+              </p>
             </div>
 
             <img
-                src="/images/arrow-right.svg"
-                alt=""
-                srcset=""
-                className="ml-auto"
+              src="/images/arrow-right.svg"
+              alt=""
+              srcset=""
+              className="ml-auto"
             />
-            </div>
+          </div>
         </Link>
+
+        <Link to="">
+          <div className="flex border bg-[#FBC8CE1A] p-3  w-[100%] rounded-lg mb-3">
+            <img src="/images/building-02.svg" alt="" srcset="" />
+
+            <div className="w-[70%] font-[400] mx-auto p-3">
+              <h1 className="text-[14px] mb-2">Proof of Address</h1>
+              <p className="text-[10.5px] text-[#141B3480]">
+                Upload a Utility bill, Bank Statement, Registered Lease
+                Agreement....
+              </p>
+            </div>
+
+            <img
+              src="/images/arrow-right.svg"
+              alt=""
+              srcset=""
+              className="ml-auto"
+            />
+          </div>
+        </Link>
+
+        <div className="flex  p-3  w-[100%] rounded-lg space-x-3">
+          <img src="/images/security-validation.svg" alt="" srcset="" />
+
+          <div className="w-[80%] font-[400]">
+            <p className="text-[10.5px] text-[#141B3480]">
+              We Process your information in accordance with our{" "}
+              <span className="text-[#00943F]">privacy policy</span> .
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
