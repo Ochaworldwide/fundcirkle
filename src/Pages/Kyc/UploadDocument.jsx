@@ -48,7 +48,7 @@ const UploadDocument = () => {
           </div>
         </Link>
 
-        <Link to="">
+        <Link to="/addressproof">
           <div className="flex border bg-[#FBC8CE1A] p-3  w-[100%] rounded-lg mb-3">
             <img src="/images/building-02.svg" alt="" srcset="" />
 

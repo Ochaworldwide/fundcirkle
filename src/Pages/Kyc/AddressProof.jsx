@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const IdentityProof = () => {
+const AddressProof = () => {
   return (
     <div className="w-full p-6">
       <div className="mb-10 flex items-center">
@@ -13,177 +13,177 @@ const IdentityProof = () => {
       <div className="">
         <div className="mb-10 w-full">
           <img
-            src="/images/proof-of-identity.svg"
+            src="/images/proof-of-address.svg"
             alt=""
             srcset=""
             className="object-cover w-full"
           />
         </div>
 
-        <div className=" border bg-[#FBC8CE1A] p-5  w-[100%] rounded-lg mb-5">
-          <p className="mb-5 text-[18px]">Select ID Type:</p>
-
-          <div className="flex items-center mb-5">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <p className="text-[12px] ml-5">International Passport</p>
-
-            <p className="rounded-md bg-white px-1 py-2 text-[12px] ml-auto">
-              Recommended
-            </p>
-          </div>
-
-          <div className="flex items-center mb-5">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <p className="text-[12px] ml-5">Aadhaar Card</p>
-          </div>
-
-          <div className="flex items-center mb-5">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <p className="text-[12px] ml-5">Driving License</p>
-          </div>
-
-          <div className="flex items-center mb-5">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <p className="text-[12px] ml-5">Voter’s ID Card</p>
-          </div>
-
-          <div className="flex items-center mb-5">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <p className="text-[12px] ml-5">Pan Card</p>
-          </div>
-
-          <div className="flex items-center mb-5">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
-                stroke="#141B34"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <p className="text-[12px] ml-5">NRGEA Job Card</p>
-          </div>
-        </div>
-
-        <h1 className="text-[22px] font-[600] mb-3">Proof of Identity</h1>
+        <h1 className="text-[22px] font-[600] mb-3">Proof of Address</h1>
 
         <p className="mb-10 text-[14px]">
-          We need to see your name and ID number clearly printed on an official
+          We need to see your name and address clearly printed on an official
           document
         </p>
+
+        <div className=" border bg-[#FBC8CE1A] p-5  w-[100%] rounded-lg mb-5">
+          <p className="mb-5 text-[18px]">Select Address Proof Type:</p>
+
+          <div className="flex items-center mb-5">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <p className="text-[12px] ml-5">Electric Bill</p>
+
+            {/* <p className="rounded-md bg-white px-1 py-2 text-[12px] ml-auto">
+              Recommended
+            </p> */}
+          </div>
+
+          <div className="flex items-center mb-5">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <p className="text-[12px] ml-5">Gas Bill</p>
+          </div>
+
+          <div className="flex items-center mb-5">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <p className="text-[12px] ml-5">Bank Account Statement</p>
+          </div>
+
+          <div className="flex items-center mb-5">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <p className="text-[12px] ml-5">Landline Bill</p>
+          </div>
+
+          <div className="flex items-center mb-5">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <p className="text-[12px] ml-5">Life Insurance Policy</p>
+          </div>
+
+          <div className="flex items-center mb-5">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                stroke="#141B34"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <p className="text-[12px] ml-5">Registered Lease/Rent Agreement</p>
+          </div>
+        </div>
 
         <div className="border border-dashed border-[#141B3480] flex py-6 px-10 space-x-10 rounded-md mb-5">
           <img src="/images/file-upload.svg" alt="" srcset="" />
@@ -224,7 +224,7 @@ const IdentityProof = () => {
             </svg>
           </span>
 
-          <p className="text-[12px]">Int’l passport.jpg</p>
+          <p className="text-[12px]">Bank Statement.pdf</p>
 
           <span className="ml-auto">
             <svg
@@ -263,7 +263,9 @@ const IdentityProof = () => {
         </div>
 
         <Link to="/thanks">
-         <button className="bg-[#00943F] text-[14px] rounded-md w-full text-white font-extrabold p-5">Submit for Review</button>
+            <button className="bg-[#00943F] text-[14px] rounded-md w-full text-white font-extrabold p-5">
+            Submit for Review
+            </button>
         </Link>
 
         
@@ -272,4 +274,4 @@ const IdentityProof = () => {
   );
 };
 
-export default IdentityProof;
+export default AddressProof;

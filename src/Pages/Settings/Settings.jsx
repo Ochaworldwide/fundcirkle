@@ -1,47 +1,7 @@
-
-
-const Setting = () => {
-
-    const [isToggled, setIsToggled] = useState(false);
-  return (
-    <div>
-      <div className="p-5 border-b sticky bg-white text-[22px] font-[600]">
-        <h1 className="text-center">Settings</h1>
-      </div>
-
-      <div className="p-3 mb-28 group">
-        <div className="flex items-center bg-[#E5F7FF] border rounded-md p-3 mb-7">
-          <img src="/images/person4.svg" alt="" srcset="" className="h-16" />
-          <div className="ml-4">
-            <h1 className="text-[18px]">Bhaavik Arhaan</h1>
-            <p className="text-[#141B3480] text-[10.5px]">
-              bhaavik.arhaan@xyz.com
-            </p>
-          </div>
-
-          <img
-            src="/images/arrow-right.svg"
-            alt=""
-            srcset=""
-            className="ml-auto"
-          />
-        </div>
-
-        
-        
-
-        
-      </div>
-    </div>
-  );
-}
-
-
-
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "../../Component/BottomNav/NavigationBar";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 const Settings = () => {
   // Manage the states for all toggle buttons individually
@@ -60,6 +20,8 @@ const Settings = () => {
       [key]: !prevToggles[key],
     }));
   };
+
+  const { openModal } = useModal();
 
   return (
     <div>
@@ -106,7 +68,7 @@ const Settings = () => {
             />
           </div>
 
-          <div className="flex items-center  border-b border-[#00000026] p-5">
+          <div className="flex items-center  border-b border-[#00000026] p-5" onClick={() => openModal("Bank Information")}>
             <div>
               <h1 className="text-[14px] mb-2">Bank Information</h1>
               <p className="text-[10.5px] text-[#141B3480]">

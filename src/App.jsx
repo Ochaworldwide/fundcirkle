@@ -37,6 +37,10 @@ import RequestReuploadModal from "./Component/Payment/RequestReuploadModal";
 import ViewProofModal from "./Component/Payment/ViewProofModal";
 import UploadDocument from "./Pages/Kyc/UploadDocument";
 import IdentityProof from "./Pages/Kyc/IdentityProof";
+import AddressProof from "./Pages/Kyc/AddressProof";
+import ThankYou from "./Pages/Kyc/ThankYou";
+import BankInformationModal from "./Pages/Settings/BankInformationModal";
+import EditBankInformationModal from "./Pages/Settings/EditBankInformationModal";
 
 
 
@@ -64,6 +68,8 @@ const App = () => {
           <Route path="/personalinfo" element={<PersonalInfo />} />
           <Route path="/uploaddocument" element={<UploadDocument />} />
           <Route path="/identityproof" element={<IdentityProof />} />
+          <Route path="/addressproof" element={<AddressProof />} />
+          <Route path="/thanks" element={<ThankYou />} />
 
           {/* Add more routes for additional screens as needed */}
         </Routes>
@@ -82,6 +88,8 @@ const App = () => {
         <ConfirmPaymentModal />
         <RequestReuploadModal />
         <ViewProofModal />
+        <BankInformationModal />
+        <EditBankInformationModal />
       </Router>
     </ModalProvider>
   );
