@@ -103,7 +103,7 @@ const EditBankInformationModal = () => {
               />
             </div>
 
-            <div className="flex items-center justify-between border-b py-4">
+            <div className="flex items-center justify-between py-4">
               <button
                 type="submit"
                 className="bg-[#00943F] text-[10.5px] font-[700] text-white w-[40%] py-4 rounded-md"
