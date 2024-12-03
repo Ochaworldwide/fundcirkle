@@ -40,7 +40,7 @@ function GetStarted() {
           Interest-free social microloan
         </motion.h1>
 
-        <Link to="/sign-up">
+        <Link to="/sign-in">
           <Button
             text="Get Started"
             onClick={() => console.log("Button clicked!")}

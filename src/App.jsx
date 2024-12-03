@@ -41,6 +41,12 @@ import AddressProof from "./Pages/Kyc/AddressProof";
 import ThankYou from "./Pages/Kyc/ThankYou";
 import BankInformationModal from "./Pages/Settings/BankInformationModal";
 import EditBankInformationModal from "./Pages/Settings/EditBankInformationModal";
+import Carousel from "./Pages/Splash/Carousel";
+import Intro from "./Pages/Splash/Intro";
+
+import "animate.css";
+import SecondIntro from "./Pages/Splash/SecondIntro";
+import ThirdIntro from "./Pages/Splash/ThirdIntro";
 
 
 
@@ -70,6 +76,10 @@ const App = () => {
           <Route path="/identityproof" element={<IdentityProof />} />
           <Route path="/addressproof" element={<AddressProof />} />
           <Route path="/thanks" element={<ThankYou />} />
+          <Route path="/carousel" element={<Carousel />} />
+          <Route path="/intro" element={<Intro />} />
+          <Route path="/secondintro" element={<SecondIntro />} />
+          <Route path="/thirdintro" element={<ThirdIntro />} />
 
           {/* Add more routes for additional screens as needed */}
         </Routes>

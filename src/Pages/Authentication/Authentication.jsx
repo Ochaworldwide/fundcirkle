@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import NavBar from "../../Component/Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Authentication = () => {
@@ -51,6 +51,15 @@ const Authentication = () => {
   };
   const number = "09034962596";
 
+
+  const navigate = useNavigate();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    navigate("/sign-in");
+  };
+
   return (
     <div>
       <NavBar backLink="/residence" />
@@ -66,44 +75,42 @@ const Authentication = () => {
           {number}{" "}
         </p>
 
-        <div className="flex  mt-6 mb-5 w-[95%] justify-between mx-auto">
-          {otp.map((digit, index) => (
-            <input
-              key={index}
-              type="text"
-              value={digit}
-              onChange={(e) => handleChange(e, index)}
-              onKeyDown={(e) => handleBackspace(e, index)}
-              onPaste={handlePaste}
-              ref={(el) => (inputRefs.current[index] = el)}
-              maxLength="1"
-              className={`w-12 h-12 text-center border-2 rounded-lg text-xl font-medium ${
-                digit ? "border-[#00943F] text-[#00943F]" : "border-gray-300"
-              }`}
-            />
-          ))}
-        </div>
+        <form action="" className="py-5 flex flex-col justify-center w-[100%]">
+          <div className="flex   mb-10 w-[95%] justify-between mx-auto">
+            {otp.map((digit, index) => (
+              <input
+                key={index}
+                type="text"
+                value={digit}
+                onChange={(e) => handleChange(e, index)}
+                onKeyDown={(e) => handleBackspace(e, index)}
+                onPaste={handlePaste}
+                ref={(el) => (inputRefs.current[index] = el)}
+                maxLength="1"
+                className={`w-12 h-12 text-center border-2 rounded-lg text-xl font-medium ${
+                  digit ? "border-[#00943F] text-[#00943F]" : "border-gray-300"
+                }`}
+              />
+            ))}
+          </div>
 
-        <p>
-          DIdn't get the code ?{" "}
-          <span className="text-[#00943F] poppins-light-italic">
-            {" "}
-            <Link to=""> Resend code </Link>{" "}
-          </span>
-        </p>
+          <p className="mb-20">
+            DIdn't get the code ?{" "}
+            <span className="text-[#00943F] poppins-light-italic">
+              {" "}
+              <Link to=""> Resend code </Link>{" "}
+            </span>
+          </p>
 
-        <Link to="/home" className="self-center">
-          <Button
-            text="Verify"
-            onClick={() => console.log("Button clicked!")}
-            bgColor="bg-[#00943F]"
-            textColor="text-white"
-            padding="px-20 py-5"
-            fontSize="font-bold"
-            borderRadius="rounded-lg"
-            marginTop="mt-10"
-          />
-        </Link>
+          <button
+            type="submit "
+            onClick={handleFormSubmit}
+            className="w-[100%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg"
+          >
+            Verify
+          </button>
+        </form>
+
       </motion.div>
     </div>
   );

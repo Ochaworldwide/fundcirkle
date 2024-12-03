@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "../../Component/BottomNav/NavigationBar";
 import { useModal } from "../../Component/Cirkles/ModalContext";
+import RoastGenerator from "../../Component/Toast/Toast";
+import MessageToast from "../../Component/Toast/Toast";
+import Toast from "../../Component/Toast/Toast";
 
 const Settings = () => {
   // Manage the states for all toggle buttons individually

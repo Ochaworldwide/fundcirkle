@@ -31,7 +31,7 @@ const EditBankInformationModal = () => {
           </div>
 
           <div className="pb-5 border-b">
-            <h1 className="text-[12px] mb-1">Bhaavik Arhaan</h1>
+            <h1 className="text-[12px] mb-1 font-[500]">Bhaavik Arhaan</h1>
 
             <p className="text-[8px]">
               Your Account Name and details should match your profile name

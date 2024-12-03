@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import NavBar from "../../Component/Sign up/NavBar";
-import Button from "../../Component/Botton/Button";
-import { Link } from "react-router-dom";
-import CustomForm from "../../Component/Form/CustomForm";
+
+import { Link, useNavigate } from "react-router-dom";
+
 import { motion } from "framer-motion";
 
 function Residence() {
   const [country, setCountry] = useState("option1");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    navigate("/authentication");
+  };
 
   const fields = [
     {
@@ -31,6 +39,8 @@ function Residence() {
       className: "w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none",
     },
   ];
+
+  
 
   return (
     <div>
@@ -56,20 +66,30 @@ function Residence() {
           of Residence.
         </p>
 
-        <CustomForm
-          fields={fields}
-          buttonText="Continue"
-          buttonLink="/authentication"
-          buttonProps={{
-            bgColor: "bg-[#00943F]",
-            textColor: "text-white",
-            padding: "px-20 py-5",
-            fontSize: "font-bold",
-            borderRadius: "rounded-lg",
-            marginTop: "mt-10",
-            onClick: () => console.log("Button clicked!"),
-          }}
-        />
+        <form action="" className="py-5 flex flex-col justify-center">
+          <select
+            name=""
+            id=""
+            className="w-full border px-3 py-5 rounded-lg mb-5 bg-white text-[#00000080] outline-[#00943F]"
+          >
+            <option value=""> Select Country</option>
+            <option value="">India</option>
+          </select>
+
+          <input
+            type="text"
+            className="w-full border px-3 py-5 rounded-lg mb-20 outline-none text-[#00000080]"
+            placeholder="Phone Number "
+          />
+
+          <button
+            type="submit "
+            onClick={handleFormSubmit}
+            className="w-[90%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg"
+          >
+            Continue
+          </button>
+        </form>
       </motion.div>
     </div>
   );
