@@ -39,7 +39,7 @@ function SignUp() {
 
   return (
     <div className="">
-      <NavBar backLink="/get-started" />
+      <NavBar backLink="/" />
 
       <Toast
         message={toast.message}

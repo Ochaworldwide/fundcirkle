@@ -33,7 +33,7 @@ const handleFormSubmit = (e) => {
 
   return (
     <div>
-      <NavBar backLink="/get-started" />
+      <NavBar backLink="/" />
 
       <div className="mx-auto w-[90%] flex flex-col">
         <h1 className="font-bold text-[22px] mb-5 poppins">Welcome Back</h1>

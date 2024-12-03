@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
 import SimpleDropdown from "./SimpleDropdown";
 import LocationDropdown from "./LocationDropdown";
+import {useNavigate } from "react-router-dom";
 
 const CreateNewCirkleModal = () => {
   const [cirkleName, setCirkleName] = useState("");
@@ -17,6 +18,7 @@ const CreateNewCirkleModal = () => {
   const [selectedDay, setSelectedDay] = useState("Friday");
   const [step, setStep] = useState(1); // Step state to track current view
   const [isPublic, setIsPublic] = useState(true);
+  const navigate = useNavigate();
 
   const { isModalOpen, modalType, closeModal } = useModal();
 
@@ -33,6 +35,8 @@ const CreateNewCirkleModal = () => {
       const handlePrev = () => {
         setStep(1); // Change step to display the next component
       };
+
+    
 
   return (
     <motion.div
@@ -446,7 +450,10 @@ const CreateNewCirkleModal = () => {
               </p>
 
               {/* Confirm Button */}
-              <button className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition">
+              <button className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition" onClick={() => {
+                navigate("/creationsuccess");
+                closeModal()
+              }} >
                 Confirm and Create Cirkle
               </button>
             </div>

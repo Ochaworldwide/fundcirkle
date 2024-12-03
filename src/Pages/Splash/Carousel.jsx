@@ -141,7 +141,7 @@ const Carousel = () => {
   
   const handleNextClick = () => {
     if (isLast && enabled) {
-      navigate("/sign-in");
+      navigate("/sign-up");
     }
   };
 
@@ -156,28 +156,24 @@ const Carousel = () => {
       {isLast ? (
         <button
           disabled={false}
-          className={` ${
-           "bg-[#00943F]"
-          } absolute right-5 top-[100%] -translate-y-1/2 p-3 rounded-full border z-[1000] text-white`}
+          className={` ${"bg-[#00943F]"} absolute right-5 top-[100%] -translate-y-1/2 p-3 rounded-full border z-[1000] text-white`}
           onClick={!enabled ? () => setEnabled(true) : handleNextClick}
         >
           {enabled ? (
             "Get Started"
           ) : (
             <>
-            <img src="/images/arrow-right.svg" alt="Next Icon" />
+              <img src="/images/arrow-right-01.svg" alt="Next Icon" />
             </>
           )}
         </button>
       ) : (
         <button
-          className={`swiper-button-next-custom ${
-            "bg-[#00000080]"
-          } absolute right-5 top-[100%] -translate-y-1/2 p-3 rounded-full border z-10 text-white`}
+          className={`swiper-button-next-custom ${"bg-[#00943F]"} absolute right-5 top-[100%] -translate-y-1/2 p-3 rounded-full border z-10 text-white`}
           aria-label="Next"
           // onClick={handleNextClick}
         >
-          <img src="/images/arrow-right.svg" alt="Next Icon" />
+          <img src="/images/arrow-right-01.svg" alt="Next Icon" />
         </button>
       )}
 

@@ -1,17 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SplashScreen from "./Pages/Splash/SplashScreen";
-// import SignUp from "./Pages/Sign up/SignUp";
 import Residence from "./Pages/Residence/Residence";
 import Authentication from "./Pages/Authentication/Authentication";
 import ResetFrom from "./Pages/Reset/ResetFrom";
-import FirstSplash from "./Pages/Splash/FirstSplash";
 import Home from "./Pages/Home/Home";
-import GetStarted from "./Pages/GetStarted/GetStarted";
 import { ModalProvider } from "./Component/Cirkles/ModalContext";
 import ModalChat from "./Component/Cirkles/ModalChat";
 import NotificationBox from "./Component/Cirkles/NotificationBox";
-// import Dashboard from "./Pages/Dashboard/Dashboard";
 import SignIn from "./Pages/Authentication/SignIn";
 import SignUp from "./Pages/Authentication/SignUp";
 import CirkleDetailsModal from "./Component/Cirkles/CirkleDetailsModal";
@@ -41,12 +37,10 @@ import AddressProof from "./Pages/Kyc/AddressProof";
 import ThankYou from "./Pages/Kyc/ThankYou";
 import BankInformationModal from "./Pages/Settings/BankInformationModal";
 import EditBankInformationModal from "./Pages/Settings/EditBankInformationModal";
-import Carousel from "./Pages/Splash/Carousel";
-import Intro from "./Pages/Splash/Intro";
-
 import "animate.css";
-import SecondIntro from "./Pages/Splash/SecondIntro";
-import ThirdIntro from "./Pages/Splash/ThirdIntro";
+import Confetti from "./Component/Confetti/Confetti";
+import CirkleCreationSuccess from "./Pages/Home/CirkleCreationSuccess";
+
 
 
 
@@ -56,13 +50,11 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<SplashScreen />} />
-          <Route path="/get-started" element={<GetStarted />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/residence" element={<Residence />} />
           <Route path="/authentication" element={<Authentication />} />
           <Route path="/reset" element={<ResetFrom />} />
-          <Route path="/first" element={<FirstSplash />} />
           <Route path="/home" element={<Home />} />
           <Route path="/discover" element={<Discover />} />
           <Route path="/payment" element={<Payment />} />
@@ -76,10 +68,8 @@ const App = () => {
           <Route path="/identityproof" element={<IdentityProof />} />
           <Route path="/addressproof" element={<AddressProof />} />
           <Route path="/thanks" element={<ThankYou />} />
-          <Route path="/carousel" element={<Carousel />} />
-          <Route path="/intro" element={<Intro />} />
-          <Route path="/secondintro" element={<SecondIntro />} />
-          <Route path="/thirdintro" element={<ThirdIntro />} />
+          <Route path="/confetti" element={<Confetti />} />
+          <Route path="/creationsuccess" element={<CirkleCreationSuccess />} />
 
           {/* Add more routes for additional screens as needed */}
         </Routes>
