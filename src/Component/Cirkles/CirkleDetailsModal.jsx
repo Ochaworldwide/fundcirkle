@@ -64,7 +64,7 @@ const CirkleDetailsModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50 ">
       <motion.div
         initial={{ y: "100%", opacity: 0 }} // Start off-screen
         animate={{ y: 0, opacity: 1 }} // Slide into view
@@ -74,7 +74,7 @@ const CirkleDetailsModal = () => {
           ease: "easeInOut",
         }} // Smooth transition
         // transition={{ type: "spring", stiffness: 100, damping: 15 }}
-        className="fixed bottom-0 left-0 right-0   5 rounded-lg mx-auto max-w-md z-50  bg-white"
+        className="fixed bottom-0 left-0 right-0 top-10   5 rounded-lg mx-auto max-w-md z-50  bg-white overflow-scroll"
       >
         <div className=" pb-10 rounded-lg max-w-md w-full">
           <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[100%] mx-auto rounded-xl">
@@ -174,10 +174,10 @@ const CirkleDetailsModal = () => {
             </div>
 
             <div className="flex  mt-4 justify-between w-[90%] mx-auto">
-              <button className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm">
+              <button className="bg-[#00943F] text-white px-2 py-2 rounded-lg text-sm">
                 Pay Pie for October
               </button>
-              <button className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm">
+              <button className="border font-[400] border-gray-400 text-gray-600 px-2 py-2 rounded-lg text-sm">
                 Swap Payment Month
               </button>
             </div>

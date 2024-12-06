@@ -9,8 +9,8 @@ const MakePaymentModal = () => {
   if (!isModalOpen || modalType !== "make payment") return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md">
+    <div className="fixed inset-0 z-50 flex  justify-center bg-black bg-opacity-50">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md overflow-y-scroll">
         {/* Modal Header */}
         <div className="flex items-center justify-between p-4 bg-green-100 rounded-t-lg">
           <div className="flex items-center gap-2">

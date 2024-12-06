@@ -43,7 +43,7 @@ const PaymentOverview = () => {
       {sections.map((section, index) => (
         <div
           key={index}
-          className="flex-shrink-0 w-[40%] py-4 px-2 bg-[#E5F7FF66] border rounded-md   "
+          className="flex-shrink-0 w-[45%] py-4 px-2 bg-[#E5F7FF66] border rounded-md   "
         >
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-[14px] font-semibold mb-2 ">{section.title}</h2>
@@ -79,12 +79,6 @@ const PaymentOverview = () => {
               {section.description2}
             </p>
           </div>
-
-          <button
-            className={`mt-4 w-full py-2 text-[10.5px] rounded-md  text-[#00943F] border ${section.buttonColor}`}
-          >
-            {section.buttonText}
-          </button>
         </div>
       ))}
     </div>

@@ -167,7 +167,7 @@ function Discover() {
       <GoalSettingSlider
         slides={slidesData}
         initialSlide={1}
-        slidesPerView={1.6}
+        slidesPerView={1.2}
         loop={true}
         showNavigation={true}
         // showPagination={true}

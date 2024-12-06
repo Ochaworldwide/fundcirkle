@@ -39,7 +39,10 @@ const BankInformationModal = () => {
       >
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-5 space-y-4 border">
           <div className="flex justify-between items-center">
-            <h2 className="text-[14px] font-medium text-gray-800">
+            <h2
+              className="text-[14px] font-medium text-gray-800"
+              onClick={() => closeModal()}
+            >
               Your Bank Details
             </h2>
 

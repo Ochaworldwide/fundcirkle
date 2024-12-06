@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 
 const GoalSettingSlider = ({
   slides, // Array of slides to display
-  slidesPerView = 1.4, // Number of slides visible at a time
+  slidesPerView, // Number of slides visible at a time
   loop = true, // Enables looping
   showNavigation = true, // Controls visibility of navigation buttons
   showPagination = true, // Controls visibility of pagination
@@ -61,9 +61,9 @@ const GoalSettingSlider = ({
         {slides.map((slide, index) => (
           <SwiperSlide
             key={index}
-            className="flex flex-col justify-center items-center  shadow-md rounded-lg border  "
+            className="flex flex-col justify-center items-center   shadow-md rounded-lg border  "
           >
-            <div className="text-center h-48">
+            <div className="text-center h-48 ">
               <img
                 src={slide.image}
                 alt=""
@@ -71,7 +71,7 @@ const GoalSettingSlider = ({
                 className="ml-auto h-16 mb-5"
               />
               {/* <h3 className="text-lg font-bold mb-3">{slide.title}</h3> */}
-              <p className="text-[10.5px] text-gray-600 mb-4 px-3">
+              <p className="text-[12px] text-gray-600 mb-4 px-3">
                 {slide.description}
               </p>
               {slide.buttonText && slide.buttonAction && (

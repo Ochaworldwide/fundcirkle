@@ -25,11 +25,13 @@ const ValidatePaymentModal = () => {
       persons: [
         "/images/paygroup-1.svg", // Replace with actual images
       ],
+      groupId: "selected",
     },
     {
       groupName: "Greenwood Community Medical Center Employee Guild",
       personCount: 5,
       persons: ["/images/paygroup-2.svg"],
+      groupId: "selected",
     },
     {
       groupName: "Hyderabad Teaching Hospital Worker's Club",
@@ -37,13 +39,14 @@ const ValidatePaymentModal = () => {
       persons: [
         "/images/paygroup-2.svg", // Replace with actual images
       ],
+      groupId: "selected",
     },
   ];
 
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md">
+    <div className="fixed inset-0 z-50 flex justify-center bg-black bg-opacity-50 ">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md overflow-y-scroll">
         {/* Modal Header */}
         <div className="flex items-center justify-between p-4 bg-green-100 rounded-t-lg">
           <div className="flex items-center gap-2">
@@ -72,6 +75,7 @@ const ValidatePaymentModal = () => {
               groupName={data.groupName}
               personCount={data.personCount}
               persons={data.persons}
+              groupId={data.groupId}
             />
           ))}
         </div>
@@ -79,8 +83,6 @@ const ValidatePaymentModal = () => {
         <div className="p-4 w-[100%] overflow-scroll hide-scrollbar ">
           <PaymentList />
         </div>
-
-       
       </div>
     </div>
   );
