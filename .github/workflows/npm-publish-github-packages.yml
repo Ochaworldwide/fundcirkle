@@ -25,18 +25,18 @@ jobs:
           # npm install  # Install any new dependencies
           # pm2 restart app.js  # Restart your Node.js app using PM2 or any other process manager
 
-          mkdir getlinked
+          mkdir fundcirkle
 
-          cd getlinked
+          cd fundcirkle
 
           git init
 
-          git pull 'https://github.com/Ochaworldwide/GetLinked.git'
+          git pull 'https://github.com/Ochaworldwide/fundcirkle.git'
 
           npm install
 
           npm run build
 
-          cp -r dist/* /var/www/westempire.online/html
+          cp -r dist/* /var/www/fundcirkle/html
 
           echo "Deploy successful"
