@@ -1,5 +1,54 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+# # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+# name: Deploy to EC2
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Setup Node.js
+#       uses: actions/setup-node@v3
+#       with: 
+#         node-version: '20.18.0'
+      
+
+    
+#     - name: SSH into EC2 instance and deploy
+#       uses: appleboy/ssh-action@master
+#       with:
+#         host: ${{ secrets.EC2_HOST }}  # Your EC2 instance public DNS/IP
+#         username: ${{ secrets.EC2_USERNAME }}  # Your EC2 instance SSH username
+#         key: ${{ secrets.KEY }}  # Your EC2 instance SSH private key
+#         script: |
+#           # cd /path/to/your/app  # Replace this with the path to your Node.js app on the EC2 instance
+#           # git pull origin main  # Pull the latest changes from your repository
+#           # npm install  # Install any new dependencies
+#           # pm2 restart app.js  # Restart your Node.js app using PM2 or any other process manager
+
+#           mkdir fundcirkle
+
+#           cd fundcirkle
+
+#           git init
+
+#           git pull 'https://github.com/Ochaworldwide/fundcirkle.git'
+
+#           npm install
+
+#           npm run build
+
+#           cp -r dist/* /var/www/fundcirkle/html
+
+#           echo "Deploy successful"
+
+
 
 name: Deploy to EC2
 
@@ -13,37 +62,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with: 
         node-version: '20.18.0'
-      
 
-    
     - name: SSH into EC2 instance and deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.EC2_HOST }}  # Your EC2 instance public DNS/IP
-        username: ${{ secrets.EC2_USERNAME }}  # Your EC2 instance SSH username
-        key: ${{ secrets.KEY }}  # Your EC2 instance SSH private key
+        host: ${{ secrets.EC2_HOST }}  # EC2 instance public DNS/IP
+        username: ${{ secrets.EC2_USERNAME }}  # SSH username
+        key: ${{ secrets.KEY }}  # SSH private key
         script: |
-          # cd /path/to/your/app  # Replace this with the path to your Node.js app on the EC2 instance
-          # git pull origin main  # Pull the latest changes from your repository
-          # npm install  # Install any new dependencies
-          # pm2 restart app.js  # Restart your Node.js app using PM2 or any other process manager
+          # Install Node.js if missing
+          if ! command -v node &> /dev/null; then
+            curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+          fi
 
-          mkdir fundcirkle
-
+          # Navigate to the project folder
+          mkdir -p fundcirkle
           cd fundcirkle
 
-          git init
+          # Initialize and update the repository
+          if [ ! -d ".git" ]; then
+            git init
+          fi
 
-          git pull 'https://github.com/Ochaworldwide/fundcirkle.git'
+          git pull https://github.com/Ochaworldwide/fundcirkle.git
 
+          # Install dependencies and build
           npm install
-
           npm run build
 
-          cp -r dist/* /var/www/fundcirkle/html
+          # Deploy built files
+          sudo mkdir -p /var/www/fundcirkle/html
+          sudo cp -r dist/* /var/www/fundcirkle/html
 
           echo "Deploy successful"
+
