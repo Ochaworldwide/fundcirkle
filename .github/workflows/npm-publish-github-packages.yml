@@ -13,6 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with: 
+        node-version: '20'
+      
+
+    
     - name: SSH into EC2 instance and deploy
       uses: appleboy/ssh-action@master
       with:
