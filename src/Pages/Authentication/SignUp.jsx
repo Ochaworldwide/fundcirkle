@@ -108,7 +108,7 @@ function SignUp() {
             Sign Up
           </button>
 
-          {/* Additional Sign-In Link */}
+          {/* Additional Sign-In Link */} 
           <p className="mt-5 self-center">
             Already have an account?{" "}
             <span className="text-[#00943F]">
