@@ -1,12 +1,17 @@
 import React, { useState, useRef } from "react";
 import NavBar from "../../Component/Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import axiosInstance from "../../service";
+import { ROUTES } from "../../constants/routes";
+import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
 
 const Authentication = () => {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const inputRefs = useRef([]);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -49,15 +54,55 @@ const Authentication = () => {
       inputRefs.current[lastFilledIndex].focus();
     }
   };
-  const number = "09034962596";
-
-
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const email = location.state?.email;
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setLoading(true)
+    const code = otp.join('');
+    const payload = {
+      email: email,
+      code: code,
+    };
+    axiosInstance
+      .post(ROUTES.AUTH.VERIFY, payload)
+      .then((response) => {
+        if (response.data.success) {
+          toast.success(response.data.message);
+          navigate("/sign-in");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.response.data.message);
+        
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
-    navigate("/sign-in");
+  };
+
+  const handleResendOTP = (e) => {
+    const payload = {
+      email: email,
+    };
+    axiosInstance
+      .post(ROUTES.AUTH.RESENDOTP, payload)
+      .then((response) => {
+        toast.success('Resent OTP')
+      })
+      .catch((error) => {
+        console.log(error);
+        
+
+      });
+
+    console.log(email);
   };
 
   return (
@@ -70,12 +115,15 @@ const Authentication = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <h1 className="font-bold text-2xl mb-5 poppins ">OTP Authentication</h1>
-        <p>An Authentication code has been sent to the mobile number below</p>
+        <p>An Authentication code has been sent to the email below</p>
         <p className="text-center my-10 font-bold text-xl tracking-widest">
-          {number}{" "}
+          {email}
         </p>
 
-        <form action="" className="py-5 flex flex-col justify-center w-[100%]">
+        <form
+          onSubmit={handleFormSubmit}
+          className="py-5 flex flex-col justify-center w-[100%]"
+        >
           <div className="flex   mb-10 w-[95%] justify-between mx-auto">
             {otp.map((digit, index) => (
               <input
@@ -97,20 +145,21 @@ const Authentication = () => {
           <p className="mb-20">
             DIdn't get the code ?{" "}
             <span className="text-[#00943F] poppins-light-italic">
-              {" "}
-              <Link to=""> Resend code </Link>{" "}
+              <button type="button" onClick={handleResendOTP}>
+                {" "}
+                Resend code{" "}
+              </button>
             </span>
           </p>
 
           <button
-            type="submit "
-            onClick={handleFormSubmit}
+            type="submit"
+            disabled={loading}
             className="w-[100%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg"
           >
-            Verify
+            {loading ? <PulseLoader size={12} color="white" /> : "Verify"}
           </button>
         </form>
-
       </motion.div>
     </div>
   );

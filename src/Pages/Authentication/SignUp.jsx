@@ -6,34 +6,67 @@ import CustomForm from "../../Component/Form/CustomForm";
 import { motion } from "framer-motion";
 import NavBar from "../../Component/Sign up/NavBar";
 import Toast from "../../Component/Toast/Toast";
+import axiosInstance from "../../service";
+import { ROUTES } from "../../constants/routes";
 
 function SignUp() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formData, setForm] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const [isAgreed, setIsAgreed] = useState(false);
 
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
- const [toast, setToast] = useState({ message: "", type: "" });
+  const handleChange = (e) => {
+    const name = e.target.name;
+    setForm({ ...formData, [name]: e.target.value });
+  };
 
- const showToast = (message, type) => {
-   setToast({ message, type });
- };
+  const [toast, setToast] = useState({ message: "", type: "" });
+  const [errors, setErrors] = useState(null);
+  const showToast = (message, type) => {
+    setToast({ message, type });
+  };
 
 
+  const validate = () => {
+    // validate the user inputs
+    const errors = {};
+    if (formData.fullName.length == 0) {
+      errors["fullName"] = "please enter your full name";
+    }
+
+    if (formData.password.length < 6) {
+      errors["password"] = "password must be up to 6 chars long";
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      errors["password"] = "passwords do not match";
+    }
+    const validEmail = (email) => /\S+@\S+\.\S+/.test(email);
+    if (!validEmail(formData.email)) {
+      errors["email"] = "Invalid email address";
+    }
+    // check if we have any values in our erors object, so we cn knw when we have no errors
+    setErrors(errors);
+    if (Object.keys(errors ?? {}).length) {
+      return false;
+    }
+    return true;
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (isAgreed) {
-      navigate("/residence")
-      console.log("Form submitted!");
+      setErrors(null);
+      if (!validate()) return; // stop here if validation fails
+      navigate("/residence", { state: formData });
     } else {
-      showToast(
-        "Please agree to the terms and condition",
-        "warning"
-      );
+      showToast("Please agree to the terms and condition", "warning");
     }
   };
 
@@ -58,31 +91,50 @@ function SignUp() {
 
         <p>Lets Create your account here</p>
 
-        <form action="" className="py-5 flex flex-col justify-center ">
+        <form
+          onSubmit={handleFormSubmit}
+          className="py-5 flex flex-col justify-center "
+        >
           <input
             type="text"
+            value={formData.fullName}
+            onChange={handleChange}
+            name="fullName"
             className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
             placeholder="Full Name "
           />
 
           <input
             type="text"
+            value={formData.email}
+            onChange={handleChange}
+            name="email"
             className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
             placeholder="Email "
           />
 
           <input
             type="text"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
             placeholder="Password"
           />
 
           <input
             type="text"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            name="confirmPassword"
             className="w-full border px-3 py-5 rounded-lg mb-10 outline-[#00943F] text-[#00000080]"
             placeholder="Confirm Password"
           />
-
+          {/* Show our errors here */}
+          <ul className="flex flex-col w-full gap-1 text-sm list-disc pl-5 text-red-500">
+            {errors &&
+              Object.keys(errors ?? {}).map((name) => <li>{errors[name]}</li>)}
+          </ul>
           {/* Additional Checkbox and Terms */}
           <div className="flex justify-between items-center mt-5 w-[100%] mb-5">
             <input
@@ -101,14 +153,13 @@ function SignUp() {
           </div>
 
           <button
-            type="submit "
-            onClick={handleFormSubmit}
+            type="submit"
             className="w-[90%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg"
           >
             Sign Up
           </button>
 
-          {/* Additional Sign-In Link */} 
+          {/* Additional Sign-In Link */}
           <p className="mt-5 self-center">
             Already have an account?{" "}
             <span className="text-[#00943F]">

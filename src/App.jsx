@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SplashScreen from "./Pages/Splash/SplashScreen";
-import Residence from "./Pages/Residence/Residence";
+import Residence from "./Pages/Authentication/Residence";
 import Authentication from "./Pages/Authentication/Authentication";
 import ResetFrom from "./Pages/Reset/ResetFrom";
 import Home from "./Pages/Home/Home";
@@ -41,57 +41,60 @@ import "animate.css";
 import Confetti from "./Component/Confetti/Confetti";
 import CirkleCreationSuccess from "./Pages/Home/CirkleCreationSuccess";
 
-
-
-
 const App = () => {
   return (
-    <ModalProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<SplashScreen />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/residence" element={<Residence />} />
-          <Route path="/authentication" element={<Authentication />} />
-          <Route path="/reset" element={<ResetFrom />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/discover" element={<Discover />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/setting" element={<Settings />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/editprofile" element={<EditProfile />} />
-          <Route path="/updatepassword" element={<UpdatePassword />} />
-          <Route path="/startkyc" element={<StartKyc />} />
-          <Route path="/personalinfo" element={<PersonalInfo />} />
-          <Route path="/uploaddocument" element={<UploadDocument />} />
-          <Route path="/identityproof" element={<IdentityProof />} />
-          <Route path="/addressproof" element={<AddressProof />} />
-          <Route path="/thanks" element={<ThankYou />} />
-          <Route path="/confetti" element={<Confetti />} />
-          <Route path="/creationsuccess" element={<CirkleCreationSuccess />} />
+    <>
 
-          {/* Add more routes for additional screens as needed */}
-        </Routes>
-        <ModalChat />
-        <NotificationBox />
-        <CirkleDetailsModal />
-        <InviteCirkleDetailsModal />
-        <CreateNewCirkleModal />
-        <FilterModal />
-        <CirkleCategoryModal />
-        <ContributionAmountRangeModal />
-        <DisplayCategoriesModal />
-        <PaymentFilterModal />
-        <MakePaymentModal />
-        <ValidatePaymentModal />
-        <ConfirmPaymentModal />
-        <RequestReuploadModal />
-        <ViewProofModal />
-        <BankInformationModal />
-        <EditBankInformationModal />
-      </Router>
-    </ModalProvider>
+      <ModalProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<SplashScreen />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/residence" element={<Residence />} />
+            <Route path="/authentication" element={<Authentication />} />
+            <Route path="/reset" element={<ResetFrom />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/discover" element={<Discover />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/setting" element={<Settings />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/editprofile" element={<EditProfile />} />
+            <Route path="/updatepassword" element={<UpdatePassword />} />
+            <Route path="/startkyc" element={<StartKyc />} />
+            <Route path="/personalinfo" element={<PersonalInfo />} />
+            <Route path="/uploaddocument" element={<UploadDocument />} />
+            <Route path="/identityproof" element={<IdentityProof />} />
+            <Route path="/addressproof" element={<AddressProof />} />
+            <Route path="/thanks" element={<ThankYou />} />
+            <Route path="/confetti" element={<Confetti />} />
+            <Route
+              path="/creationsuccess"
+              element={<CirkleCreationSuccess />}
+            />
+
+            {/* Add more routes for additional screens as needed */}
+          </Routes>
+          <ModalChat />
+          <NotificationBox />
+          <CirkleDetailsModal />
+          <InviteCirkleDetailsModal />
+          <CreateNewCirkleModal />
+          <FilterModal />
+          <CirkleCategoryModal />
+          <ContributionAmountRangeModal />
+          <DisplayCategoriesModal />
+          <PaymentFilterModal />
+          <MakePaymentModal />
+          <ValidatePaymentModal />
+          <ConfirmPaymentModal />
+          <RequestReuploadModal />
+          <ViewProofModal />
+          <BankInformationModal />
+          <EditBankInformationModal />
+        </Router>
+      </ModalProvider>
+    </>
   );
 };
 
