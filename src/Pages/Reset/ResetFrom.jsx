@@ -1,36 +1,47 @@
 import React, { useState } from "react";
 import NavBar from "../../Component/Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CustomForm from "../../Component/Form/CustomForm";
 import Toast from "../../Component/Toast/Toast";
+import { toast } from "react-toastify";
+import axiosInstance from "../../service";
+import { ROUTES } from "../../constants/routes";
+import { PulseLoader } from "react-spinners";
 
 function ResetFrom() {
-  const [email, setEmail] = useState("");
 
-  const [toast, setToast] = useState({ message: "", type: "" });
+    const location = useLocation();
 
-  const showToast = (message, type) => {
-    setToast({ message, type });
-  };
+    const email = location.state?.email;
+
+    const [loading,setLoading] = useState(false)
+
+
   
-
-  // const fields = [
-  //   {
-  //     type: "email",
-  //     placeholder: "Enter your registered email address",
-  //     value: email,
-  //     onChange: (e) => setEmail(e.target.value),
-  //   },
-  // ];
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    showToast(
-      "Reset link sent! Check your email to reset your password.",
-      "success"
+    setLoading(true);
+    const payload = new FormData(
+      e.target
     );
-    console.log("Form submitted!");
+    axiosInstance
+      .post(ROUTES.AUTH.FORGOT_PASSWORD, payload)
+      .then((response) => {
+        if (response.data.success) {
+          toast.success(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.response.data.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+   
+    console.log(payload.getAll() );
   };
 
 
@@ -38,13 +49,7 @@ function ResetFrom() {
 
   return (
     <div>
-      {/* Reusable Toast */}
-      <Toast
-        message={toast.message}
-        type={toast.type}
-        duration={3000}
-        onClose={() => setToast({ message: "", type: "" })}
-      />
+
       <NavBar backLink="/sign-in" />
 
       <div className="mx-auto w-[90%] flex flex-col">
@@ -55,18 +60,27 @@ function ResetFrom() {
           Enter your registered email to receive a password reset link.
         </p>
 
-        <form action="" className="flex flex-col justify-center">
+        <form
+          onSubmit={handleFormSubmit}
+          className="flex flex-col justify-center"
+        >
           <input
             type="text"
+            name="email"
             className="w-full border px-3 py-5 rounded-lg mb-10"
             placeholder="Enter your registered email address "
           />
 
           <button
             type="submit "
-            className="w-[90%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg" onClick={handleFormSubmit}
+            disabled={loading}
+            className="w-[90%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg"
           >
-            Send Password Reset Link
+            {loading ? (
+              <PulseLoader size={12} color="white" />
+            ) : (
+              "Send Password Reset Link"
+            )}
           </button>
         </form>
 

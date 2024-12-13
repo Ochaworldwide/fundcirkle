@@ -1,31 +1,64 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../Component/Sign up/NavBar";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
+import axiosInstance from "../../service";
+import { ROUTES } from "../../constants/routes";
+import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
 
 function Residence() {
-  const [country, setCountry] = useState("option1");
+  const [country, setCountry] = useState(null);
+  const [ countries, setCountries] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const location = useLocation();
+  const [loading,setLoading] = useState(false)
+
+  useEffect(() => {
+
+    const getAllCountries = async () => {
+      try{
+        const response = await axiosInstance.get('/get/countries');
+        setCountries(response.data.data)
+      }
+      catch(error){ console.log(error) }
+    }
+
+    getAllCountries();
+
+  }, []);
+  const formData = location.state;
 
   const navigate = useNavigate();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
-    navigate("/authentication");
+    const payload = {
+      full_name: formData?.fullName,
+      email: formData?.email,
+      country: country ,
+      phone: phoneNumber ,
+      password: formData?.password ,
+      password_confirmation: formData?.confirmPassword ,
+    };
+
+    try {
+      const response = await axiosInstance.post(ROUTES.AUTH.SIGNUP, payload);
+      navigate("/authentication", { state: { email: payload?.email } });
+      toast.success(response.data.message)
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+    setLoading(false);
   };
 
   const fields = [
     {
       type: "select",
-      options: [
-        { value: "option1", label: "Country" },
-        { value: "option2", label: "Nigeria" },
-        { value: "option3", label: "USA" },
-        { value: "option4", label: "California" },
-      ],
       value: country,
       onChange: (e) => setCountry(e.target.value),
       className:
@@ -39,8 +72,6 @@ function Residence() {
       className: "w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none",
     },
   ];
-
-  
 
   return (
     <div>
@@ -66,28 +97,36 @@ function Residence() {
           of Residence.
         </p>
 
-        <form action="" className="py-5 flex flex-col justify-center">
+        <form
+          onSubmit={handleFormSubmit}
+          className="py-5 flex flex-col justify-center"
+        >
           <select
-            name=""
+            {...fields[0]}
             id=""
             className="w-full border px-3 py-5 rounded-lg mb-5 bg-white text-[#00000080] outline-[#00943F]"
           >
-            <option value=""> Select Country</option>
-            <option value="">India</option>
+            {countries &&
+              countries.map((option, index) => (
+                <option key={index} value={option.name}>
+                  {option.name}
+                </option>
+              ))}
           </select>
 
           <input
             type="text"
+            {...fields[1]}
             className="w-full border px-3 py-5 rounded-lg mb-20 outline-none text-[#00000080]"
             placeholder="Phone Number "
           />
 
           <button
             type="submit "
-            onClick={handleFormSubmit}
+            disabled={loading}
             className="w-[90%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg"
           >
-            Continue
+            {loading ? <PulseLoader size={12} color="white" /> : "Continue"}
           </button>
         </form>
       </motion.div>
