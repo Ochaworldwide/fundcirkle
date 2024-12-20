@@ -2,7 +2,7 @@ import React from "react";
 import { useModal } from "../Cirkles/ModalContext";
 
 const ConfirmPaymentModal = () => {
-  const { isModalOpen, closeModal, modalType } = useModal();
+  const { isModalOpen, closeModal, modalType, openModal } = useModal();
 
   if (!isModalOpen || modalType !== "Confirm Payment") return null;
 
@@ -11,7 +11,8 @@ const ConfirmPaymentModal = () => {
       <div className="bg-white rounded-lg shadow-lg  w-[85%] ">
         <div
           className="border-b py-4 px-2 mb-6 flex justify-between"
-          onClick={closeModal}
+          // onClick={closeModal}#
+          onClick={() => openModal("validate payment")}
         >
           <h1 className="text-[14px]">Confirm Payment Received</h1>
 
@@ -58,7 +59,8 @@ const ConfirmPaymentModal = () => {
 
             <button
               className="py-3 px-7 border text-[10.5px] rounded-md"
-              onClick={closeModal}
+              // onClick={closeModal}
+              onClick={() => openModal("validate payment")}
             >
               Cancel
             </button>

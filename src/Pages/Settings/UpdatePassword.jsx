@@ -1,20 +1,96 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../constants/routes";
+import axiosInstance from "../../service";
+import { toast } from "react-toastify";
 
 const UpdatePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    const token = localStorage.getItem("token");
+
+      if (!token) {
+        toast.error("Authorization token is missing!");
+        setLoading(false);
+        return;
+      }
+
+    const payload = {
+      password: newPassword,
+      password_confirmation: confirmPassword,
+    };
+
     if (newPassword !== confirmPassword) {
-      alert("Passwords do not match!");
+      toast.error("Passwords do not match!");
       return;
     }
-    // Add password update logic here
-    alert("Password updated successfully!");
+
+    axiosInstance
+      .post(ROUTES.AUTH.RESET, payload)
+      .then((response) => {
+        if (response.data.success) {
+          toast.success(response.data.message);
+        }
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
+
+
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
+    //   setLoading(true);
+
+    //   const token = localStorage.getItem("token");
+
+    //   if (!token) {
+    //     toast.error("Authorization token is missing!");
+    //     setLoading(false);
+    //     return;
+    //   }
+
+    //   if (newPassword !== confirmPassword) {
+    //     toast.error("Passwords do not match!");
+    //     setLoading(false); // Stop loading if passwords don't match
+    //     return;
+    //   }
+
+    //   const payload = {
+    //     token,
+    //     password: newPassword,
+    //     password_confirmation: confirmPassword,
+    //   };
+
+    //   try {
+    //     const response = await axiosInstance.post(ROUTES.AUTH.RESET, payload);
+
+    //     if (response.data?.success) {
+    //       const userToken = response.data.data?.token;
+    //       toast.success(response.data.message || "Password reset successful!");
+
+    //       if (userToken) {
+    //         localStorage.setItem("token", userToken);
+    //       }
+    //     } else {
+    //       toast.error(response.data?.message || "Something went wrong!");
+    //     }
+    //   } catch (error) {
+    //     toast.error(error?.response?.data?.message || "An error occurred.");
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
 
   return (
     <div className="   w-full px-6">

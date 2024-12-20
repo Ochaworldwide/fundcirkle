@@ -28,34 +28,29 @@ const Settings = () => {
 
   return (
     <div>
-
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <div className="p-5 border-b sticky bg-white text-[22px] font-[600] mb-5 top-0">
         <h1 className="text-center">Settings</h1>
       </div>
-
       <div className="p-3 mb-28 ">
-
         <Link to="/profile">
-        <div className="flex items-center bg-[#E5F7FF] border rounded-md p-3 mb-7">
-          <img src="/images/person4.svg" alt="" srcset="" className="h-16" />
-          <div className="ml-4">
-            <h1 className="text-[18px]">Bhaavik Arhaan</h1>
-            <p className="text-[#141B3480] text-[10.5px]">
-              bhaavik.arhaan@xyz.com
-            </p>
+          <div className="flex items-center bg-[#E5F7FF] border rounded-md p-3 mb-7">
+            <img src="/images/person4.svg" alt="" srcset="" className="h-16" />
+            <div className="ml-4">
+              <h1 className="text-[18px]">Bhaavik Arhaan</h1>
+              <p className="text-[#141B3480] text-[10.5px]">
+                bhaavik.arhaan@xyz.com
+              </p>
+            </div>
+
+            <img
+              src="/images/arrow-right.svg"
+              alt=""
+              srcset=""
+              className="ml-auto"
+            />
           </div>
-
-          <img
-            src="/images/arrow-right.svg"
-            alt=""
-            srcset=""
-            className="ml-auto"
-          />
-        </div>
         </Link>
-        
-
 
         {/* Privacy and Security */}
         <h1 className="mb-3 text-[14px] ml-1">Privacy and Security</h1>
@@ -71,7 +66,10 @@ const Settings = () => {
             />
           </div>
 
-          <div className="flex items-center  border-b border-[#00000026] p-5" onClick={() => openModal("Bank Information")}>
+          <div
+            className="flex items-center  border-b border-[#00000026] p-5"
+            onClick={() => openModal("Bank Information")}
+          >
             <div>
               <h1 className="text-[14px] mb-2">Bank Information</h1>
               <p className="text-[10.5px] text-[#141B3480]">
@@ -91,7 +89,9 @@ const Settings = () => {
             <div className="flex items-center  border-b border-[#00000026]  p-5">
               <div>
                 <h1 className="text-[14px] mb-2">Change Password</h1>
-                <p className="text-[10.5px] text-[#141B3480]">Update Password</p>
+                <p className="text-[10.5px] text-[#141B3480]">
+                  Update Password
+                </p>
               </div>
 
               <img
@@ -103,7 +103,6 @@ const Settings = () => {
             </div>
           </Link>
 
-          
           {/* Two-Factor Authentication */}
           <div className="flex items-center rounded-md px-5 pt-5 pb-7">
             <div>

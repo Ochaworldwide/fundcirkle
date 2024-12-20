@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
+import axiosInstance from "../../service";
 
 const notifications = [
   // Notification data here
@@ -21,10 +22,25 @@ const notifications = [
   },
 ];
 
-const NotificationBox = () => {
+const NotificationBox = ({ setShowNotification }) => {
   const { isModalOpen, modalType, closeModal } = useModal();
+  const [notifications, setNotifications] = useState([]);
 
-  if (!isModalOpen || modalType !== "notification") return null;
+  const getNotifications = async () => {
+    try {
+      const res = await axiosInstance.get("/notifications");
+      const data = await res.data;
+      return data.data;
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
+  useEffect(() => {
+    setNotifications(getNotifications());
+  }, []);
+
+  // if (!isModalOpen || modalType !== "notification") return null;
 
   return (
     <motion.div
@@ -39,33 +55,37 @@ const NotificationBox = () => {
       <div className="flex justify-between items-center pb-3 border-b border-gray-200">
         <h3 className="text-lg font-semibold">Notifications</h3>
         <button
-          onClick={closeModal}
+          onClick={() => setShowNotification(false)}
           className="text-[#00943F] text-sm font-medium hover:underline"
         >
           Mark all as read
         </button>
       </div>
 
-      <div className="mt-3 space-y-3">
-        {notifications.map((notification) => (
-          <div
-            key={notification.id}
-            className="flex items-start p-2 bg-gray-50 rounded-lg shadow-sm"
-          >
-            <img
-              src={notification.profileImg}
-              alt="profile"
-              className="w-10 h-10 rounded-full mr-3"
-            />
-            <div className="flex-grow">
-              <p className="text-sm font-medium text-gray-800">
-                {notification.message}
-              </p>
-              <p className="text-xs text-gray-400">{notification.time}</p>
+      {!notifications.length ? (
+        <p>No notifications</p>
+      ) : (
+        <div className="mt-3 space-y-3">
+          {notifications.map((notification) => (
+            <div
+              key={notification.id}
+              className="flex items-start p-2 bg-gray-50 rounded-lg shadow-sm"
+            >
+              <img
+                src={notification.profileImg}
+                alt="profile"
+                className="w-10 h-10 rounded-full mr-3"
+              />
+              <div className="flex-grow">
+                <p className="text-sm font-medium text-gray-800">
+                  {notification.message}
+                </p>
+                <p className="text-xs text-gray-400">{notification.time}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </motion.div>
   );
 };

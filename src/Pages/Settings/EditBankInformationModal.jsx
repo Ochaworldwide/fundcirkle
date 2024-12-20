@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useModal } from "../../Component/Cirkles/ModalContext";
 
 const EditBankInformationModal = () => {
-  const { isModalOpen, modalType, closeModal } = useModal();
+  const { isModalOpen, modalType, closeModal , openModal } = useModal();
 
   if (!isModalOpen || modalType !== "Edit Bank Information") return null;
 
@@ -23,7 +23,8 @@ const EditBankInformationModal = () => {
           <div className="flex justify-between items-center pb-5 border-b">
             <h2 className="text-sm font-semibold">Your Bank Details</h2>
             <button
-              onClick={closeModal}
+              // onClick={closeModal}
+              onClick={() => openModal("Bank Information")}
               className="text-gray-600 hover:text-gray-800"
             >
               <img src="/images/cancel-square.svg" alt="" />
@@ -113,6 +114,7 @@ const EditBankInformationModal = () => {
 
               <button
                 type="submit"
+                onClick={() => openModal("Bank Information")}
                 className="bg-white border text-[10.5px] font-[700] text-black w-[45%] py-4 rounded-md"
               >
                 Cancel
