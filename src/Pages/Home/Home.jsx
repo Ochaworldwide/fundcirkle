@@ -1,17 +1,18 @@
-import React from 'react'
-import profileImg from '/images/profileImg.svg'
-import notificationIcon from '/src/assets/images/notification-bing.png'
-import Kyc from '../../Component/VerifyKyc/kyc';
-import Quickstats from '../../Component/Quickstats/Quickstats';
-import CirkleCard from '../../Component/Cirkles/CirkleCard';
-import messageIcon from '/src/assets/images/message.png';
-import catIcon from '/src/assets/images/cat.png';
-import moreIcon from '/src/assets/images/more.png'
+import React, { useState } from "react";
+import profileImg from "/images/profileImg.svg";
+import notificationIcon from "/src/assets/images/notification-bing.png";
+import Kyc from "../../Component/VerifyKyc/kyc";
+import Quickstats from "../../Component/Quickstats/Quickstats";
+import CirkleCard from "../../Component/Cirkles/CirkleCard";
+import messageIcon from "/src/assets/images/message.png";
+import catIcon from "/src/assets/images/cat.png";
+import moreIcon from "/src/assets/images/more.png";
 import currency from "/src/assets/images/currrency.png";
-import CircularProgress from '../../Component/Cirkles/CircularProgress';
+import CircularProgress from "../../Component/Cirkles/CircularProgress";
 import { useModal } from "/src/Component/Cirkles/ModalContext";
-import NavigationBar from '../../Component/BottomNav/NavigationBar';
-import { Link } from 'react-router-dom';
+import NavigationBar from "../../Component/BottomNav/NavigationBar";
+import { Link } from "react-router-dom";
+import NotificationBox from "../../Component/Cirkles/NotificationBox";
 
 function Home() {
   const NotifyNum = "3";
@@ -33,8 +34,6 @@ function Home() {
     ],
   };
 
-  
-
   // Payment Dates
   const paymentDates = {
     nextPayment: "Oct 1, 2024",
@@ -51,15 +50,14 @@ function Home() {
     { name: "Frank", image: "/src/assets/images/member6.png" },
     { name: "Grace", image: "/src/assets/images/member7.png" },
   ];
-  
+
   const { openModal } = useModal();
+  const [showNotification, setShowNotification] = useState(false);
 
   return (
     <div className="">
-
       {/* Nav Bar */}
-      <NavigationBar />
-
+      {/* <NavigationBar /> */}
 
       <div className=" flex w-[95%] mx-auto  items-center  mb-5 sticky top-0 bg-white z-10 ">
         <div className="">
@@ -84,7 +82,7 @@ function Home() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="rounded-full"
-            onClick={() => openModal("notification")}
+            onClick={() => setShowNotification(true)}
           >
             <path
               d="M12 6.94V10.27"
@@ -108,6 +106,10 @@ function Home() {
             />
           </svg>
         </div>
+
+        {showNotification && (
+          <NotificationBox setShowNotification={setShowNotification} />
+        )}
       </div>
 
       {/* Kyc section */}
@@ -115,8 +117,6 @@ function Home() {
       <Link to="/startkyc">
         <Kyc />
       </Link>
-
-      
 
       {/* Cirkles */}
 
@@ -134,5 +134,4 @@ function Home() {
   );
 }
 
-export default Home
-
+export default Home;

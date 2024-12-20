@@ -1,0 +1,35 @@
+{
+  "status_code": 200,
+  "success": true,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Personal",
+      "description": "Includes Family and Friends",
+      "created_at": "2024-12-13T19:25:53.000000Z",
+      "updated_at": "2024-12-13T19:25:53.000000Z"
+    },
+    {
+      "id": 2,
+      "name": "Business and Work",
+      "description": "Includes Colleagues and Partners",
+      "created_at": "2024-12-13T19:25:53.000000Z",
+      "updated_at": "2024-12-13T19:25:53.000000Z"
+    },
+    {
+      "id": 3,
+      "name": "Community",
+      "description": "Includes Neighbors and local acquaintances",
+      "created_at": "2024-12-13T19:25:53.000000Z",
+      "updated_at": "2024-12-13T19:25:53.000000Z"
+    },
+    {
+      "id": 4,
+      "name": "Social",
+      "description": "Includes common interest groups, and welfare associations",
+      "created_at": "2024-12-13T19:25:53.000000Z",
+      "updated_at": "2024-12-13T19:25:53.000000Z"
+    }
+  ]
+}

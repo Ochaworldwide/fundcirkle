@@ -2,7 +2,7 @@ import React from "react";
 import { useModal } from "../Cirkles/ModalContext";
 
 const RequestReuploadModal = () => {
-  const { isModalOpen, closeModal, modalType } = useModal();
+  const { isModalOpen, closeModal, modalType,openModal } = useModal();
 
   if (!isModalOpen || modalType !== "Request Reupload") return null;
 
@@ -11,7 +11,8 @@ const RequestReuploadModal = () => {
       <div className="bg-white rounded-lg shadow-lg w-[85%] ">
         <div
           className="border-b py-4 p-2 mb-6 flex justify-between"
-          onClick={closeModal}
+          // onClick={closeModal}
+          onClick={() => openModal("validate payment")}
         >
           <h1 className="text-[18px]">Request Proof Re-Upload</h1>
 
@@ -60,7 +61,8 @@ const RequestReuploadModal = () => {
 
             <button
               className="py-3 px-7 border text-[10.5px] rounded-md"
-              onClick={closeModal}
+              // onClick={closeModal}
+              onClick={() => openModal("validate payment")}
             >
               Cancel
             </button>

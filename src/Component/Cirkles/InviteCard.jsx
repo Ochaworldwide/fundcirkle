@@ -2,9 +2,7 @@ import React from "react";
 import moreIcon from "/images/more.svg";
 import { useModal } from "./ModalContext";
 
-
-const InviteCard = ({ group , buttons }) => {
-
+const InviteCard = ({ group, buttons }) => {
   const { openModal } = useModal();
   return (
     <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%]">
@@ -33,8 +31,6 @@ const InviteCard = ({ group , buttons }) => {
             className=" rounded-full p-1 border h-10 "
             onClick={() => openModal("invite")}
           >
-            
-
             <img src={moreIcon} alt="" srcset="" />
           </div>
         </div>
@@ -69,7 +65,11 @@ const InviteCard = ({ group , buttons }) => {
             </button>
           </div> */}
 
-          {buttons}
+          <div className="flex gap-2">
+            <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
+              Request to Join
+            </button>
+          </div>
         </div>
       </div>
     </div>

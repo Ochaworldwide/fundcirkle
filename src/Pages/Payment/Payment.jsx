@@ -1,36 +1,27 @@
-import { div } from 'framer-motion/client'
-import React from 'react'
-import PaymentOverview from '../../Component/Payment/PaymentOverview'
-import ManagePaymentCirkle from '../../Component/Payment/ManagePaymentCirkle';
-import PaymentTable from '../../Component/Payment/PaymentTable';
-import NavigationBar from '../../Component/BottomNav/NavigationBar';
+import { div } from "framer-motion/client";
+import React from "react";
+import PaymentOverview from "../../Component/Payment/PaymentOverview";
+import ManagePaymentCirkle from "../../Component/Payment/ManagePaymentCirkle";
+import PaymentTable from "../../Component/Payment/PaymentTable";
+import NavigationBar from "../../Component/BottomNav/NavigationBar";
 
 const Payment = () => {
   return (
     <div className="mb-20">
       {/* Nav Bar */}
-      <NavigationBar />
-
-
-
+      {/* <NavigationBar /> */}
       {/* heading */}
       <div className="py-5 border-b text-[22px] font-[600] mb-5 sticky top-0 bg-white z-10">
         <h1 className="text-center">Payment</h1>
       </div>
-
       {/* Payment Overview */}
-
       <div className="w-[100%] px-5 ">
         <h1 className="   text-[18px] font-bold">Payment Overview</h1>
         <PaymentOverview />
       </div>
-
       {/* Manage Payment Cirkle */}
-
       <ManagePaymentCirkle />
-
       {/* History */}
-
       <div className="p-4">
         <h1 className="mb-5 text-[18px] font-bold ">Payment History</h1>
 
@@ -115,6 +106,6 @@ const Payment = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Payment
+export default Payment;

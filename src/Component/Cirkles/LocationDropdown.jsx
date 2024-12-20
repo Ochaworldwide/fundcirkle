@@ -44,7 +44,7 @@ const LocationDropdown = () => {
         onClick={toggleDropdown}
         className="px-4 w-[100%] flex justify-between py-2 text-[10.5px] text-[#505050] rounded-md border e"
       >
-        City, States
+        States
         <img src="/images/arrow-down-01.svg" alt="" />
       </button>
 

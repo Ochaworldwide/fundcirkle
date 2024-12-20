@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useModal } from "../Cirkles/ModalContext";
+import axiosInstance from "../../service";
+import { ROUTES } from "../../constants/routes";
+import { toast } from "react-toastify";
+import MultiSelect from "../Common/Multiselect";
+import axios from "axios";
 
-const CirkleCategoryModal = () => {
-  const { isModalOpen, modalType, closeModal } = useModal();
+const CirkleCategoryModal = ({closeModal, name, updateSelection}) => {
 
-  if (!isModalOpen || modalType !== "cirkleCategory") {
-    return null;
+  const [categories, setCategories] = useState(null);
+  const [ selectedCategories , setSelection ] = useState([]);
+
+  useEffect(() => {
+    axios.get('/response.json')
+      .then(response => setCategories(response.data.data))
+      .catch(error => toast.error(error))
+  },[]);
+
+
+  const handleSave = () => {
+    updateSelection(name, selectedCategories);
+    closeModal();
   }
+
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 h-screen">
@@ -20,83 +36,21 @@ const CirkleCategoryModal = () => {
             ✕
           </button>
         </div>
-
         <div className="space-y-4 text-sm">
-          <div
-            className="p-4 border  hover:bg-gray-100 cursor-pointer flex"
-            onClick={() => {
-              console.log("Selected: Personal");
-            }}
-          >
-            <input
-              type="checkbox"
-              name=""
-              id=""
-              className="mr-3 accent-green-500"
-            />
-            Personal (Includes Family and Friends)
-          </div>
-          <div
-            className="p-4 border  hover:bg-gray-100 cursor-pointer flex"
-            onClick={() => {
-              console.log("Selected: Business");
-            }}
-          >
-            <input
-              type="checkbox"
-              name=""
-              id=""
-              className="mr-3 accent-green-500"
-            />
-            Business and Work (Includes Colleagues and Partners)
-          </div>
 
-          <div
-            className="p-4 border  hover:bg-gray-100 cursor-pointer flex "
-            onClick={() => {
-              console.log("Selected: Community");
-            }}
-          >
-            <input
-              type="checkbox"
-              name=""
-              id=""
-              className="mr-3 accent-green-500"
-            />
-            Community (Includes Neighbors and local acquaintances)
-          </div>
-
-          <div
-            className="p-4 border g hover:bg-gray-100 cursor-pointer flex "
-            onClick={() => {
-              console.log("Selected: Social");
-            }}
-          >
-            <input
-              type="checkbox"
-              name=""
-              id=""
-              className="mr-3 accent-green-500 "
-            />
-            Social (Includes common interest groups, and welfare associations)
-          </div>
-
+          <MultiSelect onSelectionChange={(selection) => setSelection(selection)} options={categories ?? []} />
           {/* buttons */}
           <div className="flex  ml-auto w-[60%] justify-between px-1">
             <button
               className="bg-[#00943F] py-2 px-4 rounded-md text-white"
-              onClick={() => {
-                closeModal();
-              }}
+              onClick={handleSave}
             >
               Set Category
             </button>
 
             <button
               className=" border py-2 px-4 rounded-md"
-              onClick={() => {
-                closeModal();
-              }}
+              onClick={closeModal}
             >
               Cancel
             </button>
