@@ -56,14 +56,6 @@ const InviteCard = ({ group, buttons }) => {
               {group.amount}
             </p>
           </div>
-          {/* <div className="flex gap-2">
-            <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
-              Accept
-            </button>
-            <button className="border border-gray-400 text-gray-600 px-3 py-1 rounded-md text-xs font-semibold">
-              Decline
-            </button>
-          </div> */}
 
           <div className="flex gap-2">
             <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">

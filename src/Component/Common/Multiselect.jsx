@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 
 function MultiSelect({ options, onSelectionChange }) {
-  const [selectedIds, setSelectedIds] = useState([]);
+  const [selectedId, setSelectedId] = useState(null); // Only one selected ID
 
   const handleSelect = (option) => {
-    const updatedSelection = !!selectedIds.find((s) => s.id == option.id)
-      ? selectedIds.filter((selected) => selected.id !== option.id)
-      : [...selectedIds, option];
+    const updatedSelection = selectedId === option.id ? null : option.id; // Toggle selection
 
-    setSelectedIds(updatedSelection);
-    onSelectionChange(updatedSelection);
+    setSelectedId(updatedSelection);
+    onSelectionChange(updatedSelection ? [option] : []); // Pass the selected option or an empty array
   };
 
   return (
@@ -22,7 +20,7 @@ function MultiSelect({ options, onSelectionChange }) {
         >
           <input
             type="checkbox"
-            checked={!!selectedIds.find((s) => s.id == option.id)}
+            checked={selectedId === option.id} // Only one can be checked
             readOnly
             className="mr-3 accent-green-500"
           />
@@ -34,3 +32,5 @@ function MultiSelect({ options, onSelectionChange }) {
 }
 
 export default MultiSelect;
+
+

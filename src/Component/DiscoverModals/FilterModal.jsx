@@ -10,7 +10,7 @@ const FilterModal = ({ setModal }) => {
 
   const [filterOptions, setFilterOptions] = useState({
     categories: [],
-    range: '',
+    range: [],
     locations:[]
   });
 
@@ -45,10 +45,13 @@ const FilterModal = ({ setModal }) => {
                 Preferred Location
               </label>
               <div className="flex space-x-1">
-                <LocationDropdown />
-                <button className="flex-shrink-0 w-8 h-8 border flex items-center justify-center rounded-lg ">
+                <LocationDropdown
+                  name="locations"
+                  updateSelection={handleChange}
+                />
+                {/* <button className="flex-shrink-0 w-8 h-8 border flex items-center justify-center rounded-lg ">
                   +
-                </button>
+                </button> */}
               </div>
             </div>
 
@@ -63,7 +66,9 @@ const FilterModal = ({ setModal }) => {
                   onClick={() => setCategoryModal(true)}
                   className="px-4 py-2 text-black border rounded-lg text-[12px] flex bg-[#F5F5F5]  "
                 >
-                  {filterOptions.categories.length ? filterOptions.categories[0]?.name : "Select"}
+                  {filterOptions.categories.length
+                    ? filterOptions.categories[0]?.name
+                    : "Select"}
                   <img
                     src="/images/arrow-down-01.svg"
                     alt=""
@@ -72,9 +77,9 @@ const FilterModal = ({ setModal }) => {
                   />
                 </button>
 
-                <button className="flex-shrink-0 w-8 h-8 border flex items-center justify-center rounded-lg ">
+                {/* <button className="flex-shrink-0 w-8 h-8 border flex items-center justify-center rounded-lg ">
                   +
-                </button>
+                </button> */}
               </div>
             </div>
 
@@ -85,15 +90,18 @@ const FilterModal = ({ setModal }) => {
               </label>
               <button
                 onClick={() => openModal("contributionAmountRange")}
-                className="px-4 py-2 border text-[10.5px] text-black bg-[#F5F5F5] rounded-lg flex items-center space-x-3"
+                className="px-4 py-2 border text-[10.5px] text-black bg-[#F5F5F5] rounded-lg flex items-center space-x-4"
               >
                 <img
                   src="/images/currency.svg"
                   alt=""
                   srcset=""
-                  className="h-5"
+                  className="h-5 "
                 />
-                <p>30K to 70K</p>
+
+                <div>{filterOptions.range?.label || "Select"}</div>
+
+                {/* <p>30K to 70K</p> */}
 
                 <img src="/images/arrow-down-01.svg " alt="" srcset="" />
               </button>
