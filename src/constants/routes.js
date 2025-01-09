@@ -9,13 +9,17 @@ export const ROUTES = {
   },
   MISC: {
     GET_COUNTRIES: "/get/countries",
+    GET_STATES:
+      `get/countries/{country_id}/states`,
   },
-  CIRKLE:{
-
+  CIRKLE: {
     GET_CIRKLE_CATEGORIES: "/cirkle-categories",
-    GET_USER_CIRKLES: `/cirkles`,
+    GET_USER_CIRKLES: "/cirkles",
     GET_CIRCLE: (id) => `/cirkles/${id}`,
-    UPDATE_CIRCLE_CATEGORY: (id) => `/cirkle-categories/${id}` 
+    UPDATE_CIRCLE_CATEGORY: (id) => `/cirkle-categories/${id}`,
+  },
+  ACCOUNT: {
+    GET_USER_ACCOUNT: "/account"
   }
 };
 

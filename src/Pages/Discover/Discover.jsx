@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InviteCard from "../../Component/Cirkles/InviteCard";
 import { useModal } from "../../Component/Cirkles/ModalContext";
 import FilterModal from "../../Component/DiscoverModals/FilterModal";
 import GoalSettingSlider from "../../Component/Slider/GoalSettingSlider";
 import NavigationBar from "../../Component/BottomNav/NavigationBar";
+import CategoriesDropdown from "../../Component/DiscoverModals/CategoriesDropdown";
+import axios from "axios";
+import { ROUTES } from "../../constants/routes";
+import axiosInstance from "../../service";
+// const url = "https://fundcirkle.techr.me/api/cirkles";
 
 const groups = [
   {
@@ -77,12 +82,63 @@ const slidesData = [
 function Discover() {
   // const { isModalOpen, modalType, closeModal, openModal } = useModal();
 
+  // const fetchData = async () =>{
+  //   // try {
+  //   //   const response = await axios.get(ROUTES.CIRKLE.GET_USER_CIRKLES)
+  //   //   console.log(response)
+  //   // } catch (error) {
+  //   //   console.log(error.response)
+      
+  //   // }
+
+  //   axiosInstance
+  //     .get(ROUTES.CIRKLE.GET_USER_CIRKLES)
+  //     .then((response) => {
+  //       if (response.data.success) {
+  //         // toast.success(response.data.message);
+  //         console.log(response)
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       toast.error(error.response.data.message);
+  //     })
+  //     // .finally(() => {
+  //     //   setLoading(false);
+  //     // });
+  // }
+
+
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get(ROUTES.CIRKLE.GET_USER_CIRKLES);
+      if (response.data.success) {
+        console.log(response);
+        // You can add additional logic here if needed, e.g., updating state
+        // toast.success(response.data.message); // Uncomment if you want success toast
+      }
+    } catch (error) {
+      console.error(error);
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
+    } finally {
+      // Uncomment or implement if necessary
+      // setLoading(false);
+    }
+  };
+
+
+  useEffect(() => {
+    fetchData();
+  },[]);
+
   const [filterOpen, setFilterModal] = useState(false);
 
   return (
     <div className="mb-32">
-      {/* Nav Bar */}
-      {/* <NavigationBar /> */}
       {/* header */}
       <div className="w-[100%] flex justify-center py-5 sticky top-0 bg-white ">
         <p className="text-[22px] font-[600]">Discover</p>
@@ -119,16 +175,19 @@ function Discover() {
         </button>
         {filterOpen && <FilterModal setModal={setFilterModal} />}
       </div>
-      {/* body */}
-      <div className="flex p-5 " onClick={() => openModal("displayCategories")}>
-        <p className="text-[18px] mr-5">Recommended Cirkles</p>
 
-        <img src="/images/arrow-down-01.svg" alt="" srcset="" />
+
+      <div className="mt-5">
+        <CategoriesDropdown />
       </div>
+
+      
+
+
       <div className="h-[420px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar p-2">
         <div className="p-1  min-h-screen">
           {groups.map((group, index) => (
-            // <InviteCard key={index} group={group} buttons={Buttons} />
+            
             <InviteCard key={index} group={group} />
           ))}
         </div>

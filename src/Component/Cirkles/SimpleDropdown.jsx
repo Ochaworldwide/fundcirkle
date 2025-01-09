@@ -11,11 +11,11 @@ const SimpleDropdown = ({ options, onSelect , optionHeading }) => {
   };
 
   // Handle item selection
-  const handleSelect = (value) => {
+  const handleSelect = (value, id) => {
     setSelectedValue(value);
     setIsOpen(false);
     if (onSelect) {
-      onSelect(value); // Trigger the callback function on selection
+      onSelect(value,id); // Trigger the callback function on selection
     }
   };
 
@@ -60,7 +60,8 @@ const SimpleDropdown = ({ options, onSelect , optionHeading }) => {
           {options.map((option, index) => (
             <li
               key={index}
-              onClick={() => handleSelect(option)}
+              id={`option-${index + 1}`} // Unique ID
+              onClick={() => handleSelect(option, index + 1)}
               className="px-1 py-2 hover:bg-gray-100 cursor-pointer text-center text-[10.5px]"
             >
               {option}

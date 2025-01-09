@@ -16,10 +16,6 @@ const ContributionAmountRangeModal = ({ updateSelection, name }) => {
   const [selectedRange, setSelectedRange] = useState([]);
   const handleSelection = (range) => {
     setSelectedRange(range);
-    // setSelectedRanges(
-      // (prev) => prev.filter((r) => r !== range)
-      // prev.includes(range) ? prev.filter((r) => r !== range) : [...prev, range]
-    // );
   };
 
   const handleSave = () => {
@@ -38,7 +34,6 @@ const ContributionAmountRangeModal = ({ updateSelection, name }) => {
         <div className="flex justify-between items-center mb-4 w-[90%] mx-auto">
           <h2 className="text-xl font-semibold">Select Contribution Amount</h2>
           <button
-            // onClick={closeModal}
             onClick={() => openModal("filter")}
             className="text-gray-600 hover:text-gray-800"
           >

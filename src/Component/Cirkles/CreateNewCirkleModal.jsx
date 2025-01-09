@@ -1,43 +1,200 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
 import SimpleDropdown from "./SimpleDropdown";
 import LocationDropdown from "./LocationDropdown";
 import {useNavigate } from "react-router-dom";
 import { div } from "framer-motion/client";
+import axiosInstance from "../../service";
+import { ROUTES } from "../../constants/routes";
+import MultiEmailInput from "../Common/multiEmailInput";
+import axios from "axios";
 
 const CreateNewCirkleModal = () => {
-  const [cirkleName, setCirkleName] = useState("");
+  const [name, setCirkleName] = useState("");
   const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState(250000);
-  const [category, setCategory] = useState("Personal");
+  const [contribution_amount, setAmount] = useState();
+  const [category, setCategory] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState("1");
   const [members, setMembers] = useState(2);
-  const [frequency, setFrequency] = useState("Monthly");
-  const [dueDate, setDueDate] = useState(25);
-  const [dueMonth, setDueMonth] = useState(24);
+  const [frequency, setFrequency] = useState("monthly");
+  const [contribution_Week, setContribution_Week] = useState();
+  const [contribution_Month, setContribution_Month] = useState();
+  const [contribution_day, setContribution] = useState();
+  const [dueDate, setDueDate] = useState();
+  const [dueMonth, setDueMonth] = useState();
   const [selectedDay, setSelectedDay] = useState("Friday");
   const [step, setStep] = useState(1); // Step state to track current view
   const [isPublic, setIsPublic] = useState(true);
+  const [privacy, setPrivacy] = useState("public");
   const navigate = useNavigate();
+  const [emails, setEmails] = useState([]);
+  const [userCountry, setUserCountry] = useState("");
+  const [listCountries, setListCountries] = useState([]);
+  const [userStateId, setUserStateId] = useState([]);
+  const [states, setStates] = useState([]);
+  const [state, setState] = useState();
 
   const { isModalOpen, modalType, closeModal } = useModal();
 
-  if (!isModalOpen || modalType !== "create") return null;
-
-  const handleSelection = (value) => {
-    console.log("Selected value:", value);
+  const resetState = () => {
+    setCirkleName("");
+    setDescription("");
+    setAmount("");
+    setCategory([]);
+    setSelectedCategoryId("1");
+    setMembers(2);
+    setFrequency("monthly");
+    setSelectedDay("Friday");
+    setStep(1);
+    setIsPublic(true);
+    setPrivacy("public");
+    setEmails([]);
   };
 
-   const handleNext = () => {
-     setStep(2); // Change step to display the next component
-   };
+  useEffect(() => {
+    if (isModalOpen && modalType === "create") {
+      const fetchInitialData = async () => {
+        try {
+          // Fetch the list of countries
+          const countriesResponse = await axiosInstance.get("/get/countries");
+          const countries = countriesResponse.data.data;
+          setListCountries(countries);
 
-      const handlePrev = () => {
-        setStep(1); // Change step to display the next component
+          // Fetch user account details
+          const userResponse = await axiosInstance.get("/account");
+          // const userCountry = userResponse.data.data.country;
+          setUserCountry(userResponse.data.data.country);
+
+          // Get the country ID from the list
+          const country = countries.find(
+            (country) => country.name === userCountry
+          );
+
+          const countryId = country ? country.id : null;
+          console.log(countryId);
+
+          if (countryId) {
+            // Fetch the states for the user's country
+            const stateResponse = await axiosInstance.get(
+              `get/countries/${countryId}/states`
+            );
+            const stateData = stateResponse.data.data; // Assuming `data` is the array of states
+            // console.log(stateData); // Log the array of states
+            if (stateData.length > 0) {
+              setStates(stateData);
+              // setUserStateId(stateData.id); // Set the ID of the first state
+            } else {
+              console.warn("No states found for the country.");
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching initial data:", error);
+        }
       };
 
-    
+      fetchInitialData();
+    }
+
+    return () => {
+      if (!isModalOpen) {
+        resetState();
+        setStep(1);
+        // Reset modal state or perform cleanup if necessary
+      }
+    };
+  }, [isModalOpen, modalType]); // Empty dependency array to run only once on component mount
+
+  if (!isModalOpen || modalType !== "create") return null;
+
+  const handleCategoryChange = (e) => {
+    const newSelectedCategoryId = e.target.selectedOptions[0].id; // Get the id of the selected option
+    setCategory(e.target.value); // Update selected value
+    setSelectedCategoryId(newSelectedCategoryId); // Update selected id
+  };
+
+  const handleEmailsChange = (updatedEmails) => {
+    setEmails(updatedEmails); // Update the parent state with the latest emails
+    // console.log("Emails from MultiEmailInput:", updatedEmails); // Log or use the emails as needed
+  };
+
+  const handleSelection = (value, id) => {
+    // console.log("Selected value:", value);
+    console.log("Selected id:", id);
+    setContribution_Week(id);
+  };
+
+  const handleMonthlySelection = (value, id) => {
+    // console.log("Selected value:", value);
+    console.log("Selected id:", id);
+    setContribution_Month(id);
+  };
+
+  const handleSubmit = () => {
+    // Validate required fields
+    if (
+      !name ||
+      !description ||
+      !category ||
+      !contribution_amount ||
+      !frequency ||
+      !privacy
+    ) {
+      console.log("Some required fields are missing!");
+      return;
+    }
+
+    const payload = {
+      name: name,
+      members: emails,
+      max_members: members,
+      description: description,
+      category: selectedCategoryId,
+      contribution_amount: contribution_amount,
+      contribution_frequency: frequency,
+      contribution_day: 15,
+      privacy: privacy,
+      state: state,
+      currency: "INR",
+    };
+
+    console.log("Payload:", payload);
+
+    axiosInstance
+      .post(ROUTES.CIRKLE.GET_USER_CIRKLES, payload)
+      .then((response) => {
+        if (response.data.success) {
+          console.log("Cirkle created successfully!");
+        } else {
+          console.error("API responded with failure:", response.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("API Error:", error.response.data);
+        } else if (error.request) {
+          console.error("Network Error:", error.request);
+        } else {
+          console.error("Error:", error.message);
+        }
+      });
+  };
+
+  const handleNext = () => {
+    setStep(2); // Change step to display the next component
+  };
+
+  const handlePrev = () => {
+    setStep(1); // Change step to display the next component
+  };
+
+  // Function to handle button clicks
+  const handleDueDateClick = (date) => {
+    setDueDate(date);
+    console.log(`Selected Due Date: ${date}`); // Logs the selected date
+    // Add additional logic here to save the date, e.g., API call or state update
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex  bg-black   bg-opacity-50 pt-5">
@@ -86,7 +243,7 @@ const CreateNewCirkleModal = () => {
                   <input
                     type="text"
                     placeholder="Enter Cirkle Name"
-                    value={cirkleName}
+                    value={name}
                     onChange={(e) => setCirkleName(e.target.value)}
                     className="border rounded-lg px-3 py-2 text-sm outline-none"
                   />
@@ -127,27 +284,40 @@ const CreateNewCirkleModal = () => {
                     {/* <span className="text-2xl mr-2">₹</span> */}
                     <input
                       type="number"
-                      value={amount}
+                      value={contribution_amount}
+                      placeholder="2000"
                       onChange={(e) => setAmount(e.target.value)}
                       className="w-28 border rounded-lg px-3 py-2 text-sm outline-none"
                     />
                   </div>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="border rounded-lg px-3 py-2 text-[]"
-                  >
-                    <option value="Personal">Personal</option>
-                    <option value="Business">Business</option>
-                    <option value="Others">Others</option>
-                  </select>
+
+                  <div>
+                    <select
+                      value={category}
+                      id="category-select"
+                      onChange={handleCategoryChange}
+                      className="border rounded-lg px-3 py-2"
+                    >
+                      <option id="1" value="Personal">
+                        Personal
+                      </option>
+                      <option id="2" value="Business">
+                        Business
+                      </option>
+                      <option id="3" value="Others">
+                        Others
+                      </option>
+                    </select>
+                  </div>
                 </div>
+
                 <p className="text-[12px] font-[400] mb-5">
                   Contribution Frequency and Due date
                 </p>
+
                 <div className="mb-4 flex justify-between h-[200px]">
                   <div className="flex flex-col space-y-2  text-[10.5px] bg-[#EBEBED] w-[25%] h-fit py-1 rounded-md">
-                    {["Biweekly", "Monthly", "Quarterly"].map((freq) => (
+                    {["biweekly", "monthly", "quarterly"].map((freq) => (
                       <button
                         key={freq}
                         onClick={() => setFrequency(freq)}
@@ -162,7 +332,7 @@ const CreateNewCirkleModal = () => {
 
                   <div className="w-[70%] ">
                     {/* Weekday Selection for Biweekly */}
-                    {frequency === "Biweekly" && (
+                    {frequency === "biweekly" && (
                       <div className="flex flex-col items-center ">
                         {/* <p className="text-sm mb-2">Select a Weekday</p> */}
                         <SimpleDropdown
@@ -197,7 +367,7 @@ const CreateNewCirkleModal = () => {
                     )}
 
                     {/* Due Date Selection */}
-                    {frequency === "Monthly" && (
+                    {/* {frequency === "monthly" && (
                       <div>
                         <p className="text-sm mb-4 text-center">Pick a Date</p>
                         <div className="grid grid-cols-7 gap-3 flex-wrap  ">
@@ -216,16 +386,35 @@ const CreateNewCirkleModal = () => {
                           ))}
                         </div>
                       </div>
+                    )} */}
+
+                    {frequency === "monthly" && (
+                      <div>
+                        <p className="text-sm mb-4 text-center">Pick a Date</p>
+                        <div className="grid grid-cols-7 gap-3 flex-wrap">
+                          {[...Array(28)].map((_, i) => (
+                            <button
+                              key={i}
+                              onClick={() => handleDueDateClick(i + 1)}
+                              className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
+                                dueDate === i + 1
+                                  ? "bg-green-500 text-white"
+                                  : ""
+                              }`}
+                            >
+                              {i + 1}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     )}
 
                     {/* Due Quaterly Selection */}
-                    {frequency === "Quarterly" && (
+                    {frequency === "quarterly" && (
                       <div>
-                        {/* <p className="text-sm mb-2">Select a Due Date</p> */}
-
                         <SimpleDropdown
                           options={["Month 1", "Month 2", "Month 3"]}
-                          onSelect={handleSelection}
+                          onSelect={handleMonthlySelection}
                           optionHeading={"Select Month"}
                         />
                         <div className="grid grid-cols-7 gap-2 flex-wrap ">
@@ -301,7 +490,24 @@ const CreateNewCirkleModal = () => {
                 <div className="p-5 text-[12px]">Preferred Local Location</div>
 
                 <div className="w-[40%]">
-                  <LocationDropdown />
+                  <select
+                    id=""
+                    value={state}
+                    onChange={(e) => {
+                      const selectedValue = e.target.value; // Get the selected option's value
+                      setState(selectedValue); // Update the state
+                      // console.log("Selected option:", selectedValue); // Log the selected value
+                      console.log(state);
+                    }}
+                    className="w-full border px-3 py-5 rounded-lg mb-5 bg-white text-[#00000080] outline-[#00943F]"
+                  >
+                    {states &&
+                      states.map((option, index) => (
+                        <option key={index} value={option.id}>
+                          {option.name}
+                        </option>
+                      ))}
+                  </select>
                 </div>
               </div>
 
@@ -336,18 +542,10 @@ const CreateNewCirkleModal = () => {
                 </div>
 
                 <div>
-                  <p className="mb-2 text-[10.5px]">Invite Members</p>
+                  <p className=" text-[10.5px]">Invite Members</p>
 
                   <div className="flex justify-between">
-                    <input
-                      type="text"
-                      placeholder="Enter Email(s) invite members"
-                      className="border p-3 rounded-md w-[70%] text-[10.5px] outline-none"
-                    />
-
-                    <button className="border text-[#00943F] px-4 rounded-lg text-[10.5px]">
-                      Send Invite
-                    </button>
+                    <MultiEmailInput onEmailsChange={handleEmailsChange} />
                   </div>
                 </div>
               </div>
@@ -428,7 +626,10 @@ const CreateNewCirkleModal = () => {
                         ? "bg-white text-black font-medium shadow"
                         : "bg-gray-200 text-gray-500"
                     }`}
-                    onClick={() => setIsPublic(true)}
+                    onClick={() => {
+                      setIsPublic(true);
+                      setPrivacy("public");
+                    }}
                   >
                     Public Cirkle
                   </button>
@@ -438,7 +639,10 @@ const CreateNewCirkleModal = () => {
                         ? "bg-white text-black font-medium shadow"
                         : "bg-gray-200 text-gray-500"
                     }`}
-                    onClick={() => setIsPublic(false)}
+                    onClick={() => {
+                      setIsPublic(false);
+                      setPrivacy("private");
+                    }}
                   >
                     Private Cirkle
                   </button>
@@ -455,8 +659,10 @@ const CreateNewCirkleModal = () => {
                 <button
                   className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition"
                   onClick={() => {
+                    handleSubmit();
                     navigate("/creationsuccess");
                     closeModal();
+                    resetState();
                   }}
                 >
                   Confirm and Create Cirkle

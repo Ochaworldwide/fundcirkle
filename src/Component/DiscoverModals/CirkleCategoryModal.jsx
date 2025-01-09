@@ -11,10 +11,30 @@ const CirkleCategoryModal = ({closeModal, name, updateSelection}) => {
   const [categories, setCategories] = useState(null);
   const [ selectedCategories , setSelection ] = useState([]);
 
-  useEffect(() => {
-    axios.get('/response.json')
-      .then(response => setCategories(response.data.data))
-      .catch(error => toast.error(error))
+const fetchData = async () => {
+  try {
+    const response = await axiosInstance.get(
+      ROUTES.CIRKLE.GET_CIRKLE_CATEGORIES
+    );
+    // console.log(response.data);
+    setCategories(response.data.data);
+    // Handle your data here if needed (e.g., setCategories(response.data.data))
+  } catch (error) {
+    console.error(error);
+    if (error.response?.data?.message) {
+      toast.error(error.response.data.message);
+    } else {
+      toast.error("An error occurred. Please try again.");
+    }
+  } finally {
+    // Uncomment or implement if needed
+    // setLoading(false);
+  }
+};
+
+
+useEffect(() => {
+    fetchData();
   },[]);
 
 
