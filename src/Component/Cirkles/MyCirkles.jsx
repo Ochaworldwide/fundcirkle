@@ -335,12 +335,13 @@ function MyCirkles() {
       <div className="flex flex-col border bg-gray-50 rounded-lg">
         <div className="py-5 flex justify-between w-[95%] mx-auto">
           <div className="w-[50%] flex flex-col justify-center">
-            <div className="text-[40px] font-[600] flex items-center">
+            <div className="text-[40px] font-[600] flex items-center overflow-hidden whitespace-nowrap truncate">
               <img src={currency} alt="" className="h-9" />
               {contribution.amount}
             </div>
-            <p className="text-[14px] ">Cirkle Amount</p>
+            <p className="text-[14px] truncate">Cirkle Amount</p>
           </div>
+
           <div className="w-[50%]">
             <CircularProgress contribution={contribution} />
             <p className="text-black mb-3 text-center text-[14px]">

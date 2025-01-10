@@ -153,7 +153,7 @@ const CreateNewCirkleModal = () => {
       category: selectedCategoryId,
       contribution_amount: contribution_amount,
       contribution_frequency: frequency,
-      contribution_day: 15,
+      contribution_day: dueDate,
       privacy: privacy,
       state: state,
       currency: "INR",
@@ -352,11 +352,9 @@ const CreateNewCirkleModal = () => {
                           ].map((day) => (
                             <button
                               key={day}
-                              onClick={() => setSelectedDay(day)}
+                              onClick={() => handleDueDateClick(day)}
                               className={`px-3 py-2 border rounded-lg  text-[10.5px] w-fit ${
-                                selectedDay === day
-                                  ? "bg-green-500 text-white"
-                                  : ""
+                                dueDate === day ? "bg-green-500 text-white" : ""
                               }`}
                             >
                               {day}
@@ -421,9 +419,9 @@ const CreateNewCirkleModal = () => {
                           {[...Array(28)].map((_, i) => (
                             <button
                               key={i}
-                              onClick={() => setDueMonth(i + 1)}
+                              onClick={() => handleDueDateClick(i + 1)}
                               className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
-                                dueMonth === i + 1
+                                dueDate === i + 1
                                   ? "bg-green-500 text-white"
                                   : ""
                               }`}

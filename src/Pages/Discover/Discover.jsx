@@ -137,6 +137,12 @@ function Discover() {
 
   const [filterOpen, setFilterModal] = useState(false);
 
+  const buttons = (
+    <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
+      Request to Join
+    </button>
+  );
+
   return (
     <div className="mb-32">
       {/* header */}
@@ -188,7 +194,7 @@ function Discover() {
         <div className="p-1  min-h-screen">
           {groups.map((group, index) => (
             
-            <InviteCard key={index} group={group} />
+            <InviteCard key={index} group={group} buttons={buttons}/>
           ))}
         </div>
       </div>
