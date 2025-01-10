@@ -109,31 +109,31 @@ function Discover() {
   // }
 
 
-  const fetchData = async () => {
-    try {
-      const response = await axiosInstance.get(ROUTES.CIRKLE.GET_USER_CIRKLES);
-      if (response.data.success) {
-        console.log(response);
-        // You can add additional logic here if needed, e.g., updating state
-        // toast.success(response.data.message); // Uncomment if you want success toast
-      }
-    } catch (error) {
-      console.error(error);
-      if (error.response?.data?.message) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("An error occurred. Please try again.");
-      }
-    } finally {
-      // Uncomment or implement if necessary
-      // setLoading(false);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axiosInstance.get(ROUTES.CIRKLE.GET_USER_CIRKLES);
+  //     if (response.data.success) {
+  //       console.log(response);
+  //       // You can add additional logic here if needed, e.g., updating state
+  //       // toast.success(response.data.message); // Uncomment if you want success toast
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     if (error.response?.data?.message) {
+  //       toast.error(error.response.data.message);
+  //     } else {
+  //       toast.error("An error occurred. Please try again.");
+  //     }
+  //   } finally {
+  //     // Uncomment or implement if necessary
+  //     // setLoading(false);
+  //   }
+  // };
 
 
-  useEffect(() => {
-    fetchData();
-  },[]);
+  // useEffect(() => {
+  //   fetchData();
+  // },[]);
 
   const [filterOpen, setFilterModal] = useState(false);
 
