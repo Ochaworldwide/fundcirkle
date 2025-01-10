@@ -146,7 +146,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className={`mt-5 py-2 px-5 relative z-0`}>
+    <div className={`-mt-10 py-2 px-5 relative z-0`}>
       {/* Custom Previous Button with "Back" text */}
       <button className="swiper-button-prev-custom absolute left-5 text-[#00000080] top-[100%] -translate-y-1/2 p-3 rounded-full text-[18px] z-10">
         Back
@@ -169,7 +169,7 @@ const Carousel = () => {
         </button>
       ) : (
         <button
-          className={`swiper-button-next-custom ${"bg-[#00943F]"} absolute right-5 top-[100%] -translate-y-1/2 p-3 rounded-full border z-10 text-white`}
+          className={`swiper-button-next-custom ${"bg-[#00943F]"} absolute right-5 top-[100%] -translate-y-1/2 p-2 rounded-full border z-10 text-white`}
           aria-label="Next"
           // onClick={handleNextClick}
         >
