@@ -104,7 +104,7 @@ const CreateNewCirkleModal = () => {
         // Reset modal state or perform cleanup if necessary
       }
     };
-  }, [isModalOpen, modalType]); // Empty dependency array to run only once on component mount
+  }, [isModalOpen]); // Empty dependency array to run only once on component mount
 
   if (!isModalOpen || modalType !== "create") return null;
 
@@ -660,9 +660,9 @@ const CreateNewCirkleModal = () => {
                   className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition"
                   onClick={() => {
                     handleSubmit();
-                    navigate("/creationsuccess");
-                    closeModal();
-                    resetState();
+                    // navigate("/creationsuccess");
+                    // closeModal();
+                    // resetState();
                   }}
                 >
                   Confirm and Create Cirkle
