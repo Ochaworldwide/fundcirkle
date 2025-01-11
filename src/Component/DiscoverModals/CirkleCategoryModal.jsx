@@ -4,7 +4,7 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import MultiSelect from "../Common/Multiselect";
-import axios from "axios";
+
 
 const CirkleCategoryModal = ({closeModal, name, updateSelection}) => {
 
