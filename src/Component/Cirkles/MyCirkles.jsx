@@ -283,7 +283,7 @@ function MyCirkles() {
             amount: item.contribution_amount,
             currencySymbol: item.currency,
             paymentStatus: {
-              completed: 0, // Add real data if available
+              completed: 2, // Add real data if available
               total: item.max_members,
             },
           },

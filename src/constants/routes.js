@@ -15,6 +15,7 @@ export const ROUTES = {
   CIRKLE: {
     GET_CIRKLE_CATEGORIES: "/cirkle-categories",
     GET_USER_CIRKLES: "/cirkles",
+    GET_USER_INVITES: "/invites",
     GET_CIRCLE: (id) => `/cirkles/${id}`,
     UPDATE_CIRCLE_CATEGORY: (id) => `/cirkle-categories/${id}`,
   },
