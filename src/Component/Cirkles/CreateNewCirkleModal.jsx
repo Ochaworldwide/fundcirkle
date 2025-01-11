@@ -64,14 +64,13 @@ const CreateNewCirkleModal = () => {
 
           // Fetch user account details
           const userResponse = await axiosInstance.get("/account");
-          // const userCountry = userResponse.data.data.country;
-          setUserCountry(userResponse.data.data.country);
+          const userCountry = userResponse.data.data.country;
+          setUserCountry(userCountry); // Ensure this state is set before proceeding
 
-          // Get the country ID from the list
+          // Wait for the `userCountry` to be set
           const country = countries.find(
             (country) => country.name === userCountry
           );
-
           const countryId = country ? country.id : null;
           console.log(countryId);
 
@@ -80,11 +79,9 @@ const CreateNewCirkleModal = () => {
             const stateResponse = await axiosInstance.get(
               `get/countries/${countryId}/states`
             );
-            const stateData = stateResponse.data.data; // Assuming `data` is the array of states
-            // console.log(stateData); // Log the array of states
+            const stateData = stateResponse.data.data;
             if (stateData.length > 0) {
               setStates(stateData);
-              // setUserStateId(stateData.id); // Set the ID of the first state
             } else {
               console.warn("No states found for the country.");
             }
@@ -104,7 +101,7 @@ const CreateNewCirkleModal = () => {
         // Reset modal state or perform cleanup if necessary
       }
     };
-  }, [isModalOpen]); // Empty dependency array to run only once on component mount
+  }, [isModalOpen, modalType]); // Ensure modalType is also included in the dependency array
 
   if (!isModalOpen || modalType !== "create") return null;
 

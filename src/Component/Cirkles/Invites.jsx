@@ -1,7 +1,51 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import InviteCard from './InviteCard';
+import axiosInstance from '../../service';
+import { ROUTES } from '../../constants/routes';
 
 function Invites() {
+
+   const fetchData = async () => {
+     try {
+       const response = await axiosInstance.get(ROUTES.CIRKLE.GET_USER_INVITES);
+       if (response.data.success) {
+        console.log(response.data)
+         // Transform the data to match the required structure
+        //  const transformedData = response.data.data.map((item) => ({
+        //    header: {
+        //      groupName: item.name,
+        //      groupImage: "/images/circlepeople.svg", // Use a default image or customize it per item
+        //      count: item.member_count,
+        //    },
+        //    contribution: {
+        //      amount: item.contribution_amount,
+        //      currencySymbol: item.currency,
+        //      paymentStatus: {
+        //        completed: 0, // Add real data if available
+        //        total: item.max_members,
+        //      },
+        //    },
+        //    dates: {
+        //      nextPayment: `Day ${item.contribution_day} of the month`, // Customize as needed
+        //    },
+        //  }));
+
+        //  setData(transformedData);
+        //  console.log("Transformed data:", transformedData);
+       }
+     } catch (error) {
+       console.error("Error fetching data:", error);
+       if (error.response?.data?.message) {
+         toast.error(error.response.data.message);
+       } else {
+         toast.error("An error occurred. Please try again.");
+       }
+     }
+   };
+
+   useEffect(() => {
+     fetchData();
+   }, []);
 
     const groups = [
       {
