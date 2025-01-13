@@ -35,11 +35,11 @@ const InviteCard = ({ group, buttons }) => {
           </div>
         </div>
         <div className="py-5 flex justify-around">
-          <div className="py-2 px-3 border rounded-md">
+          <div className="py-2 px-3 border rounded-md mr-auto">
             <p className="text-gray-700 font-bold flex ">
-              <span>
+              <span className="pr-1">
                 <svg
-                  width="20"
+                  width="17"
                   height="20"
                   viewBox="0 0 20 20"
                   fill="none"
