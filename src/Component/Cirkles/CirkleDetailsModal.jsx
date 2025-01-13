@@ -4,10 +4,12 @@ import { useModal } from "./ModalContext";
 import CircularProgress from "./CircularProgress";
 import PayoutCard from "./PayoutCard";
 
-const CirkleDetailsModal = () => {
+const CirkleDetailsModal = (id) => {
   const { isModalOpen, modalType, closeModal } = useModal();
 
   if (!isModalOpen || modalType !== "detail") return null;
+
+  const trial = id;
 
   const data = {
     title: "Hyderabad Pharmacist Union",
