@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import InviteCard from "./InviteCard";
 import axiosInstance from "../../service";
@@ -19,7 +17,7 @@ function Invites() {
         const formattedGroups = response.data.data.map((group, index) => ({
           image: `/images/invite-img-${index + 1}.svg`, // Placeholder image (replace with actual data if available)
           name: group.name,
-          id:group.id,
+          id: group.id,
           memberName: group.is_owner,
           currentMembers: group.member_count,
           totalMembers: group.max_members,
@@ -44,6 +42,12 @@ function Invites() {
     fetchData();
   }, []);
 
+  // Handle click function
+  // const handleGroupClick = (id) => {
+  //   console.log(`Clicked group ID: ${id}`);
+  //   alert(`You clicked on group ID: ${id}`);
+  // };
+
   const buttons = (
     <div className="flex gap-2">
       <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
@@ -64,7 +68,7 @@ function Invites() {
           </div>
         ) : groups.length > 0 ? (
           groups.map((group, index) => (
-            <InviteCard key={index} group={group} buttons={buttons} />
+            <InviteCard group={group} buttons={buttons}  />
           ))
         ) : (
           <NoInvitesCard />
