@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import moreIcon from "/images/more.svg";
 import { useModal } from "./ModalContext";
+import InviteCirkleDetailsModal from "./InviteCirkleDetailsModal";
 
-const InviteCard = ({ group, buttons }) => {
-  const { openModal } = useModal();
+const InviteCard = ({ group, buttons}) => {
+  const { openModal, isModalOpen } = useModal();
+
+  // const [stateId , setStateId] = useState();
+
+  // console.log(group.id);
+
+  // Handle click function
+  const handleGroupClick = () => {
+    console.log(`Clicked group ID: ${group.id}`);
+    // setStateId(group.id)
+    const stateId = group.id
+    openModal("invite", stateId);
+    // alert(`You clicked on group ID: ${id}`);
+  };
+
   return (
     <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%]">
+      {/* {isModalOpen && <InviteCirkleDetailsModal groupId={group.id} />} */}
       <div className="py-5  w-[20%]">
         <img
           src={group.image}
@@ -29,7 +45,11 @@ const InviteCard = ({ group, buttons }) => {
 
           <div
             className=" rounded-full p-1 border h-10 "
-            onClick={() => openModal("invite")}
+            onClick={() => {
+              // openModal("invite",stateId);
+              handleGroupClick();
+              
+            }}
           >
             <img src={moreIcon} alt="" srcset="" />
           </div>
@@ -57,11 +77,7 @@ const InviteCard = ({ group, buttons }) => {
             </p>
           </div>
 
-          <div className="flex gap-2">
-
-            {buttons}
-            
-          </div>
+          <div className="flex gap-2">{buttons}</div>
         </div>
       </div>
     </div>
@@ -69,3 +85,7 @@ const InviteCard = ({ group, buttons }) => {
 };
 
 export default InviteCard;
+
+
+
+
