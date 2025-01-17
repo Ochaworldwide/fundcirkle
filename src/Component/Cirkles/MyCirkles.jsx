@@ -195,6 +195,7 @@ function MyCirkles() {
             groupName: item.name,
             groupImage: "/images/circlepeople.svg", // Use a default image or customize it per item
             count: item.member_count,
+            id: item.id,
           },
           contribution: {
             amount: item.contribution_amount,
@@ -211,6 +212,8 @@ function MyCirkles() {
 
         setData(transformedData);
         console.log("Transformed data:", transformedData);
+        
+        
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -227,6 +230,8 @@ function MyCirkles() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  
 
   const handleNext = () => {
     if (data) {
@@ -254,8 +259,18 @@ function MyCirkles() {
     return <NoActiveCirkle />;
   }
 
+
+ 
+
+   const handleGroupClick = () => {
+     console.log(`Clicked group ID: ${header.id}`);
+     const stateId =header.id;
+     openModal("detail", stateId);
+   };
+
   const { header, contribution, dates } = data[currentIndex];
   const { openModal } = useModal();
+
 
   return (
     <div className="relative">
@@ -295,11 +310,17 @@ function MyCirkles() {
           </div>
           <div
             className="border rounded-full flex items-center h-10 w-[45%]"
-            onClick={() => openModal("detail")}
+            // onClick={() => openModal("detail")}
+            onClick={() => {
+              handleGroupClick();
+            }}
           >
             <button
               className="relative rounded-full p-1 border h-10 bg-[#E5F4EC]"
-              onClick={() => openModal("detail")}
+              // onClick={() => openModal("detail")}
+              onClick={() => {
+                handleGroupClick();
+              }}
             >
               <img src={moreIcon} alt="" />
             </button>

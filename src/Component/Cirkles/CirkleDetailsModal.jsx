@@ -1,19 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
 import CircularProgress from "./CircularProgress";
 import PayoutCard from "./PayoutCard";
+import axiosInstance from "../../service";
+import { FadeLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 const CirkleDetailsModal = () => {
-  const { isModalOpen, modalType, closeModal } = useModal();
+  
+  const { isModalOpen, modalType, modalData, closeModal } = useModal();
+  const [cirkleData, setCirkleData] = useState(null);
+
+
+
+  useEffect(() => {
+    if (isModalOpen && modalType === "detail") {
+      const fetchData = async () => {
+        try {
+          const cirkleId = modalData;
+          const response = await axiosInstance.get(`/cirkles/${cirkleId}`);
+          if (response.data.success) {
+            setCirkleData(response.data.data);
+            console.log(response.data.data)
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          if (error.response?.data?.message) {
+            toast.error(error.response.data.message);
+          } else {
+            toast.error("An error occurred. Please try again.");
+          }
+        }
+      };
+
+      fetchData();
+    }
+  }, [isModalOpen, modalType]);
 
   if (!isModalOpen || modalType !== "detail") return null;
 
+  if (!cirkleData) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center ">
+        <FadeLoader />
+      </div>
+    );
+  }
+
 
   const data = {
-    title: "Hyderabad Pharmacist Union",
-    description:
-      "The Hyderabad Pharmacist Union is a Cirkle of Professional Pharmacists working in Hyderabad and its environs. The aim of this Cirkle is to create a social funding scheme for members to fund their private projects.",
+    title: cirkleData.name,
+    description:cirkleData.description,
     image: "/images/circlepeople.svg",
     groupName: "Hyderabad Pharmacist Union",
     payoutAmount: "420,000",
@@ -60,7 +98,7 @@ const CirkleDetailsModal = () => {
   const payoutData = {
     progress: { current: 2, total: 7 },
     payoutDate: "25th of Nov 2024",
-    amount: "60,000",
+    amount: cirkleData.contribution_amount,
     currency: "/images/currency.svg",
   };
 

@@ -42,15 +42,95 @@ function Invites() {
     fetchData();
   }, []);
 
-  // Handle click function
-  // const handleGroupClick = (id) => {
-  //   console.log(`Clicked group ID: ${id}`);
-  //   alert(`You clicked on group ID: ${id}`);
-  // };
+
+    const handleSubmit = () => {
+      // Validate required fields
+      // if (
+      //   !name ||
+      //   !description ||
+      //   !category ||
+      //   !contribution_amount ||
+      //   !frequency ||
+      //   !privacy
+      // ) {
+      //   console.log("Some required fields are missing!");
+      //   return;
+      // }
+
+      // const payload = {
+      //   name: name,
+      //   members: emails,
+      //   max_members: members,
+      //   description: description,
+      //   category: selectedCategoryId,
+      //   contribution_amount: contribution_amount,
+      //   contribution_frequency: frequency,
+      //   contribution_day: dueDate,
+      //   privacy: privacy,
+      //   state: state,
+      //   currency: "INR",
+      // };
+
+
+
+
+
+      console.log(groups)
+
+      // const payload = {
+      //   id: 5,
+      //   user_id: 3,
+      //   category_id: 2,
+      //   name: "Kinsmen",
+      //   description: "None for now",
+      //   contribution_amount: "5000.00",
+      //   contribution_frequency: "monthly",
+      //   contribution_week: 1,
+      //   contribution_month: 1,
+      //   contribution_day: "25",
+      //   privacy: "public",
+      //   max_members: 10,
+      //   state_id: 10,
+      //   locations: null,
+      //   currency: "INR",
+      //   status: "active",
+      //   created_at: "2024-12-14T21:56:35.000000Z",
+      //   updated_at: "2024-12-14T23:00:17.000000Z",
+      //   slug: "kinsmen",
+      //   member_count: 0,
+      //   is_owner: false,
+      // };
+
+      // console.log("Payload:", payload);
+      // const cirkleId = 23;
+
+      // axiosInstance
+      //   .post(`/cirkles/${cirkleId}/join`, payload)
+      //   .then((response) => {
+      //     if (response.data.success) {
+      //       console.log("Cirkle created successfully!");
+      //     } else {
+      //       console.error("API responded with failure:", response.data);
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     if (error.response) {
+      //       console.error("API Error:", error.response.data);
+      //     } else if (error.request) {
+      //       console.error("Network Error:", error.request);
+      //     } else {
+      //       console.error("Error:", error.message);
+      //     }
+      //   });
+    };
+
 
   const buttons = (
     <div className="flex gap-2">
-      <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
+      <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold"
+      onClick={() => {
+        handleSubmit();
+      }}>
         Accept
       </button>
       <button className="border border-gray-400 text-gray-600 px-3 py-1 rounded-md text-xs font-semibold">
