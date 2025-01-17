@@ -248,7 +248,7 @@ const InviteCirkleDetailsModal = () => {
   if (!cirkleData) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center ">
-        <FadeLoader />
+        <FadeLoader size={50} color="#36D7B7" />
       </div>
     );
   }
