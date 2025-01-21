@@ -43,6 +43,7 @@ import Protected from "./Pages/Protected/Protected";
 import ResetPassword from "./Pages/Reset/ResetPassword";
 import ScrollToTop from "./utils/stp";
 import DefaultLayout from "./layouts/DefaultLayout";
+import AcceptedInvite from "./Component/Cirkles/AcceptedInvite";
 
 const App = () => {
   return (
@@ -83,6 +84,7 @@ const App = () => {
                 path="/creationsuccess"
                 element={<CirkleCreationSuccess />}
               />
+              <Route path="/acceptedinvite" element={<AcceptedInvite />} />
             </Route>
 
             {/* Add more routes for additional screens as needed */}

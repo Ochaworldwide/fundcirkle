@@ -4,10 +4,12 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import NoInvitesCard from "./NoInvitesCard";
 import { FadeLoader} from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 function Invites() {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -23,6 +25,8 @@ function Invites() {
           totalMembers: group.max_members,
           amount: `${group.contribution_amount} `,
         }));
+
+        console.log(response.data.data)
 
         setGroups(formattedGroups);
       }
@@ -43,7 +47,7 @@ function Invites() {
   }, []);
 
 
-    const handleSubmit = () => {
+    const handleSubmit = (group) => {
       // Validate required fields
       // if (
       //   !name ||
@@ -71,66 +75,77 @@ function Invites() {
       //   currency: "INR",
       // };
 
+      console.log("Clicked Group ID:", group.id);
 
-
-
-
-      console.log(groups)
-
-      // const payload = {
-      //   id: 5,
-      //   user_id: 3,
-      //   category_id: 2,
-      //   name: "Kinsmen",
-      //   description: "None for now",
-      //   contribution_amount: "5000.00",
-      //   contribution_frequency: "monthly",
-      //   contribution_week: 1,
-      //   contribution_month: 1,
-      //   contribution_day: "25",
-      //   privacy: "public",
-      //   max_members: 10,
-      //   state_id: 10,
-      //   locations: null,
-      //   currency: "INR",
-      //   status: "active",
-      //   created_at: "2024-12-14T21:56:35.000000Z",
-      //   updated_at: "2024-12-14T23:00:17.000000Z",
-      //   slug: "kinsmen",
-      //   member_count: 0,
-      //   is_owner: false,
-      // };
+      const payload = {
+        id: group.id,
+        user_id: group.user_id,
+        category_id: group.category_id,
+        name: group.name,
+        description: group.description,
+        contribution_amount: group.contribution_amount,
+        contribution_frequency: group.contribution_frequency,
+        contribution_week: group.contribution_week,
+        contribution_month: group.contribution_month,
+        contribution_day: group.contribution_day,
+        privacy: group.privacy,
+        max_members: group.max_members,
+        state_id: group.state_id,
+        locations: group.locations,
+        currency: group.currency,
+        status: group.status,
+        created_at: "2024-12-14T21:56:35.000000Z",
+        updated_at: "2024-12-14T23:00:17.000000Z",
+        slug: group.slug,
+        member_count: group.member_count,
+        is_owner: false,
+      };
 
       // console.log("Payload:", payload);
-      // const cirkleId = 23;
+      const cirkleId = group.id;
 
-      // axiosInstance
-      //   .post(`/cirkles/${cirkleId}/join`, payload)
-      //   .then((response) => {
-      //     if (response.data.success) {
-      //       console.log("Cirkle created successfully!");
-      //     } else {
-      //       console.error("API responded with failure:", response.data);
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     if (error.response) {
-      //       console.error("API Error:", error.response.data);
-      //     } else if (error.request) {
-      //       console.error("Network Error:", error.request);
-      //     } else {
-      //       console.error("Error:", error.message);
-      //     }
-      //   });
+      axiosInstance
+        .post(`/cirkles/${cirkleId}/join`, payload)
+        .then((response) => {
+          if (response.data.success) {
+            console.log("Cirkle created successfully!");
+          } else {
+            console.error("API responded with failure:", response.data);
+          }
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.error("API Error:", error.response.data);
+          } else if (error.request) {
+            console.error("Network Error:", error.request);
+          } else {
+            console.error("Error:", error.message);
+          }
+        });
     };
 
 
-  const buttons = (
+  // const buttons = (
+  //   <div className="flex gap-2">
+  //     <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold"
+  //     onClick={() => {
+  //       handleSubmit();
+  //     }}>
+  //       Accept
+  //     </button>
+  //     <button className="border border-gray-400 text-gray-600 px-3 py-1 rounded-md text-xs font-semibold">
+  //       Decline
+  //     </button>
+  //   </div>
+  // );
+
+
+  const buttons = (group) => (
     <div className="flex gap-2">
-      <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold"
-      onClick={() => {
-        handleSubmit();
-      }}>
+      <button
+        className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold"
+        onClick={() => {handleSubmit(group),navigate("/acceptedinvite")}}
+      >
         Accept
       </button>
       <button className="border border-gray-400 text-gray-600 px-3 py-1 rounded-md text-xs font-semibold">
@@ -138,6 +153,9 @@ function Invites() {
       </button>
     </div>
   );
+
+
+
 
   return (
     <div>
@@ -148,7 +166,7 @@ function Invites() {
           </div>
         ) : groups.length > 0 ? (
           groups.map((group, index) => (
-            <InviteCard group={group} buttons={buttons}  />
+            <InviteCard key={group.id} group={group} buttons={buttons(group)} />
           ))
         ) : (
           <NoInvitesCard />

@@ -215,10 +215,13 @@ import PayoutCard from "./PayoutCard";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
 import { FadeLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 const InviteCirkleDetailsModal = () => {
-   const { isModalOpen, modalType, modalData, closeModal } = useModal();
+  const { isModalOpen, modalType, modalData, closeModal } = useModal();
   const [cirkleData, setCirkleData] = useState(null);
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     if (isModalOpen && modalType === "invite") {
@@ -407,7 +410,7 @@ const InviteCirkleDetailsModal = () => {
             </div>
 
             <div className="flex mt-4 justify-between w-[90%] mx-auto">
-              <button className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm">
+              <button className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm" onClick={() => navigate("/acceptedinvite")}>
                 Accept to join
               </button>
               <button className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm">

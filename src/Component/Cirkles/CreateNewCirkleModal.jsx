@@ -86,6 +86,10 @@ const CreateNewCirkleModal = () => {
               console.warn("No states found for the country.");
             }
           }
+
+          if (states && states.length > 0) {
+            setState(states[0].id); // Set the first state's ID as default
+          }
         } catch (error) {
           console.error("Error fetching initial data:", error);
         }
@@ -491,8 +495,6 @@ const CreateNewCirkleModal = () => {
                     onChange={(e) => {
                       const selectedValue = e.target.value; // Get the selected option's value
                       setState(selectedValue); // Update the state
-                      // console.log("Selected option:", selectedValue); // Log the selected value
-                      console.log(state);
                     }}
                     className="w-full border px-3 py-5 rounded-lg mb-5 bg-white text-[#00000080] outline-[#00943F]"
                   >
