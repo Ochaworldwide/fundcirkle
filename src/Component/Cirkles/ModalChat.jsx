@@ -1,10 +1,9 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
 
 const ChatModal = () => {
-  const { isModalOpen, modalType, closeModal } = useModal();
+  const { isModalOpen, modalType, modalData, closeModal } = useModal();
 
   if (!isModalOpen || modalType !== "chat") return null;
 
@@ -12,21 +11,21 @@ const ChatModal = () => {
 
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50">
       <motion.div
         initial={{ y: "100%", opacity: 0 }} // Start off-screen
         animate={{ y: 0, opacity: 1 }} // Slide into view
         exit={{ y: "100%", opacity: 0 }} // Slide out when unmounted
         transition={{ duration: 0.5, ease: "easeInOut" }} // Smooth transition
-        className="fixed bottom-0 left-0 right-0 bg-white shadow-lg rounded-lg mx-auto max-w-md z-50 h-[500px]"
+        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[75%] bg-white overflow-scroll"
         // transition={{ type: "spring", stiffness: 100, damping: 15 }}
       >
-        <div className="flex w-[100%] border justify-between  px-1">
+        <div className="flex w-[100%] border justify-between px-1 sticky top-0">
           <img src={profileImg} alt="" srcset="" />
 
           {/* Header */}
           <div className=" text-black  py-2 ">
-            <p className="font-semibold">Hyderabad Teaching Hospital</p>
+            <p className="font-semibold">{modalData.name}</p>
             <p className="text-xs">Created by Bhaavik Arhaan</p>
           </div>
 
@@ -63,14 +62,14 @@ const ChatModal = () => {
         </div>
 
         {/* Input */}
-        <div className="flex items-center p-2 border w-[90%] mx-auto rounded-lg mb-1">
+        <div className="flex fixed bottom-0 items-center justify-between p-2 border w-[95%] mx-auto  rounded-lg mb-1">
           <input
             type="text"
             placeholder="Message..."
-            className="flex-grow p-2 rounded-md  focus:outline-none "
+            className=" p-2 rounded-md w-[70%] outline-none"
           />
 
-          <div className="">
+          <div className="space-x-3 flex ">
             <button className="">
               <svg
                 width="24"
@@ -109,7 +108,7 @@ const ChatModal = () => {
                 />
               </svg>
             </button>
-            <button className="ml-2 ">
+            <button className="">
               <svg
                 width="24"
                 height="24"
@@ -148,7 +147,7 @@ const ChatModal = () => {
               </svg>
             </button>
 
-            <button className="ml-2 ">
+            <button className="">
               <svg
                 width="24"
                 height="24"

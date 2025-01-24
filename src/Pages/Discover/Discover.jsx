@@ -8,50 +8,11 @@ import CategoriesDropdown from "../../Component/DiscoverModals/CategoriesDropdow
 import axios from "axios";
 import { ROUTES } from "../../constants/routes";
 import axiosInstance from "../../service";
-// const url = "https://fundcirkle.techr.me/api/cirkles";
+import RequestCard from "../../Component/RequestCard/RequestCard";
+import { toast } from "react-toastify";
+import RecommendedCirklesCard from "../../Component/RecommendedCirklesCard/RecommendedCirklesCard";
+import { MdCancel } from "react-icons/md";
 
-const groups = [
-  {
-    image: "/images/invite-img-1.svg", // Replace with the actual image URL
-    name: "The Delhi Friends Club",
-    memberName: "Amir Luke",
-    currentMembers: 8,
-    totalMembers: 10,
-    amount: "120K",
-  },
-  {
-    image: "/images/invite-img-2.svg", // Replace with the actual image URL
-    name: "The Chennai Connections Group",
-    memberName: "Michael Chen",
-    currentMembers: 5,
-    totalMembers: 11,
-    amount: "142K",
-  },
-  {
-    image: "/images/invite-img-3.svg", // Replace with the actual image URL
-    name: "The Chennai Connections Group",
-    memberName: "Michael Chen",
-    currentMembers: 5,
-    totalMembers: 11,
-    amount: "142K",
-  },
-  {
-    image: "/images/invite-img-4.svg", // Replace with the actual image URL
-    name: "The Chennai Connections Group",
-    memberName: "Michael Chen",
-    currentMembers: 5,
-    totalMembers: 11,
-    amount: "142K",
-  },
-  {
-    image: "/images/invite-img-5.svg", // Replace with the actual image URL
-    name: "The Chennai Connections Group",
-    memberName: "Michael Chen",
-    currentMembers: 5,
-    totalMembers: 11,
-    amount: "142K",
-  },
-];
 
 const slidesData = [
   {
@@ -80,68 +41,137 @@ const slidesData = [
 ];
 
 function Discover() {
-  // const { isModalOpen, modalType, closeModal, openModal } = useModal();
+  const fetchData = async () => {
+    try {
+      // Fetch data from the first API
+      const response1 = await axiosInstance.get(
+        ROUTES.CIRKLE.GET_RECOMMENDED_CIRKLES
+      );
+      if (response1.data.success) {
+        setGroups(response1.data.data); // Update the state with the first API's data
+        setInitialGroups(response1.data.data); // Store the original data
+      }
 
-  // const fetchData = async () =>{
-  //   // try {
-  //   //   const response = await axios.get(ROUTES.CIRKLE.GET_USER_CIRKLES)
-  //   //   console.log(response)
-  //   // } catch (error) {
-  //   //   console.log(error.response)
-      
-  //   // }
+      // Fetch data from the second API
+      const response2 = await axiosInstance.get(
+        ROUTES.CIRKLE.GET_CIRCLE_REQUEST
+      );
+      if (response2.data.success) {
+        setRequestData(response2.data.data); // Update state with the second API's data
+        console.log(response2.data.data);
+      }
+    } catch (error) {
+      console.error(error);
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
+    } finally {
+      // Uncomment or implement if necessary
+      // setLoading(false);
+    }
+  };
 
-  //   axiosInstance
-  //     .get(ROUTES.CIRKLE.GET_USER_CIRKLES)
-  //     .then((response) => {
-  //       if (response.data.success) {
-  //         // toast.success(response.data.message);
-  //         console.log(response)
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       toast.error(error.response.data.message);
-  //     })
-  //     // .finally(() => {
-  //     //   setLoading(false);
-  //     // });
-  // }
-
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axiosInstance.get(ROUTES.CIRKLE.GET_USER_CIRKLES);
-  //     if (response.data.success) {
-  //       console.log(response);
-  //       // You can add additional logic here if needed, e.g., updating state
-  //       // toast.success(response.data.message); // Uncomment if you want success toast
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     if (error.response?.data?.message) {
-  //       toast.error(error.response.data.message);
-  //     } else {
-  //       toast.error("An error occurred. Please try again.");
-  //     }
-  //   } finally {
-  //     // Uncomment or implement if necessary
-  //     // setLoading(false);
-  //   }
-  // };
-
-
-  // useEffect(() => {
-  //   fetchData();
-  // },[]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const [filterOpen, setFilterModal] = useState(false);
+  const [groups, setGroups] = useState([]);
+  const [query, setQuery] = useState("");
+  // const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [requestData, setRequestData] = useState([]);
+  const [initialGroups, setInitialGroups] = useState([]); // To store the original data
+  const { filterOptions } = useModal();
+   const [appliedFilters, setAppliedFilters] = useState(null);
 
   const buttons = (
     <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
       Request to Join
     </button>
   );
+
+  // const requestData = [
+  //   {
+  //     name: "Jonathan Lee",
+  //     club: "Hyderabad Teaching Hospital Club",
+  //     location: "Hyderabad",
+  //     activeCircles: 4,
+  //     income: "120K",
+  //     profileImage: "https://via.placeholder.com/50",
+  //     coinIcon: "https://via.placeholder.com/16",
+  //   },
+  //   {
+  //     name: "Sophia Carter",
+  //     club: "New York Medical Association",
+  //     location: "New York",
+  //     activeCircles: 3,
+  //     income: "95K",
+  //     profileImage: "https://via.placeholder.com/50",
+  //     coinIcon: "https://via.placeholder.com/16",
+  //   },
+  //   {
+  //     name: "Sophia Carter",
+  //     club: "New York Medical Association",
+  //     location: "New York",
+  //     activeCircles: 3,
+  //     income: "95K",
+  //     profileImage: "https://via.placeholder.com/50",
+  //     coinIcon: "https://via.placeholder.com/16",
+  //   },
+  //   {
+  //     name: "Sophia Carter",
+  //     club: "New York Medical Association",
+  //     location: "New York",
+  //     activeCircles: 3,
+  //     income: "95K",
+  //     profileImage: "https://via.placeholder.com/50",
+  //     coinIcon: "https://via.placeholder.com/16",
+  //   },
+  // ];
+
+  const handleSearch = async () => {
+    try {
+      setLoading(true);
+      const response = await axiosInstance.get(ROUTES.CIRKLE.SEARCH_CIRKLES, {
+        params: {
+          query,
+          location: "Akwa Ibom",
+          category: 1,
+          min: 0, // console.log(results)
+          max: 400000000,
+        },
+      });
+      if (response.data.success) {
+        setGroups(response.data.data); // Replace groups with search results
+      } else {
+        toast.error("No results found.");
+      }
+      // setResults(response.data.data);
+      // console.log(response.data.data);
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleRevert = () => {
+    setGroups(initialGroups); // Reset groups to the original data
+  };
+
+  const handleApplyFilters = (filters) => {
+    setAppliedFilters(filters); // Save the filters in the parent component
+    console.log("Applied Filters:", filters);
+  };
 
   return (
     <div className="mb-32">
@@ -150,54 +180,80 @@ function Discover() {
         <p className="text-[22px] font-[600]">Discover</p>
       </div>
       {/* search */}
+
       <div className="flex w-[90%] mx-auto mt-2 justify-between">
-        <div className="flex border py-1 w-[80%] rounded-md px-1 shadow h-fit">
+        <div className="flex border py-1 w-[80%] rounded-md px-1 shadow h-fit relative">
           <img
             src="/images/search-01.svg"
-            alt=""
-            srcset=""
+            alt="search-icon"
             className="mr-2 h-7"
           />
-
           <input
             type="text"
-            placeholder="Search for a Cirkle or a User "
-            className="outline-none text-[10.5px]"
+            value={query}
+            placeholder="Search for a Cirkle or a User"
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="outline-none text-[10.5px] flex-1"
           />
+          {query && (
+            <button
+              onClick={handleRevert}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2"
+            >
+              <MdCancel />
+            </button>
+          )}
         </div>
-
         <button
           onClick={() => setFilterModal(true)}
           className="p-1 border rounded-md shadow h-fit"
         >
-          <img
-            src="/images/filter-horizontal.svg"
-            alt=""
-            srcset=""
-            className=""
-          />
-
-          {/* Modals */}
+          <img src="/images/filter-horizontal.svg" alt="" />
         </button>
-        {filterOpen && <FilterModal setModal={setFilterModal} />}
+        {filterOpen && (
+          <FilterModal setModal={setFilterModal} onApply={handleApplyFilters} />
+        )}
       </div>
 
+      <div className="mt-11 ml-5">Recommended Cirkles</div>
 
-      <div className="mt-5">
-        <CategoriesDropdown />
-      </div>
-
-      
-
-
-      <div className="h-[420px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar p-2">
-        <div className="p-1  min-h-screen">
-          {groups.map((group, index) => (
-            
-            <InviteCard key={index} group={group} buttons={buttons}/>
-          ))}
+      <div className="max-h-[420px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar p-2 mb-10">
+        <div className="p-1">
+          {groups.length > 0 ? (
+            groups.map((group, index) => (
+              <RecommendedCirklesCard
+                key={index}
+                group={group}
+                buttons={buttons}
+              />
+            ))
+          ) : (
+            <div className="border flex justify-center items-center rounded-2xl h-56 mt-4">
+              <p>No recommended Cirkles</p>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Request Card  */}
+
+      <h1 className="text-lg font-[400] ml-4 w-[70%]">
+        Requests to join your Cirkle
+      </h1>
+
+      <div className="flex space-x-4 overflow-x-scroll w-[98%] mx-auto hide-scrollbar mb-20">
+        {requestData && requestData.length > 0 ? (
+          requestData.map((request, index) => (
+            <RequestCard key={index} data={request} />
+          ))
+        ) : (
+          <div className="border flex justify-center items-center rounded-2xl h-56 mt-3 w-[95%] mx-auto shadow-lg">
+            <p>No requests available.</p>
+          </div>
+        )}
+      </div>
+
       {/* New Features */}
       <div className="pl-5 pt-3  relative">
         <h1 className="text-[18px]">New Features and Offers</h1>

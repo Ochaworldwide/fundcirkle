@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../service";
 
-const LocationDropdown = ({ name, updateSelection }) => {
+const LocationDropdown = ({
+  name,
+  updateSelection,
+  preselectedLocations = [],
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLocations, setSelectedLocations] = useState([]);
-  const [locations, setLocations] = useState([
-    "Udaipur",
-    "Agra",
-    "Jaipur",
-    "Pune",
-    "Jaisalmer",
-    "Bangalore",
-    "Chennai",
-  ]);
+  const [selectedLocations, setSelectedLocations] =
+    useState(preselectedLocations);
+  const [locations, setLocations] = useState([]);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -33,25 +31,60 @@ const LocationDropdown = ({ name, updateSelection }) => {
   };
 
   const handleCancel = () => {
-    setSelectedLocations([]); // Clear selected locations
+    setSelectedLocations(preselectedLocations); // Reset to preselected locations
     setIsOpen(false); // Close the dropdown
   };
 
-  return (
-    <div className="">
-      <div className="w-full">
-        {/* Trigger Button */}
-        <button
-          onClick={toggleDropdown}
-          className="px-4 w-full flex justify-between py-2 text-sm text-gray-600 items-center space-x-2 rounded-md border"
-        >
-          States
-          <img src="/images/arrow-down-01.svg" alt="Dropdown Arrow" />
-        </button>
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const countriesResponse = await axiosInstance.get("/get/countries");
+        const countries = countriesResponse.data.data;
 
-        {/* Dropdown */}
-        {isOpen && (
-          <div className="absolute top-1/2 left-1/2 bg-white border border-gray-200 rounded-md shadow-lg w-80 z-10 transform -translate-x-1/2 -translate-y-1/2">
+        const userResponse = await axiosInstance.get("/account");
+        const userCountry = userResponse.data.data.country;
+
+        const country = countries.find(
+          (country) => country.name === userCountry
+        );
+        const countryId = country ? country.id : null;
+
+        if (countryId) {
+          const stateResponse = await axiosInstance.get(
+            `/get/countries/${countryId}/states`
+          );
+          const stateData = stateResponse.data.data;
+          setLocations(stateData);
+        }
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
+  return (
+    <div className="relative">
+      {/* Trigger Button */}
+      <button
+        onClick={toggleDropdown}
+        className="px-4 w-full flex justify-between py-2 text-sm text-gray-600 items-center space-x-2 rounded-md border"
+      >
+        States
+        <img src="/images/arrow-down-01.svg" alt="Dropdown Arrow" />
+      </button>
+
+      {/* Dropdown */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 z-10"
+          onClick={() => setIsOpen(false)} // Optional: Close dropdown if background clicked
+        >
+          <div
+            className="bg-white border border-gray-200 rounded-md shadow-lg w-80"
+            onClick={(e) => e.stopPropagation()} // Prevent closing dropdown on inner click
+          >
             {/* Header with Close Button */}
             <div className="p-4 flex justify-between items-center border-b border-gray-200">
               <h2 className="text-sm font-medium text-gray-600">
@@ -67,17 +100,17 @@ const LocationDropdown = ({ name, updateSelection }) => {
 
             {/* Locations List */}
             <ul className="max-h-40 overflow-y-auto p-4">
-              {locations.map((location, index) => (
-                <li key={index} className="flex items-center mb-2">
+              {locations.map((location) => (
+                <li key={location.id} className="flex items-center mb-2">
                   <input
                     type="checkbox"
-                    id={location}
+                    id={location.id}
                     className="mr-2"
-                    checked={selectedLocations.includes(location)}
-                    onChange={() => handleLocationChange(location)}
+                    checked={selectedLocations.includes(location.name)}
+                    onChange={() => handleLocationChange(location.name)}
                   />
-                  <label htmlFor={location} className="text-gray-700">
-                    {location}
+                  <label htmlFor={location.id} className="text-gray-700">
+                    {location.name}
                   </label>
                 </li>
               ))}
@@ -99,10 +132,11 @@ const LocationDropdown = ({ name, updateSelection }) => {
               </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default LocationDropdown;
+
