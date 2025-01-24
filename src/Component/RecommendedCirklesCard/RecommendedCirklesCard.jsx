@@ -1,17 +1,68 @@
 import React, { useState } from "react";
 import moreIcon from "/images/more.svg";
-import { useModal } from "./ModalContext";
-import InviteCirkleDetailsModal from "./InviteCirkleDetailsModal";
+import { useModal } from "../Cirkles/ModalContext";
+import axiosInstance from "../../service";
+import { toast } from "react-toastify";
 
-const InviteCard = ({ group, buttons}) => {
+const RecommendedCirklesCard = ({ group, buttons }) => {
   const { openModal, isModalOpen } = useModal();
 
   // Handle click function
   const handleGroupClick = () => {
     console.log(`Clicked group ID: ${group.id}`);
-    const stateId = group.id
-    openModal("invite", stateId);
+    const stateId = group.id;
+    openModal("recommend", stateId);
   };
+
+   const handleRequestSubmit = (group) => {
+     console.log("Clicked Group ID:", group.id);
+
+     const payload = {
+       id: group.id,
+       user_id: group.user_id,
+       category_id: group.category_id,
+       name: group.name,
+       description: group.description,
+       contribution_amount: group.contribution_amount,
+       contribution_frequency: group.contribution_frequency,
+       contribution_week: group.contribution_week,
+       contribution_month: group.contribution_month,
+       contribution_day: group.contribution_day,
+       privacy: group.privacy,
+       max_members: group.max_members,
+       state_id: group.state_id,
+       locations: group.locations,
+       currency: group.currency,
+       status: group.status,
+       created_at: "2024-12-14T21:56:35.000000Z",
+       updated_at: "2024-12-14T23:00:17.000000Z",
+       slug: group.slug,
+       member_count: group.member_count,
+       is_owner: false,
+     };
+     // console.log("Payload:", payload);
+     const cirkleId = group.id;
+
+     axiosInstance
+       .post(`/cirkles/${cirkleId}/join`, payload)
+       .then((response) => {
+         if (response.data.success) {
+          //  console.log("Cirkle joined successfully!");
+           toast.success("Cirkle joined successfully!");
+         } else {
+           console.error("API responded with failure:", response.data);
+         }
+       })
+       .catch((error) => {
+         if (error.response) {
+           console.error("API Error:", error.response.data);
+         } else if (error.request) {
+           console.error("Network Error:", error.request);
+         } else {
+           console.error("Error:", error.message);
+         }
+       });
+   };
 
   return (
     <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%]">
@@ -19,7 +70,7 @@ const InviteCard = ({ group, buttons}) => {
         <img
           src={group.image}
           alt={group.name}
-          className="w-12 h-12 rounded-full "
+          className="w-12 h-12 rounded-full border"
         />
       </div>
 
@@ -27,7 +78,7 @@ const InviteCard = ({ group, buttons}) => {
         <div className="p-1 flex justify-between w-[100%]">
           <div className="w-[60%]">
             <h3 className="text-sm font-semibold">{group.name}</h3>
-            <p className="text-xs text-gray-500">{group.memberName}</p>
+            <p className="text-xs text-gray-500">{group.description}</p>
           </div>
 
           <div className="text-center flex border h-fit rounded-full p-3">
@@ -41,7 +92,6 @@ const InviteCard = ({ group, buttons}) => {
             onClick={() => {
               // openModal("invite",stateId);
               handleGroupClick();
-              
             }}
           >
             <img src={moreIcon} alt="" srcset="" />
@@ -66,18 +116,20 @@ const InviteCard = ({ group, buttons}) => {
                   />
                 </svg>
               </span>
-              {group.amount}
+              {group.contribution_amount}
             </p>
           </div>
 
-          <div className="flex gap-2">{buttons}</div>
+          <div className="flex gap-2" onClick={() =>{
+            handleRequestSubmit(group)
+          }}>{buttons}</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default InviteCard;
+export default RecommendedCirklesCard;
 
 
 

@@ -8,11 +8,14 @@ import { ROUTES } from "../../constants/routes";
 import { em } from "framer-motion/client";
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
+import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa"; // Import icons from react-icons
+
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const fields = [
     {
       type: "email",
@@ -60,6 +63,11 @@ function SignIn() {
     // navigate("/home");
   };
 
+
+ const togglePasswordVisibility = () => {
+   setIsPasswordVisible((prevState) => !prevState);
+ };
+
   return (
     <div>
       <NavBar backLink="/" />
@@ -81,13 +89,30 @@ function SignIn() {
             placeholder="Email "
           />
 
-          <input
-            type="text"
+          {/* <input
+            type={inputType}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onClick={handleShowPassword}
             className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
             placeholder="Password "
-          />
+          /> */}
+
+          <div className="relative w-full">
+            <input
+              type={isPasswordVisible ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
+              placeholder="Password"
+            />
+            <span
+              className="absolute right-3 top-6 cursor-pointer text-[#00000080]"
+              onClick={togglePasswordVisibility}
+            >
+              {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
 
           {/* Additional Reset Link */}
           <p className="mt-1 text-[#00943F] self-start mb-20">

@@ -44,6 +44,7 @@ import ResetPassword from "./Pages/Reset/ResetPassword";
 import ScrollToTop from "./utils/stp";
 import DefaultLayout from "./layouts/DefaultLayout";
 import AcceptedInvite from "./Component/Cirkles/AcceptedInvite";
+import RecommendedCirklesModal from "./Component/DiscoverModals/RecommendedCirklesModal";
 
 const App = () => {
   return (
@@ -105,6 +106,7 @@ const App = () => {
           <ViewProofModal />
           <BankInformationModal />
           <EditBankInformationModal />
+          <RecommendedCirklesModal />
         </Router>
       </ModalProvider>
     </>

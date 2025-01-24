@@ -5,13 +5,13 @@ import CirkleCategoryModal from "./CirkleCategoryModal";
 import ContributionAmountRangeModal from "../../Component/DiscoverModals/ContibutionAmountRangeModal";
 import { filter } from "framer-motion/client";
 
-const FilterModal = ({ setModal }) => {
+const FilterModal = ({ setModal, onApply }) => {
   const { openModal } = useModal();
 
   const [filterOptions, setFilterOptions] = useState({
     categories: [],
     range: [],
-    locations:[]
+    locations: [],
   });
 
   const [categoryModal, setCategoryModal] = useState(false);
@@ -20,9 +20,14 @@ const FilterModal = ({ setModal }) => {
     setFilterOptions({ ...filterOptions, [name]: data });
   };
 
+  const handleApply = () => {
+    onApply(filterOptions); // Send filterOptions to the parent component
+    setModal(false); // Close the modal
+  };
+
   const handleClose = () => setModal((prev) => !prev);
 
-  console.log(filterOptions)
+  console.log(filterOptions);
 
   return (
     <>
@@ -49,9 +54,6 @@ const FilterModal = ({ setModal }) => {
                   name="locations"
                   updateSelection={handleChange}
                 />
-                {/* <button className="flex-shrink-0 w-8 h-8 border flex items-center justify-center rounded-lg ">
-                  +
-                </button> */}
               </div>
             </div>
 
@@ -76,10 +78,6 @@ const FilterModal = ({ setModal }) => {
                     className="ml-3"
                   />
                 </button>
-
-                {/* <button className="flex-shrink-0 w-8 h-8 border flex items-center justify-center rounded-lg ">
-                  +
-                </button> */}
               </div>
             </div>
 
@@ -115,7 +113,10 @@ const FilterModal = ({ setModal }) => {
             >
               Cancel
             </button>
-            <button className="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600">
+            <button
+              className="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600"
+              onClick={handleApply}
+            >
               Apply
             </button>
           </div>

@@ -23,6 +23,7 @@ const CreateNewCirkleModal = () => {
   const [contribution_Month, setContribution_Month] = useState();
   const [contribution_day, setContribution] = useState();
   const [dueDate, setDueDate] = useState();
+  const [dueDay, setDueDay] = useState();
   const [dueMonth, setDueMonth] = useState();
   const [selectedDay, setSelectedDay] = useState("Friday");
   const [step, setStep] = useState(1); // Step state to track current view
@@ -48,6 +49,8 @@ const CreateNewCirkleModal = () => {
     setFrequency("monthly");
     setSelectedDay("Friday");
     setStep(1);
+    setDueDate("");
+    setDueDay("");
     setIsPublic(true);
     setPrivacy("public");
     setEmails([]);
@@ -154,7 +157,7 @@ const CreateNewCirkleModal = () => {
       category: selectedCategoryId,
       contribution_amount: contribution_amount,
       contribution_frequency: frequency,
-      contribution_day: dueDate,
+      contribution_day:dueDay + " " + dueDate ,
       privacy: privacy,
       state: state,
       currency: "INR",
@@ -193,25 +196,27 @@ const CreateNewCirkleModal = () => {
   // Function to handle button clicks
   const handleDueDateClick = (date) => {
     setDueDate(date);
-    console.log(`Selected Due Date: ${date}`); // Logs the selected date
-    // Add additional logic here to save the date, e.g., API call or state update
   };
 
+    const handleDueDayClick = (date) => {
+      setDueDay(date);
+    };
+
   return (
-    <div className="fixed inset-0 z-50 flex  bg-black   bg-opacity-50 pt-5">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50 ">
       <motion.div
         initial={{ y: "100%", opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: "100%", opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="fixed  left-0 right-0 rounded-lg mx-auto max-w-md z-50 bg-white "
+        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[75%] bg-white overflow-scroll"
       >
-        <div className="pb-20 rounded-lg max-w-md w-full overflow-scroll h-screen">
+        <div className="pb-20 rounded-lg max-w-md w-full ">
           {/* Conditionally render based on step */}
           {step === 1 ? (
             <>
               {/* Head */}
-              <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl mb-5">
+              <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl mb-5 sticky top-0">
                 <img src="/images/tricycle.svg" alt="Circle Icon" />
 
                 <p className="text-[18px] font-[400]">Create New Cirkle</p>
@@ -353,9 +358,9 @@ const CreateNewCirkleModal = () => {
                           ].map((day) => (
                             <button
                               key={day}
-                              onClick={() => handleDueDateClick(day)}
+                              onClick={() => handleDueDayClick(day)}
                               className={`px-3 py-2 border rounded-lg  text-[10.5px] w-fit ${
-                                dueDate === day ? "bg-green-500 text-white" : ""
+                                dueDay === day ? "bg-green-500 text-white" : ""
                               }`}
                             >
                               {day}
@@ -455,7 +460,7 @@ const CreateNewCirkleModal = () => {
               {/* Second Case */}
 
               {/* Head */}
-              <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl mb-5">
+              <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl mb-5 sticky top-0">
                 <img
                   src="/images/arrowback.svg"
                   alt="Circle Icon"
@@ -485,7 +490,7 @@ const CreateNewCirkleModal = () => {
                 </button>
               </div>
 
-              <div className=" border-y mb-2 flex justify-between w-[90%] mx-auto items-center">
+              <div className=" border-y flex justify-between w-[90%] mx-auto items-center py-3">
                 <div className="p-5 text-[12px]">Preferred Local Location</div>
 
                 <div className="w-[40%]">
@@ -496,7 +501,7 @@ const CreateNewCirkleModal = () => {
                       const selectedValue = e.target.value; // Get the selected option's value
                       setState(selectedValue); // Update the state
                     }}
-                    className="w-full border px-3 py-5 rounded-lg mb-5 bg-white text-[#00000080] outline-[#00943F]"
+                    className="w-full border px-3 py-4 rounded-lg bg-white text-[#00000080] outline-[#00943F]"
                   >
                     {states &&
                       states.map((option, index) => (

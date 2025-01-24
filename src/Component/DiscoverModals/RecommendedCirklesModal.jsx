@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useModal } from "./ModalContext";
-import CircularProgress from "./CircularProgress";
-import PayoutCard from "./PayoutCard";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
 import { FadeLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
+import { useModal } from "../Cirkles/ModalContext";
 
-const InviteCirkleDetailsModal = () => {
+const RecommendedCirklesModal = () => {
   const { isModalOpen, modalType, modalData, closeModal } = useModal();
   const [cirkleData, setCirkleData] = useState(null);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isModalOpen && modalType === "invite") {
+    if (isModalOpen && modalType === "recommend") {
       const fetchData = async () => {
         try {
           const cirkleId = modalData;
@@ -37,7 +34,7 @@ const InviteCirkleDetailsModal = () => {
     }
   }, [isModalOpen, modalType]);
 
-  if (!isModalOpen || modalType !== "invite") return null;
+  if (!isModalOpen || modalType !== "recommend") return null;
 
   if (!cirkleData) {
     return (
@@ -202,14 +199,12 @@ const InviteCirkleDetailsModal = () => {
 
             <div className="flex mt-4 justify-between w-[90%] mx-auto">
               <button
-                className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm"
-                onClick={() => navigate("/acceptedinvite")}
+                className="bg-[#00943F] text-white w-[80%] px-5 mx-auto py-2 rounded-lg text-sm"
+                // onClick={() => navigate("/acceptedinvite")}
               >
-                Accept to join
+                Request to join
               </button>
-              <button className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm">
-                Decline Invitation
-              </button>
+              
             </div>
           </div>
         </div>
@@ -218,5 +213,4 @@ const InviteCirkleDetailsModal = () => {
   );
 };
 
-export default InviteCirkleDetailsModal;
-
+export default RecommendedCirklesModal;

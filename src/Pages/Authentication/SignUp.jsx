@@ -8,6 +8,7 @@ import NavBar from "../../Component/Sign up/NavBar";
 import Toast from "../../Component/Toast/Toast";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
+import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa"; // Import icons from react-icons
 
 function SignUp() {
   const [formData, setForm] = useState({
@@ -18,6 +19,7 @@ function SignUp() {
   });
 
   const [isAgreed, setIsAgreed] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -31,7 +33,6 @@ function SignUp() {
   const showToast = (message, type) => {
     setToast({ message, type });
   };
-
 
   const validate = () => {
     // validate the user inputs
@@ -68,6 +69,10 @@ function SignUp() {
     } else {
       showToast("Please agree to the terms and condition", "warning");
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
   };
 
   return (
@@ -113,23 +118,50 @@ function SignUp() {
             placeholder="Email "
           />
 
-          <input
-            type="text"
+          {/* <input
+            type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
             placeholder="Password"
-          />
+          /> */}
 
-          <input
-            type="text"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            name="confirmPassword"
-            className="w-full border px-3 py-5 rounded-lg mb-10 outline-[#00943F] text-[#00000080]"
-            placeholder="Confirm Password"
-          />
+          <div className="relative w-full">
+            <input
+              type={isPasswordVisible ? "text" : "password"}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
+              placeholder="Password"
+            />
+            <span
+              className="absolute right-3 top-6 cursor-pointer text-[#00000080]"
+              onClick={togglePasswordVisibility}
+            >
+              {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+
+          <div className="relative w-full">
+            <input
+              type={isPasswordVisible ? "text" : "password"}
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              name="confirmPassword"
+              className="w-full border px-3 py-5 rounded-lg mb-10 outline-[#00943F] text-[#00000080]"
+              placeholder="Confirm Password"
+            />
+
+            <span
+              className="absolute right-3 top-6 cursor-pointer text-[#00000080]"
+              onClick={togglePasswordVisibility}
+            >
+              {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+
           {/* Show our errors here */}
           <ul className="flex flex-col w-full gap-1 text-sm list-disc pl-5 text-red-500">
             {errors &&
