@@ -158,7 +158,7 @@ function Discover() {
     }
   };
 
-  console.log(appliedFilters.locations);
+  // console.log(appliedFilters.locations);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
