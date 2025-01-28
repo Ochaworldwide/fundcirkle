@@ -170,7 +170,11 @@ const CreateNewCirkleModal = () => {
       .post(ROUTES.CIRKLE.GET_USER_CIRKLES, payload)
       .then((response) => {
         if (response.data.success) {
+          navigate("/creationsuccess");
+          closeModal();
+          resetState();
           toast.success("Cirkle created successfully!");
+
         } else {
           toast.error("API responded with failure:", response.data);
         }
@@ -372,26 +376,6 @@ const CreateNewCirkleModal = () => {
                     )}
 
                     {/* Due Date Selection */}
-                    {/* {frequency === "monthly" && (
-                      <div>
-                        <p className="text-sm mb-4 text-center">Pick a Date</p>
-                        <div className="grid grid-cols-7 gap-3 flex-wrap  ">
-                          {[...Array(28)].map((_, i) => (
-                            <button
-                              key={i}
-                              onClick={() => setDueDate(i + 1)}
-                              className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
-                                dueDate === i + 1
-                                  ? "bg-green-500 text-white"
-                                  : ""
-                              }`}
-                            >
-                              {i + 1}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )} */}
 
                     {frequency === "monthly" && (
                       <div>
@@ -663,9 +647,7 @@ const CreateNewCirkleModal = () => {
                   className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition"
                   onClick={() => {
                     handleSubmit();
-                    navigate("/creationsuccess");
-                    closeModal();
-                    resetState();
+                    
                   }}
                 >
                   Confirm and Create Cirkle
