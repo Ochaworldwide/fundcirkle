@@ -138,9 +138,9 @@ function Discover() {
       const response = await axiosInstance.get(ROUTES.CIRKLE.SEARCH_CIRKLES, {
         params: {
           query,
-          location: "Akwa Ibom",
-          category: 1,
-          min: 0, // console.log(results)
+          location: appliedFilters.locations,
+          category: appliedFilters.categories,
+          min: 0, 
           max: 400000000,
         },
       });
@@ -157,6 +157,8 @@ function Discover() {
       setLoading(false);
     }
   };
+
+  console.log(appliedFilters.locations);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -179,6 +181,9 @@ function Discover() {
       <div className="w-[100%] flex justify-center py-5 sticky top-0 bg-white ">
         <p className="text-[22px] font-[600]">Discover</p>
       </div>
+
+
+
       {/* search */}
 
       <div className="flex w-[90%] mx-auto mt-2 justify-between">

@@ -10,6 +10,7 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import MultiEmailInput from "../Common/multiEmailInput";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const CreateNewCirkleModal = () => {
   const [name, setCirkleName] = useState("");
@@ -169,18 +170,18 @@ const CreateNewCirkleModal = () => {
       .post(ROUTES.CIRKLE.GET_USER_CIRKLES, payload)
       .then((response) => {
         if (response.data.success) {
-          console.log("Cirkle created successfully!");
+          toast.success("Cirkle created successfully!");
         } else {
-          console.error("API responded with failure:", response.data);
+          toast.error("API responded with failure:", response.data);
         }
       })
       .catch((error) => {
         if (error.response) {
-          console.error("API Error:", error.response.data);
+          toast.error("API Error:", error.response.data);
         } else if (error.request) {
-          console.error("Network Error:", error.request);
+          toast.error("Network Error:", error.request);
         } else {
-          console.error("Error:", error.message);
+          toast.error("Error:", error.message);
         }
       });
   };
