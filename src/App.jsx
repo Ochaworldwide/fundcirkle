@@ -45,6 +45,7 @@ import ScrollToTop from "./utils/stp";
 import DefaultLayout from "./layouts/DefaultLayout";
 import AcceptedInvite from "./Component/Cirkles/AcceptedInvite";
 import RecommendedCirklesModal from "./Component/DiscoverModals/RecommendedCirklesModal";
+import PaymentSuccess from "./Pages/Payment/PaymentSuccessful";
 
 const App = () => {
   return (
@@ -85,6 +86,7 @@ const App = () => {
                 path="/creationsuccess"
                 element={<CirkleCreationSuccess />}
               />
+              <Route path="/paymentsuccessful" element={<PaymentSuccess />} />
               <Route path="/acceptedinvite" element={<AcceptedInvite />} />
             </Route>
 
