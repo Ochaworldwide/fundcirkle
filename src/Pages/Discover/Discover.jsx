@@ -58,7 +58,7 @@ function Discover() {
       );
       if (response2.data.success) {
         setRequestData(response2.data.data); // Update state with the second API's data
-        console.log(response2.data.data);
+        // console.log(response2.data.data);
       }
     } catch (error) {
       console.error(error);
@@ -157,6 +157,8 @@ function Discover() {
       setLoading(false);
     }
   };
+
+  // console.log(appliedFilters.locations);
 
   // console.log(appliedFilters.locations);
 

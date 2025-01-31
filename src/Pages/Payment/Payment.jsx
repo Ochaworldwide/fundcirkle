@@ -1,15 +1,38 @@
 import { div } from "framer-motion/client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PaymentOverview from "../../Component/Payment/PaymentOverview";
 import ManagePaymentCirkle from "../../Component/Payment/ManagePaymentCirkle";
 import PaymentTable from "../../Component/Payment/PaymentTable";
 import NavigationBar from "../../Component/BottomNav/NavigationBar";
+import axiosInstance from "../../service";
+import { toast } from "react-toastify";
 
 const Payment = () => {
+
+  const [due , setDue] = useState({})
+  const [validations, setValidations] = useState({});
+  const [receive, setReceive] = useState({});
+
+  useEffect(() => {
+  
+    const fetchInitialData = async () => {
+      try {
+        // Fetch payment overview
+        const overview = await axiosInstance.get("/payment/overview");
+        setDue(overview.data.total_due)
+        setValidations(overview.data.total_validations);
+        setReceive(overview.data.to_receive);
+
+      } catch (error) {
+        toast.error("Error fetching initial data:", error);
+      }
+    };
+
+    fetchInitialData();
+
+  }, []); // Ensure modalType is also included in the dependency array
   return (
     <div className="mb-20">
-      {/* Nav Bar */}
-      {/* <NavigationBar /> */}
       {/* heading */}
       <div className="py-5 border-b text-[22px] font-[600] mb-5 sticky top-0 bg-white z-10">
         <h1 className="text-center">Payment</h1>
@@ -17,7 +40,7 @@ const Payment = () => {
       {/* Payment Overview */}
       <div className="w-[100%] px-5 ">
         <h1 className="   text-[18px] font-bold">Payment Overview</h1>
-        <PaymentOverview />
+        <PaymentOverview  due={due} validations={validations} receive={receive}/>
       </div>
       {/* Manage Payment Cirkle */}
       <ManagePaymentCirkle />

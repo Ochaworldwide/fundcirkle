@@ -136,7 +136,8 @@ const CreateNewCirkleModal = () => {
     setContribution_Month(id);
   };
 
-  const handleSubmit = () => {
+
+  const handleSubmit = async () => {
     // Validate required fields
     if (
       !name ||
@@ -146,7 +147,7 @@ const CreateNewCirkleModal = () => {
       !frequency ||
       !privacy
     ) {
-      console.log("Some required fields are missing!");
+      toast.error("Please fill in all required fields!");
       return;
     }
 
@@ -158,7 +159,7 @@ const CreateNewCirkleModal = () => {
       category: selectedCategoryId,
       contribution_amount: contribution_amount,
       contribution_frequency: frequency,
-      contribution_day:dueDay + " " + dueDate ,
+      contribution_day: dueDay + " " + dueDate,
       privacy: privacy,
       state: state,
       currency: "INR",
@@ -166,28 +167,37 @@ const CreateNewCirkleModal = () => {
 
     console.log("Payload:", payload);
 
-    axiosInstance
-      .post(ROUTES.CIRKLE.GET_USER_CIRKLES, payload)
-      .then((response) => {
-        if (response.data.success) {
-          navigate("/creationsuccess");
-          closeModal();
-          resetState();
-          toast.success("Cirkle created successfully!");
+    try {
+      const response = await axiosInstance.post(
+        ROUTES.CIRKLE.GET_USER_CIRKLES,
+        payload
+      );
 
-        } else {
-          toast.error("API responded with failure:", response.data);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          toast.error("API Error:", error.response.data);
-        } else if (error.request) {
-          toast.error("Network Error:", error.request);
-        } else {
-          toast.error("Error:", error.message);
-        }
-      });
+      if (response.data.success) {
+        navigate("/creationsuccess");
+        closeModal();
+        resetState();
+        toast.success("Cirkle created successfully!");
+      } else {
+        toast.error("Failed to create Cirkle: " + response.data.message);
+      }
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        toast.error(
+          "API Error: " +
+            (error.response.data.message || error.response.statusText)
+        );
+      } else if (error.request) {
+        // The request was made but no response was received
+        toast.error("Network Error: No response received from the server.");
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        toast.error("Error: " + error.message);
+      }
+      console.error("Error details:", error);
+    }
   };
 
   const handleNext = () => {

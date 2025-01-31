@@ -1,10 +1,556 @@
+// import React, { useState } from "react";
+
+// const PaymentForm = () => {
+//   const [paymentMethod, setPaymentMethod] = useState("Bank Transfer"); // Default selected payment method
+//   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+
+//   // Map of payment methods to images
+//   const paymentMethodImages = {
+//     "Bank Transfer": "/images/bank.svg",
+//     "Paid with Cash": "/images/cash-01.svg",
+//   };
+
+//   const contributionDetails = {
+//     accountMessage: "Please make your contribution to this bank account:",
+//     copyText: "copy",
+//     accountHolder: {
+//       name: "Bhaavik Arhaan",
+//       accountNumber: "123456789012",
+//     },
+//     bankDetails: {
+//       bankName: "State Bank of India (SBI)",
+//       accountType: "Saving",
+//     },
+//     ifscCode: {
+//       code: "SBIN0001234",
+//       copyText: "copy",
+//     },
+//     branch: "Mumbai, Maharashtra",
+//     uploadPaymentProof: {
+//       label: "Upload Payment Proof",
+//       acceptedFormats: [".pdf", ".png", ".jpg", ".jpeg"],
+//       maxFileSize: "4MB",
+//     },
+//   };
+
+
+//   // Handlers
+//   const openModal = () => setIsModalOpen(true);
+//   const closeModal = () => setIsModalOpen(false);
+//   const selectPaymentMethod = (method) => {
+//     setPaymentMethod(method); // Update selected payment method
+//     closeModal(); // Close the modal
+//   };
+
+//   return (
+//     <div>
+//       {/* Selected Payment Method */}
+//       <div className="mb-4">
+//         <label className="block text-sm font-semibold text-gray-600 mb-1">
+//           Payment Method
+//         </label>
+//         <button
+//           onClick={openModal}
+//           className="w-full border flex justify-between items-center text-left rounded px-4 py-2 text-sm text-gray-600"
+//         >
+//           {/* Display selected payment method with its image */}
+//           <div className="flex items-center space-x-2">
+//             <img
+//               src={paymentMethodImages[paymentMethod]}
+//               alt={paymentMethod}
+//               className="w-6 h-6"
+//             />
+//             <span className="text-[10.5px]">{paymentMethod}</span>
+//           </div>
+//           <img src="/images/arrow-down-01.svg" alt="Arrow Down" />
+//         </button>
+//       </div>
+
+//       {/* Modal */}
+//       {isModalOpen && (
+//         <div
+//           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+//           onClick={closeModal}
+//         >
+//           <div className="bg-white rounded-lg shadow-lg p-6 w-3/4 max-w-md">
+//             <ul className="space-y-4">
+//               <li>
+//                 <button
+//                   className="w-full text-left px-4 py-2 border rounded flex items-center space-x-2 text-sm text-gray-600 hover:bg-gray-100"
+//                   onClick={() => selectPaymentMethod("Bank Transfer")}
+//                 >
+//                   <img
+//                     src="/images/bank.svg"
+//                     alt="Bank Transfer Icon"
+//                     className="w-6 h-6"
+//                   />
+//                   <span>Bank Transfer</span>
+//                 </button>
+//               </li>
+//               <li>
+//                 <button
+//                   className="w-full text-left px-4 py-2 border rounded flex items-center space-x-2 text-sm text-gray-600 hover:bg-gray-100"
+//                   onClick={() => selectPaymentMethod("Paid with Cash")}
+//                 >
+//                   <img
+//                     src="/images/cash-01.svg"
+//                     alt="Cash Payment Icon"
+//                     className="w-6 h-6"
+//                   />
+//                   <span>Paid with Cash</span>
+//                 </button>
+//               </li>
+//             </ul>
+//           </div>
+//         </div>
+//       )}
+
+//       {/* Conditional Rendering of Payment Details */}
+//       <div className="">
+//         {paymentMethod === "Bank Transfer" && (
+//           <div>
+//             <div className="border rounded-md">
+//               <div className="flex justify-between border-b px-3 py-2 items-center">
+//                 <p className="text-[10.5px] text-gray-600 w-[70%]">
+//                   {contributionDetails.accountMessage}
+//                 </p>
+
+//                 <div className="flex items-center space-x-3 text-[10.5px]">
+//                   <p>{contributionDetails.copyText}</p>
+
+//                   <img src="/images/copy-02.svg" alt="" className="h-4" />
+//                 </div>
+//               </div>
+
+//               <div className="flex justify-between items-center mb-2 border-b px-3 py-2">
+//                 <span className="font-semibold text-sm text-gray-800 flex items-center space-x-2">
+//                   <img src="/images/person4.svg" alt="" />
+//                   <p>{contributionDetails.accountHolder.name}</p>
+//                 </span>
+//                 <button className="text-[10.5px] flex space-x-1">
+//                   <p>{contributionDetails.accountHolder.accountNumber}</p>
+//                   <img src="/images/copy-02.svg" alt="" className="h-4" />
+//                 </button>
+//               </div>
+
+//               <div className="flex text-[10.5px] justify-between px-3 py-2 border-b">
+//                 <p>Bank: {contributionDetails.bankDetails.bankName}</p>
+//                 <p>
+//                   Account Type: {contributionDetails.bankDetails.accountType}
+//                 </p>
+//               </div>
+
+//               <div className="flex justify-between px-3 py-2 text-[10.5px] border-b">
+//                 <p>IFSC Code:</p>
+//                 <button className="text-xs flex space-x-1">
+//                   <p>{contributionDetails.ifscCode.code}</p>
+//                   <img src="/images/copy-02.svg" alt="" className="h-4" />
+//                 </button>
+//               </div>
+
+//               <div className="px-3 py-2 text-[10.5px]">
+//                 Branch: {contributionDetails.branch}
+//               </div>
+//             </div>
+//             {/* Upload Payment Proof */}
+//             <div className="mt-4">
+//               <div className="border flex items-center rounded-md p-1 space-x-5">
+//                 <img src="/images/file-upload.svg" alt="" srcset="" />
+//                 <p className="text-[10.5px]">Click here to upload payment proof</p>
+//               </div>
+//               <p className="text-xs text-gray-500 mt-1 text-center">
+//                 PDF, PNG, JPG (Max:{" "}
+//                 {contributionDetails.uploadPaymentProof.maxFileSize})
+//               </p>
+//             </div>
+//           </div>
+//         )}
+
+//         {paymentMethod === "Paid with Cash" && (
+//           <div className="border  rounded-md text-[10.5px] ">
+//             <div className="flex border-b py-2 px-2 items-center justify-between">
+//               <p>I made the payment on: </p>
+
+//               <div className="border p-1 rounded-md flex items-center space-x-2">
+//                 <p>20-10-24</p>
+//                 <img
+//                   src="/images/calendar-01.svg"
+//                   alt=""
+//                   srcset=""
+//                   className="h-3"
+//                 />
+//               </div>
+//             </div>
+
+//             <div className="flex border-b py-2 px-2 justify-between items-center">
+//               <p>To: </p>
+//               <div className="px-1 py-2 w-[70%]  flex items-center space-x-1">
+//                 <img src="/images/person4.svg" alt="" srcset="" />
+//                 <p>Bhaavik Arhaan</p>
+//               </div>
+//             </div>
+
+//             <div className="flex border-b py-2 px-2  items-center justify-between">
+//               <p>Where: </p>
+
+//               <p className="px-1 py-2 w-[70%] border rounded-md ">Location</p>
+//             </div>
+
+//             <div className="flex py-2 px-2 items-center justify-between">
+//               <p>Withness(es): </p>
+//               <p className="px-1 py-2 w-[70%] border rounded-md ">Amit Kumar</p>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PaymentForm;
+
+
+
+
+// import React, { useState } from "react";
+
+// const PaymentForm = () => {
+//   const [paymentMethod, setPaymentMethod] = useState("Bank Transfer");
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [amount, setAmount] = useState("");
+//   const [paymentProof, setPaymentProof] = useState(null);
+//   const [paymentDate, setPaymentDate] = useState("");
+//   const [location, setLocation] = useState("");
+//   const [witnesses, setWitnesses] = useState("");
+
+//   const paymentMethodImages = {
+//     "Bank Transfer": "/images/bank.svg",
+//     "Paid with Cash": "/images/cash-01.svg",
+//   };
+
+//   const contributionDetails = {
+//     accountMessage: "Please make your contribution to this bank account:",
+//     copyText: "copy",
+//     accountHolder: {
+//       name: "Bhaavik Arhaan",
+//       accountNumber: "123456789012",
+//     },
+//     bankDetails: {
+//       bankName: "State Bank of India (SBI)",
+//       accountType: "Saving",
+//     },
+//     ifscCode: {
+//       code: "SBIN0001234",
+//       copyText: "copy",
+//     },
+//     branch: "Mumbai, Maharashtra",
+//     uploadPaymentProof: {
+//       label: "Upload Payment Proof",
+//       acceptedFormats: [".pdf", ".png", ".jpg", ".jpeg"],
+//       maxFileSize: "4MB",
+//     },
+//   };
+
+//   const openModal = () => setIsModalOpen(true);
+//   const closeModal = () => setIsModalOpen(false);
+//   const selectPaymentMethod = (method) => {
+//     setPaymentMethod(method);
+//     closeModal();
+//   };
+
+//   const handleFileChange = (event) => {
+//     setPaymentProof(event.target.files[0]);
+//   };
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+
+//     const formData = new FormData();
+//     formData.append("amount", amount);
+//     formData.append("to_admin", "0");
+//     formData.append(
+//       "payment_method",
+//       paymentMethod === "Bank Transfer" ? "bank" : "cash"
+//     );
+//     if (paymentProof) {
+//       formData.append("proof", paymentProof);
+//     }
+
+//     const meta = {};
+//     if (paymentMethod === "Paid with Cash") {
+//       meta.payment_date = paymentDate;
+//       meta.location = location;
+//       meta.witnesses = witnesses;
+//     }
+
+//     formData.append("meta", JSON.stringify(meta));
+
+//     // Here you can send the formData to your API
+//     console.log([...formData.entries()]);
+//     // Example: axios.post('/your-endpoint', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div>
+//         <div className="flex justify-center space-x-3 items-center mb-4">
+//           <span className="text-gray-600 text-sm">Amount to Pay</span>
+//           <span className="font-semibold text-gray-800 text-lg flex items-center">
+//             {" "}
+//             <img src="/images/currency.svg" alt="" srcset="" className="h-4" />
+//             60,000
+//           </span>
+//         </div>
+
+//         <div className="flex items-center justify-between gap-4 mb-4">
+//           <label className="flex items-center gap-2">
+//             <input
+//               type="radio"
+//               name="paymentTo"
+//               className="form-radio b"
+//               checked
+//             />
+//             <span className="text-[10.5px] text-gray-600">Pay to Admin</span>
+//           </label>
+//           <label className="flex items-center gap-2">
+//             <input type="radio" name="paymentTo" className="form-radio" />
+//             <span className="text-[10.5px] text-gray-600">
+//               Pay to Receiving Member
+//             </span>
+//           </label>
+//         </div>
+
+//         {/* Selected Payment Method */}
+//         <div className="mb-4">
+//           <label className="block text-sm font-semibold text-gray-600 mb-1">
+//             Payment Method
+//           </label>
+//           <button
+//             type="button"
+//             onClick={openModal}
+//             className="w-full border flex justify-between items-center text-left rounded px-4 py-2 text-sm text-gray-600"
+//           >
+//             <div className="flex items-center space-x-2">
+//               <img
+//                 src={paymentMethodImages[paymentMethod]}
+//                 alt={paymentMethod}
+//                 className="w-6 h-6"
+//               />
+//               <span className="text-[10.5px]">{paymentMethod}</span>
+//             </div>
+//             <img src="/images/arrow-down-01.svg" alt="Arrow Down" />
+//           </button>
+//         </div>
+
+//         {/* Modal */}
+//         {isModalOpen && (
+//           <div
+//             className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+//             onClick={closeModal}
+//           >
+//             <div className="bg-white rounded-lg shadow-lg p-6 w-3/4 max-w-md">
+//               <ul className="space-y-4">
+//                 <li>
+//                   <button
+//                     type="button"
+//                     className="w-full text-left px-4 py-2 border rounded flex items-center space-x-2 text-sm text-gray-600 hover:bg-gray-100"
+//                     onClick={() => selectPaymentMethod("Bank Transfer")}
+//                   >
+//                     <img
+//                       src="/images/bank.svg"
+//                       alt="Bank Transfer Icon"
+//                       className="w-6 h-6"
+//                     />
+//                     <span>Bank Transfer</span>
+//                   </button>
+//                 </li>
+//                 <li>
+//                   <button
+//                     type="button"
+//                     className="w-full text-left px-4 py-2 border rounded flex items-center space-x-2 text-sm text-gray-600 hover:bg-gray-100"
+//                     onClick={() => selectPaymentMethod("Paid with Cash")}
+//                   >
+//                     <img
+//                       src="/images/cash-01.svg"
+//                       alt="Cash Payment Icon"
+//                       className="w-6 h-6"
+//                     />
+//                     <span>Paid with Cash</span>
+//                   </button>
+//                 </li>
+//               </ul>
+//             </div>
+//           </div>
+//         )}
+
+//         {/* Conditional Rendering of Payment Details */}
+//         <div>
+//           {paymentMethod === "Bank Transfer" && (
+//             <div>
+//               <div className="border rounded-md">
+//                 <div className="flex justify-between border-b px-3 py-2 items-center">
+//                   <p className="text-[10.5px] text-gray-600 w-[70%]">
+//                     {contributionDetails.accountMessage}
+//                   </p>
+//                   <div className="flex items-center space-x-3 text-[10.5px]">
+//                     <p>{contributionDetails.copyText}</p>
+//                     <img src="/images/copy-02.svg" alt="" className="h-4" />
+//                   </div>
+//                 </div>
+
+//                 <div className="flex justify-between items-center mb-2 border-b px-3 py-2">
+//                   <span className="font-semibold text-sm text-gray-800 flex items-center space-x-2">
+//                     <img src="/images/person4.svg" alt="" />
+//                     <p>{contributionDetails.accountHolder.name}</p>
+//                   </span>
+//                   <button className="text-[10.5px] flex space-x-1">
+//                     <p>{contributionDetails.accountHolder.accountNumber}</p>
+//                     <img src="/images/copy-02.svg" alt="" className="h-4" />
+//                   </button>
+//                 </div>
+
+//                 <div className="flex text-[10.5px] justify-between px-3 py-2 border-b">
+//                   <p>Bank: {contributionDetails.bankDetails.bankName}</p>
+//                   <p>
+//                     Account Type: {contributionDetails.bankDetails.accountType}
+//                   </p>
+//                 </div>
+
+//                 <div className="flex justify-between px-3 py-2 text-[10.5px] border-b">
+//                   <p>IFSC Code:</p>
+//                   <button className="text-xs flex space-x-1">
+//                     <p>{contributionDetails.ifscCode.code}</p>
+//                     <img src="/images/copy-02.svg" alt="" className="h-4" />
+//                   </button>
+//                 </div>
+
+//                 <div className="px-3 py-2 text-[10.5px]">
+//                   Branch: {contributionDetails.branch}
+//                 </div>
+//               </div>
+//               {/* Upload Payment Proof */}
+//               <div className="mt-4">
+//                 <div className="border flex items-center rounded-md p-1 space-x-5">
+//                   <img src="/images/file-upload.svg" alt="" />
+//                   <input
+//                     type="file"
+//                     onChange={handleFileChange}
+//                     className="hidden"
+//                     id="file-upload"
+//                   />
+//                   <label
+//                     htmlFor="file-upload"
+//                     className="text-[10.5px] cursor-pointer"
+//                   >
+//                     Click here to upload payment proof
+//                   </label>
+//                 </div>
+//                 <p className="text-xs text-gray-500 mt-1 text-center">
+//                   PDF, PNG, JPG (Max:{" "}
+//                   {contributionDetails.uploadPaymentProof.maxFileSize})
+//                 </p>
+//               </div>
+//             </div>
+//           )}
+
+//           {paymentMethod === "Paid with Cash" && (
+//             <div className="border rounded-md text-[10.5px]">
+//               <div className="flex border-b py-2 px-2 items-center justify-between">
+//                 <p>I made the payment on: </p>
+//                 <div className="border p-1 rounded-md flex items-center space-x-2">
+//                   <input
+//                     type="date"
+//                     value={paymentDate}
+//                     onChange={(e) => setPaymentDate(e.target.value)}
+//                     className="text-[10.5px]"
+//                   />
+//                   <img src="/images/calendar-01.svg" alt="" className="h-3" />
+//                 </div>
+//               </div>
+
+//               <div className="flex border-b py-2 px-2 justify-between items-center">
+//                 <p>To: </p>
+//                 <div className="px-1 py-2 w-[70%] flex items-center space-x-1">
+//                   <img src="/images/person4.svg" alt="" />
+//                   <p>Bhaavik Arhaan</p>
+//                 </div>
+//               </div>
+
+//               <div className="flex border-b py-2 px-2 items-center justify-between">
+//                 <p>Where: </p>
+//                 <input
+//                   type="text"
+//                   value={location}
+//                   onChange={(e) => setLocation(e.target.value)}
+//                   className="px-1 py-2 w-[70%] border rounded-md text-[10.5px]"
+//                   placeholder="Location"
+//                 />
+//               </div>
+
+//               <div className="flex py-2 px-2 items-center justify-between">
+//                 <p>Witness(es): </p>
+//                 <input
+//                   type="text"
+//                   value={witnesses}
+//                   onChange={(e) => setWitnesses(e.target.value)}
+//                   className="px-1 py-2 w-[70%] border rounded-md text-[10.5px]"
+//                   placeholder="Amit Kumar"
+//                 />
+//               </div>
+//             </div>
+//           )}
+//         </div>
+
+//         {/* Amount Input */}
+//         <div className="mt-4">
+//           <label className="block text-sm font-semibold text-gray-600 mb-1">
+//             Amount
+//           </label>
+//           <input
+//             type="number"
+//             value={amount}
+//             onChange={(e) => setAmount(e.target.value)}
+//             className="w-full border rounded px-4 py-2 text-sm text-gray-600"
+//             placeholder="Enter amount"
+//           />
+//         </div>
+
+//         {/* Submit Button */}
+//         <div className="mt-6">
+//           <button
+//             type="submit"
+//             className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+//           >
+//             Submit Payment
+//           </button>
+//         </div>
+//       </div>
+//     </form>
+//   );
+// };
+
+// export default PaymentForm;
+
+
+
+
+
+
+
+
 import React, { useState } from "react";
+import axiosInstance from "../../service";
 
-const PaymentForm = () => {
-  const [paymentMethod, setPaymentMethod] = useState("Bank Transfer"); // Default selected payment method
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+const PaymentForm = ({handler}) => {
+  const [paymentMethod, setPaymentMethod] = useState("Bank Transfer");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [paymentProof, setPaymentProof] = useState(null);
+  const [paymentDate, setPaymentDate] = useState("");
+  const [location, setLocation] = useState("");
+  const [witnesses, setWitnesses] = useState("");
+  const [paymentTo, setPaymentTo] = useState("admin"); // State for payment destination (admin or receiving member)
 
-  // Map of payment methods to images
   const paymentMethodImages = {
     "Bank Transfer": "/images/bank.svg",
     "Paid with Cash": "/images/cash-01.svg",
@@ -33,178 +579,316 @@ const PaymentForm = () => {
     },
   };
 
-
-  // Handlers
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const selectPaymentMethod = (method) => {
-    setPaymentMethod(method); // Update selected payment method
-    closeModal(); // Close the modal
+    setPaymentMethod(method);
+    closeModal();
+  };
+
+  const handleFileChange = (event) => {
+    setPaymentProof(event.target.files[0]);
+  };
+
+  const handlePaymentToChange = (event) => {
+    setPaymentTo(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    handler();
+
+    const formData = new FormData();
+    formData.append("amount", amount);
+    formData.append("to_admin", paymentTo === "admin" ? "1" : "0"); // 1 for admin, 0 for receiving member
+    formData.append(
+      "payment_method",
+      paymentMethod === "Bank Transfer" ? "bank" : "cash"
+    );
+    if (paymentProof) {
+      formData.append("proof", paymentProof);
+    }
+
+    const meta = {};
+    if (paymentMethod === "Paid with Cash") {
+      meta.payment_date = paymentDate;
+      meta.location = location;
+      meta.witnesses = witnesses;
+    }
+
+    formData.append("meta", JSON.stringify(meta));
+
+    // Here you can send the formData to your API
+    console.log([...formData.entries()]);
+  //   try {
+  //   // Send the formData using axiosInstance
+  //   const response = await axiosInstance.post("/payment", formData);
+
+  //   // Handle the response
+  //   console.log("Payment submitted successfully:", response.data);
+  //   alert("Payment submitted successfully!");
+
+  //   // Optionally reset the form or navigate to another page
+  //   // resetForm();
+  // } catch (error) {
+  //   // Handle errors
+  //   console.error("Error submitting payment:", error);
+  //   alert("Failed to submit payment. Please try again.");
+  // }
+    // Example: axios.post('/your-endpoint', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
   };
 
   return (
-    <div>
-      {/* Selected Payment Method */}
-      <div className="mb-4">
-        <label className="block text-sm font-semibold text-gray-600 mb-1">
-          Payment Method
-        </label>
-        <button
-          onClick={openModal}
-          className="w-full border flex justify-between items-center text-left rounded px-4 py-2 text-sm text-gray-600"
-        >
-          {/* Display selected payment method with its image */}
-          <div className="flex items-center space-x-2">
-            <img
-              src={paymentMethodImages[paymentMethod]}
-              alt={paymentMethod}
-              className="w-6 h-6"
-            />
-            <span className="text-[10.5px]">{paymentMethod}</span>
-          </div>
-          <img src="/images/arrow-down-01.svg" alt="Arrow Down" />
-        </button>
-      </div>
-
-      {/* Modal */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={closeModal}
-        >
-          <div className="bg-white rounded-lg shadow-lg p-6 w-3/4 max-w-md">
-            <ul className="space-y-4">
-              <li>
-                <button
-                  className="w-full text-left px-4 py-2 border rounded flex items-center space-x-2 text-sm text-gray-600 hover:bg-gray-100"
-                  onClick={() => selectPaymentMethod("Bank Transfer")}
-                >
-                  <img
-                    src="/images/bank.svg"
-                    alt="Bank Transfer Icon"
-                    className="w-6 h-6"
-                  />
-                  <span>Bank Transfer</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="w-full text-left px-4 py-2 border rounded flex items-center space-x-2 text-sm text-gray-600 hover:bg-gray-100"
-                  onClick={() => selectPaymentMethod("Paid with Cash")}
-                >
-                  <img
-                    src="/images/cash-01.svg"
-                    alt="Cash Payment Icon"
-                    className="w-6 h-6"
-                  />
-                  <span>Paid with Cash</span>
-                </button>
-              </li>
-            </ul>
-          </div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        {/* Amount to Pay Section */}
+        <div className="flex justify-center space-x-3 items-center mb-4">
+          <span className="text-gray-600 text-sm">Amount to Pay</span>
+          <span className="font-semibold text-gray-800 text-lg flex items-center">
+            <img src="/images/currency.svg" alt="Currency" className="h-4" />
+            60,000
+          </span>
         </div>
-      )}
 
-      {/* Conditional Rendering of Payment Details */}
-      <div className="">
-        {paymentMethod === "Bank Transfer" && (
-          <div>
-            <div className="border rounded-md">
-              <div className="flex justify-between border-b px-3 py-2 items-center">
-                <p className="text-[10.5px] text-gray-600 w-[70%]">
-                  {contributionDetails.accountMessage}
+        {/* Payment Destination Radio Buttons */}
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              name="paymentTo"
+              value="admin"
+              checked={paymentTo === "admin"}
+              onChange={handlePaymentToChange}
+              className="form-radio"
+            />
+            <span className="text-[10.5px] text-gray-600">Pay to Admin</span>
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              name="paymentTo"
+              value="receiving_member"
+              checked={paymentTo === "receiving_member"}
+              onChange={handlePaymentToChange}
+              className="form-radio"
+            />
+            <span className="text-[10.5px] text-gray-600">
+              Pay to Receiving Member
+            </span>
+          </label>
+        </div>
+
+        {/* Selected Payment Method */}
+        <div className="mb-4">
+          <label className="block text-sm font-semibold text-gray-600 mb-1">
+            Payment Method
+          </label>
+          <button
+            type="button"
+            onClick={openModal}
+            className="w-full border flex justify-between items-center text-left rounded px-4 py-2 text-sm text-gray-600"
+          >
+            <div className="flex items-center space-x-2">
+              <img
+                src={paymentMethodImages[paymentMethod]}
+                alt={paymentMethod}
+                className="w-6 h-6"
+              />
+              <span className="text-[10.5px]">{paymentMethod}</span>
+            </div>
+            <img src="/images/arrow-down-01.svg" alt="Arrow Down" />
+          </button>
+        </div>
+
+        {/* Modal */}
+        {isModalOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            onClick={closeModal}
+          >
+            <div className="bg-white rounded-lg shadow-lg p-6 w-3/4 max-w-md">
+              <ul className="space-y-4">
+                <li>
+                  <button
+                    type="button"
+                    className="w-full text-left px-4 py-2 border rounded flex items-center space-x-2 text-sm text-gray-600 hover:bg-gray-100"
+                    onClick={() => selectPaymentMethod("Bank Transfer")}
+                  >
+                    <img
+                      src="/images/bank.svg"
+                      alt="Bank Transfer Icon"
+                      className="w-6 h-6"
+                    />
+                    <span>Bank Transfer</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    className="w-full text-left px-4 py-2 border rounded flex items-center space-x-2 text-sm text-gray-600 hover:bg-gray-100"
+                    onClick={() => selectPaymentMethod("Paid with Cash")}
+                  >
+                    <img
+                      src="/images/cash-01.svg"
+                      alt="Cash Payment Icon"
+                      className="w-6 h-6"
+                    />
+                    <span>Paid with Cash</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Conditional Rendering of Payment Details */}
+        <div>
+          {paymentMethod === "Bank Transfer" && (
+            <div>
+              <div className="border rounded-md">
+                <div className="flex justify-between border-b px-3 py-2 items-center">
+                  <p className="text-[10.5px] text-gray-600 w-[70%]">
+                    {contributionDetails.accountMessage}
+                  </p>
+                  <div className="flex items-center space-x-3 text-[10.5px]">
+                    <p>{contributionDetails.copyText}</p>
+                    <img src="/images/copy-02.svg" alt="" className="h-4" />
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center mb-2 border-b px-3 py-2">
+                  <span className="font-semibold text-sm text-gray-800 flex items-center space-x-2">
+                    <img src="/images/person4.svg" alt="" />
+                    <p>{contributionDetails.accountHolder.name}</p>
+                  </span>
+                  <button className="text-[10.5px] flex space-x-1">
+                    <p>{contributionDetails.accountHolder.accountNumber}</p>
+                    <img src="/images/copy-02.svg" alt="" className="h-4" />
+                  </button>
+                </div>
+
+                <div className="flex text-[10.5px] justify-between px-3 py-2 border-b">
+                  <p>Bank: {contributionDetails.bankDetails.bankName}</p>
+                  <p>
+                    Account Type: {contributionDetails.bankDetails.accountType}
+                  </p>
+                </div>
+
+                <div className="flex justify-between px-3 py-2 text-[10.5px] border-b">
+                  <p>IFSC Code:</p>
+                  <button className="text-xs flex space-x-1">
+                    <p>{contributionDetails.ifscCode.code}</p>
+                    <img src="/images/copy-02.svg" alt="" className="h-4" />
+                  </button>
+                </div>
+
+                <div className="px-3 py-2 text-[10.5px]">
+                  Branch: {contributionDetails.branch}
+                </div>
+              </div>
+              {/* Upload Payment Proof */}
+              <div className="mt-4">
+                <div className="border flex items-center rounded-md p-1 space-x-5">
+                  <img src="/images/file-upload.svg" alt="" />
+                  <input
+                    type="file"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    id="file-upload"
+                  />
+                  <label
+                    htmlFor="file-upload"
+                    className="text-[10.5px] cursor-pointer"
+                  >
+                    Click here to upload payment proof
+                  </label>
+                </div>
+                <p className="text-xs text-gray-500 mt-1 text-center">
+                  PDF, PNG, JPG (Max:{" "}
+                  {contributionDetails.uploadPaymentProof.maxFileSize})
                 </p>
+              </div>
+            </div>
+          )}
 
-                <div className="flex items-center space-x-3 text-[10.5px]">
-                  <p>{contributionDetails.copyText}</p>
-
-                  <img src="/images/copy-02.svg" alt="" className="h-4" />
+          {paymentMethod === "Paid with Cash" && (
+            <div className="border rounded-md text-[10.5px]">
+              <div className="flex border-b py-2 px-2 items-center justify-between">
+                <p>I made the payment on: </p>
+                <div className="border p-1 rounded-md flex items-center space-x-2">
+                  <input
+                    type="date"
+                    value={paymentDate}
+                    onChange={(e) => setPaymentDate(e.target.value)}
+                    className="text-[10.5px]"
+                  />
+                  <img src="/images/calendar-01.svg" alt="" className="h-3" />
                 </div>
               </div>
 
-              <div className="flex justify-between items-center mb-2 border-b px-3 py-2">
-                <span className="font-semibold text-sm text-gray-800 flex items-center space-x-2">
+              <div className="flex border-b py-2 px-2 justify-between items-center">
+                <p>To: </p>
+                <div className="px-1 py-2 w-[70%] flex items-center space-x-1">
                   <img src="/images/person4.svg" alt="" />
-                  <p>{contributionDetails.accountHolder.name}</p>
-                </span>
-                <button className="text-[10.5px] flex space-x-1">
-                  <p>{contributionDetails.accountHolder.accountNumber}</p>
-                  <img src="/images/copy-02.svg" alt="" className="h-4" />
-                </button>
+                  <p>Bhaavik Arhaan</p>
+                </div>
               </div>
 
-              <div className="flex text-[10.5px] justify-between px-3 py-2 border-b">
-                <p>Bank: {contributionDetails.bankDetails.bankName}</p>
-                <p>
-                  Account Type: {contributionDetails.bankDetails.accountType}
-                </p>
+              <div className="flex border-b py-2 px-2 items-center justify-between">
+                <p>Where: </p>
+                <input
+                  type="text"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="px-1 py-2 w-[70%] border rounded-md text-[10.5px]"
+                  placeholder="Location"
+                />
               </div>
 
-              <div className="flex justify-between px-3 py-2 text-[10.5px] border-b">
-                <p>IFSC Code:</p>
-                <button className="text-xs flex space-x-1">
-                  <p>{contributionDetails.ifscCode.code}</p>
-                  <img src="/images/copy-02.svg" alt="" className="h-4" />
-                </button>
-              </div>
-
-              <div className="px-3 py-2 text-[10.5px]">
-                Branch: {contributionDetails.branch}
-              </div>
-            </div>
-            {/* Upload Payment Proof */}
-            <div className="mt-4">
-              <div className="border flex items-center rounded-md p-1 space-x-5">
-                <img src="/images/file-upload.svg" alt="" srcset="" />
-                <p className="text-[10.5px]">Click here to upload payment proof</p>
-              </div>
-              <p className="text-xs text-gray-500 mt-1 text-center">
-                PDF, PNG, JPG (Max:{" "}
-                {contributionDetails.uploadPaymentProof.maxFileSize})
-              </p>
-            </div>
-          </div>
-        )}
-
-        {paymentMethod === "Paid with Cash" && (
-          <div className="border  rounded-md text-[10.5px] ">
-            <div className="flex border-b py-2 px-2 items-center justify-between">
-              <p>I made the payment on: </p>
-
-              <div className="border p-1 rounded-md flex items-center space-x-2">
-                <p>20-10-24</p>
-                <img
-                  src="/images/calendar-01.svg"
-                  alt=""
-                  srcset=""
-                  className="h-3"
+              <div className="flex py-2 px-2 items-center justify-between">
+                <p>Witness(es): </p>
+                <input
+                  type="text"
+                  value={witnesses}
+                  onChange={(e) => setWitnesses(e.target.value)}
+                  className="px-1 py-2 w-[70%] border rounded-md text-[10.5px]"
+                  placeholder="Amit Kumar"
                 />
               </div>
             </div>
+          )}
+        </div>
 
-            <div className="flex border-b py-2 px-2 justify-between items-center">
-              <p>To: </p>
-              <div className="px-1 py-2 w-[70%]  flex items-center space-x-1">
-                <img src="/images/person4.svg" alt="" srcset="" />
-                <p>Bhaavik Arhaan</p>
-              </div>
-            </div>
+        {/* Amount Input */}
+        {/* <div className="mt-4">
+          <label className="block text-sm font-semibold text-gray-600 mb-1">
+            Amount
+          </label>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            className="w-full border rounded px-4 py-2 text-sm text-gray-600"
+            placeholder="Enter amount"
+          />
+        </div> */}
 
-            <div className="flex border-b py-2 px-2  items-center justify-between">
-              <p>Where: </p>
-
-              <p className="px-1 py-2 w-[70%] border rounded-md ">Location</p>
-            </div>
-
-            <div className="flex py-2 px-2 items-center justify-between">
-              <p>Withness(es): </p>
-              <p className="px-1 py-2 w-[70%] border rounded-md ">Amit Kumar</p>
-            </div>
-          </div>
-        )}
+        {/* Submit Button */}
+        <div className="mt-6">
+          <button
+            type="submit"
+            className="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          >
+            Submit Payment
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 
 export default PaymentForm;
+
+
+
+
