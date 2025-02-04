@@ -89,15 +89,6 @@ function SignIn() {
             placeholder="Email "
           />
 
-          {/* <input
-            type={inputType}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onClick={handleShowPassword}
-            className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
-            placeholder="Password "
-          /> */}
-
           <div className="relative w-full">
             <input
               type={isPasswordVisible ? "text" : "password"}

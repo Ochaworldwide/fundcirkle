@@ -636,6 +636,7 @@ const PaymentForm = ({handler}) => {
   //   alert("Failed to submit payment. Please try again.");
   // }
     // Example: axios.post('/your-endpoint', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+  
   };
 
   return (
