@@ -18,6 +18,7 @@ function SignUp() {
     confirmPassword: "",
   });
 
+  
   const [isAgreed, setIsAgreed] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
