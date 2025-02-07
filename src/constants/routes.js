@@ -29,6 +29,7 @@ export const ROUTES = {
     UPDATE_BANK_DETAILS: "/account/bank",
     UPDATE_PROFILE_INFO: "/account/profile",
     UPDATE_PROFILE_PHOTO: "/account/profile-photo",
+    UPDATE_KYC: "/account/kyc",
   },
 };
 

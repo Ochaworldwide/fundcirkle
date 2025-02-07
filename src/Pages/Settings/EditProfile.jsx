@@ -1,37 +1,99 @@
-// import React from "react";
+// import React, { useState , ChangeEvent} from "react";
 // import { Link } from "react-router-dom";
 // import axiosInstance from "../../service";
 // import { ROUTES } from "../../constants/routes";
+// import { FaUpload } from "react-icons/fa";
+// import { toast } from "react-toastify";
 
 // const EditProfile = () => {
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
+//   const [fullName, setFullName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [phone, setPhone] = useState("");
+//   const [dob, setDob] = useState("");
+//   const [address, setAddress] = useState("");
+//   const [occupation, setOccupation] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [image, setImage] = useState(null);
+  
 
-//     const payload = {
-//       full_name: "Shawn Mendes",
-//       email: "khrisx01@gmail.com",
-//       phone: "0201234567",
-//       dob: "2001-05-24",
-//       address: "16 Columbus Street",
-//       occupation: "Developer",
-//     };
-
-//     axiosInstance
-//       .post(ROUTES.ACCOUNT.UPDATE_PROFILE_INFO, payload)
-//       .then((response) => {
-//         if (response.data.success) {
-//           toast.success(response.data.message);
-//           closeModal();
-//         }
-//       })
-//       .catch((error) => {
-//         toast.error(error?.response?.data?.message);
-//       })
-//       .finally(() => {
-//         setLoading(false);
-//       });
+//   const handleImageChange = (event) => {
+//     const file = event.target.files[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onload = (e) => {
+//         setImage(e.target.result);
+//       };
+//       reader.readAsDataURL(file);
+//     }
 //   };
+
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   setLoading(true);
+
+//   let imageUrl = "";
+
+//   // Step 1: Upload the Image (if a new one is selected)
+//   if (image) {
+//     const imageFormData = new FormData();
+//     imageFormData.append("file", image);
+
+//     try {
+//       const imageResponse = await axiosInstance.post(
+//         ROUTES.ACCOUNT.UPDATE_PROFILE_PHOTO,
+//         imageFormData,
+//         {
+//           headers: {
+//             "Content-Type": "multipart/form-data",
+//           },
+//         }
+//       );
+
+//       if (imageResponse.data.success) {
+//         imageUrl = imageResponse.data.image_url; // Ensure this matches API response
+//       } else {
+//         throw new Error("Image upload failed");
+//       }
+//     } catch (error) {
+//       toast.error("Image upload failed 2 !");
+//       console.log(error)
+//       setLoading(false);
+//       return;
+//     }
+//   }
+
+//   // Step 2: Send Profile Data (without image file, but with uploaded image URL if available)
+//   // const profilePayload = {
+//   //   full_name: fullName,
+//   //   email: email,
+//   //   phone: phone,
+//   //   dob: dob,
+//   //   address: address,
+//   //   occupation: occupation,
+//   // };
+
+//   // if (imageUrl) {
+//   //   profilePayload.profile_photo = imageUrl; // Add image URL to profile update
+//   // }
+
+//   // try {
+//   //   const response = await axiosInstance.post(
+//   //     ROUTES.ACCOUNT.UPDATE_PROFILE_INFO,
+//   //     profilePayload
+//   //   );
+
+//   //   if (response.data.success) {
+//   //     toast.success(response.data.message);
+//   //   }
+//   // } catch (error) {
+//   //   toast.error(error?.response?.data?.message);
+//   // } finally {
+//   //   setLoading(false);
+//   // }
+// };
+
+
 
 //   return (
 //     <div>
@@ -46,86 +108,115 @@
 //         </div>
 //       </div>
 
-//       <div className="w-32 h-32 rounded-full border-2 mx-auto relative -mt-20 mb-3 ">
-//         <img
-//           src="/images/person4.svg"
-//           alt=""
-//           srcset=""
-//           className="w-full h-full"
-//         />
-//         <img
-//           src="/images/edit.svg"
-//           alt=""
-//           srcset=""
-//           className="absolute right-[10%] top-[75%] "
-//         />
+//       <div className="w-32 h-32 rounded-full border-2 mx-auto flex items-center justify-center relative -mt-20 mb-3 ">
+//         <label className="flex w-full h-full items-center absolute justify-center border-2  rounded-full cursor-pointer overflow-hidden transition-all">
+//           {image ? (
+//             <img
+//               src={image}
+//               alt="Uploaded"
+//               className="w-full h-full object-cover rounded-full "
+//             />
+//           ) : (
+//             <div className="flex flex-col items-center text-gray-500  w-full">
+//               <FaUpload />
+//             </div>
+//           )}
+//           <input
+//             type="file"
+//             accept=".jpg,.jpeg,.png,.pdf"
+//             className="hidden"
+//             onChange={handleImageChange}
+//           />
+//         </label>
 //       </div>
 
-//       <form onSubmit={handleSubmit}>
-//         <div className="w-full p-5 ">
-//           <div className="mb-5">
-//             <p className="mb-2 text-[12px]">Name</p>
-//             <input
-//               type="text"
-//               placeholder="Bhaavik Jeff Arhaan"
-//               className="border rounded-xl p-5 text-[12px] outline-none text-[#00000080] w-full"
-//             />
-//           </div>
-//           <div className="flex justify-between w-full">
-//             <div className="mb-5 w-[48%]">
-//               <p className="mb-2 text-[12px]">Email</p>
-//               <input
-//                 type="text"
-//                 placeholder="bhaavik.arhaan@xyz.com"
-//                 className="border rounded-xl p-5 text-[12px] w-full outline-none text-[#00000080]"
-//               />
-//             </div>
+//       <form onSubmit={handleSubmit} className="w-full p-5">
+//         <div className="mb-5">
+//           <p className="mb-2 text-[12px]">Name</p>
+//           <input
+//             type="text"
+//             placeholder="Enter your name"
+//             value={fullName}
+//             disabled
+//             onChange={(e) => setFullName(e.target.value)}
+//             className="border outline-none rounded-xl p-5 text-[12px] w-full"
+//           />
+//         </div>
 
-//             <div className="mb-5 w-[48%]">
-//               <p className="mb-2 text-[12px]">Phone number</p>
-//               <input
-//                 type="text"
-//                 placeholder="91 787 847 9083 948"
-//                 className="border rounded-xl p-5 text-[12px] w-full outline-none text-[#00000080]"
-//               />
-//             </div>
-//           </div>
-
+//         <div className="flex w-full space-x-1">
 //           <div className="mb-5">
-//             <p className="mb-2 text-[12px]">Date of Birth</p>
+//             <p className="mb-2 text-[12px]">Email</p>
 //             <input
-//               type="text"
-//               placeholder="12th of May, 1987"
-//               className="border rounded-xl p-5 text-[12px] outline-none text-[#00000080] w-full"
+//               type="email"
+//               placeholder="Enter your email address"
+//               value={email}
+//               disabled
+//               onChange={(e) => setEmail(e.target.value)}
+//               className="border outline-none rounded-xl p-5 text-[12px] w-full"
 //             />
 //           </div>
 
 //           <div className="mb-5">
-//             <p className="mb-2 text-[12px]">Home Address</p>
+//             <p className="mb-2 text-[12px]">Phone</p>
 //             <input
 //               type="text"
-//               placeholder="14, Street Road, New Town, Mumbai, India"
-//               className="border rounded-xl p-5 text-[12px] outline-none text-[#00000080] w-full"
+//               placeholder="Enter your phone number"
+//               value={phone}
+//               disabled
+//               onChange={(e) => setPhone(e.target.value)}
+//               className="border outline-none rounded-xl p-5 text-[12px] w-full"
 //             />
 //           </div>
+//         </div>
 
-//           <div className="mb-5">
-//             <p className="mb-2 text-[12px]">Occupation</p>
-//             <input
-//               type="text"
-//               placeholder="Solopreneur"
-//               className="border rounded-xl p-5 text-[12px] outline-none text-[#00000080] w-full"
-//             />
-//           </div>
+//         <div className="mb-5">
+//           <p className="mb-2 text-[12px]">Date of Birth</p>
+//           <input
+//             type="date"
+//             value={dob}
+//             disabled
+//             onChange={(e) => setDob(e.target.value)}
+//             className="border outline-none rounded-xl p-5 text-[12px] w-full"
+//           />
+//         </div>
 
-//           <div className="flex justify-between w-[80%] mx-auto">
-//             <button className=" border py-3 px-6 rounded-md bg-[#00943F] text-[14px] font-[700] text-white">
-//               Save Changes
-//             </button>
-//             <button className=" border py-3 px-6 rounded-md text-[14px] font-[700] text-black">
-//               Cancel
-//             </button>
-//           </div>
+//         <div className="mb-5">
+//           <p className="mb-2 text-[12px]">Address</p>
+//           <input
+//             type="text"
+//             placeholder="Enter your Address"
+//             value={address}
+//             disabled
+//             onChange={(e) => setAddress(e.target.value)}
+//             className="border outline-none rounded-xl p-5 text-[12px] w-full"
+//           />
+//         </div>
+
+//         <div className="mb-5">
+//           <p className="mb-2 text-[12px]">Occupation</p>
+//           <input
+//             type="text"
+//             placeholder="Enter your occupation"
+//             value={occupation}
+//             disabled
+//             onChange={(e) => setOccupation(e.target.value)}
+//             className="border outline-none rounded-xl p-5 text-[12px] w-full"
+//           />
+//         </div>
+
+//         <div className="flex justify-between w-[80%] mx-auto">
+//           <button
+//             type="submit"
+//             className="border py-3 px-6 rounded-md bg-[#00943F] text-[14px] font-[700] text-white"
+//           >
+//             {loading ? "Saving..." : "Save Changes"}
+//           </button>
+//           <button
+//             type="button"
+//             className="border py-3 px-6 rounded-md text-[14px] font-[700] text-black"
+//           >
+//             Cancel
+//           </button>
 //         </div>
 //       </form>
 //     </div>
@@ -134,10 +225,15 @@
 
 // export default EditProfile;
 
-import React, { useState , ChangeEvent} from "react";
+
+
+
+import React, { useState, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
+import { FaUpload } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const EditProfile = () => {
   const [fullName, setFullName] = useState("");
@@ -147,45 +243,85 @@ const EditProfile = () => {
   const [address, setAddress] = useState("");
   const [occupation, setOccupation] = useState("");
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState("/images/person4.svg");
+  const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null); // New state to hold the file object
 
-   const handleImageChange = (event) => {
-     const file = event.target.files?.[0];
-     if (file) {
-       const reader = new FileReader();
-       reader.onload = () => setImage(reader.result);
-       reader.readAsDataURL(file);
-     }
-   };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImage(e.target.result); // For displaying the image preview
+      };
+      reader.readAsDataURL(file);
+      setImageFile(file); // Store the file object
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const payload = {
-      full_name: fullName,
-      email: email,
-      phone: phone,
-      dob: dob,
-      address: address,
-      occupation: occupation,
-    };
+    let imageUrl = "";
 
-   
+    // Step 1: Upload the Image (if a new one is selected)
+    if (imageFile) {
+      const imageFormData = new FormData();
+      imageFormData.append("file", imageFile); // Append the file object
 
-    axiosInstance
-      .post(ROUTES.ACCOUNT.UPDATE_PROFILE_INFO, payload)
-      .then((response) => {
-        if (response.data.success) {
-          toast.success(response.data.message);
+      try {
+        const imageResponse = await axiosInstance.post(
+          ROUTES.ACCOUNT.UPDATE_PROFILE_PHOTO,
+          imageFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        if (imageResponse.data.success) {
+          imageUrl = imageResponse.data.image_url; // Ensure this matches API response
+          setLoading(false);
+        } else {
+          throw new Error("Image upload failed");
         }
-      })
-      .catch((error) => {
-        toast.error(error?.response?.data?.message);
-      })
-      .finally(() => {
+      } catch (error) {
+        toast.error("Image upload failed!");
+        console.log(error);
         setLoading(false);
-      });
+        return;
+      }
+    }
+
+    // Step 2: Send Profile Data (without image file, but with uploaded image URL if available)
+    // const profilePayload = {
+    //   full_name: fullName,
+    //   email: email,
+    //   phone: phone,
+    //   dob: dob,
+    //   address: address,
+    //   occupation: occupation,
+    // };
+
+    // if (imageUrl) {
+    //   profilePayload.profile_photo = imageUrl; // Add image URL to profile update
+    // }
+
+    // try {
+    //   const response = await axiosInstance.post(
+    //     ROUTES.ACCOUNT.UPDATE_PROFILE_INFO,
+    //     profilePayload
+    //   );
+
+    //   if (response.data.success) {
+    //     toast.success(response.data.message);
+    //   }
+    // } catch (error) {
+    //   toast.error(error?.response?.data?.message);
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
@@ -201,29 +337,24 @@ const EditProfile = () => {
         </div>
       </div>
 
-      <div className="w-32 h-32 rounded-full border-2 mx-auto relative -mt-20 mb-3 ">
-        <label className="relative cursor-pointer">
-          <img
-            src={image}
-            alt=""
-            srcset=""
-            className="w-full h-full rounded-full"
-            onClick={() => document.querySelector("input[type = 'file']").click()}
-          />
-
-          {/* <img
-            src="/images/edit.svg"
-            alt=""
-            srcset=""
-            className="absolute right-[10%] top-[75%] "
-          /> */}
+      <div className="w-32 h-32 rounded-full border-2 mx-auto flex items-center justify-center relative -mt-20 mb-3 ">
+        <label className="flex w-full h-full items-center absolute justify-center border-2  rounded-full cursor-pointer overflow-hidden transition-all">
+          {image ? (
+            <img
+              src={image}
+              alt="Uploaded"
+              className="w-full h-full object-cover rounded-full "
+            />
+          ) : (
+            <div className="flex flex-col items-center text-gray-500  w-full">
+              <FaUpload />
+            </div>
+          )}
           <input
             type="file"
-            accept="image/*"
+            accept=".jpg,.jpeg,.png,.pdf"
             className="hidden"
             onChange={handleImageChange}
-            name=""
-            id=""
           />
         </label>
       </div>
@@ -235,6 +366,7 @@ const EditProfile = () => {
             type="text"
             placeholder="Enter your name"
             value={fullName}
+            disabled
             onChange={(e) => setFullName(e.target.value)}
             className="border outline-none rounded-xl p-5 text-[12px] w-full"
           />
@@ -247,6 +379,7 @@ const EditProfile = () => {
               type="email"
               placeholder="Enter your email address"
               value={email}
+              disabled
               onChange={(e) => setEmail(e.target.value)}
               className="border outline-none rounded-xl p-5 text-[12px] w-full"
             />
@@ -258,6 +391,7 @@ const EditProfile = () => {
               type="text"
               placeholder="Enter your phone number"
               value={phone}
+              disabled
               onChange={(e) => setPhone(e.target.value)}
               className="border outline-none rounded-xl p-5 text-[12px] w-full"
             />
@@ -269,6 +403,7 @@ const EditProfile = () => {
           <input
             type="date"
             value={dob}
+            disabled
             onChange={(e) => setDob(e.target.value)}
             className="border outline-none rounded-xl p-5 text-[12px] w-full"
           />
@@ -280,6 +415,7 @@ const EditProfile = () => {
             type="text"
             placeholder="Enter your Address"
             value={address}
+            disabled
             onChange={(e) => setAddress(e.target.value)}
             className="border outline-none rounded-xl p-5 text-[12px] w-full"
           />
@@ -291,6 +427,7 @@ const EditProfile = () => {
             type="text"
             placeholder="Enter your occupation"
             value={occupation}
+            disabled
             onChange={(e) => setOccupation(e.target.value)}
             className="border outline-none rounded-xl p-5 text-[12px] w-full"
           />
@@ -316,3 +453,4 @@ const EditProfile = () => {
 };
 
 export default EditProfile;
+

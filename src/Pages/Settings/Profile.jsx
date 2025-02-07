@@ -109,6 +109,7 @@ const Profile = () => {
           ROUTES.ACCOUNT.GET_USER_ACCOUNT
         ); // Adjust endpoint as needed
         setProfile(response.data.data);
+        console.log(response.data.data)
       } catch (err) {
         // setError("Failed to load profile data.");
         toast.error(err.response?.data?.message || "An error occurred"); // Use err instead of response
@@ -120,13 +121,7 @@ const Profile = () => {
     fetchProfile();
   }, []);
 
-  if (loading)
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white">
-        <FadeLoader color="#00943F" /> {/* Change color here */}
-      </div>
-    );
-  // if (error) return <p className="text-center text-red-500">{error}</p>;
+
 
   return (
     <div>
