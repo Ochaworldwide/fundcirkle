@@ -48,6 +48,7 @@ function SignIn() {
           const token = response.data.data.token;
           toast.success("Login successful");
           localStorage.setItem("token", token);
+          localStorage.setItem('user',response.data.data.user)
           navigate("/home");
         }
       })

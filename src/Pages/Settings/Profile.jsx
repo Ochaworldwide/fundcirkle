@@ -138,7 +138,7 @@ const Profile = () => {
 
       <div className="w-32 h-32 rounded-full border-2 mx-auto relative -mt-20 mb-3">
         <img
-          src={profile?.profileImage || "/images/person4.svg"}
+          src={profile?.profile_pic || "/images/person4.svg"}
           alt="Profile"
           className="w-full h-full rounded-full"
         />

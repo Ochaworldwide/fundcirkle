@@ -174,6 +174,7 @@ import { motion } from "framer-motion";
 import { useModal } from "../../Component/Cirkles/ModalContext";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
+import { toast } from "react-toastify";
 
 const EditBankInformationModal = () => {
   const { isModalOpen, modalType, closeModal, openModal } = useModal();
@@ -186,6 +187,15 @@ const EditBankInformationModal = () => {
   const [loading, setLoading] = useState(false);
 
   if (!isModalOpen || modalType !== "Edit Bank Information") return null;
+
+
+  const reset = () => {
+    setAccountNumber("");
+    setBankName("");
+    setAccountType("");
+    setIfscCode("");
+    setBranchAddress("");
+  };
 
 
   
@@ -207,7 +217,8 @@ const EditBankInformationModal = () => {
       .then((response) => {
         if (response.data.success) {
           toast.success(response.data.message);
-          closeModal();
+          openModal("Bank Information");
+          reset();
         }
       })
       .catch((error) => {
@@ -231,7 +242,10 @@ const EditBankInformationModal = () => {
           <div className="flex justify-between items-center pb-5 border-b">
             <h2 className="text-sm font-semibold">Your Bank Details</h2>
             <button
-              onClick={() => openModal("Bank Information")}
+              onClick={() => {
+                openModal("Bank Information");
+                reset();
+              }}
               className="text-gray-600 hover:text-gray-800"
             >
               <img src="/images/cancel-square.svg" alt="" />
@@ -312,7 +326,10 @@ const EditBankInformationModal = () => {
               </button>
               <button
                 type="button"
-                onClick={() => openModal("Bank Information")}
+                onClick={() => {
+                  openModal("Bank Information");
+                  reset();
+                }}
                 className="bg-white border text-[10.5px] font-[700] text-black w-[45%] py-4 rounded-md"
               >
                 Cancel

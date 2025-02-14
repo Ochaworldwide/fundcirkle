@@ -6,6 +6,7 @@ import PaymentTable from "../../Component/Payment/PaymentTable";
 import NavigationBar from "../../Component/BottomNav/NavigationBar";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
+import { ROUTES } from "../../constants/routes";
 
 const Payment = () => {
 
@@ -16,21 +17,46 @@ const Payment = () => {
   useEffect(() => {
   
     const fetchInitialData = async () => {
+      // try {
+      //   // Fetch payment overview
+      //   const overview = await axiosInstance.get("/payment/overview");
+      //   setDue(overview.data.total_due)
+      //   setValidations(overview.data.total_validations);
+      //   setReceive(overview.data.to_receive);
+
+      // } catch (error) {
+      //   toast.error("Error fetching initial data:", error);
+      // }
+
       try {
         // Fetch payment overview
         const overview = await axiosInstance.get("/payment/overview");
-        setDue(overview.data.total_due)
+        setDue(overview.data.total_due);
         setValidations(overview.data.total_validations);
         setReceive(overview.data.to_receive);
 
+        // Fetch account data
+        const accountResponse = await axiosInstance.get(
+          ROUTES.ACCOUNT.GET_USER_ACCOUNT
+        );
+
+        // Fetch user cirkles
+        const accountResponse2 = await axiosInstance.get(
+          ROUTES.CIRKLE.GET_USER_CIRKLES
+        );accountResponse; 
+        console.log(accountResponse.data);
+        // setAccountData();
       } catch (error) {
         toast.error("Error fetching initial data:", error);
       }
+
     };
 
     fetchInitialData();
 
   }, []); // Ensure modalType is also included in the dependency array
+
+  
   return (
     <div className="mb-20">
       {/* heading */}
