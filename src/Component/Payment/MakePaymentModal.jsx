@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 const MakePaymentModal = () => {
   const navigate = useNavigate();
-  const { isModalOpen, closeModal, modalType } = useModal();
+  const { isModalOpen, closeModal, modalType, modalData } = useModal();
 
+  console.log('payment modal', modalData);
   const handleSubmit = () =>{
     navigate("/paymentsuccessful")
     closeModal();
@@ -77,7 +78,7 @@ const MakePaymentModal = () => {
 
             {/* Payment Form */}
 
-            <PaymentForm handler={handleSubmit}/>
+            <PaymentForm cirkle={modalData} handler={handleSubmit}/>
           </div>
 
           {/* Submit Button */}

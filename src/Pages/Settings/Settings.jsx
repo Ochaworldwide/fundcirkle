@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavigationBar from "../../Component/BottomNav/NavigationBar";
 import { useModal } from "../../Component/Cirkles/ModalContext";
 import RoastGenerator from "../../Component/Toast/Toast";
@@ -25,6 +25,7 @@ const Settings = () => {
   };
 
   const { openModal } = useModal();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -55,7 +56,10 @@ const Settings = () => {
         {/* Privacy and Security */}
         <h1 className="mb-3 text-[14px] ml-1">Privacy and Security</h1>
         <div className="bg-[#E5F7FF] px-2 mb-7 border border-[#00000026] rounded-md">
-          <div className="flex items-center border-b border-[#00000026]  p-5">
+          <div
+            className="flex items-center border-b border-[#00000026]  p-5"
+            onClick={() => navigate("/startkyc")}
+          >
             <h1 className="text-[14px]">KYC Verification</h1>
 
             <img

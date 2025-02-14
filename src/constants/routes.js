@@ -16,9 +16,11 @@ export const ROUTES = {
     GET_USER_CIRKLES: "/cirkles",
     GET_USER_INVITES: "/invites",
     GET_RECOMMENDED_CIRKLES: "/recommended-cirkles",
+    GET_CIRCLES_WITH_ACTIVITY: "/payment/cirkles-activity",
     GET_CIRCLE_REQUEST: "/requests/cirkles",
     SEARCH_CIRKLES: "/search/cirkles",
 
+    SUBMIT_CIRCLE_PAYMENT: (id) => `cirkles/${id}/pay`,
     GET_CIRCLE: (id) => `/cirkles/${id}`,
     UPDATE_CIRCLE_CATEGORY: (id) => `/cirkle-categories/${id}`,
   },

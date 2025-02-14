@@ -5,29 +5,16 @@ import Admin from "./Admin";
 import ReceivingMember from "./RecievingMember";
 import { useModal } from "../Cirkles/ModalContext";
 import PaymentFilterModal from "./PaymentFilterModal";
+import ActivityTabs from "./ActivityTabs";
 
 
 const ManagePaymentCirkle = () => {
 
 
-     const { isModalOpen, modalType, closeModal, openModal } = useModal();
+  const { isModalOpen, modalType, closeModal, openModal } = useModal();
     
   const [selectedFilter, setSelectedFilter] = useState("All");
 
-  const renderContent = () => {
-    switch (selectedFilter) {
-      case "All":
-        return (
-          <All />
-        );
-      case "Admin":
-        return <Admin />;
-      case "Receiving Member":
-        return <ReceivingMember />
-      default:
-        return <div>No content available</div>;
-    }
-  };
 
   return (
     <div className="py-6 px-1 ">
@@ -82,7 +69,9 @@ const ManagePaymentCirkle = () => {
       </div>
 
       {/* Render Content Based on Selected Filter */}
-      <div>{renderContent()}</div>
+      <div>
+        <ActivityTabs type={selectedFilter}/>
+      </div>
     </div>
   );
 };
