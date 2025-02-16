@@ -78,13 +78,13 @@ function MyCirkles() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-[350px]">
-        <FadeLoader size={50} color="#36D7B7" />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center items-center h-[350px]">
+  //       <FadeLoader size={50} color="#36D7B7" />
+  //     </div>
+  //   );
+  // }
 
   if (!data || data.length === 0) {
     return <NoActiveCirkle />;

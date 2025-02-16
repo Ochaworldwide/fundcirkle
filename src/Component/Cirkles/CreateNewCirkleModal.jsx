@@ -487,9 +487,9 @@ const CreateNewCirkleModal = () => {
               </div>
 
               <div className=" border-y flex justify-between w-[90%] mx-auto items-center py-3">
-                <div className="p-5 text-[12px]">Preferred Local Location</div>
+                <div className="p-5 text-[12px]">Select State</div>
 
-                <div className="w-[40%]">
+                <div className="w-[60%]">
                   <select
                     id=""
                     value={state}
@@ -497,7 +497,7 @@ const CreateNewCirkleModal = () => {
                       const selectedValue = e.target.value; // Get the selected option's value
                       setState(selectedValue); // Update the state
                     }}
-                    className="w-full border px-3 py-4 rounded-lg bg-white text-[#00000080] outline-[#00943F]"
+                    className="w-full border px-3 py-3 rounded-lg bg-white text-[#00000080] outline-[#00943F]"
                   >
                     {states &&
                       states.map((option, index) => (
@@ -509,13 +509,13 @@ const CreateNewCirkleModal = () => {
                 </div>
               </div>
 
-              <div className=" mb-2 flex justify-between w-[90%] mx-auto">
+              {/* <div className=" mb-2 flex justify-between w-[90%] mx-auto">
                 <div className="p-5 text-[12px]">Members</div>
 
                 <div className="p-4 border-l text-[12px] ">
                   Anyone with the link can join
                 </div>
-              </div>
+              </div> */}
 
               <div className="w-[90%] mx-auto mb-5 border-y  py-4">
                 <div className=" flex justify-between mb-3">
@@ -658,7 +658,6 @@ const CreateNewCirkleModal = () => {
                   className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition"
                   onClick={() => {
                     handleSubmit();
-                    
                   }}
                 >
                   Confirm and Create Cirkle
