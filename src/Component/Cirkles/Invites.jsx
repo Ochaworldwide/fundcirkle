@@ -48,32 +48,7 @@ function Invites() {
 
 
     const handleSubmit = (group) => {
-      // Validate required fields
-      // if (
-      //   !name ||
-      //   !description ||
-      //   !category ||
-      //   !contribution_amount ||
-      //   !frequency ||
-      //   !privacy
-      // ) {
-      //   console.log("Some required fields are missing!");
-      //   return;
-      // }
 
-      // const payload = {
-      //   name: name,
-      //   members: emails,
-      //   max_members: members,
-      //   description: description,
-      //   category: selectedCategoryId,
-      //   contribution_amount: contribution_amount,
-      //   contribution_frequency: frequency,
-      //   contribution_day: dueDate,
-      //   privacy: privacy,
-      //   state: state,
-      //   currency: "INR",
-      // };
 
       console.log("Clicked Group ID:", group.id);
 
@@ -125,21 +100,6 @@ function Invites() {
     };
 
 
-  // const buttons = (
-  //   <div className="flex gap-2">
-  //     <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold"
-  //     onClick={() => {
-  //       handleSubmit();
-  //     }}>
-  //       Accept
-  //     </button>
-  //     <button className="border border-gray-400 text-gray-600 px-3 py-1 rounded-md text-xs font-semibold">
-  //       Decline
-  //     </button>
-  //   </div>
-  // );
-
-
   const buttons = (group) => (
     <div className="flex gap-2">
       <button
@@ -160,11 +120,7 @@ function Invites() {
   return (
     <div>
       <div className="p-1 overflow-y-scroll">
-        {loading ? (
-          <div className="flex justify-center items-center h-[350px]">
-            <FadeLoader color="#36D7B7" />
-          </div>
-        ) : groups.length > 0 ? (
+        { groups.length > 0 ? (
           groups.map((group, index) => (
             <InviteCard key={group.id} group={group} buttons={buttons(group)} />
           ))
