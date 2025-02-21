@@ -71,7 +71,7 @@ const IdentityProof = () => {
             official document.
           </p>
 
-          <div className="border bg-[#FBC8CE1A] p-5 w-full rounded-lg mb-5">
+          <div className="border bg-[#FBC8CE1A] p-5 w-full rounded-lg mb-5 border-[#00000066]">
             <p className="mb-5 text-[18px]">Select ID Type:</p>
 
             {proofOptions.map((idType, index) => (

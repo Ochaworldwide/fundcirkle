@@ -75,7 +75,7 @@ const AddressProof = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="w-full">
-          <div className="border bg-[#FBC8CE1A] p-5 w-full rounded-lg mb-5">
+          <div className="border bg-[#FBC8CE1A] p-5 w-full border-[#00000066] rounded-lg mb-5">
             <p className="mb-5 text-[18px]">Select Address Proof Type:</p>
 
             {proofOptions.map((option, index) => (

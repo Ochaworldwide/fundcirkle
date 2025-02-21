@@ -116,7 +116,7 @@ const Authentication = () => {
       >
         <h1 className="font-bold text-2xl mb-5 poppins ">OTP Authentication</h1>
         <p>An Authentication code has been sent to the email below</p>
-        <p className="text-center my-10 font-bold text-xl tracking-widest">
+        <p className="text-center my-10 font-normal text-[16px]">
           {email}
         </p>
 

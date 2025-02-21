@@ -20,7 +20,7 @@ function NewCirkle() {
           Build Your Financial Circle Today
         </h1>
 
-        <p className="text-center text-[#616161] text-[12px] mb-3">
+        <p className="text-center text-[#616161] text-[14px] mb-3">
           Join or create a Cirkle to easily pool funds with trusted groups,
           helping you reach your financial goals faster. Enjoy flexible
           contributions, transparent payouts, and a supportive community.

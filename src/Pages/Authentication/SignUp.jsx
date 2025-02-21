@@ -106,7 +106,7 @@ function SignUp() {
             value={formData.fullName}
             onChange={handleChange}
             name="fullName"
-            className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
+            className="w-full border border-[#00000066] px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
             placeholder="Full Name "
           />
 
@@ -115,18 +115,9 @@ function SignUp() {
             value={formData.email}
             onChange={handleChange}
             name="email"
-            className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
+            className="w-full border border-[#00000066] px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
             placeholder="Email "
           />
-
-          {/* <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
-            placeholder="Password"
-          /> */}
 
           <div className="relative w-full">
             <input
@@ -134,7 +125,7 @@ function SignUp() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
+              className="w-full border border-[#00000066] px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
               placeholder="Password"
             />
             <span
@@ -151,7 +142,7 @@ function SignUp() {
               value={formData.confirmPassword}
               onChange={handleChange}
               name="confirmPassword"
-              className="w-full border px-3 py-5 rounded-lg mb-10 outline-[#00943F] text-[#00000080]"
+              className="w-full border border-[#00000066]  px-3 py-5 rounded-lg mb-10 outline-[#00943F] text-[#00000080]"
               placeholder="Confirm Password"
             />
 

@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NavigationBar from "../../Component/BottomNav/NavigationBar";
 import { useModal } from "../../Component/Cirkles/ModalContext";
 import RoastGenerator from "../../Component/Toast/Toast";
 import MessageToast from "../../Component/Toast/Toast";
 import Toast from "../../Component/Toast/Toast";
+import axiosInstance from "../../service";
+import { UserContext } from "../../contexts/userDetails";
 
 const Settings = () => {
-  // Manage the states for all toggle buttons individually
   const [toggles, setToggles] = useState({
     twoFactorAuth: false,
     paymentReminders: false,
@@ -16,16 +17,49 @@ const Settings = () => {
     systemAnnouncements: false,
   });
 
-  // Function to toggle the state for a specific button
-  const handleToggle = (key) => {
-    setToggles((prevToggles) => ({
-      ...prevToggles,
-      [key]: !prevToggles[key],
-    }));
-  };
+  const { user, refetchUser } = useContext(UserContext);
+  console.log(user)
 
   const { openModal } = useModal();
   const navigate = useNavigate();
+
+  const handleToggle = (key) => {
+    const updatedToggles = {
+      ...toggles,
+      [key]: !toggles[key],
+    };
+    setToggles(updatedToggles);
+
+    // Prepare API request payload
+    const requestData = {
+      "2fa": updatedToggles.twoFactorAuth,
+      notifications: {
+        payment_reminders: updatedToggles.paymentReminders,
+        cirkle_updates: updatedToggles.cirkleUpdates,
+        invitations: updatedToggles.invitations,
+        system_announcements: updatedToggles.systemAnnouncements,
+      },
+    };
+
+    // Send API request to update settings
+    axiosInstance
+      .post("/account/settings", requestData)
+      .then(() => {
+        console.log("Settings updated successfully");
+      })
+      .catch((error) => {
+        console.error("Error updating settings:", error);
+      });
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token"); // Remove the authentication token
+    location.reload(); // Refresh the page
+  }
+
+  useEffect(() => {
+    refetchUser;
+  }, []);
 
   return (
     <div>
@@ -35,12 +69,19 @@ const Settings = () => {
       </div>
       <div className="p-3 mb-28 ">
         <Link to="/profile">
-          <div className="flex items-center bg-[#E5F7FF] border rounded-md p-3 mb-7">
-            <img src="/images/person4.svg" alt="" srcset="" className="h-16" />
-            <div className="ml-4">
-              <h1 className="text-[18px]">Bhaavik Arhaan</h1>
-              <p className="text-[#141B3480] text-[10.5px]">
-                bhaavik.arhaan@xyz.com
+          <div className="flex items-center bg-[#E5F7FF] border border-[#00000066] rounded-md p-3 mb-7">
+            <div className="w-[80px] flex items-center justify-center rounded-full h-[80px] overflow-hidden">
+              <img
+                src={user?.profile_pic}
+                alt=""
+                className="w-full h-full object-cover "
+              />
+            </div>
+
+            <div className="ml-4 w-[200px]">
+              <h1 className="text-[18px] truncate">{user?.full_name}</h1>
+              <p className="text-[#141B3480] text-[12px] truncate">
+                {user?.email}
               </p>
             </div>
 
@@ -55,9 +96,9 @@ const Settings = () => {
 
         {/* Privacy and Security */}
         <h1 className="mb-3 text-[14px] ml-1">Privacy and Security</h1>
-        <div className="bg-[#E5F7FF] px-2 mb-7 border border-[#00000026] rounded-md">
+        <div className="bg-[#E5F7FF] px-2 mb-7 border border-[#00000066] rounded-md">
           <div
-            className="flex items-center border-b border-[#00000026]  p-5"
+            className="flex items-center border-b border-[#00000066]  p-5"
             onClick={() => navigate("/startkyc")}
           >
             <h1 className="text-[14px]">KYC Verification</h1>
@@ -71,7 +112,7 @@ const Settings = () => {
           </div>
 
           <div
-            className="flex items-center  border-b border-[#00000026] p-5"
+            className="flex items-center  border-b border-[#00000066] p-5"
             onClick={() => openModal("Bank Information")}
           >
             <div>
@@ -90,7 +131,7 @@ const Settings = () => {
           </div>
 
           <Link to="/updatepassword">
-            <div className="flex items-center  border-b border-[#00000026]  p-5">
+            <div className="flex items-center  border-b border-[#00000066]  p-5">
               <div>
                 <h1 className="text-[14px] mb-2">Change Password</h1>
                 <p className="text-[10.5px] text-[#141B3480]">
@@ -134,102 +175,54 @@ const Settings = () => {
 
         {/* Notification Preferences */}
         <h1 className="mb-3 text-[14px] ml-1">Notification Preferences</h1>
-        <div className="bg-[#E5F7FF] border border-[#00000026] rounded-md  px-2 mb-7">
-          {/* Payment Reminders */}
-          <div className="flex items-center border-b border-[#00000026] px-5 pt-5 pb-7">
-            <div>
-              <h1 className="text-[14px] mb-2">Payment Reminders</h1>
-              <p className="text-[10.5px] text-[#141B3480]">
-                Receive reminders for upcoming payments
-              </p>
-            </div>
-            <button
-              className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                toggles.paymentReminders ? "bg-[#00AAFF]" : "bg-gray-300"
-              }`}
-              onClick={() => handleToggle("paymentReminders")}
-            >
-              <div
-                className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  toggles.paymentReminders ? "translate-x-5" : "translate-x-0"
-                }`}
-              ></div>
-            </button>
-          </div>
+        <div className="bg-[#E5F7FF] border border-[#00000066] rounded-md px-2 mb-7">
+          {[
+            "PaymentReminders",
+            "CirkleUpdates",
+            "Invitations",
+            "SystemAnnouncements",
+          ].map((key) => {
+            const descriptions = {
+              PaymentReminders: "Get notified about upcoming payments.",
+              CirkleUpdates: "Stay updated with the latest from Cirkle.",
+              Invitations: "Manage invitations to events and groups.",
+              SystemAnnouncements: "Important system-wide messages and alerts.",
+            };
 
-          {/* Cirkle Updates */}
-          <div className="flex items-center border-b border-[#00000026] px-5 pt-5 pb-7">
-            <div>
-              <h1 className="text-[14px] mb-2">Cirkle Updates</h1>
-              <p className="text-[10.5px] text-[#141B3480]">
-                Get updates on changes in your Cirkles
-              </p>
-            </div>
-            <button
-              className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                toggles.cirkleUpdates ? "bg-[#00AAFF]" : "bg-gray-300"
-              }`}
-              onClick={() => handleToggle("cirkleUpdates")}
-            >
+            return (
               <div
-                className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  toggles.cirkleUpdates ? "translate-x-5" : "translate-x-0"
-                }`}
-              ></div>
-            </button>
-          </div>
-
-          {/* Invitations */}
-          <div className="flex items-center border-b border-[#00000026] px-5 pt-5 pb-7">
-            <div>
-              <h1 className="text-[14px] mb-2">Invitations</h1>
-              <p className="text-[10.5px] text-[#141B3480]">
-                Receive notifications for pending invitations
-              </p>
-            </div>
-            <button
-              className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                toggles.invitations ? "bg-[#00AAFF]" : "bg-gray-300"
-              }`}
-              onClick={() => handleToggle("invitations")}
-            >
-              <div
-                className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  toggles.invitations ? "translate-x-5" : "translate-x-0"
-                }`}
-              ></div>
-            </button>
-          </div>
-
-          {/* System Announcements */}
-          <div className="flex items-center px-5 pt-5 pb-7">
-            <div>
-              <h1 className="text-[14px] mb-2">System Announcements</h1>
-              <p className="text-[10.5px] text-[#141B3480]">
-                Stay updated with platform news and updates
-              </p>
-            </div>
-            <button
-              className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
-                toggles.systemAnnouncements ? "bg-[#00AAFF]" : "bg-gray-300"
-              }`}
-              onClick={() => handleToggle("systemAnnouncements")}
-            >
-              <div
-                className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
-                  toggles.systemAnnouncements
-                    ? "translate-x-5"
-                    : "translate-x-0"
-                }`}
-              ></div>
-            </button>
-          </div>
+                key={key}
+                className="flex items-center border-b border-[#00000066] px-5 pt-5 pb-7"
+              >
+                <div>
+                  <h1 className="text-[14px] mb-2">
+                    {key.replace(/([A-Z])/g, " $1").trim()}
+                  </h1>
+                  <p className="text-[10.5px] font-medium text-[#141B3480]">
+                    {descriptions[key] || "Toggle notifications"}
+                  </p>
+                </div>
+                <button
+                  className={`w-10 h-5 rounded-full flex items-center px-1 transition duration-300 ml-auto ${
+                    toggles[key] ? "bg-[#00AAFF]" : "bg-gray-300"
+                  }`}
+                  onClick={() => handleToggle(key)}
+                >
+                  <div
+                    className={`w-3 h-3 bg-white rounded-full shadow-md transform transition duration-300 ${
+                      toggles[key] ? "translate-x-5" : "translate-x-0"
+                    }`}
+                  ></div>
+                </button>
+              </div>
+            );
+          })}
         </div>
 
         {/* Help and Support */}
         <h1 className="mb-3 text-[14px] ml-1">Help and Support</h1>
-        <div className="bg-[#E5F7FF] border border-[#00000026] rounded-md px-2 mb-7">
-          <div className="flex items-center  border-b border-[#00000026] p-5">
+        <div className="bg-[#E5F7FF] border border-[#00000066] rounded-md px-2 mb-7">
+          <div className="flex items-center  border-b border-[#00000066] p-5">
             <div>
               <h1 className="text-[14px] mb-2">FAQ</h1>
               <p className="text-[10.5px] text-[#141B3480]">
@@ -245,7 +238,7 @@ const Settings = () => {
             />
           </div>
 
-          <div className="flex items-center  border-b border-[#00000026] p-5">
+          <div className="flex items-center  border-b border-[#00000066] p-5">
             <div>
               <h1 className="text-[14px] mb-2">Contact Support</h1>
               <p className="text-[10.5px] text-[#141B3480]">
@@ -279,8 +272,8 @@ const Settings = () => {
         </div>
 
         {/* General */}
-        <h1 className="mb-3 text-[14px] ml-1">General</h1>
-        <div className="bg-[#E5F7FF] px-2 mb-7 border border-[#00000026] rounded-md">
+        {/* <h1 className="mb-3 text-[14px] ml-1">General</h1>
+        <div className="bg-[#E5F7FF] px-2 mb-7 border border-[#00000066] rounded-md">
           <div className="flex items-center p-5">
             <div>
               <h1 className="text-[14px] mb-2">Language</h1>
@@ -300,12 +293,15 @@ const Settings = () => {
               <img src="/images/arrow-right.svg" alt="" srcset="" />
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Logout */}
         <h1 className="mb-3 text-[14px] ml-1">Logout</h1>
-        <div className="bg-[#E5F7FF] border border-[#00000026] rounded-md px-2 mb-7">
-          <div className="flex items-center  border-b border-[#00000026] p-5">
+        <div
+          className="bg-[#E5F7FF] border border-[#00000066] rounded-md px-2 mb-7"
+          onClick={() => logout()}
+        >
+          <div className="flex items-center  border-[#00000066] p-5">
             <div className="flex items-center space-x-3">
               <img src="/images/logout-03.svg" alt="" srcset="" />
               <div>
@@ -330,3 +326,4 @@ const Settings = () => {
 };
 
 export default Settings;
+

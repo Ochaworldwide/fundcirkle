@@ -10,7 +10,8 @@ import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 
 function Residence() {
-  const [country, setCountry] = useState(null);
+  // const [country, setCountry] = useState(null);
+  const [country, setCountry] = useState("India");
   const [ countries, setCountries] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState("");
   const location = useLocation();
@@ -101,10 +102,25 @@ function Residence() {
           onSubmit={handleFormSubmit}
           className="py-5 flex flex-col justify-center"
         >
-          <select
+          {/* <select
             {...fields[0]}
             id=""
             className="w-full border px-3 py-5 rounded-lg mb-5 bg-white text-[#00000080] outline-[#00943F]"
+          >
+            {countries &&
+              countries.map((option, index) => (
+                <option key={index} value={option.name}>
+                  {option.name}
+                </option>
+              ))}
+          </select> */}
+
+          <select
+            // {...fields[0]}
+            value={country}
+            id=""
+            onChange={(e) => setCountry(e.target.value)}
+            className="w-full border border-[#00000066] px-3 py-5 rounded-lg mb-5 bg-white text-[#00000080] outline-[#00943F]"
           >
             {countries &&
               countries.map((option, index) => (
@@ -117,7 +133,7 @@ function Residence() {
           <input
             type="text"
             {...fields[1]}
-            className="w-full border px-3 py-5 rounded-lg mb-20 outline-none text-[#00000080]"
+            className="w-full border border-[#00000066] px-3 py-5 rounded-lg mb-20 outline-none text-[#00000080]"
             placeholder="Phone Number "
           />
 

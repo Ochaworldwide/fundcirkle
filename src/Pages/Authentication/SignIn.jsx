@@ -86,7 +86,7 @@ function SignIn() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
+            className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] border-[#00000066] text-[#00000080]"
             placeholder="Email "
           />
 
@@ -95,7 +95,7 @@ function SignIn() {
               type={isPasswordVisible ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
+              className="w-full border border-[#00000066] px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
               placeholder="Password"
             />
             <span
