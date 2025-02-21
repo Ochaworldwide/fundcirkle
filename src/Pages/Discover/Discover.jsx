@@ -93,74 +93,71 @@ function Discover() {
     </button>
   );
 
-  // const requestData = [
-  //   {
-  //     name: "Jonathan Lee",
-  //     club: "Hyderabad Teaching Hospital Club",
-  //     location: "Hyderabad",
-  //     activeCircles: 4,
-  //     income: "120K",
-  //     profileImage: "https://via.placeholder.com/50",
-  //     coinIcon: "https://via.placeholder.com/16",
-  //   },
-  //   {
-  //     name: "Sophia Carter",
-  //     club: "New York Medical Association",
-  //     location: "New York",
-  //     activeCircles: 3,
-  //     income: "95K",
-  //     profileImage: "https://via.placeholder.com/50",
-  //     coinIcon: "https://via.placeholder.com/16",
-  //   },
-  //   {
-  //     name: "Sophia Carter",
-  //     club: "New York Medical Association",
-  //     location: "New York",
-  //     activeCircles: 3,
-  //     income: "95K",
-  //     profileImage: "https://via.placeholder.com/50",
-  //     coinIcon: "https://via.placeholder.com/16",
-  //   },
-  //   {
-  //     name: "Sophia Carter",
-  //     club: "New York Medical Association",
-  //     location: "New York",
-  //     activeCircles: 3,
-  //     income: "95K",
-  //     profileImage: "https://via.placeholder.com/50",
-  //     coinIcon: "https://via.placeholder.com/16",
-  //   },
-  // ];
 
-  const handleSearch = async () => {
-    try {
-      setLoading(true);
-      const response = await axiosInstance.get(ROUTES.CIRKLE.SEARCH_CIRKLES, {
-        params: {
-          query,
-          location: appliedFilters.locations,
-          category: appliedFilters.categories,
-          min: 0, 
-          max: 400000000,
-        },
-      });
-      if (response.data.success) {
-        setGroups(response.data.data); // Replace groups with search results
-      } else {
-        toast.error("No results found.");
-      }
-      // setResults(response.data.data);
-      // console.log(response.data.data);
-    } catch (err) {
-      toast.error(err.message);
-    } finally {
-      setLoading(false);
+  // const handleSearch = async () => {
+  //   try {
+  //     setLoading(true);
+
+  //     const response = await axiosInstance.get(ROUTES.CIRKLE.SEARCH_CIRKLES, {
+  //       params: {
+  //         query,
+  //         location: appliedFilters.locations,
+  //         category: appliedFilters.categories,
+  //         min: 0, 
+  //         max: 400000000,
+  //       },
+  //     });
+  //     if (response.data.success) {
+  //       setGroups(response.data.data); // Replace groups with search results
+  //     } else {
+  //       toast.error("No results found.");
+  //     }
+
+  //   } catch (err) {
+  //     toast.error(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // console.log(appliedFilters.locations);
+
+  // console.log(appliedFilters.locations);
+
+const handleSearch = async () => {
+  try {
+    setLoading(true);
+
+    // Construct the params object dynamically
+    const params = {
+      query,
+      ...(appliedFilters?.locations &&
+        appliedFilters.locations.length > 0 && {
+          location: appliedFilters.locations.join(","),
+        }),
+      ...(appliedFilters?.categories && {
+        category: appliedFilters?.categories,
+      }),
+      ...(appliedFilters?.min !== undefined && { min: appliedFilters?.min }),
+      ...(appliedFilters?.max !== undefined && { max: appliedFilters?.max }),
+    };
+
+    const response = await axiosInstance.get(ROUTES.CIRKLE.SEARCH_CIRKLES, {
+      params,
+    });
+
+    if (response.data.success) {
+      setGroups(response.data.data); // Replace groups with search results
+    } else {
+      toast.error("No results found.");
     }
-  };
+  } catch (err) {
+    toast.error(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
-  // console.log(appliedFilters.locations);
-
-  // console.log(appliedFilters.locations);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -184,12 +181,10 @@ function Discover() {
         <p className="text-[22px] font-[600]">Discover</p>
       </div>
 
-
-
       {/* search */}
 
       <div className="flex w-[90%] mx-auto mt-2 justify-between">
-        <div className="flex border py-1 w-[80%] rounded-md px-1 shadow h-fit relative">
+        <div className="flex border border-[#00000066] py-1 w-[80%] rounded-md px-1 shadow h-fit relative">
           <img
             src="/images/search-01.svg"
             alt="search-icon"
@@ -199,9 +194,12 @@ function Discover() {
             type="text"
             value={query}
             placeholder="Search for a Cirkle or a User"
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              handleSearch();
+            }}
             onKeyDown={handleKeyDown}
-            className="outline-none text-[10.5px] flex-1"
+            className="outline-none text-[12px] flex-1"
           />
           {query && (
             <button

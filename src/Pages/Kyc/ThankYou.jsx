@@ -27,7 +27,7 @@ const ThankYou = () => {
           two business day.
         </p>
 
-        <div className="flex border items-center bg-[#BFFFFF33] p-3 mb-5 w-[100%] rounded-lg">
+        <div className="flex border items-center bg-[#BFFFFF33] p-3 mb-5 w-[100%] rounded-lg border-[#00000066]">
           <svg
             width="32"
             height="32"
@@ -55,7 +55,7 @@ const ThankYou = () => {
           </div>
         </div>
 
-        <div className="flex border items-center bg-[#BFFFFF33] p-3  w-[100%] rounded-lg mb-3">
+        <div className="flex border items-center bg-[#BFFFFF33] p-3  w-[100%] rounded-lg mb-3 border-[#00000066]">
           <svg
             width="32"
             height="32"

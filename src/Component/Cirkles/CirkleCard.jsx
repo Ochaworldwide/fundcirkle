@@ -46,7 +46,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           <button
             className={` py-2 rounded-md text-[14px] w-[30%] ${
               activeTab === "myCirkles"
-                ? "bg-white text-[#00943F] font-semibold shadow-md"
+                ? "bg-white text-[#00943F] text-[14px] font-bold shadow-md"
                 : "text-[#0000004D]"
             }`}
             onClick={() => setActiveTab("myCirkles")}
@@ -56,7 +56,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           <button
             className={` py-2 rounded-md text-[14px] w-[30%] ${
               activeTab === "invites"
-                ? "bg-white text-[#00943F] font-semibold shadow-md"
+                ? "bg-white text-[#00943F] font-bold  shadow-md"
                 : "text-[#0000004D]"
             }`}
             onClick={() => setActiveTab("invites")}
@@ -66,7 +66,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           <button
             className={`py-2 rounded-md text-[14px] w-[30%] ${
               activeTab === "newCirkle"
-                ? "bg-white text-[#00943F] font-semibold shadow-md"
+                ? "bg-white text-[#00943F] font-bold  shadow-md"
                 : "text-[#0000004D]"
             }`}
             onClick={() => setActiveTab("newCirkle")}
@@ -74,8 +74,6 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
             New Cirkle
           </button>
         </div>
-
-        
       </div>
 
       {/* Content Area */}

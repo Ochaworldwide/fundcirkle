@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
@@ -20,23 +19,25 @@ const CreateNewCirkleModal = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState("1");
   const [members, setMembers] = useState(2);
   const [frequency, setFrequency] = useState("monthly");
-  const [contribution_Week, setContribution_Week] = useState();
-  const [contribution_Month, setContribution_Month] = useState();
-  const [contribution_day, setContribution] = useState();
+  // const [contribution_Week, setContribution_Week] = useState();
+  // const [contribution_Month, setContribution_Month] = useState();
+  // const [contribution_day, setContribution] = useState();
+  // const [dueDay, setDueDay] = useState();
+  // const [dueMonth, setDueMonth] = useState();
+  // const [selectedDay, setSelectedDay] = useState("Friday");
+  const [userCountry, setUserCountry] = useState("");
+  const [listCountries, setListCountries] = useState([]);
+  const [userStateId, setUserStateId] = useState([]);
   const [dueDate, setDueDate] = useState();
-  const [dueDay, setDueDay] = useState();
-  const [dueMonth, setDueMonth] = useState();
-  const [selectedDay, setSelectedDay] = useState("Friday");
   const [step, setStep] = useState(1); // Step state to track current view
   const [isPublic, setIsPublic] = useState(true);
   const [privacy, setPrivacy] = useState("public");
   const navigate = useNavigate();
   const [emails, setEmails] = useState([]);
-  const [userCountry, setUserCountry] = useState("");
-  const [listCountries, setListCountries] = useState([]);
-  const [userStateId, setUserStateId] = useState([]);
+
   const [states, setStates] = useState([]);
   const [state, setState] = useState();
+  const [selectedMonth, setSelectedMonth] = useState("January");
 
   const { isModalOpen, modalType, closeModal } = useModal();
 
@@ -48,10 +49,10 @@ const CreateNewCirkleModal = () => {
     setSelectedCategoryId("1");
     setMembers(2);
     setFrequency("monthly");
-    setSelectedDay("Friday");
+    // setSelectedDay("Friday");
     setStep(1);
     setDueDate("");
-    setDueDay("");
+    // setDueDay("");
     setIsPublic(true);
     setPrivacy("public");
     setEmails([]);
@@ -144,7 +145,7 @@ const CreateNewCirkleModal = () => {
       !description ||
       !category ||
       !contribution_amount ||
-      !frequency ||
+      !selectedMonth ||
       !privacy
     ) {
       toast.error("Please fill in all required fields!");
@@ -159,8 +160,9 @@ const CreateNewCirkleModal = () => {
       category: selectedCategoryId,
       contribution_amount: contribution_amount,
       contribution_frequency: frequency,
-      contribution_day: dueDay,
-      contribution_week: contribution_Week,
+      // contribution_week: contribution_Week,
+      contribution_day: dueDate,
+      start_month: selectedMonth, // Month of the year
       privacy: privacy,
       state: state,
       currency: "INR",
@@ -214,9 +216,47 @@ const CreateNewCirkleModal = () => {
     setDueDate(date);
   };
 
-    const handleDueDayClick = (date) => {
-      setDueDay(date);
-    };
+  // const handleDueDayClick = (date) => {
+  //   setDueDay(date);
+  // };
+
+  const handleMonthChange = (event) => {
+    setSelectedMonth(event.target.value);
+    setDueDate(null);
+  };
+
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const daysInMonth = {
+    January: 31,
+    February: 28,
+    March: 31,
+    April: 30,
+    May: 31,
+    June: 30,
+    July: 31,
+    August: 31,
+    September: 30,
+    October: 31,
+    November: 30,
+    December: 31,
+  };
+
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50 ">
@@ -261,17 +301,21 @@ const CreateNewCirkleModal = () => {
               {/* body */}
 
               <div className="max-w-md mx-auto rounded-lg p-3 ">
-                <div className="flex justify-between items-center mb-4">
-                  <input
-                    type="text"
-                    placeholder="Enter Cirkle Name"
-                    value={name}
-                    onChange={(e) => setCirkleName(e.target.value)}
-                    className="border rounded-lg px-3 py-2 text-sm outline-none"
-                  />
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex flex-col ">
+                    <span className="text-[12px]">Cirkle Name</span>
+                    <input
+                      type="text"
+                      placeholder="Enter Cirkle Name"
+                      value={name}
+                      onChange={(e) => setCirkleName(e.target.value)}
+                      className="border rounded-lg px-3 py-2 text-sm outline-none border-[#00000066]"
+                    />
+                  </div>
+
                   <div className="flex flex-col items-center ml-4">
-                    <span className="text-[12px]">Number of Members</span>
-                    <div className="flex items-center space-x-2 border rounded-lg">
+                    <span className="text-[12px]">Members</span>
+                    <div className="flex items-center space-x-2 border rounded-lg border-[#00000066]">
                       <button
                         onClick={() =>
                           setMembers((prev) => Math.max(1, prev - 1))
@@ -297,10 +341,10 @@ const CreateNewCirkleModal = () => {
                   placeholder="Description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full border rounded-lg px-3 py-2 mb-4 text-sm outline-none"
+                  className="w-full border rounded-lg px-3 py-2 mb-4 text-sm outline-none border-[#00000066]"
                 ></textarea>
 
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-between items-center mb-5">
                   <div className="flex items-center space-x-3">
                     <img src="/images/blue-currency.svg" alt="" srcset="" />
                     {/* <span className="text-2xl mr-2">₹</span> */}
@@ -309,7 +353,7 @@ const CreateNewCirkleModal = () => {
                       value={contribution_amount}
                       placeholder="2000"
                       onChange={(e) => setAmount(e.target.value)}
-                      className="w-28 border rounded-lg px-3 py-2 text-sm outline-none"
+                      className="w-28 border rounded-lg px-3 py-2 text-sm outline-none border-[#00000066]"
                     />
                   </div>
 
@@ -318,7 +362,7 @@ const CreateNewCirkleModal = () => {
                       value={category}
                       id="category-select"
                       onChange={handleCategoryChange}
-                      className="border rounded-lg px-3 py-2"
+                      className="border outline-none rounded-lg px-3 py-2 border-[#00000066]"
                     >
                       <option id="1" value="Personal">
                         Personal
@@ -333,107 +377,37 @@ const CreateNewCirkleModal = () => {
                   </div>
                 </div>
 
-                <p className="text-[12px] font-[400] mb-5">
-                  Contribution Frequency and Due date
+                <p className="text-[12px] font-medium mb-5 mx-auto w-fit mt-5">
+                  Select Start month and payment due date
                 </p>
 
-                <div className="mb-4 flex justify-between h-[200px]">
-                  <div className="flex flex-col space-y-2  text-[10.5px] bg-[#EBEBED] w-[25%] h-fit py-1 rounded-md">
-                    {["biweekly", "monthly", "quarterly"].map((freq) => (
+                <div className="mb-4 flex flex-col items-center h-[250px] ">
+                  {/* Month Selection Dropdown */}
+                  <select
+                    className="mb-4 px-3 py-2 rounded-md text-sm mx-auto bg-white outline-none"
+                    value={selectedMonth}
+                    onChange={handleMonthChange}
+                  >
+                    {months.map((month) => (
+                      <option key={month} value={month}>
+                        {month}
+                      </option>
+                    ))}
+                  </select>
+
+                  {/* Date Selection Grid */}
+                  <div className="grid grid-cols-7 gap-3">
+                    {[...Array(daysInMonth[selectedMonth])].map((_, i) => (
                       <button
-                        key={freq}
-                        onClick={() => setFrequency(freq)}
-                        className={`px-3 py-2 border rounded-md w-[90%] mx-auto text-[#141B3480] ${
-                          frequency === freq ? "bg-white text-[#141B34]" : ""
+                        key={i}
+                        onClick={() => handleDueDateClick(i + 1)}
+                        className={`w-8 h-7 flex items-center justify-center rounded-lg text-[11px] font-medium ${
+                          dueDate === i + 1 ? "bg-green-500 text-white" : ""
                         }`}
                       >
-                        {freq}
+                        {i + 1}
                       </button>
                     ))}
-                  </div>
-
-                  <div className="w-[70%] ">
-                    {/* Weekday Selection for Biweekly */}
-                    {frequency === "biweekly" && (
-                      <div className="flex flex-col items-center ">
-                        {/* <p className="text-sm mb-2">Select a Weekday</p> */}
-                        <SimpleDropdown
-                          options={["Week 1", "Week 2"]}
-                          onSelect={handleSelection}
-                          optionHeading={"Select Week"}
-                        />
-                        <div className="space-y-2 space-x-2  w-[100%]">
-                          {[
-                            "Monday",
-                            "Tuesday",
-                            "Wednesday",
-                            "Thursday",
-                            "Friday",
-                            "Saturday",
-                            "Sunday",
-                          ].map((day) => (
-                            <button
-                              key={day}
-                              onClick={() => handleDueDayClick(day)}
-                              className={`px-3 py-2 border rounded-lg  text-[10.5px] w-fit ${
-                                dueDay === day ? "bg-green-500 text-white" : ""
-                              }`}
-                            >
-                              {day}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Due Date Selection */}
-
-                    {frequency === "monthly" && (
-                      <div>
-                        <p className="text-sm mb-4 text-center">Pick a Date</p>
-                        <div className="grid grid-cols-7 gap-3 flex-wrap">
-                          {[...Array(28)].map((_, i) => (
-                            <button
-                              key={i}
-                              onClick={() => handleDueDateClick(i + 1)}
-                              className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
-                                dueDate === i + 1
-                                  ? "bg-green-500 text-white"
-                                  : ""
-                              }`}
-                            >
-                              {i + 1}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Due Quaterly Selection */}
-                    {frequency === "quarterly" && (
-                      <div>
-                        <SimpleDropdown
-                          options={["Month 1", "Month 2", "Month 3"]}
-                          onSelect={handleMonthlySelection}
-                          optionHeading={"Select Month"}
-                        />
-                        <div className="grid grid-cols-7 gap-2 flex-wrap ">
-                          {[...Array(28)].map((_, i) => (
-                            <button
-                              key={i}
-                              onClick={() => handleDueDateClick(i + 1)}
-                              className={`w-7 h-7 flex items-center justify-center border rounded-lg text-[11px] ${
-                                dueDate === i + 1
-                                  ? "bg-green-500 text-white"
-                                  : ""
-                              }`}
-                            >
-                              {i + 1}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
 
@@ -497,7 +471,7 @@ const CreateNewCirkleModal = () => {
                       const selectedValue = e.target.value; // Get the selected option's value
                       setState(selectedValue); // Update the state
                     }}
-                    className="w-full border px-3 py-3 rounded-lg bg-white text-[#00000080] outline-[#00943F]"
+                    className="w-full border px-3 py-3 rounded-lg border-[#00000066] bg-white text-[#00000080] outline-[#00943F]"
                   >
                     {states &&
                       states.map((option, index) => (
@@ -508,14 +482,6 @@ const CreateNewCirkleModal = () => {
                   </select>
                 </div>
               </div>
-
-              {/* <div className=" mb-2 flex justify-between w-[90%] mx-auto">
-                <div className="p-5 text-[12px]">Members</div>
-
-                <div className="p-4 border-l text-[12px] ">
-                  Anyone with the link can join
-                </div>
-              </div> */}
 
               <div className="w-[90%] mx-auto mb-5 border-y  py-4">
                 <div className=" flex justify-between mb-3">

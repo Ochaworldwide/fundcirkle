@@ -180,7 +180,7 @@ const QuickStats = () => {
           {stats?.map((stat, index) => (
             <div
               key={index}
-              className={`flex-shrink-0 flex flex-col justify-between w-2/6 py-4 px-2 rounded-lg ${stat.bgColor}`}
+              className={`flex-shrink-0 flex flex-col justify-between w-2/6 py-4 px-2 border border-[#00000066] rounded-lg ${stat.bgColor}`}
             >
               <p className="text-gray-700 text-xs font-[400]">{stat.label}</p>
               <p className="text-[20px] font-semibold mt-2 flex items-center justify-center text-[#292D32]">

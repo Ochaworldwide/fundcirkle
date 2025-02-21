@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import profileImg from "/images/profileImg.svg";
 import notificationIcon from "/src/assets/images/notification-bing.png";
 import Kyc from "../../Component/VerifyKyc/kyc";
@@ -13,6 +13,7 @@ import { useModal } from "/src/Component/Cirkles/ModalContext";
 import NavigationBar from "../../Component/BottomNav/NavigationBar";
 import { Link } from "react-router-dom";
 import NotificationBox from "../../Component/Cirkles/NotificationBox";
+import { UserContext } from "../../contexts/userDetails";
 
 function Home() {
   const NotifyNum = "3";
@@ -22,6 +23,8 @@ function Home() {
     { name: "Invites", isActive: false },
     { name: "New Cirkle", isActive: false },
   ];
+
+  const { user, refetchUser } = useContext(UserContext);
 
   // Header Data
   const headerData = {
@@ -54,24 +57,35 @@ function Home() {
   const { openModal } = useModal();
   const [showNotification, setShowNotification] = useState(false);
 
+
+    useEffect(() => {
+      refetchUser;
+    }, []);
+
+ 
+
   return (
     <div className="">
       {/* Nav Bar */}
-      {/* <NavigationBar /> */}
 
       <div className=" flex w-[95%] mx-auto  items-center  mb-5 sticky top-0 bg-white z-10 ">
-        <div className="">
-          <img src={profileImg} alt="" srcset="" className="rounded-full " />
+
+        <div className="w-[65px] flex items-center justify-center rounded-full h-[65px] overflow-hidden">
+          <img
+            src={user?.profile_pic}
+            alt=""
+            className="w-full h-full object-cover "
+          />
         </div>
 
         <div className="p-5 ">
           <p className="text-sm font-[400]">Welcome back</p>
 
-          <h1 className="font-bold">Bhaavik Arhaan</h1>
+          <h1 className="font-bold">{user?.full_name}</h1>
         </div>
 
-        <div className="border p-1 rounded-full relative ml-auto">
-          <div className=" absolute top-0 right-0 border text-[8px] font-bold flex justify-center text-white   h-[12px] w-[12px] bg-[#00943F] rounded-full">
+        <div className="border border-[#00000066] p-1 rounded-full relative ml-auto">
+          <div className=" absolute top-0 right-0 border border-[#00000066] text-[8px] font-bold flex justify-center text-white   h-[12px] w-[12px] bg-[#00943F] rounded-full">
             {""}
             {NotifyNum}
           </div>

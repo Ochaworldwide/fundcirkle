@@ -294,34 +294,6 @@ const EditProfile = () => {
       }
     }
 
-    // Step 2: Send Profile Data (without image file, but with uploaded image URL if available)
-    // const profilePayload = {
-    //   full_name: fullName,
-    //   email: email,
-    //   phone: phone,
-    //   dob: dob,
-    //   address: address,
-    //   occupation: occupation,
-    // };
-
-    // if (imageUrl) {
-    //   profilePayload.profile_photo = imageUrl; // Add image URL to profile update
-    // }
-
-    // try {
-    //   const response = await axiosInstance.post(
-    //     ROUTES.ACCOUNT.UPDATE_PROFILE_INFO,
-    //     profilePayload
-    //   );
-
-    //   if (response.data.success) {
-    //     toast.success(response.data.message);
-    //   }
-    // } catch (error) {
-    //   toast.error(error?.response?.data?.message);
-    // } finally {
-    //   setLoading(false);
-    // }
   };
 
   return (

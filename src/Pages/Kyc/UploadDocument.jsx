@@ -28,7 +28,7 @@ const UploadDocument = () => {
         </p>
 
         <Link to="/identityproof">
-          <div className="flex border bg-[#FBC8CE1A] p-3 mb-5 w-[100%] rounded-lg">
+          <div className="flex border bg-[#FBC8CE1A] p-3 mb-5 w-[100%] rounded-lg border-[#00000066]">
             <img src="/images/identity-card.svg" alt="" srcset="" />
 
             <div className="w-[70%] font-[400] mx-auto p-3">
@@ -49,7 +49,7 @@ const UploadDocument = () => {
         </Link>
 
         <Link to="/addressproof">
-          <div className="flex border bg-[#FBC8CE1A] p-3  w-[100%] rounded-lg mb-3">
+          <div className="flex border bg-[#FBC8CE1A] p-3  w-[100%] rounded-lg mb-3 border-[#00000066]">
             <img src="/images/building-02.svg" alt="" srcset="" />
 
             <div className="w-[70%] font-[400] mx-auto p-3">

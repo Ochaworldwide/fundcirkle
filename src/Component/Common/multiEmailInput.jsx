@@ -20,6 +20,19 @@ const MultiEmailInput = ({ onEmailsChange }) => {
     }
   };
 
+
+  const handleClick = () => {
+      if (isValidEmail(inputValue)) {
+        setEmails([...emails, inputValue.trim()]);
+        setInputValue("");
+      } else {
+        alert("Please enter a valid email address");
+      }
+    
+  };
+
+
+
   const handleRemoveEmail = (index) => {
     setEmails(emails.filter((_, i) => i !== index));
   };
@@ -49,14 +62,21 @@ const MultiEmailInput = ({ onEmailsChange }) => {
           </div>
         ))}
       </div>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="Enter Email(s) invite members"
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+
+      <div className="flex justify-between w-full">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Enter Email(s) invite members"
+          className="w-[70%] px-3 py-2 border border-[#00000066] rounded-lg outline-none"
+        />
+
+        <button className="text-sm w-[27%] border rounded-lg p-1 text-[#00943F] border-[#00943F] cursor-pointer" onClick={()=> {handleClick()}}>
+          Send Invite
+        </button>
+      </div>
     </div>
   );
 };
