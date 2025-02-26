@@ -112,10 +112,10 @@ const RecommendedCirklesModal = () => {
           duration: 0.5,
           ease: "easeInOut",
         }}
-        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[75%] bg-white overflow-scroll"
+        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[80%] bg-white overflow-scroll"
       >
         <div className="pb-10 rounded-lg max-w-md w-full">
-          <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[100%] mx-auto rounded-xl sticky top-0">
+          <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl sticky top-0">
             <img src="/images/tricycle.svg" alt="" />
             <p className="text-[18px] font-[400]">View Circle Details</p>
             <button onClick={closeModal} className="text-gray-500 float-right">
@@ -204,7 +204,6 @@ const RecommendedCirklesModal = () => {
               >
                 Request to join
               </button>
-              
             </div>
           </div>
         </div>

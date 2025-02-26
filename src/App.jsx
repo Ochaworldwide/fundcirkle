@@ -46,6 +46,9 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import AcceptedInvite from "./Component/Cirkles/AcceptedInvite";
 import RecommendedCirklesModal from "./Component/DiscoverModals/RecommendedCirklesModal";
 import PaymentSuccess from "./Pages/Payment/PaymentSuccessful";
+import EditCirkleModal from "./Component/Cirkles/EditCirkleModal";
+import SwapRequestModal from "./Component/Cirkles/SwapRequestModal";
+import GoalAchieved from "./Component/Cirkles/GoalAchieved";
 
 const App = () => {
   return (
@@ -88,6 +91,7 @@ const App = () => {
               />
               <Route path="/paymentsuccessful" element={<PaymentSuccess />} />
               <Route path="/acceptedinvite" element={<AcceptedInvite />} />
+              <Route path="/goalachieved" element={<GoalAchieved />} />
             </Route>
 
             {/* Add more routes for additional screens as needed */}
@@ -95,8 +99,10 @@ const App = () => {
           <ModalChat />
 
           <CirkleDetailsModal />
+          <EditCirkleModal />
           <InviteCirkleDetailsModal />
           <CreateNewCirkleModal />
+          <SwapRequestModal />
           {/* <FilterModal /> */}
           {/* <CirkleCategoryModal /> */}
           <DisplayCategoriesModal />
