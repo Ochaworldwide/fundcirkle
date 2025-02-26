@@ -93,22 +93,26 @@ const PaymentForm = ({ handler, cirkle }) => {
       meta.payment_date = paymentDate;
       meta.location = location;
       meta.witnesses = witnesses;
-    }else{
+    } else {
       meta.bank_details = bank;
-      meta.receiver = cirkle?.last_payment?.receiver
+      meta.receiver = cirkle?.last_payment?.receiver;
     }
 
     formData.append("meta", JSON.stringify(meta));
 
     // console.log([...formData.entries()]);
     try {
-      const response = await axiosInstance.post(ROUTES.CIRKLE.SUBMIT_CIRCLE_PAYMENT(cirkle.id), formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      const response = await axiosInstance.post(
+        ROUTES.CIRKLE.SUBMIT_CIRCLE_PAYMENT(cirkle.id),
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
       console.log("Payment submitted successfully:", response.data);
-      console.log(response.data)
+      console.log(response.data);
       navigate("/paymentsuccessful");
       close();
     } catch (error) {
@@ -229,7 +233,12 @@ const PaymentForm = ({ handler, cirkle }) => {
         {/* Conditional Rendering of Payment Details */}
         <div>
           {paymentMethod === "Bank Transfer" && (
-            <div>
+            <div className="relative">
+              {!bank && (
+                <div className={`backdrop-blur flex items-center justify-center inset-0 absolute z-[100]`}>
+                  <p>No bank details</p>
+                </div>
+              )}
               <div className="border rounded-md">
                 <div className="flex justify-between border-b px-3 py-2 items-center">
                   <p className="text-[10.5px] text-gray-600 w-[70%]">
@@ -251,13 +260,13 @@ const PaymentForm = ({ handler, cirkle }) => {
                     onClick={() => copy(bank.account_number)}
                     type="button"
                   >
-                    <p>{bank.account_number}</p>
+                    <p>{bank?.account_number}</p>
                     <img src="/images/copy-02.svg" alt="" className="h-4" />
                   </button>
                 </div>
 
                 <div className="flex text-[10.5px] justify-between px-3 py-2 border-b">
-                  <p>Bank: {bank.bank_name}</p>
+                  <p>Bank: {bank?.bank_name}</p>
                   <p>Account Type: {bank?.account_type}</p>
                 </div>
 
@@ -352,23 +361,10 @@ const PaymentForm = ({ handler, cirkle }) => {
           )}
         </div>
 
-        {/* Amount Input */}
-        {/* <div className="mt-4">
-          <label className="block text-sm font-semibold text-gray-600 mb-1">
-            Amount
-          </label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="w-full border rounded px-4 py-2 text-sm text-gray-600"
-            placeholder="Enter amount"
-          />
-        </div> */}
-
         {/* Submit Button */}
         <div className="mt-6">
           <button
+            disabled = {!bank}
             type="submit"
             className="w-full bg-green-500 text-white py-2 px-4 rounded "
           >

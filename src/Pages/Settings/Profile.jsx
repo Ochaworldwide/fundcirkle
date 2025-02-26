@@ -22,6 +22,7 @@ const Profile = () => {
           ROUTES.ACCOUNT.GET_USER_ACCOUNT
         ); // Adjust endpoint as needed
         setProfile(response.data.data);
+        refetchUser();
         console.log(response.data.data)
       } catch (err) {
         // setError("Failed to load profile data.");
@@ -32,7 +33,6 @@ const Profile = () => {
     };
 
     fetchProfile();
-    refetchUser;
   }, []);
 
 
@@ -65,7 +65,7 @@ const Profile = () => {
           className="w-full h-full rounded-full"
         />
 
-        {/* <img src={user.profile_pic} alt="" srcset="" /> */}
+        
         <Link to="/editprofile">
           <img
             src="/images/edit.svg"

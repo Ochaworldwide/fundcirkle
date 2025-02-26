@@ -175,7 +175,7 @@ const Confetti = ({
           </h1>
 
           {/* Dynamic Subtext */}
-          <p className="mt-2 text-sm text-gray-600">{message}</p>
+          <p className="mt-4 text-base leading-relaxed text-gray-600">{message}</p>
         </motion.div>
 
         {/* Buttons */}

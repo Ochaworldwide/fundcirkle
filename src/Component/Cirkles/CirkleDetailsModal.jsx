@@ -9,8 +9,8 @@ import { toast } from "react-toastify";
 
 const CirkleDetailsModal = () => {
   
-  const { isModalOpen, modalType, modalData, closeModal } = useModal();
-  const [cirkleData, setCirkleData] = useState(null);
+  const { isModalOpen, modalType, modalData, closeModal,openModal } = useModal();
+  const [cirkleData, setCirkleData] = useState("");
 
 
 
@@ -40,14 +40,8 @@ const CirkleDetailsModal = () => {
 
   if (!isModalOpen || modalType !== "detail") return null;
 
-  if (!cirkleData) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center ">
-        <FadeLoader />
-      </div>
-    );
-  }
 
+  const transferData = cirkleData?.id;
 
   const data = {
     title: cirkleData.name,
@@ -111,12 +105,11 @@ const CirkleDetailsModal = () => {
         transition={{
           duration: 0.5,
           ease: "easeInOut",
-        }} // Smooth transition
-        // transition={{ type: "spring", stiffness: 100, damping: 15 }}
-        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[75%] bg-white overflow-scroll"
+        }}
+        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[80%] bg-white overflow-scroll"
       >
         <div className=" pb-10 rounded-lg max-w-md w-full">
-          <div className="py-5 px-3 bg-[#FAF5FF] flex justify-between w-[100%] mx-auto rounded-xl sticky top-0">
+          <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl sticky top-0">
             <img src="/images/tricycle.svg" alt="" srcset="" />
 
             <p className="text-[18px] font-[400]">View Circle Details</p>
@@ -157,6 +150,7 @@ const CirkleDetailsModal = () => {
                 viewBox="0 0 44 44"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                onClick={() => openModal("edit", transferData)}
               >
                 <path
                   d="M26.4249 14.6051L27.4149 13.6151C28.2351 12.795 29.5648 12.795 30.3849 13.6151C31.205 14.4352 31.205 15.7649 30.3849 16.5851L29.3949 17.5751M26.4249 14.6051L19.7656 21.2644C19.2581 21.772 18.898 22.4078 18.724 23.1041L18 26L20.8959 25.276C21.5922 25.102 22.228 24.7419 22.7356 24.2344L29.3949 17.5751M26.4249 14.6051L29.3949 17.5751"
@@ -216,7 +210,10 @@ const CirkleDetailsModal = () => {
               <button className="bg-[#00943F] text-white px-2 py-2 rounded-lg text-sm">
                 Pay Pie for October
               </button>
-              <button className="border font-[400] border-gray-400 text-gray-600 px-2 py-2 rounded-lg text-sm">
+              <button
+                className="border font-[400] border-gray-400 text-gray-600 px-2 py-2 rounded-lg text-sm"
+                onClick={() => openModal("swap", transferData)}
+              >
                 Swap Payment Month
               </button>
             </div>
