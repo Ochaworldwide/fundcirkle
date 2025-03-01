@@ -37,14 +37,13 @@ function MyCirkles() {
             },
           },
           dates: {
-            nextPayment: `Day ${item.contribution_day} of the month`, // Customize as needed
+            nextPayment: `${item.next_receiving_date}`, // Customize as needed
           },
         }));
 
         setData(transformedData);
         // console.log("Transformed data:", transformedData);
-        
-        
+
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -62,7 +61,28 @@ function MyCirkles() {
     fetchData();
   }, []);
 
-  
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axiosInstance.get(ROUTES.ACCOUNT.GET_USER_ACCOUNT);
+  //     if (response.data.success) {
+  //       // Transform the data to match the required structure
+  //      console.log("successful")
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //     if (error.response?.data?.message) {
+  //       toast.error(error.response.data.message);
+  //     } else {
+  //       toast.error("An error occurred. Please try again.");
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const handleNext = () => {
     if (data) {
@@ -78,33 +98,27 @@ function MyCirkles() {
     }
   };
 
-
-
   if (!data || data.length === 0) {
     return <NoActiveCirkle />;
   }
 
+  const handleGroupClick = () => {
+    console.log(`Clicked group ID: ${header.id}`);
+    const stateId = header.id;
+    openModal("detail", stateId);
+  };
 
- 
-
-   const handleGroupClick = () => {
-     console.log(`Clicked group ID: ${header.id}`);
-     const stateId = header.id;
-     openModal("detail", stateId);
-   };
-
-    const handleMessageClick = () => {
-      console.log(`Clicked group ID: ${header.id}`);
-      const chatObject = {
-        name:header.groupName,
-        cirkleid:header.id
-      };
-      openModal("chat", chatObject);
+  const handleMessageClick = () => {
+    console.log(`Clicked group ID: ${header.id}`);
+    const chatObject = {
+      name: header.groupName,
+      cirkleid: header.id,
     };
+    openModal("chat", chatObject);
+  };
 
   const { header, contribution, dates } = data[currentIndex];
   const { openModal } = useModal();
-
 
   return (
     <div className="relative">
@@ -170,7 +184,7 @@ function MyCirkles() {
 
         <div className="flex justify-between bg-[#E5F4EC] items-center mb-5 mt-5 mx-auto w-[95%] p-2 rounded-xl text-[10.5px]">
           <p className="text-gray-600">Next Payment</p>
-          <p className="font-medium ml-auto p-2 border border-[#00000066] rounded-[8px] w-[45%] text-[#141B34]">
+          <p className="font-medium ml-auto p-2 border border-[#00000066] rounded-[8px] flex justify-center w-[45%] text-[#141B34]">
             {dates.nextPayment}
           </p>
         </div>

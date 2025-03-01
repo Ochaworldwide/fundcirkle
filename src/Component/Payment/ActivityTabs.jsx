@@ -43,7 +43,7 @@ const CirkleActivity = ({ slide }) => {
       <div className="flex justify-center space-x-3">
         {slide.last_payment && slide.last_payment.submitted_at == null && (
           <button
-            onClick={() => openModal("make payment", slide)}
+            onClick={() => openModal("payment submission", slide)}
             className="px-4 py-2 text-[#00943F] border text-[10.5px] mx-auto w-fit rounded-lg"
           >
             Make Payment
