@@ -9,7 +9,7 @@ const MakePaymentModal = () => {
   const navigate = useNavigate();
   const { isModalOpen, closeModal, modalType, modalData } = useModal();
 
-  console.log('payment modal', modalData);
+  // console.log('payment modal', modalData);
   const handleSubmit = () =>{
     navigate("/paymentsuccessful")
     closeModal();
@@ -59,37 +59,10 @@ const MakePaymentModal = () => {
               required payment information for validation.
             </p>
 
-            {/* Payment Amount */}
-            {/* <div className="flex justify-center space-x-3 items-center mb-4">
-              <span className="text-gray-600 text-sm">Amount to Pay</span>
-              <span className="font-semibold text-gray-800 text-lg flex items-center">
-                {" "}
-                <img
-                  src="/images/currency.svg"
-                  alt=""
-                  srcset=""
-                  className="h-4"
-                />
-                60,000
-              </span>
-            </div> */}
-
-            {/* Payment Options */}
-
             {/* Payment Form */}
 
             <PaymentForm cirkle={modalData} handler={handleSubmit}/>
           </div>
-
-          {/* Submit Button */}
-          {/* <div className="p-4 w-[80%] mx-auto">
-            <button
-              className=" w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600"
-              
-            >
-              Submit Payment Proof
-            </button>
-          </div> */}
         </div>
       </motion.div>
     </div>

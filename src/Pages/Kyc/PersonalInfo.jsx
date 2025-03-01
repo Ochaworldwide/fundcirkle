@@ -113,7 +113,7 @@ const PersonalInfo = () => {
               name="country"
               // onChange={handleChange}
               id=""
-              className="w-full border border-[#00000066] outline-none px-3 py-5 rounded-lg mb-5 bg-white text-[#00000080] rounded-md"
+              className="w-full border border-[#00000066] outline-none px-3 py-5 mb-5 bg-white text-[#00000080] rounded-md"
             >
               {countries &&
                 countries.map((option, index) => (
@@ -195,7 +195,7 @@ const PersonalInfo = () => {
           <div className="flex justify-between w-full py-5 bg-white">
             <button
               type="button"
-              className="w-[40%] border font-bold py-4 rounded-md border-[#00000066] outline-none rounded-md"
+              className="w-[40%] border font-bold py-4 border-[#00000066] outline-none rounded-md"
               onClick={() => navigate("/startkyc")}
             >
               Cancel

@@ -9,24 +9,12 @@ import { toast } from "react-toastify";
 import { ROUTES } from "../../constants/routes";
 
 const Payment = () => {
-
-  const [due , setDue] = useState({})
+  const [due, setDue] = useState({});
   const [validations, setValidations] = useState({});
   const [receive, setReceive] = useState({});
 
   useEffect(() => {
-  
     const fetchInitialData = async () => {
-      // try {
-      //   // Fetch payment overview
-      //   const overview = await axiosInstance.get("/payment/overview");
-      //   setDue(overview.data.total_due)
-      //   setValidations(overview.data.total_validations);
-      //   setReceive(overview.data.to_receive);
-
-      // } catch (error) {
-      //   toast.error("Error fetching initial data:", error);
-      // }
 
       try {
         // Fetch payment overview
@@ -43,20 +31,18 @@ const Payment = () => {
         // Fetch user cirkles
         const accountResponse2 = await axiosInstance.get(
           ROUTES.CIRKLE.GET_USER_CIRKLES
-        );accountResponse; 
+        );
+        accountResponse;
         console.log(accountResponse.data);
         // setAccountData();
       } catch (error) {
         toast.error("Error fetching initial data:", error);
       }
-
     };
 
     fetchInitialData();
-
   }, []); // Ensure modalType is also included in the dependency array
 
-  
   return (
     <div className="mb-20">
       {/* heading */}
@@ -66,7 +52,11 @@ const Payment = () => {
       {/* Payment Overview */}
       <div className="w-[100%] px-5 ">
         <h1 className="   text-[18px] font-bold">Payment Overview</h1>
-        <PaymentOverview  due={due} validations={validations} receive={receive}/>
+        <PaymentOverview
+          due={due}
+          validations={validations}
+          receive={receive}
+        />
       </div>
       {/* Manage Payment Cirkle */}
       <ManagePaymentCirkle />

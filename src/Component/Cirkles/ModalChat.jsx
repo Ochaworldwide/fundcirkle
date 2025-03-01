@@ -5,29 +5,77 @@ import axiosInstance from "../../service";
 import { FaImage, FaPaperPlane } from "react-icons/fa";
 import { UserContext } from "../../contexts/userDetails";
 
+// const Message = ({ message, isUser }) => {
+//   return (
+//     <div className={`flex w-full ${isUser ? "justify-end " : ""}`}>
+//       <div
+//         className={` p-2 py-1 w-fit rounded-lg ${
+//           isUser
+//             ? "justify-end bg-[#004A1F] text-white"
+//             : "bg-[#E9E9EB] text-black"
+//         }`}
+//       >
+//         <span className="font-bold text-sm inline-block mb-2">{`${message.user.first_name} ${message.user.last_name}`}</span>
+//         <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
+//           <img src={`${message.user.profile_pic}`} className="" alt="" srcset="" />
+//         </div>
+//         <br />
+//         {message.type === "text" && message.content}
+//         {message.type === "image" && (
+//           <img
+//             src={
+//               message.file_url ??
+//               "https://picsum.photos/200/300?i=" + message.id
+//             }
+//           />
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+
 const Message = ({ message, isUser }) => {
   return (
-    <div className={`flex w-full ${isUser ? "justify-end " : ""}`}>
+    <div
+      className={`flex w-full ${isUser ? "justify-end" : "justify-start"} my-2`}
+    >
+      {!isUser && (
+        <img
+          src={message.user.profile_pic}
+          alt="Profile"
+          className="w-8 h-8 rounded-full mr-2 self-end"
+        />
+      )}
       <div
-        className={` p-2 py-1 w-fit rounded-lg ${
-          isUser ? "justify-end bg-[#004A1F] text-white" : "bg-[#E9E9EB] text-black"
+        className={`p-3 max-w-[70%] rounded-2xl ${
+          isUser ? "bg-[#004A1F] text-white" : "bg-[#E9E9EB] text-black"
         }`}
       >
-        <span className="font-bold text-sm inline-block mb-2">{`${message.user.first_name} ${message.user.last_name}`}</span>
-        <br />
-        {message.type === "text" && message.content}
+        {message.type === "text" && <p>{message.content}</p>}
         {message.type === "image" && (
           <img
             src={
               message.file_url ??
-              "https://picsum.photos/200/300?i=" + message.id
+              `https://picsum.photos/200/300?i=${message.id}`
             }
+            className="rounded-lg mt-2"
+            alt="Message attachment"
           />
         )}
       </div>
+      {isUser && (
+        <img
+          src={message.user.profile_pic}
+          alt="Profile"
+          className="w-8 h-8 rounded-full ml-2 self-end"
+        />
+      )}
     </div>
   );
 };
+
+
 
 const ChatModal = () => {
   const { isModalOpen, modalType, modalData, closeModal } = useModal();
@@ -60,12 +108,23 @@ const ChatModal = () => {
     if (cirkleId) getMessages();
   }, [cirkleId]);
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     getMessages();
+  //   }, 10000);
+  //   return () => clearInterval(interval);
+  // }, [lastFetched]);
+
+
   useEffect(() => {
+    if (!isModalOpen) return; // Only run the effect when modal is open
+
     const interval = setInterval(() => {
       getMessages();
     }, 10000);
+
     return () => clearInterval(interval);
-  }, [lastFetched]);
+  }, [isModalOpen, lastFetched]);
 
   useEffect(() => {
     if (msgRef.current) {

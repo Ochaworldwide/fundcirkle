@@ -49,6 +49,7 @@ import PaymentSuccess from "./Pages/Payment/PaymentSuccessful";
 import EditCirkleModal from "./Component/Cirkles/EditCirkleModal";
 import SwapRequestModal from "./Component/Cirkles/SwapRequestModal";
 import GoalAchieved from "./Component/Cirkles/GoalAchieved";
+import PaymentSubmissionModal from "./Component/Payment/PaymentSubmissionModal";
 
 const App = () => {
   return (
@@ -103,6 +104,7 @@ const App = () => {
           <InviteCirkleDetailsModal />
           <CreateNewCirkleModal />
           <SwapRequestModal />
+          <PaymentSubmissionModal />
           {/* <FilterModal /> */}
           {/* <CirkleCategoryModal /> */}
           <DisplayCategoriesModal />
