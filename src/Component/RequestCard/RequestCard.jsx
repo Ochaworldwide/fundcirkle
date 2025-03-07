@@ -23,15 +23,15 @@ const RequestCard = ({ data }) => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         toast.error(
-          "API Error: " +
+          "Warning: " +
             (error.response.data.message || error.response.statusText)
         );
       } else if (error.request) {
         // The request was made but no response was received
-        toast.error("Network Error: No response received from the server.");
+        toast.error("Warning: No response received from the server.");
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast.error("Error: " + error.message);
+        toast.error("Warning: " + error.message);
       }
       console.error("Error details:", error);
     }
@@ -57,15 +57,15 @@ const RequestCard = ({ data }) => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         toast.error(
-          "API Error: " +
+          "Warning: " +
             (error.response.data.message || error.response.statusText)
         );
       } else if (error.request) {
         // The request was made but no response was received
-        toast.error("Network Error: No response received from the server.");
+        toast.error("Warning: No response received from the server.");
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast.error("Error: " + error.message);
+        toast.error("Warning: " + error.message);
       }
       console.error("Error details:", error);
     }

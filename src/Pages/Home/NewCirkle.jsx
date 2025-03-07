@@ -17,7 +17,7 @@ function NewCirkle() {
         />
 
         <h1 className="text-[#141B34] text-[18px] mb-5">
-          Build Your Financial Circle Today
+          Build Your Financial Cirkle Today
         </h1>
 
         <p className="text-center text-[#616161] text-[14px] mb-3">

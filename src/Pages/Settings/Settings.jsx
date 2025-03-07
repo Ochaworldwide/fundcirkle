@@ -52,10 +52,11 @@ const Settings = () => {
       });
   };
 
-  const logout = () => {
-    localStorage.removeItem("token"); // Remove the authentication token
-    location.reload(); // Refresh the page
-  }
+const logout = () => {
+  localStorage.removeItem("token"); // Remove the authentication token
+  localStorage.removeItem("user"); // Remove the user info (if needed)
+  location.reload(); // Refresh the page
+};
 
   useEffect(() => {
     refetchUser;

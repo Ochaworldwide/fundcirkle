@@ -189,7 +189,7 @@ const CreateNewCirkleModal = () => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         toast.error(
-          "API Error: " +
+          "Warning: " +
             (error.response.data.message || error.response.statusText)
         );
       } else if (error.request) {
@@ -197,16 +197,52 @@ const CreateNewCirkleModal = () => {
         toast.error("Network Error: No response received from the server.");
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast.error("Error: " + error.message);
+        toast.error("Warning: " + error.message);
       }
       console.error("Error details:", error);
     }
   };
 
+  // const handleNext = () => {
+
+  //   if (
+  //     !name ||
+  //     !description ||
+  //     !category ||
+  //     !contribution_amount ||
+  //     !selectedMonth
+  //   ) {
+  //     toast.error("Please fill in all required fields!");
+  //     return;
+  //   }
+
+
+  //   setStep(2); // Change step to display the next component
+  // };
+
+
   const handleNext = () => {
-    setStep(2); // Change step to display the next component
+    const requiredFields = [
+      name,
+      description,
+      category,
+      contribution_amount,
+      selectedMonth,
+      dueDate,
+    ];
+
+    if (
+      requiredFields.some(
+        (field) => !field || (typeof field === "string" && field.trim() === "")
+      )
+    ) {
+      toast.error("Please fill in all required fields!");
+    } else {
+      setStep(2);
+    }
   };
 
+  
   const handlePrev = () => {
     setStep(1); // Change step to display the next component
   };

@@ -48,7 +48,7 @@ import React from "react";
 import { useModal } from "../Cirkles/ModalContext";
 
 const ViewProofModal = () => {
-  const { isModalOpen, closeModal, modalType } = useModal();
+  const { isModalOpen, closeModal, modalType ,modalData} = useModal();
 
   if (!isModalOpen || modalType !== "View Proof") return null;
 
@@ -57,9 +57,9 @@ const ViewProofModal = () => {
     // Create a temporary link element
     const link = document.createElement("a");
     // Set the href to the proof image URL
-    link.href = "/images/proof.svg";
+    link.href = modalData.proof_url;
     // Set the download attribute with the desired file name
-    link.download = "proof.svg";
+    link.download = "proof";
     // Append the link to the body (required for Firefox)
     document.body.appendChild(link);
     // Programmatically click the link to trigger the download
@@ -113,7 +113,7 @@ const ViewProofModal = () => {
         {/* Proof Image */}
         <div className="w-full">
           <img
-            src="/images/proof.svg"
+            src={modalData.proof_url}
             alt="Proof"
             className="w-full rounded-lg"
           />

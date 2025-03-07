@@ -3,7 +3,6 @@ import { useModal } from "../Cirkles/ModalContext";
 import ConfirmPaymentModal from "./ConfirmPaymentModal";
 import RequestReuploadModal from "./RequestReuploadModal";
 
-
 const PaymentCard = ({
   name,
   image,
@@ -12,11 +11,13 @@ const PaymentCard = ({
   currency,
   method,
   date,
-  proofUrl,
+  proof,
   isCash,
 }) => {
+  const { openModal } = useModal();
 
-   const { openModal } = useModal();
+  const storage_base = "https://fundcirkle.techr.me/storage";
+  const proof_url = `${storage_base}/${proof}` ?? "/images/proof.svg";
   return (
     <div className=" rounded-lg shadow-lg p-4 border  w-72 ">
       <div className="flex flex-col items-center space-x-4">
@@ -34,7 +35,7 @@ const PaymentCard = ({
         <p className="text-[10.5px] text-gray-500">Contribution Amount</p>
         <div className="text-[12px] font-bold text-gray-800 flex items-center">
           <img src={currency} alt="" className="h-4" />
-          {amount}
+          {amount?.toLocaleString()}
         </div>
       </div>
 
@@ -67,20 +68,11 @@ const PaymentCard = ({
             </p>
           </div>
         ) : (
-          // <div className="mt-2">
-          //   <button
-          //     onClick={() => window.open(proofUrl, "_blank")}
-          //     className="text-blue-500 underline"
-          //   >
-          //     View Proof
-          //   </button>
-          // </div>
-
           <div
             className="h-20 overflow-hidden relative"
-            onClick={() => openModal("View Proof")}
+            onClick={() => openModal("View Proof", {proof_url})}
           >
-            <img src="/images/proof.svg" alt="" srcset="" className="w-full" />
+            <img src={proof_url} alt="" srcset="" className="w-full" />
             <div className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex  items-center">
               <img src="/images/file-upload.svg" alt="" srcset="" />
               <p>view proof</p>
@@ -108,59 +100,10 @@ const PaymentCard = ({
   );
 };
 
-
-
-const PaymentList = () => {
-  const data = [
-    {
-      name: "Jonathan Lee",
-      image: "/images/verified-1.svg",
-      club: "Hyderabad Teaching Hospital Club",
-      amount: "42k",
-      currency: "/images/currency.svg",
-      method: "Bank Transfer",
-      date: "20-10-24",
-      proofUrl: "#",
-      isCash: false,
-    },
-    {
-      name: "Jane Kofi",
-      image: "/images/verified-2.svg",
-      club: "Hyderabad Teaching Hospital Club",
-      amount: "42k",
-      currency: "/images/currency.svg",
-      method: "Cash",
-      date: "20-10-24",
-      proofUrl: null,
-      isCash: true,
-    },
-    {
-      name: "David Zhang",
-      image: "/images/verified-3.svg",
-      club: "Hyderabad Teaching Hospital Club",
-      amount: "42k",
-      currency: "/images/currency.svg",
-      method: "Bank Transfer",
-      date: "20-10-24",
-      proofUrl: "#",
-      isCash: false,
-    },
-    {
-      name: "Alexander Smith",
-      image: "/images/verified-4.svg",
-      club: "Hyderabad Teaching Hospital Club",
-      amount: "42k",
-      currency: "/images/currency.svg",
-      method: "Cash",
-      date: "20-10-24",
-      proofUrl: null,
-      isCash: true,
-    },
-  ];
-
+const PaymentList = ({ paymentData }) => {
   return (
-    <div className="flex w-[1200px] justify-between  ">
-      {data.map((item, index) => (
+    <div className="flex space-x-3">
+      {paymentData?.map((item, index) => (
         <PaymentCard key={index} {...item} />
       ))}
     </div>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../service";
 
-const PaymentTable = () => {
+const CirklePaymentHistory = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get("/payment/history");
+        const response = await axiosInstance.get(`/cirkle/${4}/payments`);
         if (response.data.success) {
           setData(response.data.data);
         }
@@ -54,5 +54,4 @@ const PaymentTable = () => {
   );
 };
 
-export default PaymentTable;
-
+export default CirklePaymentHistory;
