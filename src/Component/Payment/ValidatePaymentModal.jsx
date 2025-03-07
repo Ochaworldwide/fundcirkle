@@ -7,7 +7,9 @@ import PaymentTable from "./PaymentTable";
 import { motion } from "framer-motion";
 
 const ValidatePaymentModal = () => {
-  const { isModalOpen, closeModal, modalType } = useModal();
+  const { isModalOpen, closeModal, modalType, modalData } = useModal();
+
+  console.log(modalData)
 
   if (
     !isModalOpen ||
@@ -47,6 +49,7 @@ const ValidatePaymentModal = () => {
 
 
   return (
+
     <div
       className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50 "
       // className="fixed inset-0 z-50 flex justify-center bg-black bg-opacity-50 "
@@ -80,20 +83,9 @@ const ValidatePaymentModal = () => {
         </div>
 
         {/* Payment Instructions */}
-        {/* <div className="grid grid-cols-2 md:grid-cols-2 gap-4 p-4">
-          {cardData.map((data, index) => (
-            <CardBox
-              key={index}
-              groupName={data.groupName}
-              personCount={data.personCount}
-              persons={data.persons}
-              groupId={data.groupId}
-            />
-          ))}
-        </div> */}
 
         <div className="p-4 w-[100%] overflow-scroll hide-scrollbar ">
-          <PaymentList />
+          <PaymentList paymentData={modalData?.last_receipt?.payment_data ?? []}/>
         </div>
 
         {/* History */}

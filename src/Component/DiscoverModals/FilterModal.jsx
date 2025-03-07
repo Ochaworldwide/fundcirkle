@@ -60,7 +60,7 @@ const FilterModal = ({ setModal, onApply }) => {
             {/* Circle Category */}
             <div className="flex items-center justify-between">
               <label className="text-[12px] font-medium mb-1">
-                Circle Category
+                Cirkle Category
               </label>
 
               <div className="flex items-end space-x-1">

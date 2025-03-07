@@ -90,7 +90,7 @@ function Invites() {
         })
         .catch((error) => {
           if (error.response) {
-            console.error("API Error:", error.response.data);
+            console.error("Error:", error.response.data);
           } else if (error.request) {
             console.error("Network Error:", error.request);
           } else {

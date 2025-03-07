@@ -50,16 +50,16 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
           //  console.log("Cirkle joined successfully!");
            toast.success("Cirkle joined successfully!");
          } else {
-           toast.error("API responded with failure:", response.data);
+           toast.error("Warning", response.data);
          }
        })
        .catch((error) => {
          if (error.response) {
-           toast.error("API Error:", error.response.data);
+           toast.error("Warning:", error.response.data);
          } else if (error.request) {
-           toast.error("Network Error:", error.request);
+           toast.error("Warning:", error.request);
          } else {
-           toast.error("Error:", error.message);
+           toast.error("Warning:", error.message);
          }
        });
    };

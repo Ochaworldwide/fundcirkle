@@ -48,7 +48,7 @@ useEffect(() => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 h-screen">
       <div className="bg-white w-11/12 md:w-1/3 py-6 rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4 w-[90%] mx-auto">
-          <h2 className="text-xl font-semibold">Select Circle Category</h2>
+          <h2 className="text-xl font-semibold">Select Cirkle Category</h2>
           <button
             onClick={closeModal}
             className="text-gray-600 hover:text-gray-800"
