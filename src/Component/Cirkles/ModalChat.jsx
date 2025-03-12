@@ -34,7 +34,6 @@ import { UserContext } from "../../contexts/userDetails";
 //   );
 // };
 
-
 const Message = ({ message, isUser }) => {
   return (
     <div
@@ -74,8 +73,6 @@ const Message = ({ message, isUser }) => {
     </div>
   );
 };
-
-
 
 const ChatModal = () => {
   const { isModalOpen, modalType, modalData, closeModal } = useModal();
@@ -138,7 +135,6 @@ const ChatModal = () => {
     event.preventDefault();
     if (!content.trim() && !image) return;
 
-
     const formData = new FormData();
     formData.append("content", content);
     if (image) {
@@ -163,7 +159,6 @@ const ChatModal = () => {
       }
     } catch (error) {
       console.error("Error sending message:", error);
-
     }
   };
 
@@ -173,6 +168,20 @@ const ChatModal = () => {
       setImage(file);
     }
   };
+
+  useEffect(() => {
+    if (window.Echo && cirkleId) {
+      window.Echo.private(`Cirkle.${cirkleId}`).listen(
+        ".CirkleMessageEvent",
+        (data) => {
+          setMessages((prev) => [
+            ...prev,
+            data?.message
+          ]);
+        }
+      );
+    }
+  }, [cirkleId]);
 
   if (!isModalOpen || modalType !== "chat") return null;
 
