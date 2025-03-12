@@ -9,7 +9,9 @@ import { UserContextProvider } from "./contexts/userDetails.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ToastContainer />
+    <ToastContainer
+      style={{ paddingTop: "5px" }}
+    />
     <KycStateProvider>
       <UserContextProvider>
         <App />

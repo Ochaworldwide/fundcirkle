@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
 import SimpleDropdown from "./SimpleDropdown";
 import LocationDropdown from "./LocationDropdown";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { div } from "framer-motion/client";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
@@ -137,7 +137,6 @@ const CreateNewCirkleModal = () => {
     setContribution_Month(id);
   };
 
-
   const handleSubmit = async () => {
     // Validate required fields
     if (
@@ -216,10 +215,8 @@ const CreateNewCirkleModal = () => {
   //     return;
   //   }
 
-
   //   setStep(2); // Change step to display the next component
   // };
-
 
   const handleNext = () => {
     const requiredFields = [
@@ -242,7 +239,6 @@ const CreateNewCirkleModal = () => {
     }
   };
 
-  
   const handlePrev = () => {
     setStep(1); // Change step to display the next component
   };
@@ -260,7 +256,6 @@ const CreateNewCirkleModal = () => {
     setSelectedMonth(event.target.value);
     setDueDate(null);
   };
-
 
   const months = [
     "January",
@@ -291,8 +286,6 @@ const CreateNewCirkleModal = () => {
     November: 30,
     December: 31,
   };
-
-
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50 ">
@@ -459,6 +452,8 @@ const CreateNewCirkleModal = () => {
                     className=" w-fit absolute right-2"
                   />
                 </button>
+
+               
               </div>
             </>
           ) : (
@@ -674,6 +669,3 @@ const CreateNewCirkleModal = () => {
 };
 
 export default CreateNewCirkleModal;
-
-
-

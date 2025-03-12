@@ -14,6 +14,7 @@ import NavigationBar from "../../Component/BottomNav/NavigationBar";
 import { Link } from "react-router-dom";
 import NotificationBox from "../../Component/Cirkles/NotificationBox";
 import { UserContext } from "../../contexts/userDetails";
+import { toast } from "react-toastify";
 
 function Home() {
   const NotifyNum = "3";
@@ -57,19 +58,15 @@ function Home() {
   const { openModal } = useModal();
   const [showNotification, setShowNotification] = useState(false);
 
-
-    useEffect(() => {
-      refetchUser;
-    }, []);
-
- 
+  useEffect(() => {
+    refetchUser;
+  }, []);
 
   return (
     <div className="">
       {/* Nav Bar */}
 
       <div className=" flex w-[95%] mx-auto  items-center  mb-5 sticky top-0 bg-white z-10 ">
-
         <div className="w-[65px] flex items-center justify-center rounded-full h-[65px] overflow-hidden">
           <img
             src={user?.profile_pic}
@@ -142,6 +139,40 @@ function Home() {
       />
 
       {/* QuickStats */}
+
+      <button
+        className="p-5 bg-red-300 rounded-md mx-auto w-[70%] flex items-center justify-center"
+        onClick={() => {
+          toast.success("Cirkle created successfully!", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            newestOnTop: true,
+            draggable: true,
+            theme: "dark",
+            // progress:"2",
+            style: {
+              backgroundColor: "white",
+              color: "black",
+              width: "80%",
+              minHeight: "50px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0px",
+              borderRadius: "5px",
+              boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.2)",
+              margin: "0 auto",
+              fontSize: "14px", 
+              fontWeight: "bold", 
+            }, // Custom styling
+          });
+        }}
+      >
+        testing
+      </button>
 
       <Quickstats />
     </div>
