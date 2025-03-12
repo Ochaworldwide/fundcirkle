@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SplashScreen from "./Pages/Splash/SplashScreen";
 import Residence from "./Pages/Authentication/Residence";
@@ -50,8 +50,12 @@ import EditCirkleModal from "./Component/Cirkles/EditCirkleModal";
 import SwapRequestModal from "./Component/Cirkles/SwapRequestModal";
 import GoalAchieved from "./Component/Cirkles/GoalAchieved";
 import PaymentSubmissionModal from "./Component/Payment/PaymentSubmissionModal";
+import { usePusherHook } from "./hooks/usePusherHook";
 
 const App = () => {
+  useEffect(() => {
+    const pusher = usePusherHook();
+  },[]);
   return (
     <>
       <ModalProvider>

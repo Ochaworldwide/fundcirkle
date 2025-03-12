@@ -62,6 +62,18 @@ function Home() {
     refetchUser;
   }, []);
 
+  // Initialize default notification listener
+  useEffect(() => {
+    if (user?.id && window.Echo) {
+      const channels = window.Echo.connector.channels;
+      if (!Object.keys(channels).includes(`private-User.${user.id}`)) {
+        window.Echo.private(`User.${user.id}`).notification((data) => {
+          console.log(data);
+        });
+      }
+    }
+  }, [user]);
+
   return (
     <div className="">
       {/* Nav Bar */}
