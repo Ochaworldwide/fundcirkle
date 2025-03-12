@@ -140,7 +140,7 @@ function Home() {
 
       {/* QuickStats */}
 
-      <button
+      {/* <button
         className="p-5 bg-red-300 rounded-md mx-auto w-[70%] flex items-center justify-center"
         onClick={() => {
           toast.success("Cirkle created successfully!", {
@@ -189,7 +189,7 @@ function Home() {
         }}
       >
         testing
-      </button>
+      </button> */}
 
       <Quickstats />
     </div>
