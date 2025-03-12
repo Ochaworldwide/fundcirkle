@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 const Intro = () => {
   return (
     <div className='bg-[url("/images/splash/splash-bg-1.svg")] h-screen bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center'>
-      <div className='mb-3'>
-        <motion.img
+      <div className="mb-3">
+        {/* <motion.img
           initial={{
             translateX: "0%",
             translateY: "-100%",
@@ -25,11 +25,17 @@ const Intro = () => {
           src="/images/splash/fund-logo-1.svg"
           alt=""
           srcset=""
+        /> */}
+
+        <img
+          src="/images/splash/fund-logo-1.svg"
+          alt=""
+          srcset=""
         />
       </div>
 
       <div className="flex relative">
-        <motion.img
+        {/* <motion.img
           initial={{
             translateX: "-100%",
             translateY: "0%",
@@ -47,10 +53,9 @@ const Intro = () => {
           src="/images/splash/fund-logo-2.svg"
           alt=""
           srcset=""
-          
-        />
+        /> */}
 
-        <motion.img
+        {/* <motion.img
           initial={{
             translateX: "100%",
             translateY: "0%",
@@ -68,7 +73,11 @@ const Intro = () => {
           src="/images/splash/fund-logo-3.svg"
           alt=""
           srcset=""
-        />
+        /> */}
+
+        <img src="/images/splash/fund-logo-2.svg" alt="" srcset="" />
+
+        <img src="/images/splash/fund-logo-3.svg" alt="" srcset="" />
       </div>
     </div>
   );

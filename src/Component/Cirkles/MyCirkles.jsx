@@ -142,7 +142,7 @@ function MyCirkles() {
 
         <div className="flex w-[95%] mx-auto justify-between">
           <div
-            className="border border-[#00000066] rounded-full flex items-center h-10 w-[45%]"
+            className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%]"
             // onClick={() => openModal("chat")}
             onClick={() => {
               handleMessageClick();
@@ -160,10 +160,12 @@ function MyCirkles() {
                 {header.count}
               </span>
             </button>
-            <p className="mx-auto text-[14px] font-medium">Messages</p>
+            <p className="mx-auto text-[14px] font-medium text-[#00943F]">
+              Messages
+            </p>
           </div>
           <div
-            className="border border-[#00000066] rounded-full flex items-center h-10 w-[45%]"
+            className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%]"
             // onClick={() => openModal("detail")}
             onClick={() => {
               handleGroupClick();
@@ -178,7 +180,9 @@ function MyCirkles() {
             >
               <img src={moreIcon} alt="" />
             </button>
-            <p className="mx-auto text-[14px] font-medium">Details</p>
+            <p className="mx-auto text-[14px] font-medium text-[#00943F]">
+              Details
+            </p>
           </div>
         </div>
 

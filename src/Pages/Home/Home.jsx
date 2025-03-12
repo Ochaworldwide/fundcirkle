@@ -154,6 +154,21 @@ function Home() {
             theme: "dark",
             // progress:"2",
             style: {
+              // backgroundColor: "white",
+              // color: "black",
+              // width: "80%",
+              // minHeight: "50px",
+              // display: "flex",
+              // alignItems: "center",
+              // justifyContent: "center",
+              // padding: "0px",
+              // borderRadius: "5px",
+              // boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.2)",
+              // margin: "0 auto",
+              // fontSize: "14px",
+              // fontWeight: "bold",
+              // borderColor:"grey",
+
               backgroundColor: "white",
               color: "black",
               width: "80%",
@@ -163,10 +178,12 @@ function Home() {
               justifyContent: "center",
               padding: "0px",
               borderRadius: "5px",
-              boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.2)",
+              boxShadow: "10px 10px 10px rgba(0, 0, 0, 0.2)",
               margin: "0 auto",
-              fontSize: "14px", 
-              fontWeight: "bold", 
+              fontSize: "14px",
+              fontWeight: "bold",
+              // border: "1px solid grey",
+              transition: "box-shadow 0.2s ease-in-out",
             }, // Custom styling
           });
         }}
