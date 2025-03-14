@@ -12,6 +12,7 @@ import RequestCard from "../../Component/RequestCard/RequestCard";
 import { toast } from "react-toastify";
 import RecommendedCirklesCard from "../../Component/RecommendedCirklesCard/RecommendedCirklesCard";
 import { MdCancel } from "react-icons/md";
+import { toastConfig } from "../../constants/toastConfig";
 
 
 const slidesData = [
@@ -63,9 +64,9 @@ function Discover() {
     } catch (error) {
       console.error(error);
       if (error.response?.data?.message) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message,{ ...toastConfig });
       } else {
-        toast.error("An error occurred. Please try again.");
+        toast.error("An error occurred. Please try again.",{ ...toastConfig });
       }
     } finally {
       // Uncomment or implement if necessary
@@ -149,10 +150,10 @@ const handleSearch = async () => {
     if (response.data.success) {
       setGroups(response.data.data); // Replace groups with search results
     } else {
-      toast.error("No results found.");
+      toast.error("No results found.",{ ...toastConfig });
     }
   } catch (err) {
-    toast.error(err.message);
+    toast.error(err.message,{ ...toastConfig });
   } finally {
     setLoading(false);
   }

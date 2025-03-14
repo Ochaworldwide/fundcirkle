@@ -6,6 +6,7 @@ import PayoutCard from "./PayoutCard";
 import axiosInstance from "../../service";
 import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import { toastConfig } from "../../constants/toastConfig";
 
 const CirkleDetailsModal = () => {
   
@@ -27,9 +28,11 @@ const CirkleDetailsModal = () => {
         } catch (error) {
           console.error("Error fetching data:", error);
           if (error.response?.data?.message) {
-            toast.error(error.response.data.message);
+            toast.error(error.response.data.message, { ...toastConfig });
           } else {
-            toast.error("An error occurred. Please try again.");
+            toast.error("An error occurred. Please try again.", {
+              ...toastConfig,
+            });
           }
         }
       };

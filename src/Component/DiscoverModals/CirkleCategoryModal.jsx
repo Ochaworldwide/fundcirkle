@@ -4,6 +4,7 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import MultiSelect from "../Common/Multiselect";
+import { toastConfig } from "../../constants/toastConfig";
 
 
 const CirkleCategoryModal = ({closeModal, name, updateSelection}) => {
@@ -22,9 +23,9 @@ const fetchData = async () => {
   } catch (error) {
     console.error(error);
     if (error.response?.data?.message) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message,{ ...toastConfig });
     } else {
-      toast.error("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.",{ ...toastConfig });
     }
   } finally {
     // Uncomment or implement if needed

@@ -14,7 +14,7 @@ const PaymentCard = ({
   proof,
   isCash,
 }) => {
-  const { openModal } = useModal();
+  const { openModal, isModalOpen, closeModal, modalType, modalData } = useModal();
 
   const storage_base = "https://fundcirkle.techr.me/storage";
   const proof_url = `${storage_base}/${proof}` ?? "/images/proof.svg";
@@ -84,14 +84,14 @@ const PaymentCard = ({
       <div className="mt-4 flex space-x-2 w-full justify-between">
         <button
           className="bg-green-500 text-white text-[10.5px] px-2 py-2 rounded-lg "
-          onClick={() => openModal("Confirm Payment")}
+          onClick={() => openModal("Confirm Payment",modalData)}
         >
           Confirm Payment
         </button>
 
         <button
           className="border text-black text-[10.5px] px-2 py-2 rounded-lg"
-          onClick={() => openModal("Request Reupload")}
+          onClick={() => openModal("Request Reupload",modalData)}
         >
           Request Re-Upload
         </button>

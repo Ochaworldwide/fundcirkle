@@ -234,6 +234,7 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { FaUpload } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { toastConfig } from "../../constants/toastConfig";
 
 const EditProfile = () => {
   const [fullName, setFullName] = useState("");
@@ -287,7 +288,7 @@ const EditProfile = () => {
           throw new Error("Image upload failed");
         }
       } catch (error) {
-        toast.error("Image upload failed!");
+        toast.error("Image upload failed!", { ...toastConfig });
         console.log(error);
         setLoading(false);
         return;

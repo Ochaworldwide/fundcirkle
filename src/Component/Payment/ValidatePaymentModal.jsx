@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const ValidatePaymentModal = () => {
   const { isModalOpen, closeModal, modalType, modalData } = useModal();
 
-  console.log(modalData)
+  // console.log(modalData)
 
   if (
     !isModalOpen ||

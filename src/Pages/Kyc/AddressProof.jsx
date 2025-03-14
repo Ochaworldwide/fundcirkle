@@ -4,6 +4,7 @@ import { useKycState } from "../../hooks/useKycState";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
+import { toastConfig } from "../../constants/toastConfig";
 
 const AddressProof = () => {
   const [selectedProof, setSelectedProof] = useState("");
@@ -26,12 +27,12 @@ const AddressProof = () => {
     event.preventDefault();
 
     if (!selectedProof) {
-      toast("Please select an address proof type.");
+      toast("Please select an address proof type.",{ ...toastConfig });
       return;
     }
 
     if (!file) {
-      toast("Please upload a file.");
+      toast("Please upload a file.",{ ...toastConfig });
       return;
     }
 
@@ -49,9 +50,9 @@ const AddressProof = () => {
         }
       });
       navigate("/thanks");
-      toast.success(response.data.message)
+      toast.success(response.data.message,{ ...toastConfig })
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message,{ ...toastConfig });
     }
 
 

@@ -175,6 +175,7 @@ import { useModal } from "../../Component/Cirkles/ModalContext";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
+import { toastConfig } from "../../constants/toastConfig";
 
 const EditBankInformationModal = () => {
   const { isModalOpen, modalType, closeModal, openModal } = useModal();
@@ -216,13 +217,13 @@ const EditBankInformationModal = () => {
       .post(ROUTES.ACCOUNT.UPDATE_BANK_DETAILS, payload)
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message);
+          toast.success(response.data.message, { ...toastConfig });
           openModal("Bank Information");
           reset();
         }
       })
       .catch((error) => {
-        toast.error(error?.response?.data?.message);
+        toast.error(error?.response?.data?.message, { ...toastConfig });
       })
       .finally(() => {
         setLoading(false);

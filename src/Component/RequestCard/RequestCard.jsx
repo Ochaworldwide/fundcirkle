@@ -1,6 +1,7 @@
 import React from "react";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
+import { toastConfig } from "../../constants/toastConfig";
 
 const RequestCard = ({ data }) => {
   const handleAccept = async () => {
@@ -14,9 +15,9 @@ const RequestCard = ({ data }) => {
       );
 
       if (response.data.success) {
-        toast.success("Request accepted successfully!");
+        toast.success("Request accepted successfully!",{ ...toastConfig });
       } else {
-        toast.error("Failed to accept request: " + response.data.message);
+        toast.error("Failed to accept request: " + response.data.message,{ ...toastConfig });
       }
     } catch (error) {
       if (error.response) {
@@ -24,14 +25,14 @@ const RequestCard = ({ data }) => {
         // that falls out of the range of 2xx
         toast.error(
           "Warning: " +
-            (error.response.data.message || error.response.statusText)
+            (error.response.data.message || error.response.statusText),{ ...toastConfig }
         );
       } else if (error.request) {
         // The request was made but no response was received
-        toast.error("Warning: No response received from the server.");
+        toast.error("Warning: No response received from the server.",{ ...toastConfig });
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast.error("Warning: " + error.message);
+        toast.error("Warning: " + error.message,{ ...toastConfig });
       }
       console.error("Error details:", error);
     }
@@ -48,9 +49,9 @@ const RequestCard = ({ data }) => {
       );
 
       if (response.data.success) {
-        toast.success("Request declined successfully!");
+        toast.success("Request declined successfully!",{ ...toastConfig });
       } else {
-        toast.error("Failed to decline request: " + response.data.message);
+        toast.error("Failed to decline request: " + response.data.message,{ ...toastConfig });
       }
     } catch (error) {
       if (error.response) {
@@ -58,14 +59,14 @@ const RequestCard = ({ data }) => {
         // that falls out of the range of 2xx
         toast.error(
           "Warning: " +
-            (error.response.data.message || error.response.statusText)
+            (error.response.data.message || error.response.statusText),{ ...toastConfig }
         );
       } else if (error.request) {
         // The request was made but no response was received
-        toast.error("Warning: No response received from the server.");
+        toast.error("Warning: No response received from the server.",{ ...toastConfig });
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast.error("Warning: " + error.message);
+        toast.error("Warning: " + error.message,{ ...toastConfig });
       }
       console.error("Error details:", error);
     }

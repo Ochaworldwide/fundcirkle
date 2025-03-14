@@ -5,6 +5,7 @@ import { ROUTES } from "../../constants/routes";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
 import { FadeLoader } from "react-spinners";
+import { toastConfig } from "../../constants/toastConfig";
 
 const BankInformationModal = () => {
   const [accountDetails, setAccountDetails] = useState(null); // Initialize as null
@@ -22,7 +23,9 @@ const BankInformationModal = () => {
         setAccountDetails(response.data.data.bank_details); // Set bank_details from API response
         console.log(response.data.data.bank_details);
       } catch (err) {
-        toast.error(err.response?.data?.message || "An error occurred");
+        toast.error(err.response?.data?.message || "An error occurred", {
+          ...toastConfig
+        });
       } finally {
         setLoading(false);
       }
@@ -35,7 +38,7 @@ const BankInformationModal = () => {
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
-    toast.success("Copied to clipboard!");
+    toast.success("Copied to clipboard!", { ...toastConfig });
   };
 
   // If accountDetails is null or undefined, show a message

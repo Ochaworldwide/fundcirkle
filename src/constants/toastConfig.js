@@ -1,0 +1,27 @@
+// toastConfig.js
+export const toastConfig = {
+  position: "top-center",
+  autoClose: 1000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  newestOnTop: true,
+  draggable: true,
+  theme: "dark",
+  style: {
+    backgroundColor: "white",
+    color: "black",
+    width: "100%",
+    minHeight: "50px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0px",
+    borderRadius: "5px",
+    boxShadow: "10px 10px 10px rgba(0, 0, 0, 0.2)",
+    margin: "0 auto",
+    fontSize: "14px",
+    fontWeight: "bold",
+    transition: "box-shadow 0.2s ease-in-out",
+  },
+};

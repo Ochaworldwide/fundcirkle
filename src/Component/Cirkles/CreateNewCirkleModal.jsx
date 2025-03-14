@@ -10,6 +10,7 @@ import { ROUTES } from "../../constants/routes";
 import MultiEmailInput from "../Common/multiEmailInput";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { toastConfig } from "../../constants/toastConfig";
 
 const CreateNewCirkleModal = () => {
   const [name, setCirkleName] = useState("");
@@ -141,13 +142,12 @@ const CreateNewCirkleModal = () => {
     // Validate required fields
     if (
       !name ||
-      !description ||
       !category ||
       !contribution_amount ||
       !selectedMonth ||
       !privacy
     ) {
-      toast.error("Please fill in all required fields!");
+      toast.error("Please fill in all required fields!", { ...toastConfig });
       return;
     }
 
@@ -155,7 +155,8 @@ const CreateNewCirkleModal = () => {
       name: name,
       members: emails,
       max_members: members,
-      description: description,
+      ...(description && { description }),
+      // description: description,
       category: selectedCategoryId,
       contribution_amount: contribution_amount,
       contribution_frequency: frequency,
@@ -179,9 +180,11 @@ const CreateNewCirkleModal = () => {
         navigate("/creationsuccess");
         closeModal();
         resetState();
-        toast.success("Cirkle created successfully!");
+        toast.success("Cirkle created successfully!", { ...toastConfig });
       } else {
-        toast.error("Failed to create Cirkle: " + response.data.message);
+        toast.error("Failed to create Cirkle: " + response.data.message, {
+          ...toastConfig,
+        });
       }
     } catch (error) {
       if (error.response) {
@@ -189,39 +192,27 @@ const CreateNewCirkleModal = () => {
         // that falls out of the range of 2xx
         toast.error(
           "Warning: " +
-            (error.response.data.message || error.response.statusText)
+            (error.response.data.message || error.response.statusText),
+          { ...toastConfig }
         );
       } else if (error.request) {
         // The request was made but no response was received
-        toast.error("Network Error: No response received from the server.");
+        toast.error("Network Error: No response received from the server.", {
+          ...toastConfig,
+        });
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast.error("Warning: " + error.message);
+        toast.error("Warning: " + error.message, { ...toastConfig });
       }
       console.error("Error details:", error);
     }
   };
 
-  // const handleNext = () => {
 
-  //   if (
-  //     !name ||
-  //     !description ||
-  //     !category ||
-  //     !contribution_amount ||
-  //     !selectedMonth
-  //   ) {
-  //     toast.error("Please fill in all required fields!");
-  //     return;
-  //   }
-
-  //   setStep(2); // Change step to display the next component
-  // };
 
   const handleNext = () => {
     const requiredFields = [
       name,
-      description,
       category,
       contribution_amount,
       selectedMonth,
@@ -233,7 +224,7 @@ const CreateNewCirkleModal = () => {
         (field) => !field || (typeof field === "string" && field.trim() === "")
       )
     ) {
-      toast.error("Please fill in all required fields!");
+      toast.error("Please fill in all required fields!", { ...toastConfig });
     } else {
       setStep(2);
     }

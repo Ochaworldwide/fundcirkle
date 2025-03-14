@@ -9,6 +9,7 @@ import { em } from "framer-motion/client";
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa"; // Import icons from react-icons
+import { toastConfig } from "../../constants/toastConfig";
 
 
 function SignIn() {
@@ -46,14 +47,14 @@ function SignIn() {
       .then((response) => {
         if (response.data.success) {
           const token = response.data.data.token;
-          toast.success("Login successful");
+          toast.success("Login successful", { ...toastConfig });
           localStorage.setItem("token", token);
           localStorage.setItem('user',response.data.data.user)
           navigate("/home");
         }
       })
       .catch((error) => {
-        toast.error(error?.response?.data?.message);
+        toast.error(error?.response?.data?.message, { ...toastConfig });
       })
       .finally(() => {
         setLoading(false);

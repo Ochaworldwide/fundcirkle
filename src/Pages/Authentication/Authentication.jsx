@@ -7,6 +7,7 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
+import { toastConfig } from "../../constants/toastConfig";
 
 const Authentication = () => {
   const [otp, setOtp] = useState(Array(6).fill(""));
@@ -72,13 +73,13 @@ const Authentication = () => {
       .post(ROUTES.AUTH.VERIFY, payload)
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message);
+          toast.success(response.data.message, { ...toastConfig });
           navigate("/sign-in");
         }
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message, { ...toastConfig });
         
       })
       .finally(() => {
@@ -94,7 +95,7 @@ const Authentication = () => {
     axiosInstance
       .post(ROUTES.AUTH.RESENDOTP, payload)
       .then((response) => {
-        toast.success('Resent OTP')
+        toast.success("Resent OTP", { ...toastConfig });
       })
       .catch((error) => {
         console.log(error);

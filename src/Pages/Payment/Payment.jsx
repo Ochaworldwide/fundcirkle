@@ -7,6 +7,7 @@ import NavigationBar from "../../Component/BottomNav/NavigationBar";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
 import { ROUTES } from "../../constants/routes";
+import { toastConfig } from "../../constants/toastConfig";
 
 const Payment = () => {
   const [due, setDue] = useState({});
@@ -36,7 +37,7 @@ const Payment = () => {
         console.log(accountResponse.data);
         // setAccountData();
       } catch (error) {
-        toast.error("Error fetching initial data:", error);
+        toast.error("Error fetching initial data:", error, { ...toastConfig });
       }
     };
 

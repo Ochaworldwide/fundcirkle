@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import MultiEmailInput from "../Common/multiEmailInput";
 import axiosInstance from "../../service";
+import { toastConfig } from "../../constants/toastConfig";
 
 const EditCirkleModal = () => {
   const { isModalOpen, modalType, modalData, closeModal, openModal } =
@@ -31,7 +32,8 @@ const EditCirkleModal = () => {
           console.error("Error fetching data:", error);
           toast.error(
             error.response?.data?.message ||
-              "An error occurred. Please try again."
+              "An error occurred. Please try again.",
+            { ...toastConfig }
           );
         }
       };
@@ -60,12 +62,14 @@ const EditCirkleModal = () => {
       );
 
       if (response.data.success) {
-        toast.success("Cirkle updated successfully!");
+        toast.success("Cirkle updated successfully!", { ...toastConfig });
         openModal("detail", cirkleData.id);
       }
     } catch (error) {
       console.error("Error updating Cirkle:", error);
-      toast.error(error.response?.data?.message || "Failed to update Cirkle.");
+      toast.error(error.response?.data?.message || "Failed to update Cirkle.", {
+        ...toastConfig,
+      });
     }
   };
 

@@ -8,6 +8,7 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
+import { toastConfig } from "../../constants/toastConfig";
 
 function Residence() {
   // const [country, setCountry] = useState(null);
@@ -50,9 +51,9 @@ function Residence() {
     try {
       const response = await axiosInstance.post(ROUTES.AUTH.SIGNUP, payload);
       navigate("/authentication", { state: { email: payload?.email } });
-      toast.success(response.data.message)
+      toast.success(response.data.message, { ...toastConfig });
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, { ...toastConfig });
     }
     setLoading(false);
   };

@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { AiOutlineDown } from "react-icons/ai";
 import { BiCheckCircle } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { toastConfig } from "../../constants/toastConfig";
 
 
 const SwapRequestModal = () => {
@@ -19,54 +20,6 @@ const SwapRequestModal = () => {
     const [cirkleMembers, setCirkleMembers] = useState([]);
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   if (isModalOpen && modalType === "swap") {
-  //     const fetchData = async () => {
-  //       try {
-  //         const cirkleId = modalData;
-  //         const response = await axiosInstance.get(`/cirkles/${cirkleId}`);
-  //         if (response.data.success) {
-  //           setCirkleData(response.data.data);
-  //           console.log(response.data.data);
-  //         }
-  //       } catch (error) {
-  //         console.error("Error fetching data:", error);
-  //         if (error.response?.data?.message) {
-  //           toast.error(error.response.data.message);
-  //         } else {
-  //           toast.error("An error occurred. Please try again.");
-  //         }
-  //       }
-  //     };
-
-  //     fetchData();
-  //   }
-  // }, [isModalOpen, modalType]);
-
-
-  // useEffect(() => {
-  //   if (isModalOpen && modalType === "swap" && modalData) {
-  //     const fetchData = async () => {
-  //       try {
-  //         const cirkleId = modalData;
-  //         const response = await axiosInstance.get(`/cirkles/${cirkleId}`);
-  //         if (response.data.success) {
-  //           setCirkleData(response.data.data);
-  //           console.log(response.data.data);
-  //         }
-  //       } catch (error) {
-  //         console.error("Error fetching data:", error);
-  //         if (error.response?.data?.message) {
-  //           toast.error(error.response.data.message);
-  //         } else {
-  //           toast.error("An error occurred. Please try again.");
-  //         }
-  //       }
-  //     };
-
-  //     fetchData();
-  //   }
-  // }, [isModalOpen, modalType, modalData, axiosInstance, toast, setCirkleData]);
 
 
   useEffect(() => {
@@ -94,9 +47,9 @@ const SwapRequestModal = () => {
         } catch (error) {
           console.error("Error fetching data:", error);
           if (error.response?.data?.message) {
-            toast.error(error.response.data.message);
+            toast.error(error.response.data.message,{ ...toastConfig });
           } else {
-            toast.error("An error occurred. Please try again.");
+            toast.error("An error occurred. Please try again.",{ ...toastConfig });
           }
         }
       };

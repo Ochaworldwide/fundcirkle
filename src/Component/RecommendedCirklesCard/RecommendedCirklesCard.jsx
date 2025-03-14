@@ -3,6 +3,7 @@ import moreIcon from "/images/more.svg";
 import { useModal } from "../Cirkles/ModalContext";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
+import { toastConfig } from "../../constants/toastConfig";
 
 const RecommendedCirklesCard = ({ group, buttons }) => {
   const { openModal, isModalOpen } = useModal();
@@ -48,18 +49,18 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
        .then((response) => {
          if (response.data.success) {
           //  console.log("Cirkle joined successfully!");
-           toast.success("Cirkle joined successfully!");
+           toast.success("Cirkle joined successfully!", { ...toastConfig });
          } else {
-           toast.error("Warning", response.data);
+           toast.error("Warning", response.data, { ...toastConfig });
          }
        })
        .catch((error) => {
          if (error.response) {
-           toast.error("Warning:", error.response.data);
+           toast.error("Warning:", error.response.data, { ...toastConfig });
          } else if (error.request) {
-           toast.error("Warning:", error.request);
+           toast.error("Warning:", error.request, { ...toastConfig });
          } else {
-           toast.error("Warning:", error.message);
+           toast.error("Warning:", error.message, { ...toastConfig });
          }
        });
    };

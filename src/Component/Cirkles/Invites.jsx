@@ -5,6 +5,7 @@ import { ROUTES } from "../../constants/routes";
 import NoInvitesCard from "./NoInvitesCard";
 import { FadeLoader} from "react-spinners";
 import { useNavigate } from "react-router-dom";
+import { toastConfig } from "../../constants/toastConfig";
 
 function Invites() {
   const [groups, setGroups] = useState([]);
@@ -33,9 +34,9 @@ function Invites() {
     } catch (error) {
       console.error("Error fetching data:", error);
       if (error.response?.data?.message) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message,{ ...toastConfig });
       } else {
-        toast.error("An error occurred. Please try again.");
+        toast.error("An error occurred. Please try again.",{ ...toastConfig });
       }
     } finally {
       setLoading(false);

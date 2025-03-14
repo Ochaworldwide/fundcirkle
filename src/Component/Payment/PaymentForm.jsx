@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useModal } from "../Cirkles/ModalContext";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
+import { toastConfig } from "../../constants/toastConfig";
 
 const contributionDetails = {
   accountMessage: "Please make your contribution to this bank account:",
@@ -118,13 +119,13 @@ const PaymentForm = ({ handler, cirkle }) => {
     } catch (error) {
       // Handle errors
       console.error("Error submitting payment:", error);
-      toast.error("Failed to submit payment. Please try again.");
+      toast.error("Failed to submit payment. Please try again.",{ ...toastConfig });
     }
   };
 
   const copy = (text) => {
     copyToClipboard(text);
-    toast.info("copied to clipboard");
+    toast.info("copied to clipboard",{ ...toastConfig });
   };
 
   return (

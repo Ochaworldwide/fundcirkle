@@ -5,6 +5,7 @@ import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import { FadeLoader } from "react-spinners";
 import { UserContext } from "../../contexts/userDetails";
+import { toastConfig } from "../../constants/toastConfig";
 
 
 const Profile = () => {
@@ -26,7 +27,9 @@ const Profile = () => {
         console.log(response.data.data)
       } catch (err) {
         // setError("Failed to load profile data.");
-        toast.error(err.response?.data?.message || "An error occurred"); // Use err instead of response
+        toast.error(err.response?.data?.message || "An error occurred", {
+          ...toastConfig,
+        }); // Use err instead of response
       } finally {
         setLoading(false);
       }

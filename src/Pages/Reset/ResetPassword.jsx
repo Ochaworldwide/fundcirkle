@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { PulseLoader } from "react-spinners";
+import { toastConfig } from "../../constants/toastConfig";
 
 function ResetPassword() {
   const location = useLocation();
@@ -33,12 +34,12 @@ function ResetPassword() {
       })
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message);
+          toast.success(response.data.message, { ...toastConfig });
         }
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message, { ...toastConfig });
       })
       .finally(() => {
         setLoading(false);

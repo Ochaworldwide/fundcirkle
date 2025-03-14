@@ -4,6 +4,7 @@ import currency from "/images/currency.svg";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
+import { toastConfig } from "../../constants/toastConfig";
 
 const QuickStats = () => {
   const [stats, setStats] = useState(null);
@@ -49,7 +50,7 @@ const QuickStats = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
       toast.error(
-        error.response?.data?.message || "An error occurred. Please try again."
+        error.response?.data?.message || "An error occurred. Please try again.",{ ...toastConfig }
       );
     } finally {
       setLoading(false);

@@ -113,15 +113,15 @@ const ChatModal = () => {
   // }, [lastFetched]);
 
 
-  useEffect(() => {
-    if (!isModalOpen) return; // Only run the effect when modal is open
+  // useEffect(() => {
+  //   if (!isModalOpen) return; // Only run the effect when modal is open
 
-    const interval = setInterval(() => {
-      getMessages();
-    }, 10000);
+  //   const interval = setInterval(() => {
+  //     getMessages();
+  //   }, 10000);
 
-    return () => clearInterval(interval);
-  }, [isModalOpen, lastFetched]);
+  //   return () => clearInterval(interval);
+  // }, [isModalOpen, lastFetched]);
 
   useEffect(() => {
     if (msgRef.current) {
@@ -174,6 +174,7 @@ const ChatModal = () => {
       window.Echo.private(`Cirkle.${cirkleId}`).listen(
         ".CirkleMessageEvent",
         (data) => {
+          console.log(data)
           setMessages((prev) => [
             ...prev,
             data?.message
