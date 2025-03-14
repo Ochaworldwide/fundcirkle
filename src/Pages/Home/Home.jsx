@@ -152,41 +152,7 @@ function Home() {
 
       {/* QuickStats */}
 
-      {/* <button
-        className="p-5 bg-red-300 rounded-md mx-auto w-[70%] flex items-center justify-center"
-        onClick={() => {
-          toast.success("Cirkle created successfully!", {
-            position: "top-center",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            newestOnTop: true,
-            draggable: true,
-            theme: "dark",
-            // progress:"2",
-            style: {
-              backgroundColor: "white",
-              color: "black",
-              width: "80%",
-              minHeight: "50px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "0px",
-              borderRadius: "5px",
-              boxShadow: "10px 10px 10px rgba(0, 0, 0, 0.2)",
-              margin: "0 auto",
-              fontSize: "14px",
-              fontWeight: "bold",
-              // border: "1px solid grey",
-              transition: "box-shadow 0.2s ease-in-out",
-            }, 
-          });
-        }}
-      >
-        testing
-      </button> */}
+
 
       <Quickstats />
     </div>
