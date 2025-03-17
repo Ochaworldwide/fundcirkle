@@ -57,6 +57,7 @@ function Home() {
 
   const { openModal } = useModal();
   const [showNotification, setShowNotification] = useState(false);
+  const [notificationData, setNotificationData] = useState([])
 
   useEffect(() => {
     refetchUser;
@@ -69,6 +70,8 @@ function Home() {
       if (!Object.keys(channels).includes(`private-User.${user.id}`)) {
         window.Echo.private(`User.${user.id}`).notification((data) => {
           console.log(data);
+          setNotificationData(data)
+
         });
       }
     }
@@ -131,7 +134,10 @@ function Home() {
         </div>
 
         {showNotification && (
-          <NotificationBox setShowNotification={setShowNotification} />
+          <NotificationBox
+            setShowNotification={setShowNotification}
+            notificationData={notificationData}
+          />
         )}
       </div>
 
@@ -151,8 +157,6 @@ function Home() {
       />
 
       {/* QuickStats */}
-
-
 
       <Quickstats />
     </div>

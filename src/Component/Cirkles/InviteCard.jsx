@@ -14,7 +14,7 @@ const InviteCard = ({ group, buttons}) => {
   };
 
   return (
-    <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%]">
+    <div className="flex p-1 bg-white shadow-[0_0_20px_rgba(0,0,0,0.1)] border rounded-lg mb-4 w-[100%]">
       <div className="py-5  w-[20%]">
         <img
           src={group.image}
@@ -41,7 +41,6 @@ const InviteCard = ({ group, buttons}) => {
             onClick={() => {
               // openModal("invite",stateId);
               handleGroupClick();
-              
             }}
           >
             <img src={moreIcon} alt="" srcset="" />
