@@ -71,7 +71,7 @@ function Residence() {
       placeholder: "Phone Number",
       value: phoneNumber,
       onChange: (e) => setPhoneNumber(e.target.value),
-      className: "w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none",
+      className: "w-[100%] border py-4 px-2 rounded-lg mb-5 outline-none", 
     },
   ];
 
