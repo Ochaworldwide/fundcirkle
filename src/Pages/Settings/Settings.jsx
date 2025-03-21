@@ -59,7 +59,7 @@ const logout = () => {
 };
 
   useEffect(() => {
-    refetchUser;
+    refetchUser();
   }, []);
 
   return (

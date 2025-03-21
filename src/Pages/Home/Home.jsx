@@ -15,9 +15,10 @@ import { Link } from "react-router-dom";
 import NotificationBox from "../../Component/Cirkles/NotificationBox";
 import { UserContext } from "../../contexts/userDetails";
 import { toast } from "react-toastify";
+import { useNotification } from "../../contexts/notificationContext";
 
 function Home() {
-  const NotifyNum = "3";
+  
   // Tabs Data
   const tabsData = [
     { name: "My Cirkles", isActive: true },
@@ -26,6 +27,9 @@ function Home() {
   ];
 
   const { user, refetchUser } = useContext(UserContext);
+  const { notifications, clearNotifications } = useNotification();
+
+  const NotifyNum = notifications.length;
 
   // Header Data
   const headerData = {
@@ -55,27 +59,30 @@ function Home() {
     { name: "Grace", image: "/src/assets/images/member7.png" },
   ];
 
-  const { openModal } = useModal();
+  // const { openModal } = useModal();
   const [showNotification, setShowNotification] = useState(false);
-  const [notificationData, setNotificationData] = useState([])
+  // const [notificationData, setNotificationData] = useState([])
 
   useEffect(() => {
-    refetchUser;
+    refetchUser();
   }, []);
 
   // Initialize default notification listener
-  useEffect(() => {
-    if (user?.id && window.Echo) {
-      const channels = window.Echo.connector.channels;
-      if (!Object.keys(channels).includes(`private-User.${user.id}`)) {
-        window.Echo.private(`User.${user.id}`).notification((data) => {
-          console.log(data);
-          setNotificationData(data)
+  // useEffect(() => {
+  //   if (user?.id && window.Echo) {
+  //     const channels = window.Echo.connector.channels;
+  //     if (!Object.keys(channels).includes(`private-User.${user.id}`)) {
+  //       window.Echo.private(`User.${user.id}`).notification((data) => {
+  //         console.log(data);
+  //         setNotificationData(data)
 
-        });
-      }
-    }
-  }, [user]);
+  //       });
+  //     }
+  //   }
+  // }, [user]);
+
+
+
 
   return (
     <div className="">
@@ -97,10 +104,16 @@ function Home() {
         </div>
 
         <div className="border border-[#00000066] p-1 rounded-full relative ml-auto">
-          <div className=" absolute top-0 right-0 border border-[#00000066] text-[8px] font-bold flex justify-center text-white   h-[12px] w-[12px] bg-[#00943F] rounded-full">
-            {""}
-            {NotifyNum}
-          </div>
+          {NotifyNum === 0 ? (
+            " "
+          ) : (
+            <div className=" absolute top-0 right-0 border border-[#00000066] text-[8px] font-bold flex justify-center text-white   h-[12px] w-[12px] bg-[#00943F] rounded-full">
+              {""}
+
+              {NotifyNum}
+            </div>
+          )}
+
           <svg
             width="24"
             height="25"
@@ -134,10 +147,7 @@ function Home() {
         </div>
 
         {showNotification && (
-          <NotificationBox
-            setShowNotification={setShowNotification}
-            notificationData={notificationData}
-          />
+          <NotificationBox setShowNotification={setShowNotification} />
         )}
       </div>
 

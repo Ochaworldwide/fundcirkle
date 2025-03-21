@@ -174,7 +174,7 @@ const ChatModal = () => {
       window.Echo.private(`Cirkle.${cirkleId}`).listen(
         ".CirkleMessageEvent",
         (data) => {
-          console.log(data)
+          // console.log(data)
           setMessages((prev) => [
             ...prev,
             data?.message

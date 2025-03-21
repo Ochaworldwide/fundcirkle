@@ -52,7 +52,8 @@ const EditCirkleModal = () => {
       const updatedData = {
         name: cirkleData.name,
         members: emails,
-        description: cirkleData.description,
+        ...(cirkleData.description && { description: cirkleData.description }),
+        // description: cirkleData.description,
         privacy,
       };
 

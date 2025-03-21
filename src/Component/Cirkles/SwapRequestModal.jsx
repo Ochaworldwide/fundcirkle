@@ -11,16 +11,13 @@ import { BiCheckCircle } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { toastConfig } from "../../constants/toastConfig";
 
-
 const SwapRequestModal = () => {
   const { isModalOpen, modalType, modalData, closeModal, openModal } =
     useModal();
   const [cirkleData, setCirkleData] = useState("");
-  const [selectedMember, setSelectedMember] = useState('');
-    const [cirkleMembers, setCirkleMembers] = useState([]);
-  const navigate = useNavigate()
-
-
+  const [selectedMember, setSelectedMember] = useState("");
+  const [cirkleMembers, setCirkleMembers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isModalOpen && modalType === "swap" && modalData) {
@@ -30,9 +27,7 @@ const SwapRequestModal = () => {
 
           const [cirkleResponse, membersResponse] = await Promise.all([
             axiosInstance.get(`/cirkles/${cirkleId}`),
-            axiosInstance.get(
-              `/cirkles/${cirkleId}/members`
-            ),
+            axiosInstance.get(`/cirkles/${cirkleId}/members`),
           ]);
 
           if (cirkleResponse.data.success) {
@@ -47,9 +42,11 @@ const SwapRequestModal = () => {
         } catch (error) {
           console.error("Error fetching data:", error);
           if (error.response?.data?.message) {
-            toast.error(error.response.data.message,{ ...toastConfig });
+            toast.error(error.response.data.message, { ...toastConfig });
           } else {
-            toast.error("An error occurred. Please try again.",{ ...toastConfig });
+            toast.error("An error occurred. Please try again.", {
+              ...toastConfig,
+            });
           }
         }
       };
@@ -65,8 +62,6 @@ const SwapRequestModal = () => {
     setCirkleData,
     setCirkleMembers,
   ]);
-
-
 
   if (!isModalOpen || modalType !== "swap") return null;
 
@@ -124,7 +119,6 @@ const SwapRequestModal = () => {
     currency: "/images/currency.svg",
   };
 
-  
   const members = [
     {
       name: "Rebecca Lee",
@@ -143,24 +137,18 @@ const SwapRequestModal = () => {
     },
   ];
 
-
-
-
   const handleClick = async () => {
     const payload = {
       user_id: selectedMember.id, // Replace with dynamic user ID
-      // status: "completed",
-      // timestamp: new Date().toISOString(),
     };
 
-    try {
-      await axiosInstance.post(`/cirkles/${cirkleId}/swap`, payload);
-      navigate("/goalachieved");
-      closeModal();
-    } catch (error) {
-      console.error("Error posting data:", error);
-      // Handle error state if needed
-    }
+    axiosInstance
+      .post(`/cirkles/${cirkleId}/swap`, payload)
+      .then((response) => {
+        navigate("/goalachieved");
+      })
+      .catch((error) => console.error("Error posting data:", error))
+      .finally(() => closeModal());    
   };
 
   return (
@@ -232,25 +220,6 @@ const SwapRequestModal = () => {
               <label className="block text-sm font-semibold mb-4">
                 Set A member to swap with:
               </label>
-              {/* <div className="relative">
-                <select
-                  className="w-full px-3 py-2 border text-sm  border-[#00000066] bg-white rounded-lg appearance-none cursor-pointer outline-none"
-                  onChange={(e) =>
-                    setSelectedMember(
-                      members.find((m) => m.name === e.target.value)
-                    )
-                  }
-                >
-                  <option>Select a Member</option>
-                  {members.map((member) => (
-                    <option key={member.name} value={member.name} className="">
-                      {member.name} -{" "}
-                      <span className="ml-auto">{member.month}</span>
-                    </option>
-                  ))}
-                </select>
-                <AiOutlineDown className="absolute top-3 right-3 text-gray-500" />
-              </div> */}
 
               <div className="relative">
                 <select

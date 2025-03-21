@@ -20,12 +20,6 @@ const CreateNewCirkleModal = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState("1");
   const [members, setMembers] = useState(2);
   const [frequency, setFrequency] = useState("monthly");
-  // const [contribution_Week, setContribution_Week] = useState();
-  // const [contribution_Month, setContribution_Month] = useState();
-  // const [contribution_day, setContribution] = useState();
-  // const [dueDay, setDueDay] = useState();
-  // const [dueMonth, setDueMonth] = useState();
-  // const [selectedDay, setSelectedDay] = useState("Friday");
   const [userCountry, setUserCountry] = useState("");
   const [listCountries, setListCountries] = useState([]);
   const [userStateId, setUserStateId] = useState([]);
@@ -50,10 +44,8 @@ const CreateNewCirkleModal = () => {
     setSelectedCategoryId("1");
     setMembers(2);
     setFrequency("monthly");
-    // setSelectedDay("Friday");
     setStep(1);
     setDueDate("");
-    // setDueDay("");
     setIsPublic(true);
     setPrivacy("public");
     setEmails([]);
@@ -156,11 +148,9 @@ const CreateNewCirkleModal = () => {
       members: emails,
       max_members: members,
       ...(description && { description }),
-      // description: description,
       category: selectedCategoryId,
       contribution_amount: contribution_amount,
       contribution_frequency: frequency,
-      // contribution_week: contribution_Week,
       contribution_day: dueDate,
       start_month: selectedMonth, // Month of the year
       privacy: privacy,
@@ -188,20 +178,16 @@ const CreateNewCirkleModal = () => {
       }
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         toast.error(
           "Warning: " +
             (error.response.data.message || error.response.statusText),
           { ...toastConfig }
         );
       } else if (error.request) {
-        // The request was made but no response was received
         toast.error("Network Error: No response received from the server.", {
           ...toastConfig,
         });
       } else {
-        // Something happened in setting up the request that triggered an Error
         toast.error("Warning: " + error.message, { ...toastConfig });
       }
       console.error("Error details:", error);
@@ -238,10 +224,6 @@ const CreateNewCirkleModal = () => {
   const handleDueDateClick = (date) => {
     setDueDate(date);
   };
-
-  // const handleDueDayClick = (date) => {
-  //   setDueDay(date);
-  // };
 
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
@@ -443,8 +425,6 @@ const CreateNewCirkleModal = () => {
                     className=" w-fit absolute right-2"
                   />
                 </button>
-
-               
               </div>
             </>
           ) : (
@@ -495,6 +475,9 @@ const CreateNewCirkleModal = () => {
                     }}
                     className="w-full border px-3 py-3 rounded-lg border-[#00000066] bg-white text-[#00000080] outline-[#00943F]"
                   >
+                    <option value="" disabled selected>
+                      Select State
+                    </option>
                     {states &&
                       states.map((option, index) => (
                         <option key={index} value={option.id}>

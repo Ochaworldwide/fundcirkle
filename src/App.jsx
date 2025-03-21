@@ -51,6 +51,7 @@ import SwapRequestModal from "./Component/Cirkles/SwapRequestModal";
 import GoalAchieved from "./Component/Cirkles/GoalAchieved";
 import PaymentSubmissionModal from "./Component/Payment/PaymentSubmissionModal";
 import { usePusherHook } from "./hooks/usePusherHook";
+import { NotificationProvider } from "./contexts/notificationContext";
 
 const App = () => {
   useEffect(() => {
@@ -58,71 +59,73 @@ const App = () => {
   },[]);
   return (
     <>
-      <ModalProvider>
-        <Router>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<SplashScreen />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/residence" element={<Residence />} />
-            <Route path="/authentication" element={<Authentication />} />
-            <Route path="/reset" element={<ResetFrom />} />
-            <Route
-              path="/password-reset/:reset_token"
-              element={<ResetPassword />}
-            />
-
-            <Route element={<Protected />}>
-              <Route element={<DefaultLayout />}>
-                <Route path="/home" element={<Home />} />
-                <Route path="/discover" element={<Discover />} />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/setting" element={<Settings />} />
-              </Route>
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/editprofile" element={<EditProfile />} />
-              <Route path="/updatepassword" element={<UpdatePassword />} />
-              <Route path="/startkyc" element={<StartKyc />} />
-              <Route path="/personalinfo" element={<PersonalInfo />} />
-              <Route path="/uploaddocument" element={<UploadDocument />} />
-              <Route path="/identityproof" element={<IdentityProof />} />
-              <Route path="/addressproof" element={<AddressProof />} />
-              <Route path="/thanks" element={<ThankYou />} />
-              <Route path="/confetti" element={<Confetti />} />
+      <NotificationProvider>
+        <ModalProvider>
+          <Router>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<SplashScreen />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/residence" element={<Residence />} />
+              <Route path="/authentication" element={<Authentication />} />
+              <Route path="/reset" element={<ResetFrom />} />
               <Route
-                path="/creationsuccess"
-                element={<CirkleCreationSuccess />}
+                path="/password-reset/:reset_token"
+                element={<ResetPassword />}
               />
-              <Route path="/paymentsuccessful" element={<PaymentSuccess />} />
-              <Route path="/acceptedinvite" element={<AcceptedInvite />} />
-              <Route path="/goalachieved" element={<GoalAchieved />} />
-            </Route>
 
-            {/* Add more routes for additional screens as needed */}
-          </Routes>
-          <ModalChat />
+              <Route element={<Protected />}>
+                <Route element={<DefaultLayout />}>
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/discover" element={<Discover />} />
+                  <Route path="/payment" element={<Payment />} />
+                  <Route path="/setting" element={<Settings />} />
+                </Route>
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/editprofile" element={<EditProfile />} />
+                <Route path="/updatepassword" element={<UpdatePassword />} />
+                <Route path="/startkyc" element={<StartKyc />} />
+                <Route path="/personalinfo" element={<PersonalInfo />} />
+                <Route path="/uploaddocument" element={<UploadDocument />} />
+                <Route path="/identityproof" element={<IdentityProof />} />
+                <Route path="/addressproof" element={<AddressProof />} />
+                <Route path="/thanks" element={<ThankYou />} />
+                <Route path="/confetti" element={<Confetti />} />
+                <Route
+                  path="/creationsuccess"
+                  element={<CirkleCreationSuccess />}
+                />
+                <Route path="/paymentsuccessful" element={<PaymentSuccess />} />
+                <Route path="/acceptedinvite" element={<AcceptedInvite />} />
+                <Route path="/goalachieved" element={<GoalAchieved />} />
+              </Route>
 
-          <CirkleDetailsModal />
-          <EditCirkleModal />
-          <InviteCirkleDetailsModal />
-          <CreateNewCirkleModal />
-          <SwapRequestModal />
-          <PaymentSubmissionModal />
-          {/* <FilterModal /> */}
-          {/* <CirkleCategoryModal /> */}
-          <DisplayCategoriesModal />
-          <PaymentFilterModal />
-          <MakePaymentModal />
-          <ValidatePaymentModal />
-          <ConfirmPaymentModal />
-          <RequestReuploadModal />
-          <ViewProofModal />
-          <BankInformationModal />
-          <EditBankInformationModal />
-          <RecommendedCirklesModal />
-        </Router>
-      </ModalProvider>
+              {/* Add more routes for additional screens as needed */}
+            </Routes>
+            <ModalChat />
+
+            <CirkleDetailsModal />
+            <EditCirkleModal />
+            <InviteCirkleDetailsModal />
+            <CreateNewCirkleModal />
+            <SwapRequestModal />
+            <PaymentSubmissionModal />
+            {/* <FilterModal /> */}
+            {/* <CirkleCategoryModal /> */}
+            <DisplayCategoriesModal />
+            <PaymentFilterModal />
+            <MakePaymentModal />
+            <ValidatePaymentModal />
+            <ConfirmPaymentModal />
+            <RequestReuploadModal />
+            <ViewProofModal />
+            <BankInformationModal />
+            <EditBankInformationModal />
+            <RecommendedCirklesModal />
+          </Router>
+        </ModalProvider>
+      </NotificationProvider>
     </>
   );
 };

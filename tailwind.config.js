@@ -12,6 +12,9 @@ export default {
           "50%": { opacity: 1 },
         },
       },
+      boxShadow: {
+        custom: "0 4px 10px rgba(0, 0, 0, 1)", // Custom shadow
+      },
     },
   },
   plugins: [],

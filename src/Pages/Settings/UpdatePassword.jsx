@@ -42,7 +42,9 @@ const UpdatePassword = () => {
     };
 
     if (newPassword !== confirmPassword) {
-      toast.error("Passwords do not match!");
+      toast.error("Passwords do not match!", {
+        ...toastConfig,
+      });
       setLoading(false);
       return;
     }
@@ -51,12 +53,16 @@ const UpdatePassword = () => {
       .post(ROUTES.ACCOUNT.UPDATE_USER_PASSWORD, payload)
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message);
+          toast.success(response.data.message, {
+            ...toastConfig,
+          });
           reset();
         }
       })
       .catch((error) => {
-        toast.error(error?.response?.data?.message);
+        toast.error(error?.response?.data?.message, {
+          ...toastConfig,
+        });
       })
       .finally(() => {
         setLoading(false);

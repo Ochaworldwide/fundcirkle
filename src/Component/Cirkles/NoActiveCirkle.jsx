@@ -6,7 +6,7 @@ const NoActiveCirkle = () => {
   const { openModal } = useModal();
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-center mt-10 justify-center bg-white border rounded-lg p-6 h-72 shadow-md w-[100%] mx-auto">
+    <div className="flex flex-col items-center mt-10 justify-center bg-white border border-[#00000066] rounded-lg p-6 h-72 shadow-md w-[100%] mx-auto">
       <p className="text-center text-gray-600 text-base mb-8">
         You are currently not part of any active Cirkle.
       </p>
@@ -17,7 +17,7 @@ const NoActiveCirkle = () => {
         Create New Cirkle
       </button>
       <button
-        className="border text-green-600 text-sm font-bold py-4  rounded-lg w-full hover:bg-gray-100"
+        className="border text-green-600 text-sm font-bold py-4 border-green-600  rounded-lg w-full hover:bg-gray-100"
         onClick={() => navigate("/discover")}
       >
         Join a New Cirkle
