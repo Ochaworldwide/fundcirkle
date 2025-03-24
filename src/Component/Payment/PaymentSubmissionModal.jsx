@@ -100,10 +100,6 @@
 
 
 
-
-
-
-
 import React, { useState } from "react";
 import { useModal } from "../Cirkles/ModalContext";
 import { motion } from "framer-motion";

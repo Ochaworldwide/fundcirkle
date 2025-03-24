@@ -57,7 +57,7 @@ const PayoutCard = ({ data }) => {
       <div className="flex flex-col space-y-5 w-[60%] ">
         <div className="text-black flex justify-between items-center">
           <span className="font-[400] text-[12px]">Your Payout Date</span>
-          <div className=" px-2 py-1 bg-[#FBC8CE1A] text-gray-700 border border-gray-300 ont-[400] text-[12px] rounded-md">
+          <div className=" px-3 py-1 bg-[#FBC8CE1A] text-gray-700 border border-gray-300 font-[400] text-[12px] rounded-md">
             {payoutDate}
           </div>
         </div>

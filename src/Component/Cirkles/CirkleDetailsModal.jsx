@@ -45,6 +45,7 @@ const CirkleDetailsModal = () => {
 
 
   const transferData = cirkleData?.id;
+  console.log(cirkleData)
 
   const data = {
     title: cirkleData.name,
@@ -94,7 +95,7 @@ const CirkleDetailsModal = () => {
 
   const payoutData = {
     progress: { current: 2, total: 7 },
-    payoutDate: "25th of Nov 2024",
+    payoutDate: cirkleData?.next_receiving_date,
     amount: cirkleData.contribution_amount,
     currency: "/images/currency.svg",
   };
@@ -179,7 +180,7 @@ const CirkleDetailsModal = () => {
                   <img src={data.currency} alt="" srcset="" />
                 </div>
                 <div className="">
-                  <p>{data.amount}</p>
+                  <p>{cirkleData?.contribution_amount}</p>
                   <p className="text-xs text-black">Payment Amount</p>
                 </div>
               </div>
@@ -205,16 +206,16 @@ const CirkleDetailsModal = () => {
               ))}
             </div>
 
-            <div className="">
+            <div className="mb-10">
               <PayoutCard data={payoutData} />
             </div>
 
-            <div className="flex  mt-4 justify-between w-[90%] mx-auto">
-              <button className="bg-[#00943F] text-white px-2 py-2 rounded-lg text-sm">
+            <div className="flex  mt-4 justify-center w-[90%] mx-auto">
+              {/* <button className="bg-[#00943F] text-white px-2 py-2 rounded-lg text-sm">
                 Pay Pie for October
-              </button>
+              </button> */}
               <button
-                className="border font-[400] border-gray-400 text-gray-600 px-2 py-2 rounded-lg text-sm"
+                className="border font-[400] border-gray-400 bg-[#00943F] text-white px-5 py-3 rounded-lg text-sm"
                 onClick={() => openModal("swap", transferData)}
               >
                 Swap Payment Month

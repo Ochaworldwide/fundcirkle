@@ -143,15 +143,14 @@ function MyCirkles() {
 
         <div className="flex w-[95%] mx-auto justify-between">
           <div
-            className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%]"
-            // onClick={() => openModal("chat")}
+            className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%] bg-[#00943F]"
             onClick={() => {
               handleMessageClick();
             }}
           >
-            <button
-              className="relative rounded-full p-1 border border-[#00000066] h-10 bg-[#E5F4EC]"
-              // onClick={() => openModal("chat")}
+            {/* <button
+              className="relative rounded-full p-1 border border-[#00000066] h-10 "
+              
               onClick={() => {
                 handleMessageClick();
               }}
@@ -160,28 +159,27 @@ function MyCirkles() {
               <span className="absolute top-0 right-0 bg-[#00943F] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                 {header.count}
               </span>
-            </button>
-            <p className="mx-auto text-[14px] font-medium text-[#00943F]">
+            </button> */}
+            <p className="mx-auto text-[14px] font-medium text-white ">
               Messages
             </p>
           </div>
           <div
-            className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%]"
+            className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%] bg-[#00943F]"
             // onClick={() => openModal("detail")}
             onClick={() => {
               handleGroupClick();
             }}
           >
-            <button
+            {/* <button
               className="relative rounded-full p-1 border border-[#00000066] h-10 bg-[#E5F4EC]"
-              // onClick={() => openModal("detail")}
               onClick={() => {
                 handleGroupClick();
               }}
             >
               <img src={moreIcon} alt="" />
-            </button>
-            <p className="mx-auto text-[14px] font-medium text-[#00943F]">
+            </button> */}
+            <p className="mx-auto text-[14px] font-medium text-white">
               Details
             </p>
           </div>

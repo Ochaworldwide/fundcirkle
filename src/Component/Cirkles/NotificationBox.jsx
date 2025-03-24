@@ -6,6 +6,8 @@ import { useNotification } from "../../contexts/notificationContext";
 
 const NotificationBox = ({ setShowNotification }) => {
   const { notifications, clearNotifications } = useNotification();
+    const [isDisabled, setIsDisabled] = useState(false);
+    const [buttonText, setButtonText] = useState("Accept Swap");
 
   const closeNotification = () => {
     setShowNotification(false);
@@ -13,19 +15,24 @@ const NotificationBox = ({ setShowNotification }) => {
 
   const handleAcceptSwap = async (notif) => {
     try {
+            setIsDisabled(true);
+            setButtonText("Processing...");
       const response = await axiosInstance.post("/payment/swap/accept", {
-        hash: notif.data.swap_data.hash,
+        swap_hash: notif.data.swap_data.hash,
       });
       console.log("Response:", response.message);
+      setButtonText("Accepted ✅");
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
+            setIsDisabled(false);
+            setButtonText("Accept Swap");
     }
   };
 
   const handleDeclineSwap = async (notif) => {
     try {
       const response = await axiosInstance.post("/payment/swap/decline", {
-        hash: notif.data.swap_data.hash,
+        swap_hash: notif.data.swap_data.hash,
       });
       console.log("Response:", response.message);
     } catch (error) {
