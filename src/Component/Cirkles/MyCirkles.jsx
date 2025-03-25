@@ -136,7 +136,7 @@ function MyCirkles() {
           <div className="w-[50%]">
             <CircularProgress contribution={contribution} />
             <p className="text-black mb-3 text-center text-[18px] font-medium">
-              Payment Status
+              Monthly Payout
             </p>
           </div>
         </div>
