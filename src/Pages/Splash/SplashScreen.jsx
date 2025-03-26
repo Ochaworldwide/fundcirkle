@@ -33,7 +33,7 @@ const SplashScreen = () => {
   }, [screens.length]);
 
   return (
-    <div className="h-screen w-full transition-all duration-500">
+    <div className="h-screen w-full transition-all">
       {screens[currentScreen].splash}
     </div>
   );
