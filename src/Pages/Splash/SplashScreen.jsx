@@ -6,9 +6,9 @@ import ThirdIntro from "./ThirdIntro";
 const SplashScreen = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
   const screens = [
-    {
-      splash: <Intro />,
-    },
+    // {
+    //   splash: <Intro />,
+    // },
     {
       splash: <SecondIntro />,
     },
