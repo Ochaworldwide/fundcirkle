@@ -9,9 +9,9 @@ const SplashScreen = () => {
     // {
     //   splash: <Intro />,
     // },
-    {
-      splash: <SecondIntro />,
-    },
+    // {
+    //   splash: <SecondIntro />,
+    // },
     {
       splash: <ThirdIntro />,
     },
