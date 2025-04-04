@@ -16,9 +16,10 @@ import NotificationBox from "../../Component/Cirkles/NotificationBox";
 import { UserContext } from "../../contexts/userDetails";
 import { toast } from "react-toastify";
 import { useNotification } from "../../contexts/notificationContext";
+import { CiUser } from "react-icons/ci";
+import { FaCircleUser } from "react-icons/fa6";
 
 function Home() {
-  
   // Tabs Data
   const tabsData = [
     { name: "My Cirkles", isActive: true },
@@ -81,20 +82,28 @@ function Home() {
   //   }
   // }, [user]);
 
-
-
-
   return (
     <div className="">
       {/* Nav Bar */}
 
       <div className=" flex w-[95%] mx-auto  items-center  mb-5 sticky top-0 bg-white z-10 ">
         <div className="w-[65px] flex items-center justify-center rounded-full h-[65px] overflow-hidden">
-          <img
+          {/* <img
             src={user?.profile_pic}
             alt=""
             className="w-full h-full object-cover "
-          />
+          /> */}
+
+          {user?.profile_pic ? (
+            <img
+              src={user.profile_pic}
+              alt="Profile"
+              className="w-full h-full rounded-full"
+            />
+            
+          ) : (
+            <FaCircleUser className=" text-gray-500 w-full h-full" />
+          )}
         </div>
 
         <div className="p-5 ">

@@ -4,6 +4,7 @@ import { useModal } from "../Cirkles/ModalContext";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
+import { FaCircleUser } from "react-icons/fa6";
 
 const RecommendedCirklesCard = ({ group, buttons }) => {
   const { openModal, isModalOpen } = useModal();
@@ -14,6 +15,8 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
     const stateId = group.id;
     openModal("recommend", stateId);
   };
+
+  console.log(group)
 
    const handleRequestSubmit = (group) => {
      console.log("Clicked Group ID:", group.id);
@@ -44,6 +47,8 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
      // console.log("Payload:", payload);
      const cirkleId = group.id;
 
+     
+
      axiosInstance
        .post(`/cirkles/${cirkleId}/join`, payload)
        .then((response) => {
@@ -68,11 +73,13 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
   return (
     <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%]">
       <div className="py-5  w-[20%]">
-        <img
+        {/* <img
           src={group.image}
           alt={group.name}
           className="w-12 h-12 rounded-full border"
-        />
+        /> */}
+
+        <FaCircleUser className=" text-gray-500 w-12 h-12 rounded-full border" />
       </div>
 
       <div className="py-5  w-[80%]">
@@ -84,7 +91,7 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
 
           <div className="text-center flex border h-fit rounded-full p-3">
             <p className="text-[#00943F] font-semibold text-xs">
-              {group.currentMembers}/{group.totalMembers}
+              {group.member_count}/{group.max_members}
             </p>
           </div>
 

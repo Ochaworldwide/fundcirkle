@@ -38,19 +38,15 @@ const RecommendedCirklesModal = () => {
   if (!isModalOpen || modalType !== "recommend") return null;
 
   if (!cirkleData) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center ">
-        <FadeLoader size={50} color="#36D7B7" />
-      </div>
-    );
+    return;
   }
 
-  const payoutData = {
-    progress: { current: 2, total: 7 },
-    payoutDate: "25th of Nov 2024",
-    amount: "60,000",
-    currency: "/images/currency.svg",
-  };
+  // const payoutData = {
+  //   progress: { current: 2, total: 7 },
+  //   payoutDate: "25th of Nov 2024",
+  //   amount: "60,000",
+  //   currency: "/images/currency.svg",
+  // };
 
   const data = {
     title: "Hyderabad Pharmacist Union",

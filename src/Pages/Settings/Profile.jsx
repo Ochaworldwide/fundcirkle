@@ -6,6 +6,10 @@ import { toast } from "react-toastify";
 import { FadeLoader } from "react-spinners";
 import { UserContext } from "../../contexts/userDetails";
 import { toastConfig } from "../../constants/toastConfig";
+import { FaUserAlt } from "react-icons/fa";
+import { FaCircleUser, FaUser } from "react-icons/fa6";
+import { CiUser } from "react-icons/ci";
+// import { FaUser } from "react-icons/fa6";
 
 
 const Profile = () => {
@@ -47,8 +51,6 @@ const Profile = () => {
           <img src="/images/arrowback.svg" alt="Back" />
         </Link>
 
-
-
         {user?.is_verified ? (
           <div className="flex p-1 border rounded-md space-x-1">
             <img src="/images/verified-badge.svg" alt="Verified" />
@@ -62,13 +64,24 @@ const Profile = () => {
       </div>
 
       <div className="w-32 h-32 rounded-full border-2 mx-auto relative -mt-20 mb-3">
-        <img
-          src={user?.profile_pic}
+        {/* <img
+          src={user?.profile_pic }
           alt="Profile"
           className="w-full h-full rounded-full"
-        />
+        /> */}
 
-        
+        {user?.profile_pic ? (
+          <img
+            src={user.profile_pic}
+            alt="Profile"
+            className="w-full h-full rounded-full"
+          />         
+        ) : (
+
+          <FaCircleUser className=" text-gray-500 w-full h-full" />
+
+        )}
+
         <Link to="/editprofile">
           <img
             src="/images/edit.svg"

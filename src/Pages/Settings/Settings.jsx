@@ -7,6 +7,8 @@ import MessageToast from "../../Component/Toast/Toast";
 import Toast from "../../Component/Toast/Toast";
 import axiosInstance from "../../service";
 import { UserContext } from "../../contexts/userDetails";
+import { CiUser } from "react-icons/ci";
+import { FaCircleUser } from "react-icons/fa6";
 
 const Settings = () => {
   const [toggles, setToggles] = useState({
@@ -18,7 +20,7 @@ const Settings = () => {
   });
 
   const { user, refetchUser } = useContext(UserContext);
-  console.log(user)
+  console.log(user);
 
   const { openModal } = useModal();
   const navigate = useNavigate();
@@ -52,11 +54,11 @@ const Settings = () => {
       });
   };
 
-const logout = () => {
-  localStorage.removeItem("token"); // Remove the authentication token
-  localStorage.removeItem("user"); // Remove the user info (if needed)
-  location.reload(); // Refresh the page
-};
+  const logout = () => {
+    localStorage.removeItem("token"); // Remove the authentication token
+    localStorage.removeItem("user"); // Remove the user info (if needed)
+    location.reload(); // Refresh the page
+  };
 
   useEffect(() => {
     refetchUser();
@@ -72,11 +74,21 @@ const logout = () => {
         <Link to="/profile">
           <div className="flex items-center bg-[#E5F7FF] border border-[#00000066] rounded-md p-3 mb-7">
             <div className="w-[80px] flex items-center justify-center rounded-full h-[80px] overflow-hidden">
-              <img
+              {/* <img
                 src={user?.profile_pic}
                 alt=""
                 className="w-full h-full object-cover "
-              />
+              /> */}
+
+              {user?.profile_pic ? (
+                <img
+                  src={user.profile_pic}
+                  alt="Profile"
+                  className="w-full h-full rounded-full"
+                />    
+              ) : (
+                <FaCircleUser className=" text-gray-500 w-full h-full" />
+              )}
             </div>
 
             <div className="ml-4 w-[200px]">
@@ -327,4 +339,3 @@ const logout = () => {
 };
 
 export default Settings;
-

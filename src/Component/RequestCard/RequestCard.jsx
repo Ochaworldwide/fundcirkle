@@ -2,6 +2,7 @@ import React from "react";
 import axiosInstance from "../../service";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
+import { FaCircleUser } from "react-icons/fa6";
 
 const RequestCard = ({ data }) => {
   const handleAccept = async () => {
@@ -78,11 +79,13 @@ const RequestCard = ({ data }) => {
     <div className="py-4 px-2 border border-gray-200 rounded-lg shadow-md mx-auto mt-2">
       <div className="flex flex-col items-center">
         <div className="relative">
-          <img
+          {/* <img
             src={data.cirkle.profileImage}
             alt="profile"
             className="w-14 h-14 rounded-full border"
-          />
+          /> */}
+
+          <FaCircleUser className=" text-gray-500 w-12 h-12 rounded-full border" />
           <span className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></span>
         </div>
         <h3 className="mt-2 text-sm font-[400]">{data.cirkle.name}</h3>

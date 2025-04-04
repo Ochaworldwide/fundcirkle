@@ -50,7 +50,7 @@ const NotificationBox = ({ setShowNotification }) => {
         // className="fixed top-0 left-0 right-0 bg-white shadow-lg mt-4 rounded-lg mx-auto w-96 z-50 p-4"
         className="fixed top-16 left-0 right-0 rounded-lg mx-auto max-w-md w-[90%] z-50 h-fit max-h-[50%]  bg-white overflow-scroll"
       >
-        <div className="flex justify-between items-center  py-5 px-3 border-b border-gray-200">
+        <div className="flex justify-between items-center sticky top-0 bg-white py-5 px-3 border-b border-gray-200">
           <h3
             className="text-lg font-semibold"
             onClick={() => closeNotification()}
@@ -73,7 +73,6 @@ const NotificationBox = ({ setShowNotification }) => {
                   key={index}
                   className="flex items-start p-4 bg-gray-50 rounded-lg shadow-sm border"
                 >
-                  
                   <div className="flex-grow">
                     <p className="text-xs font-[400] text-gray-800 leading-normal">
                       {notif.message}

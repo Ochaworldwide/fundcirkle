@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import NavBar from "../../NavBar";
 import Button from "../../Component/Botton/Button";
 import { Link, useNavigate } from "react-router-dom";
 import CustomForm from "../../Component/Form/CustomForm";
