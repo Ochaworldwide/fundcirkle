@@ -193,7 +193,7 @@ const ChatModal = () => {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: "100%", opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="fixed flex flex-col bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[80%] bg-white overflow-scroll"
+        className="fixed flex flex-col bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[90%] bg-white overflow-scroll"
       >
         <div className="flex w-[100%] border justify-between px-1 sticky top-0">
           <img src={profileImg} alt="Profile" />

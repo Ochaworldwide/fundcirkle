@@ -110,7 +110,7 @@ const CirkleDetailsModal = () => {
           duration: 0.5,
           ease: "easeInOut",
         }}
-        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[80%] bg-white overflow-scroll"
+        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[90%] bg-white overflow-scroll"
       >
         <div className=" pb-10 rounded-lg max-w-md w-full">
           <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl sticky top-0">
