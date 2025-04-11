@@ -120,7 +120,7 @@ function Invites() {
 
   return (
     <div>
-      <div className="p-1 overflow-y-scroll">
+      <div className="p-1 overflow-y-scroll hide-scrollbar">
         { groups.length > 0 ? (
           groups.map((group, index) => (
             <InviteCard key={group.id} group={group} buttons={buttons(group)} />

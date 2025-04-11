@@ -63,12 +63,12 @@ const QuickStats = () => {
 
   return (
     <motion.div
-      className="w-[95%] mx-auto mb-20"
+      className="w-[95%] mx-auto mb-20 lg:w-full lg:mb-5"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <h3 className="text-[14px] font-[400] leading-[18.2px] poppins">
+      <h3 className="text-[14px] font-[400] leading-[18.2px] font-[Poppins] lg:text-xl">
         Quick Stats
       </h3>
 
@@ -79,10 +79,10 @@ const QuickStats = () => {
           {stats?.map((stat, index) => (
             <div
               key={index}
-              className={`flex-shrink-0 flex flex-col justify-between w-2/6 py-4 px-2 border border-[#00000066] rounded-lg ${stat.bgColor}`}
+              className={`flex-shrink-0 flex flex-col justify-between w-2/6 py-4 px-2 border border-[#00000066] rounded-lg ${stat.bgColor} lg:w-[23%] lg:h-36 lg:border-none `}
             >
-              <p className="text-gray-700 text-xs font-[400]">{stat.label}</p>
-              <p className="text-[20px] font-semibold mt-2 flex items-center justify-center text-[#292D32]">
+              <p className="text-gray-700 text-xs font-[400] lg:text-[21px] lg:leading-normal">{stat.label}</p>
+              <p className="text-[20px] font-semibold mt-2 flex items-center justify-center text-[#292D32] lg:text-[25px]">
                 {stat.currency && (
                   <span className="text-white">
                     <img

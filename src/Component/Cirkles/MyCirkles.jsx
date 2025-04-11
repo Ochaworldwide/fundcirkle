@@ -198,7 +198,7 @@ function MyCirkles() {
             alt="Group"
             className="w-14 h-14 rounded-full"
           />
-          <h1 className="ml-3 text-black px-3 py-1 text-[22px] font-semibold rounded-[8px] text-ellipsis overflow-hidden">
+          <h1 className="ml-3 text-black px-3 py-1 text-[22px] font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-[30px]">
             {header.groupName}
           </h1>
         </div>

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa"; // Import icons from react-icons
 import { toastConfig } from "../../constants/toastConfig";
-
+import logo from "/images/Logo.svg";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -49,7 +49,7 @@ function SignIn() {
           const token = response.data.data.token;
           toast.success("Login successful", { ...toastConfig });
           localStorage.setItem("token", token);
-          localStorage.setItem('user',response.data.data.user)
+          localStorage.setItem("user", response.data.data.user);
           navigate("/home");
         }
       })
@@ -65,69 +65,99 @@ function SignIn() {
     // navigate("/home");
   };
 
-
- const togglePasswordVisibility = () => {
-   setIsPasswordVisible((prevState) => !prevState);
- };
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState);
+  };
 
   return (
-    <div>
-      <NavBar backLink="/" />
+    <div className="lg:bg-[url('/images/auth-bg.png')] lg:bg-cover lg:bg-center lg:h-screen lg:flex lg:flex-col lg:items-center lg:justify-center">
+      {/* <NavBar backLink="/" /> */}
 
-      <div className="mx-auto w-[90%] flex flex-col">
-        <h1 className="font-bold text-[22px] mb-5 poppins">Welcome Back</h1>
+      <div className="lg:hidden">
+        <NavBar backLink="/" />
+      </div>
 
-        <p className="text-[14px]">Login and get back to business</p>
+      <div className="hidden lg:block lg:w-[80%] lg:mx-auto lg:pb-5">
+        <img src={logo} alt="" srcset="" />
+      </div>
 
-        <form
-          onSubmit={handleFormSubmit}
-          className="py-5 flex flex-col justify-center "
-        >
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] border-[#00000066] text-[#00000080]"
-            placeholder="Email "
+      <div className="w-[90%] mx-auto flex flex-col lg:flex-row  lg:items-center lg:w-[80%] lg:bg-white lg:rounded-2xl lg:overflow-hidden ">
+        <div className="lg:px-10 lg:my-5 lg:w-[50%] lg:min-h-[500px]">
+          <div className="mx-auto w-[90%] flex flex-col">
+            <h1 className="font-bold text-[22px] mb-5 poppins">Welcome Back</h1>
+
+            <p className="text-[14px]">Login and get back to business</p>
+
+            <form
+              onSubmit={handleFormSubmit}
+              className="py-5 flex flex-col justify-center "
+            >
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border px-3 py-5 rounded-lg mb-5 outline-[#00943F] border-[#00000066] text-[#00000080]"
+                placeholder="Email "
+              />
+
+              <div className="relative w-full">
+                <input
+                  type={isPasswordVisible ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full border border-[#00000066] px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
+                  placeholder="Password"
+                />
+                <span
+                  className="absolute right-3 top-6 cursor-pointer text-[#00000080]"
+                  onClick={togglePasswordVisibility}
+                >
+                  {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
+
+              {/* Additional Reset Link */}
+              <p className="mt-1 text-[#00943F] self-start mb-20">
+                <Link to="/reset">Forget Password ?</Link>
+              </p>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-[100%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg lg:w-full"
+              >
+                {loading ? <PulseLoader size={12} color="white" /> : "Sign in"}
+              </button>
+
+              {/* Additional Sign-up Link */}
+              <p className="mt-10 self-center">
+                Doesn't have an account?{" "}
+                <span className="text-[#00943F]">
+                  <Link to="/sign-up">Sign up here</Link>
+                </span>
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <div className=" hidden lg:block lg:ml-auto lg:w-[50%] lg:h-[700px] relative">
+          <img
+            src="/images/Desktop.png"
+            alt=""
+            srcset=""
+            className="lg:object-cover w-full h-full absolute"
           />
 
-          <div className="relative w-full">
-            <input
-              type={isPasswordVisible ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-[#00000066] px-3 py-5 rounded-lg mb-5 outline-[#00943F] text-[#00000080]"
-              placeholder="Password"
-            />
-            <span
-              className="absolute right-3 top-6 cursor-pointer text-[#00000080]"
-              onClick={togglePasswordVisibility}
-            >
-              {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
-            </span>
+          <div className="absolute inset-0 bg-black/30 flex items-end justify-center p-10">
+            <div className="bg-white/70 p-6 rounded-lg text-center">
+              <h2 className="text-xl font-bold mb-2">Welcome to FundCirkle</h2>
+              <p className="text-sm">
+                Empowering communities to save and achieve financial goals
+                together through trusted group contributions.
+              </p>
+            </div>
           </div>
-
-          {/* Additional Reset Link */}
-          <p className="mt-1 text-[#00943F] self-start mb-20">
-            <Link to="/reset">Forget Password ?</Link>
-          </p>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-[100%] py-5 mx-auto bg-[#00943F] font-bold text-white rounded-lg"
-          >
-            {loading ? <PulseLoader size={12} color="white" /> : "Sign in"}
-          </button>
-
-          {/* Additional Sign-up Link */}
-          <p className="mt-10 self-center">
-            Doesn't have an account?{" "}
-            <span className="text-[#00943F]">
-              <Link to="/sign-up">Sign up here</Link>
-            </span>
-          </p>
-        </form>
+        </div>
       </div>
     </div>
   );

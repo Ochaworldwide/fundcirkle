@@ -52,11 +52,15 @@ import GoalAchieved from "./Component/Cirkles/GoalAchieved";
 import PaymentSubmissionModal from "./Component/Payment/PaymentSubmissionModal";
 import { usePusherHook } from "./hooks/usePusherHook";
 import { NotificationProvider } from "./contexts/notificationContext";
+import PersonalInfoDesktop from "./Pages/Kyc/PersonalInfoDesktop";
+import UploadDocumentDesktop from "./Pages/Kyc/UploadDocumentDesktop";
+import IdentityProofDesktop from "./Pages/Kyc/IdentityProofDesktop";
+import AddressProofDesktop from "./Pages/Kyc/AddressProofDesktop";
 
 const App = () => {
   useEffect(() => {
     const pusher = usePusherHook();
-  },[]);
+  }, []);
   return (
     <>
       <NotificationProvider>
@@ -81,6 +85,24 @@ const App = () => {
                   <Route path="/discover" element={<Discover />} />
                   <Route path="/payment" element={<Payment />} />
                   <Route path="/setting" element={<Settings />} />
+                  <Route
+                    path="/personalinfodesktop"
+                    element={<PersonalInfoDesktop />}
+                  />
+                  <Route
+                    path="/uploaddocumentdesktop"
+                    element={<UploadDocumentDesktop />}
+                  />
+
+                  <Route
+                    path="/identityproofdesktop"
+                    element={<IdentityProofDesktop />}
+                  />
+
+                  <Route
+                    path="/addressproofdesktop"
+                    element={<AddressProofDesktop />}
+                  />
                 </Route>
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/editprofile" element={<EditProfile />} />
@@ -131,9 +153,6 @@ const App = () => {
 };
 
 export default App;
-
-
-
 
 // import React, { useEffect } from "react";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -274,4 +293,3 @@ export default App;
 // };
 
 // export default App;
-

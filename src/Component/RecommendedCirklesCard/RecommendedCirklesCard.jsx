@@ -71,7 +71,7 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
    };
 
   return (
-    <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%]">
+    <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%] lg:border">
       <div className="py-5  w-[20%]">
         {/* <img
           src={group.image}
@@ -84,8 +84,8 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
 
       <div className="py-5  w-[80%]">
         <div className="p-1 flex justify-between w-[100%]">
-          <div className="w-[60%]">
-            <h3 className="text-sm font-semibold">{group.name}</h3>
+          <div className="w-[60%] truncate whitespace-nowrap overflow-hidden">
+            <h3 className="text-sm font-semibold lg:text-lg">{group.name}</h3>
             <p className="text-xs text-gray-500">{group.description}</p>
           </div>
 
@@ -128,9 +128,14 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
             </p>
           </div>
 
-          <div className="flex gap-2" onClick={() =>{
-            handleRequestSubmit(group)
-          }}>{buttons}</div>
+          <div
+            className="flex gap-2"
+            onClick={() => {
+              handleRequestSubmit(group);
+            }}
+          >
+            {buttons}
+          </div>
         </div>
       </div>
     </div>

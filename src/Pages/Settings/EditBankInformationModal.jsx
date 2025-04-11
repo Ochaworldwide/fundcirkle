@@ -247,7 +247,18 @@ const EditBankInformationModal = () => {
                 openModal("Bank Information");
                 reset();
               }}
-              className="text-gray-600 hover:text-gray-800"
+              className="text-gray-600 hover:text-gray-800 lg:hidden"
+            >
+              <img src="/images/cancel-square.svg" alt="" />
+            </button>
+
+            <button
+              onClick={() => {
+                // openModal("Bank Information");
+                closeModal();
+                reset();
+              }}
+              className="text-gray-600 hover:text-gray-800 hidden lg:flex"
             >
               <img src="/images/cancel-square.svg" alt="" />
             </button>
@@ -331,7 +342,18 @@ const EditBankInformationModal = () => {
                   openModal("Bank Information");
                   reset();
                 }}
-                className="bg-white border text-[10.5px] font-[700] text-black w-[45%] py-4 rounded-md"
+                className="bg-white border text-[10.5px] font-[700] text-black w-[45%] py-4 rounded-md lg:hidden"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  closeModal()
+                  reset();
+                }}
+                className="bg-white border text-[10.5px] font-[700] text-black w-[45%] py-4 rounded-md hidden lg:block"
               >
                 Cancel
               </button>

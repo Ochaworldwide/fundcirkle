@@ -24,9 +24,9 @@ const ManagePaymentCirkle = () => {
 
       {/* Filter Tabs */}
       <div className="flex items-center justify-between  mb-6 pr-3 ml-3">
-        <div className="flex gap-3 p-1 bg-[#4844731F] rounded-md">
+        <div className="flex gap-3 p-1 bg-[#4844731F] rounded-md lg:w-[85%] lg:justify-around">
           <button
-            className={`px-4 py-1 rounded-lg text-[14px] ${
+            className={`px-4 py-1 rounded-lg text-[14px] lg:py-3 lg:w-[30%] ${
               selectedFilter === "All"
                 ? "bg-white text-[#00943F] font-bold"
                 : " text-[#0000004D]"
@@ -36,7 +36,7 @@ const ManagePaymentCirkle = () => {
             All
           </button>
           <button
-            className={`px-4 py-1 rounded-lg text-[14px] ${
+            className={`px-4 py-1 rounded-lg text-[14px] lg:py-3 lg:w-[30%] ${
               selectedFilter === "Admin"
                 ? "bg-white text-[#00943F] font-bold"
                 : " text-[#0000004D]"
@@ -46,7 +46,7 @@ const ManagePaymentCirkle = () => {
             Admin
           </button>
           <button
-            className={`px-4 py-1 rounded-lg text-[14px] ${
+            className={`px-4 py-1 rounded-lg text-[14px] lg:py-3 lg:w-[30%] ${
               selectedFilter === "Receiving Member"
                 ? "bg-white text-[#00943F] font-bold"
                 : " text-[#0000004D]"
@@ -70,7 +70,7 @@ const ManagePaymentCirkle = () => {
 
       {/* Render Content Based on Selected Filter */}
       <div>
-        <ActivityTabs type={selectedFilter}/>
+        <ActivityTabs type={selectedFilter} />
       </div>
     </div>
   );

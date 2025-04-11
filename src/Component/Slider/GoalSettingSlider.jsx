@@ -18,7 +18,7 @@ const GoalSettingSlider = ({
   const middleSlideIndex = Math.floor(slides.length / 2); // Dynamically calculate the middle slide index
 
   return (
-    <div className={`mt-5  py-2 px-5 ${className} relative -z-0 `}>
+    <div className={`mt-5  py-2 px-5 ${className} relative -z-0 lg:hidden`}>
       {/* Custom Previous Button */}
       <button
         className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2  text-white p-3 rounded-full border   z-10"

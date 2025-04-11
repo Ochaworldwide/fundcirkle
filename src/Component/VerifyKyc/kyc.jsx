@@ -18,7 +18,14 @@ function Kyc() {
 
           <Link
             to="/startkyc"
-            className="text-[14px] font-sans underline text-[#00943F]"
+            className="text-[14px] font-sans underline text-[#00943F] lg:hidden"
+          >
+            Click here to complete KYC
+          </Link>
+
+          <Link
+            to="/personalinfodesktop"
+            className="text-[14px] font-sans underline text-[#00943F] hidden lg:block"
           >
             Click here to complete KYC
           </Link>

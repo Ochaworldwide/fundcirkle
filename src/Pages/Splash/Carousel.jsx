@@ -41,7 +41,7 @@ const Carousel = () => {
   
   const handleNextClick = () => {
     if (isLast && enabled) {
-      navigate("/sign-up");
+      navigate("/sign-in");
     }
   };
 
