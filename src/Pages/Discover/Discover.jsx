@@ -366,7 +366,7 @@ function Discover() {
       </div>
 
       {/* New Features */}
-      <div className="pl-5 pt-3  relative lg:hidden">
+      <div className="pl-5 pt-3  relative lg:hidden bg-red-400">
         <h1 className="text-[18px]">New Features and Offers</h1>
 
         {/* <GoalSettingSlider /> */}

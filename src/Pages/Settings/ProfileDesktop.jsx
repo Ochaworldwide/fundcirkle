@@ -9,9 +9,10 @@ import { toastConfig } from "../../constants/toastConfig";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCircleUser, FaUser } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
+import EditProfileDesktop from "./EditProfileDesktop";
 // import { FaUser } from "react-icons/fa6";
 
-const ProfileDesktop = () => {
+const ProfileDesktop = ({edit,setEdit}) => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user, refetchUser } = useContext(UserContext);
@@ -56,7 +57,7 @@ const ProfileDesktop = () => {
           )}
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 mb-5">
           <div className="w-24 h-24 rounded-full border-2 relative mb-3">
             {user?.profile_pic ? (
               <img
@@ -72,9 +73,16 @@ const ProfileDesktop = () => {
               <img
                 src="/images/edit.svg"
                 alt="Edit"
-                className="absolute right-[10%] top-[75%]"
+                className="absolute right-[10%] top-[75%] lg:hidden"
               />
             </Link>
+
+            <img
+              onClick={() => setEdit(!edit)}
+              src="/images/edit.svg"
+              alt="Edit"
+              className="absolute right-[10%] top-[75%] hidden lg:block"
+            />
           </div>
 
           <div className="">
@@ -85,6 +93,23 @@ const ProfileDesktop = () => {
               {user?.email || "email@xyz.com"}
             </p>
           </div>
+        </div>
+
+        <div className="border rounded-md h-11 w-[22%] p-2 font-poppins mb-5">
+          {user?.is_verified ? (
+            <div className="flex p-1 rounded-md space-x-3 h-full items-center">
+              <img
+                src="/images/verified-badge.svg"
+                alt="Verified"
+                className="w-[30px]"
+              />
+              <p className="text-sm text-[#141B3480]">Verified</p>
+            </div>
+          ) : (
+            <div className="flex p-1 rounded-md space-x-3 h-full items-center justify-center">
+              <p className="text-sm text-red-500">Not Verified</p>
+            </div>
+          )}
         </div>
 
         <div className="w-full p-5">

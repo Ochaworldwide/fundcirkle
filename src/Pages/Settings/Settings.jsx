@@ -15,7 +15,8 @@ import UpdatePasswordDesktop from "./UpdatePasswordDesktop";
 import HelpAndSupport from "./HelpAndSupport";
 import NotificationBox from "../../Component/Cirkles/NotificationBox";
 import { useNotification } from "../../contexts/notificationContext";
-import ProfileDesktop from "./ProfileDesktop";
+import ProfileDesktop from "./General";
+import General from "./General";
 
 const Settings = () => {
   const [toggles, setToggles] = useState({
@@ -80,7 +81,7 @@ const Settings = () => {
     switch (activeTab) {
       case "General":
         return <div>
-        <ProfileDesktop />
+          <General/>
         </div>;
       case "Privacy and Security":
         return (

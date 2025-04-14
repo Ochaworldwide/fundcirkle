@@ -56,6 +56,7 @@ import PersonalInfoDesktop from "./Pages/Kyc/PersonalInfoDesktop";
 import UploadDocumentDesktop from "./Pages/Kyc/UploadDocumentDesktop";
 import IdentityProofDesktop from "./Pages/Kyc/IdentityProofDesktop";
 import AddressProofDesktop from "./Pages/Kyc/AddressProofDesktop";
+import EditProfileDesktop from "./Pages/Settings/EditProfileDesktop";
 
 const App = () => {
   useEffect(() => {
@@ -102,6 +103,11 @@ const App = () => {
                   <Route
                     path="/addressproofdesktop"
                     element={<AddressProofDesktop />}
+                  />
+
+                  <Route
+                    path="/editprofiledesktop"
+                    element={<EditProfileDesktop />}
                   />
                 </Route>
                 <Route path="/profile" element={<Profile />} />
