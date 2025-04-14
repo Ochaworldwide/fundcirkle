@@ -12,9 +12,9 @@ const SplashScreen = () => {
     // {
     //   splash: <SecondIntro />,
     // },
-    {
-      splash: <ThirdIntro />,
-    },
+    // {
+    //   splash: <ThirdIntro />,
+    // },
   ];
 
   useEffect(() => {
