@@ -124,7 +124,7 @@ export default function ActivityTabs({ type }) {
                 stretch: 0,
                 depth: 100,
                 modifier: 1.2,
-                slideShadows: true,
+                slideShadows: false,
               }}
               navigation={{
                 prevEl: ".swiper-button-prev-custom",
