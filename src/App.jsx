@@ -69,7 +69,7 @@ const App = () => {
           <Router>
             <ScrollToTop />
             <Routes>
-              <Route path="/" element={<SignUp/>} />
+              <Route path="/" element={<SignIn/>} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/residence" element={<Residence />} />
