@@ -238,8 +238,8 @@ const NavigationBar = () => {
       </div>
 
       {/* Bottom nav for small screens */}
-      <div className="flex items-center absolute bottom-0 right-0 left-0 z-500 lg:hidden">
-        <div className="w-full flex justify-around bg-white shadow-lg py-2 fixed bottom-0">
+      <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white shadow-lg">
+        <div className="w-full flex justify-around py-2">
           <Link to="/home" onClick={() => handleTabChange("/home")}>
             <button className="flex flex-col items-center">
               <div className="w-6 h-6 mb-1">
