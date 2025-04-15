@@ -74,7 +74,7 @@ function SignIn() {
       {/* <NavBar backLink="/" /> */}
 
       <div className="lg:hidden">
-        <NavBar backLink="/" />
+        <NavBar />
       </div>
 
       <div className="hidden lg:block lg:w-[80%] lg:mx-auto lg:pb-5">

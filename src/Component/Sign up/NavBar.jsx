@@ -5,19 +5,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link } from "react-router-dom";
 
-function NavBar({ backLink }) {
+function NavBar() {
   return (
     <div className="flex w-[90%] mx-auto mt-5 justify-between  mb-12 sticky top-0 bg-white lg:bg-transparent lg:mb-0">
-      <Link to={backLink}>
-        <LazyLoadImage
-          alt="Description"
-          effect="blur"
-          src={arrowback} // Use optimized images here
-          className=" mx-auto mb-5"
-        />
-      </Link>
 
-      <div className='lg:hidden'>
+      <div className='lg:hidden ml-auto'>
         <LazyLoadImage
           alt="Description"
           effect="blur"
