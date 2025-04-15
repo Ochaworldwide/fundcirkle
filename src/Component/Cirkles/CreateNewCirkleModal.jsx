@@ -13,6 +13,10 @@ import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
 
 const CreateNewCirkleModal = () => {
+
+  const currentMonthName = new Date().toLocaleString("default", {
+    month: "long",
+  });
   const [name, setCirkleName] = useState("");
   const [description, setDescription] = useState("");
   const [contribution_amount, setAmount] = useState();
@@ -32,7 +36,7 @@ const CreateNewCirkleModal = () => {
 
   const [states, setStates] = useState([]);
   const [state, setState] = useState();
-  const [selectedMonth, setSelectedMonth] = useState("January");
+  const [selectedMonth, setSelectedMonth] = useState(currentMonthName);
 
   const { isModalOpen, modalType, closeModal } = useModal();
 

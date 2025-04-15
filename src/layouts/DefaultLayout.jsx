@@ -9,7 +9,7 @@ export default function DefaultLayout() {
     <div className="lg:flex w-full block lg:relative">
       
 
-      <div className="lg:w-[17%] fixed">
+      <div className="lg:w-[17%] lg:fixed">
         <NavigationBar />
       </div>
 
