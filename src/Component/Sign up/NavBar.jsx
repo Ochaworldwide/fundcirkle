@@ -9,7 +9,7 @@ function NavBar() {
   return (
     <div className="flex w-[90%] mx-auto mt-5 justify-between  mb-12 sticky top-0 bg-white lg:bg-transparent lg:mb-0">
 
-      <div className='lg:hidden ml-auto'>
+      <div className='lg:hidden mx-auto'>
         <LazyLoadImage
           alt="Description"
           effect="blur"
