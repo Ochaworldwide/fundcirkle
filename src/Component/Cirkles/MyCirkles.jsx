@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import NoActiveCirkle from "./NoActiveCirkle";
 import { FadeLoader } from "react-spinners";
 import { toastConfig } from "../../constants/toastConfig";
+import { formatNumber } from "../../utils/string";
 
 function MyCirkles() {
   const [data, setData] = useState(null);
@@ -62,28 +63,6 @@ function MyCirkles() {
     fetchData();
   }, []);
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axiosInstance.get(ROUTES.ACCOUNT.GET_USER_ACCOUNT);
-  //     if (response.data.success) {
-  //       // Transform the data to match the required structure
-  //      console.log("successful")
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //     if (error.response?.data?.message) {
-  //       toast.error(error.response.data.message);
-  //     } else {
-  //       toast.error("An error occurred. Please try again.");
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   const handleNext = () => {
     if (data) {
@@ -121,14 +100,16 @@ function MyCirkles() {
   const { header, contribution, dates } = data[currentIndex];
   const { openModal } = useModal();
 
+  console.log(header)
+
   return (
     <div className="relative">
       <div className="flex flex-col border border-[#00000066] bg-gray-50 rounded-lg">
-        <div className="py-5 flex justify-between w-[95%] mx-auto">
+        <div className="pt-5 flex justify-between w-[95%] mx-auto">
           <div className="w-[50%] flex flex-col justify-center">
             <div className="text-[30px] font-[600] flex items-center overflow-hidden whitespace-nowrap truncate">
               <img src={currency} alt="" className="h-7" />
-              {contribution.amount}
+              {formatNumber(contribution.amount * header.count)}
             </div>
             <p className="text-[18px] font-medium truncate">Cirkle Amount</p>
           </div>
@@ -136,7 +117,7 @@ function MyCirkles() {
           <div className="w-[50%]">
             <CircularProgress contribution={contribution} />
             <p className="text-black mb-3 text-center text-[18px] font-medium">
-              Monthly Payout
+              Monthly Payers
             </p>
           </div>
         </div>
@@ -192,7 +173,7 @@ function MyCirkles() {
           </p>
         </div>
 
-        <div className="flex items-center w-[95%] mx-auto mb-8">
+        <div className="flex items-center w-[95%] mx-auto mb-5">
           <img
             src={header.groupImage}
             alt="Group"
@@ -205,13 +186,13 @@ function MyCirkles() {
 
         <button
           onClick={handlePrevious}
-          className="text-black border font-bold text-lg absolute top-48 p-1 -left-0 rounded-full"
+          className="text-black border font-bold text-lg absolute top-56 p-1 -left-0 rounded-full"
         >
           <img src="/images/arrow-left.svg" alt="" />
         </button>
         <button
           onClick={handleNext}
-          className="text-black border font-bold text-lg absolute top-48 -right-0 p-1 rounded-full"
+          className="text-black border font-bold text-lg absolute top-56 -right-0 p-1 rounded-full"
         >
           <img src="/images/arrow-right.svg" alt="" />
         </button>

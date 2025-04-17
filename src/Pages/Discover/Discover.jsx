@@ -90,12 +90,23 @@ function Discover() {
   const [initialGroups, setInitialGroups] = useState([]); // To store the original data
   const { filterOptions } = useModal();
   const [appliedFilters, setAppliedFilters] = useState(null);
+  const [requested, setRequested] = useState(false);
 
-  const buttons = (
-    <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
-      Request to Join
-    </button>
-  );
+  // const buttons = (
+  //   <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
+  //     Request to Join
+  //   </button>
+  // );
+
+  // const buttons = (
+  //   <button
+  //     className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold disabled:opacity-60"
+  //     onClick={() => setRequested(true)}
+  //     disabled={requested}
+  //   >
+  //     {requested ? "Requested" : "Request to Join"}
+  //   </button>
+  // );
 
   const handleSearch = async () => {
     try {
@@ -279,7 +290,7 @@ function Discover() {
               <RecommendedCirklesCard
                 key={index}
                 group={group}
-                buttons={buttons}
+                // buttons={buttons}
               />
             ))
           ) : (
@@ -300,7 +311,7 @@ function Discover() {
                 <RecommendedCirklesCard
                   key={index}
                   group={group}
-                  buttons={buttons}
+                  // buttons={buttons}
                 />
               ))
             ) : (

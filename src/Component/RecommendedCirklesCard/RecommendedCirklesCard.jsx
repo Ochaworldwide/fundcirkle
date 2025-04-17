@@ -6,8 +6,9 @@ import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
 import { FaCircleUser } from "react-icons/fa6";
 
-const RecommendedCirklesCard = ({ group, buttons }) => {
+const RecommendedCirklesCard = ({ group }) => {
   const { openModal, isModalOpen } = useModal();
+    const [requested, setRequested] = useState(false);
 
   // Handle click function
   const handleGroupClick = () => {
@@ -15,6 +16,16 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
     const stateId = group.id;
     openModal("recommend", stateId);
   };
+
+    // const buttons = (
+    //   <button
+    //     className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold disabled:opacity-60"
+    //     onClick={() => setRequested(true)}
+    //     disabled={requested}
+    //   >
+    //     {requested ? "Requested" : "Request to Join"}
+    //   </button>
+    // );
 
   console.log(group)
 
@@ -134,7 +145,13 @@ const RecommendedCirklesCard = ({ group, buttons }) => {
               handleRequestSubmit(group);
             }}
           >
-            {buttons}
+            <button
+              className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold disabled:opacity-60"
+              onClick={() => setRequested(true)}
+              disabled={requested}
+            >
+              {requested ? "Requested" : "Request to Join"}
+            </button>
           </div>
         </div>
       </div>

@@ -137,6 +137,14 @@ const SwapRequestModal = () => {
     },
   ];
 
+    const rawDate = cirkleData?.created_at;
+    const date = new Date(rawDate);
+
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "long", // "March"
+      year: "numeric", // "2025"
+    });
+
   const handleClick = async () => {
     const payload = {
       user_id: selectedMember.id, // Replace with dynamic user ID
@@ -206,13 +214,13 @@ const SwapRequestModal = () => {
                   <img src={data.currency} alt="" srcset="" />
                 </div>
                 <div className="">
-                  <p>{data.amount}</p>
+                  <p>{cirkleData?.contribution_amount}</p>
                   <p className="text-xs text-black">Payment Amount</p>
                 </div>
               </div>
 
               <div className="py-5 text-black w-[45%]">
-                <p className="text-[18px]">{data.dateRange}</p>
+                <p className="text-[18px] text-right">{formattedDate}</p>
               </div>
             </div>
 

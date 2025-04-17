@@ -523,7 +523,7 @@ const CreateNewCirkleModal = () => {
                 </div>
               </div>
 
-              <div className="flex w-[70%] mx-auto justify-between">
+              <div className="flex w-[70%] mx-auto justify-between mb-10">
                 <div className="px-2 py-2 border rounded-lg flex items-center justify-evenly w-[45%]">
                   <img src="/images/copy.svg" alt="" srcset="" />
 
@@ -539,7 +539,7 @@ const CreateNewCirkleModal = () => {
 
               {/* Member Payment Schedule */}
 
-              <div className="mb-2">
+              {/* <div className="mb-2">
                 <div className="">
                   <div className="p-5 flex justify-between">
                     <p>Member Payment Schedule</p>
@@ -586,7 +586,7 @@ const CreateNewCirkleModal = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* public and private section */}
 

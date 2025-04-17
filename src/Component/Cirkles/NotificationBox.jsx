@@ -41,7 +41,10 @@ const NotificationBox = ({ setShowNotification }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen   bg-opacity-50 ">
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen   bg-opacity-50 "
+      onClick={() => closeNotification()}
+    >
       <motion.div
         initial={{ x: "100%", opacity: 0 }} // Start off-screen
         animate={{ x: 0, opacity: 1 }} // Slide into view

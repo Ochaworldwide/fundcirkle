@@ -94,11 +94,19 @@ const CirkleDetailsModal = () => {
 
 
   const payoutData = {
-    progress: { current: 2, total: 7 },
+    progress: { current: 2, total: cirkleData?.member_count },
     payoutDate: cirkleData?.next_receiving_date,
     amount: cirkleData.contribution_amount,
     currency: "/images/currency.svg",
   };
+
+  const rawDate = cirkleData?.created_at;
+  const date = new Date(rawDate);
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "long", // "March"
+    year: "numeric", // "2025"
+  });
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50 ">
@@ -174,7 +182,7 @@ const CirkleDetailsModal = () => {
 
             <p className="text-sm text-gray-600 mb-4">{data.description}</p>
 
-            <div className="flex justify-between items-center border rounded-lg text-[#00943F] font-bold mb-8 px-1">
+            <div className="flex justify-between items-center border rounded-lg text-[#00943F] font-bold mb-8 px-2">
               <div className="flex w-[50%] justify-evenly">
                 <div className="mr-2">
                   <img src={data.currency} alt="" srcset="" />
@@ -185,8 +193,8 @@ const CirkleDetailsModal = () => {
                 </div>
               </div>
 
-              <div className="py-5 text-black w-[45%]">
-                <p className="text-[18px]">{data.dateRange}</p>
+              <div className="py-5 text-black w-[45%] ">
+                <p className="text-[18px] text-right">{formattedDate}</p>
               </div>
             </div>
 
