@@ -15,6 +15,8 @@ const EditCirkleModal = () => {
   const [isPublic, setIsPublic] = useState(true);
   const [privacy, setPrivacy] = useState("public");
   const [emails, setEmails] = useState([]);
+  const [ownerName, setOwnerName] = useState();
+  const [ownerEmail, setOwnerEmail] = useState();
   const navigate = useNavigate();
   const { user, refetchUser } = useContext(UserContext);
 
@@ -28,6 +30,8 @@ const EditCirkleModal = () => {
             setPrivacy(response.data.data.privacy);
             setIsPublic(response.data.data.privacy === "public");
             setEmails(response.data.data.members || []);
+            setOwnerName(response.data.data.owner_details.name);
+            setOwnerEmail(response.data.data.owner.email);
             console.log(response.data.data)
           }
         } catch (error) {
@@ -48,6 +52,7 @@ const EditCirkleModal = () => {
   const handleEmailsChange = (updatedEmails) => {
     setEmails(updatedEmails);
   };
+
 
   const handleSubmit = async () => {
     try {
@@ -125,8 +130,8 @@ const EditCirkleModal = () => {
                 />
 
                 <div>
-                  <h1>Bhaavik Arhaan</h1>
-                  <p>bhaavik.arhaan@xyz.com</p>
+                  <h1>{ownerName}</h1>
+                  <p>{ownerEmail}</p>
                 </div>
               </div>
 
