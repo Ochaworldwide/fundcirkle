@@ -149,7 +149,8 @@ const CreateNewCirkleModal = () => {
 
     const payload = {
       name: name,
-      members: emails,
+      // members: emails,
+      ...(emails && { members: emails }),
       max_members: members,
       ...(description && { description }),
       category: selectedCategoryId,

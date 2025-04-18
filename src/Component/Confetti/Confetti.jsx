@@ -137,7 +137,8 @@ const Confetti = ({
   primaryButtonText ,
   secondaryButtonText, 
   primaryButtonLink ,
-  secondaryButtonLink
+  secondaryButtonLink,
+  primaryButtonAction,
 }) => {
   const navigate = useNavigate();
 
@@ -175,7 +176,9 @@ const Confetti = ({
           </h1>
 
           {/* Dynamic Subtext */}
-          <p className="mt-4 text-base leading-relaxed text-gray-600">{message}</p>
+          <p className="mt-4 text-base leading-relaxed text-gray-600">
+            {message}
+          </p>
         </motion.div>
 
         {/* Buttons */}
@@ -188,7 +191,14 @@ const Confetti = ({
           {/* Primary Button */}
           <button
             className="w-[90%] mx-auto px-4 py-5 mb-5 font-[700] text-white bg-green-600 rounded-lg shadow hover:bg-green-700"
-            onClick={() => navigate(primaryButtonLink)}
+            // onClick={() => navigate(primaryButtonLink)}
+            onClick={() => {
+              if (primaryButtonAction) {
+                primaryButtonAction(); // Use the passed function if available
+              } else {
+                navigate(primaryButtonLink); // Fallback to navigation
+              }
+            }}
           >
             {primaryButtonText}
           </button>

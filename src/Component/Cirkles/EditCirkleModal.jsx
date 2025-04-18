@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
 import { toast } from "react-toastify";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import MultiEmailInput from "../Common/multiEmailInput";
 import axiosInstance from "../../service";
 import { toastConfig } from "../../constants/toastConfig";
+import { UserContext } from "../../contexts/userDetails";
 
 const EditCirkleModal = () => {
   const { isModalOpen, modalType, modalData, closeModal, openModal } =
@@ -15,6 +16,7 @@ const EditCirkleModal = () => {
   const [privacy, setPrivacy] = useState("public");
   const [emails, setEmails] = useState([]);
   const navigate = useNavigate();
+  const { user, refetchUser } = useContext(UserContext);
 
   useEffect(() => {
     if (isModalOpen && modalType === "edit") {
@@ -117,10 +119,9 @@ const EditCirkleModal = () => {
             <div className=" flex justify-between mb-3">
               <div className=" text-[12px] flex items-center space-x-2 pl-3">
                 <img
-                  src="/images/person4.svg"
-                  alt=""
-                  srcset=""
-                  className="h-10"
+                  src={user.profile_pic}
+                  alt="Profile"
+                  className=" h-10 w-10 rounded-full"
                 />
 
                 <div>

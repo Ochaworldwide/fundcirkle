@@ -77,7 +77,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       </div>
 
       {/* Content Area */}
-      <div className="h-[350px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar ">
+      <div className="h-[400px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar ">
         {renderContent()}
       </div>
     </motion.div>

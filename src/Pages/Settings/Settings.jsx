@@ -29,7 +29,7 @@ const Settings = () => {
 
   const { user, refetchUser } = useContext(UserContext);
   console.log(user);
-
+  
   const { openModal } = useModal();
   const navigate = useNavigate();
 
@@ -292,7 +292,7 @@ const Settings = () => {
                 <img
                   src={user.profile_pic}
                   alt="Profile"
-                  className="w-full h-full rounded-full"
+                  className="w-full h-full rounded-full" 
                 />
               ) : (
                 <FaCircleUser className=" text-gray-500 w-full h-full" />

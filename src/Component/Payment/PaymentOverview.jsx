@@ -1,4 +1,5 @@
 import React from "react";
+import { formatNumber } from "../../utils/string";
 
 const PaymentOverview = ({due,validations,receive}) => {
 
@@ -63,7 +64,7 @@ const PaymentOverview = ({due,validations,receive}) => {
             You will receive
           </p>
           <h3 className="text-sm font-bold text-black border rounded-full bg-white lg:text-[16px] lg:px-2 lg:py-1 lg:rounded-md">
-            {receive.amount}
+            {formatNumber(receive.amount)}
           </h3>
         </div>
 

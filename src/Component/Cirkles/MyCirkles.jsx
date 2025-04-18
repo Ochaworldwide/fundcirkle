@@ -29,6 +29,7 @@ function MyCirkles() {
             groupImage: "/images/circlepeople.svg", // Use a default image or customize it per item
             count: item.member_count,
             id: item.id,
+            ownerName: item.owner_details.name,
           },
           contribution: {
             amount: item.contribution_amount,
@@ -104,7 +105,7 @@ function MyCirkles() {
 
   return (
     <div className="relative">
-      <div className="flex flex-col border border-[#00000066] bg-gray-50 rounded-lg">
+      <div className="flex flex-col border border-[#00000066] bg-gray-50 rounded-lg mb-3">
         <div className="pt-5 flex justify-between w-[95%] mx-auto">
           <div className="w-[50%] flex flex-col justify-center">
             <div className="text-[30px] font-[600] flex items-center overflow-hidden whitespace-nowrap truncate">
@@ -173,15 +174,21 @@ function MyCirkles() {
           </p>
         </div>
 
-        <div className="flex items-center w-[95%] mx-auto mb-5">
+        <div className="flex items-center w-[95%] mx-auto mb-5 space-x-5">
           <img
             src={header.groupImage}
             alt="Group"
             className="w-14 h-14 rounded-full"
           />
-          <h1 className="ml-3 text-black px-3 py-1 text-[22px] font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-[30px]">
-            {header.groupName}
-          </h1>
+
+          <div className="">
+            <h1 className="ml-3 text-black text-xl text-left font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-[30px]">
+              {header.groupName}
+            </h1>
+            <p className="ml-3 text-black  text-sm font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-[30px]">
+              {header.ownerName}
+            </p>
+          </div>
         </div>
 
         <button
