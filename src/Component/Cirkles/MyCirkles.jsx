@@ -13,6 +13,7 @@ import { FadeLoader } from "react-spinners";
 import { toastConfig } from "../../constants/toastConfig";
 import { formatNumber } from "../../utils/string";
 import { useUserCirkle } from "../../contexts/UserCirkleContext";
+import { FaCircleUser } from "react-icons/fa6";
 
 function MyCirkles() {
   const [data, setData] = useState(null);
@@ -83,7 +84,7 @@ function MyCirkles() {
       const transformedData = cirkles.map((item) => ({
         header: {
           groupName: item.name,
-          groupImage: "/images/circlepeople.svg",
+          groupImage: item.image_url,
           count: item.member_count,
           id: item.id,
           ownerName: item.owner_details.name,
@@ -173,18 +174,6 @@ function MyCirkles() {
               handleMessageClick();
             }}
           >
-            {/* <button
-              className="relative rounded-full p-1 border border-[#00000066] h-10 "
-              
-              onClick={() => {
-                handleMessageClick();
-              }}
-            >
-              <img src={messageIcon} alt="" />
-              <span className="absolute top-0 right-0 bg-[#00943F] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                {header.count}
-              </span>
-            </button> */}
             <p className="mx-auto text-[14px] font-medium text-white ">
               Messages
             </p>
@@ -196,14 +185,6 @@ function MyCirkles() {
               handleGroupClick();
             }}
           >
-            {/* <button
-              className="relative rounded-full p-1 border border-[#00000066] h-10 bg-[#E5F4EC]"
-              onClick={() => {
-                handleGroupClick();
-              }}
-            >
-              <img src={moreIcon} alt="" />
-            </button> */}
             <p className="mx-auto text-[14px] font-medium text-white">
               Details
             </p>
@@ -218,11 +199,15 @@ function MyCirkles() {
         </div>
 
         <div className="flex items-center w-[95%] mx-auto mb-5 space-x-5">
-          <img
-            src={header.groupImage}
-            alt="Group"
-            className="w-14 h-14 rounded-full"
-          />
+          {header.groupImage ? (
+            <img
+              src={header.groupImage}
+              alt="Group"
+              className="w-14 h-14 rounded-full"
+            />
+          ) : (
+            <FaCircleUser className="w-14 h-14 text-gray-500" />
+          )}
 
           <div className="">
             <h1 className="ml-3 text-black text-xl text-left font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-[30px]">

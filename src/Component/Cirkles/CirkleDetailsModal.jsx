@@ -7,6 +7,7 @@ import axiosInstance from "../../service";
 import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
+import { FaCircleUser } from "react-icons/fa6";
 
 const CirkleDetailsModal = () => {
   
@@ -53,7 +54,7 @@ const CirkleDetailsModal = () => {
   const data = {
     title: cirkleData.name,
     description:cirkleData.description,
-    image: "/images/circlepeople.svg",
+    image: cirkleData.image_url,
     groupName: "Hyderabad Pharmacist Union",
     payoutAmount: "420,000",
     amount: "420,000",
@@ -149,11 +150,20 @@ const CirkleDetailsModal = () => {
 
           <div className="p-3 mx-auto">
             <div className="items-center mb-5 flex justify-between">
-              <img
+              {/* <img
                 src={data.image}
                 alt="Group"
                 className="w-12 h-12 rounded-full"
-              />
+              /> */}
+              {data.image ? (
+                <img
+                  src={data.image}
+                  alt="Group"
+                  className="w-14 h-14 rounded-full"
+                />
+              ) : (
+                <FaCircleUser className="w-14 h-14 text-gray-500" />
+              )}
 
               <h2 className="text-lg font-bold text-gray-800 mb-2">
                 {data.title}
