@@ -18,6 +18,7 @@ const SwapRequestModal = () => {
   const [selectedMember, setSelectedMember] = useState("");
   const [cirkleMembers, setCirkleMembers] = useState([]);
   const navigate = useNavigate();
+  const { showStatusReport } = useModal();
 
   useEffect(() => {
     if (isModalOpen && modalType === "swap" && modalData) {
@@ -42,11 +43,13 @@ const SwapRequestModal = () => {
         } catch (error) {
           console.error("Error fetching data:", error);
           if (error.response?.data?.message) {
-            toast.error(error.response.data.message, { ...toastConfig });
+            // toast.error(error.response.data.message, { ...toastConfig });
+            showStatusReport(error.response.data.message);
           } else {
-            toast.error("An error occurred. Please try again.", {
-              ...toastConfig,
-            });
+            // toast.error("An error occurred. Please try again.", {
+            //   ...toastConfig,
+            // });
+            showStatusReport("An error occurred. Please try again.");
           }
         }
       };
@@ -58,7 +61,6 @@ const SwapRequestModal = () => {
     modalType,
     modalData,
     axiosInstance,
-    toast,
     setCirkleData,
     setCirkleMembers,
   ]);

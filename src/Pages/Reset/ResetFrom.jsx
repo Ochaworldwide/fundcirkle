@@ -10,6 +10,7 @@ import { ROUTES } from "../../constants/routes";
 import { PulseLoader } from "react-spinners";
 import { toastConfig } from "../../constants/toastConfig";
 import logo from "/images/Logo.svg";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 function ResetFrom() {
 
@@ -17,7 +18,8 @@ function ResetFrom() {
 
     const email = location.state?.email;
 
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState(false);
+    const { showStatusReport } = useModal();
 
 
   
@@ -32,12 +34,14 @@ function ResetFrom() {
       .post(ROUTES.AUTH.FORGOT_PASSWORD, payload)
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message, { ...toastConfig });
+          // toast.success(response.data.message, { ...toastConfig });
+          showStatusReport(response.data.message);
         }
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.response.data.message, { ...toastConfig });
+        // toast.error(error.response.data.message, { ...toastConfig });
+        showStatusReport(error.response.data.message);
       })
       .finally(() => {
         setLoading(false);

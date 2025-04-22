@@ -11,6 +11,7 @@ const BankInformationDesktop = () => {
   const [accountDetails, setAccountDetails] = useState(null); // Initialize as null
   const [loading, setLoading] = useState(true);
   const { isModalOpen, modalType, closeModal, openModal } = useModal();
+  const { showStatusReport } = useModal();
 
   useEffect(() => {
     // if (!isModalOpen || modalType !== "Bank Information") return;
@@ -23,9 +24,10 @@ const BankInformationDesktop = () => {
         setAccountDetails(response.data.data.bank_details); // Set bank_details from API response
         console.log(response.data.data.bank_details);
       } catch (err) {
-        toast.error(err.response?.data?.message || "An error occurred", {
-          ...toastConfig,
-        });
+        // toast.error(err.response?.data?.message || "An error occurred", {
+        //   ...toastConfig,
+        // });
+        showStatusReport(err.response?.data?.message || "An error occurred");
       } finally {
         setLoading(false);
       }

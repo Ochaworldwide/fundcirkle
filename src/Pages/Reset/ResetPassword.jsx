@@ -10,9 +10,11 @@ import { ROUTES } from "../../constants/routes";
 import { PulseLoader } from "react-spinners";
 import { toastConfig } from "../../constants/toastConfig";
 import logo from "/images/Logo.svg";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 function ResetPassword() {
   const location = useLocation();
+  const { showStatusReport } = useModal();
 
   //   const email = location.state?.email;
 
@@ -35,12 +37,14 @@ function ResetPassword() {
       })
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message, { ...toastConfig });
+          // toast.success(response.data.message, { ...toastConfig });
+          showStatusReport(response.data.message);
         }
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.response.data.message, { ...toastConfig });
+        // toast.error(error.response.data.message, { ...toastConfig });
+        showStatusReport(error.response.data.message);
       })
       .finally(() => {
         setLoading(false);

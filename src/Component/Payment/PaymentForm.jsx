@@ -49,6 +49,7 @@ const PaymentForm = ({ handler, cirkle }) => {
   const { user, refetchUser } = useContext(UserContext);
 
   const { closeModal: close } = useModal();
+  const { showStatusReport } = useModal();
 
   const bank =
     paymentTo == "admin"
@@ -119,7 +120,8 @@ const PaymentForm = ({ handler, cirkle }) => {
     } catch (error) {
       // Handle errors
       console.error("Error submitting payment:", error);
-      toast.error("Failed to submit payment. Please try again.",{ ...toastConfig });
+      // toast.error("Failed to submit payment. Please try again.",{ ...toastConfig });
+      showStatusReport("Failed to submit payment. Please try again.");
     }
   };
 

@@ -11,6 +11,7 @@ import { PulseLoader } from "react-spinners";
 import { FaEye, FaEyeSlash, FaRegEyeSlash } from "react-icons/fa"; // Import icons from react-icons
 import { toastConfig } from "../../constants/toastConfig";
 import logo from "/images/Logo.svg";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -31,6 +32,7 @@ function SignIn() {
       onChange: (e) => setPassword(e.target.value),
     },
   ];
+  const { showStatusReport } = useModal();
 
   const navigate = useNavigate();
 
@@ -47,14 +49,16 @@ function SignIn() {
       .then((response) => {
         if (response.data.success) {
           const token = response.data.data.token;
-          toast.success("Login successful", { ...toastConfig });
+          // toast.success("Login successful", { ...toastConfig });
+          showStatusReport("Login successful");
           localStorage.setItem("token", token);
           localStorage.setItem("user", response.data.data.user);
           navigate("/home");
         }
       })
       .catch((error) => {
-        toast.error(error?.response?.data?.message, { ...toastConfig });
+        // toast.error(error?.response?.data?.message, { ...toastConfig });
+        showStatusReport(error?.response?.data?.message);
       })
       .finally(() => {
         setLoading(false);

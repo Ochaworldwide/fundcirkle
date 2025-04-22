@@ -9,11 +9,13 @@ import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import { toastConfig } from "../../constants/toastConfig";
 import logo from "/images/Logo.svg";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 const Authentication = () => {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const inputRefs = useRef([]);
   const [loading, setLoading] = useState(false);
+  const { showStatusReport } = useModal();
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -74,13 +76,15 @@ const Authentication = () => {
       .post(ROUTES.AUTH.VERIFY, payload)
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message, { ...toastConfig });
+          // toast.success(response.data.message, { ...toastConfig });
+          showStatusReport(response.data.message);
           navigate("/sign-in");
         }
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.response.data.message, { ...toastConfig });
+        // toast.error(error.response.data.message, { ...toastConfig });
+        showStatusReport(error.response.data.message);
         
       })
       .finally(() => {
@@ -96,7 +100,8 @@ const Authentication = () => {
     axiosInstance
       .post(ROUTES.AUTH.RESENDOTP, payload)
       .then((response) => {
-        toast.success("Resent OTP", { ...toastConfig });
+        // toast.success("Resent OTP", { ...toastConfig });
+        showStatusReport("Resent OTP");
       })
       .catch((error) => {
         console.log(error);

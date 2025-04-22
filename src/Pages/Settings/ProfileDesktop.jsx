@@ -10,6 +10,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaCircleUser, FaUser } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
 import EditProfileDesktop from "./EditProfileDesktop";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 // import { FaUser } from "react-icons/fa6";
 
 const ProfileDesktop = ({edit,setEdit}) => {
@@ -17,6 +18,7 @@ const ProfileDesktop = ({edit,setEdit}) => {
   const [loading, setLoading] = useState(true);
   const { user, refetchUser } = useContext(UserContext);
   console.log(user);
+  const { showStatusReport } = useModal();
   // const [error, setError] = useState("");
 
   useEffect(() => {
@@ -30,9 +32,10 @@ const ProfileDesktop = ({edit,setEdit}) => {
         console.log(response.data.data);
       } catch (err) {
         // setError("Failed to load profile data.");
-        toast.error(err.response?.data?.message || "An error occurred", {
-          ...toastConfig,
-        }); // Use err instead of response
+        // toast.error(err.response?.data?.message || "An error occurred", {
+        //   ...toastConfig,
+        // }); // Use err instead of response
+        showStatusReport(err.response?.data?.message || "An error occurred");
       } finally {
         setLoading(false);
       }

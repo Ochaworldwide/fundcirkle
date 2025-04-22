@@ -5,11 +5,13 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 const AddressProof = () => {
   const [selectedProof, setSelectedProof] = useState("");
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
+  const { showStatusReport } = useModal();
 
   const { kycState, setKycState } = useKycState();
 
@@ -27,12 +29,15 @@ const AddressProof = () => {
     event.preventDefault();
 
     if (!selectedProof) {
-      toast("Please select an address proof type.",{ ...toastConfig });
+      // toast("Please select an address proof type.",{ ...toastConfig });
+      showStatusReport("Please select an address proof type.");
+
       return;
     }
 
     if (!file) {
-      toast("Please upload a file.",{ ...toastConfig });
+      // toast("Please upload a file.",{ ...toastConfig });
+      showStatusReport("Please upload a file.");
       return;
     }
 
@@ -50,9 +55,11 @@ const AddressProof = () => {
         }
       });
       navigate("/thanks");
-      toast.success(response.data.message,{ ...toastConfig })
+      // toast.success(response.data.message,{ ...toastConfig })
+      showStatusReport(response.data.message);
     } catch (error) {
-      toast.error(error.response.data.message,{ ...toastConfig });
+      // toast.error(error.response.data.message,{ ...toastConfig });
+      showStatusReport(error.response.data.message);
     }
 
 

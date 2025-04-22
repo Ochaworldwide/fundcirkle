@@ -6,11 +6,13 @@ import NoInvitesCard from "./NoInvitesCard";
 import { FadeLoader} from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { toastConfig } from "../../constants/toastConfig";
+import { useModal } from "./ModalContext";
 
 function Invites() {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { showStatusReport } = useModal();
 
   const fetchData = async () => {
     try {
@@ -34,9 +36,11 @@ function Invites() {
     } catch (error) {
       console.error("Error fetching data:", error);
       if (error.response?.data?.message) {
-        toast.error(error.response.data.message,{ ...toastConfig });
+        // toast.error(error.response.data.message,{ ...toastConfig });
+        showStatusReport(error.response.data.message);
       } else {
-        toast.error("An error occurred. Please try again.",{ ...toastConfig });
+        // toast.error("An error occurred. Please try again.",{ ...toastConfig });
+        showStatusReport("An error occurred. Please try again.");
       }
     } finally {
       setLoading(false);

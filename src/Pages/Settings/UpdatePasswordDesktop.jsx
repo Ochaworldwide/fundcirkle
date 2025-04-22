@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 const UpdatePasswordDesktop = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -17,6 +18,7 @@ const UpdatePasswordDesktop = () => {
     new: false,
     confirm: false,
   });
+  const { showStatusReport } = useModal();
 
   const togglePasswordVisibility = (field) => {
     setIsPasswordVisible((prevState) => ({
@@ -42,9 +44,10 @@ const UpdatePasswordDesktop = () => {
     };
 
     if (newPassword !== confirmPassword) {
-      toast.error("Passwords do not match!", {
-        ...toastConfig,
-      });
+      // toast.error("Passwords do not match!", {
+      //   ...toastConfig,
+      // });
+      showStatusReport("Passwords do not match!");
       setLoading(false);
       return;
     }
@@ -53,16 +56,18 @@ const UpdatePasswordDesktop = () => {
       .post(ROUTES.ACCOUNT.UPDATE_USER_PASSWORD, payload)
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message, {
-            ...toastConfig,
-          });
+          // toast.success(response.data.message, {
+          //   ...toastConfig,
+          // });
+          showStatusReport(response.data.message);
           reset();
         }
       })
       .catch((error) => {
-        toast.error(error?.response?.data?.message, {
-          ...toastConfig,
-        });
+        // toast.error(error?.response?.data?.message, {
+        //   ...toastConfig,
+        // });
+        showStatusReport(error?.response?.data?.message);
       })
       .finally(() => {
         setLoading(false);

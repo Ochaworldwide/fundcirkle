@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import { toastConfig } from "../../constants/toastConfig";
 import logo from "/images/Logo.svg";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 function Residence() {
   // const [country, setCountry] = useState(null);
@@ -18,6 +19,7 @@ function Residence() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const { showStatusReport } = useModal();
 
   useEffect(() => {
     const getAllCountries = async () => {
@@ -51,9 +53,11 @@ function Residence() {
     try {
       const response = await axiosInstance.post(ROUTES.AUTH.SIGNUP, payload);
       navigate("/authentication", { state: { email: payload?.email } });
-      toast.success(response.data.message, { ...toastConfig });
+      // toast.success(response.data.message, { ...toastConfig });
+      showStatusReport(response.data.message);
     } catch (error) {
-      toast.error(error.response.data.message, { ...toastConfig });
+      // toast.error(error.response.data.message, { ...toastConfig });
+      showStatusReport(error.response.data.message);
     }
     setLoading(false);
   };

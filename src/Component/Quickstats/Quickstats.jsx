@@ -5,10 +5,12 @@ import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
+import { useModal } from "../Cirkles/ModalContext";
 
 const QuickStats = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { showStatusReport } = useModal();
 
   const fetchData = async () => {
     try {
@@ -49,8 +51,11 @@ const QuickStats = () => {
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-      toast.error(
-        error.response?.data?.message || "An error occurred. Please try again.",{ ...toastConfig }
+      // toast.error(
+      //   error.response?.data?.message || "An error occurred. Please try again.",{ ...toastConfig }
+      // );
+      showStatusReport(
+        error.response?.data?.message || "An error occurred. Please try again."
       );
     } finally {
       setLoading(false);

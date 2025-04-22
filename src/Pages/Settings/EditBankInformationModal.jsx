@@ -186,6 +186,7 @@ const EditBankInformationModal = () => {
   const [ifscCode, setIfscCode] = useState("");
   const [branchAddress, setBranchAddress] = useState("");
   const [loading, setLoading] = useState(false);
+  const { showStatusReport } = useModal();
 
   if (!isModalOpen || modalType !== "Edit Bank Information") return null;
 
@@ -217,13 +218,15 @@ const EditBankInformationModal = () => {
       .post(ROUTES.ACCOUNT.UPDATE_BANK_DETAILS, payload)
       .then((response) => {
         if (response.data.success) {
-          toast.success(response.data.message, { ...toastConfig });
+          // toast.success(response.data.message, { ...toastConfig });
+          showStatusReport(response.data.message);
           openModal("Bank Information");
           reset();
         }
       })
       .catch((error) => {
-        toast.error(error?.response?.data?.message, { ...toastConfig });
+        // toast.error(error?.response?.data?.message, { ...toastConfig });
+        showStatusReport(error?.response?.data?.message);
       })
       .finally(() => {
         setLoading(false);

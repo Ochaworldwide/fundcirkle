@@ -96,6 +96,7 @@ const CirkleCreationSuccess = () => {
     useModal();
   const [cirkleData, setCirkleData] = useState(null);
   const [membersData, setMembersData] = useState([]);
+  const { showStatusReport } = useModal();
 
   
 
@@ -125,7 +126,8 @@ const CirkleCreationSuccess = () => {
         const errorMsg =
           error.response?.data?.message ||
           "An error occurred. Please try again.";
-        toast.error(errorMsg, toastConfig);
+        // toast.error(errorMsg, toastConfig);
+        showStatusReport(errorMsg);
       }
     };
 

@@ -12,6 +12,7 @@ const CirkleDetailsModal = () => {
   
   const { isModalOpen, modalType, modalData, closeModal,openModal } = useModal();
   const [cirkleData, setCirkleData] = useState("");
+   const { showStatusReport } = useModal();
 
 
 
@@ -28,11 +29,13 @@ const CirkleDetailsModal = () => {
         } catch (error) {
           console.error("Error fetching data:", error);
           if (error.response?.data?.message) {
-            toast.error(error.response.data.message, { ...toastConfig });
+            // toast.error(error.response.data.message, { ...toastConfig });
+            showStatusReport(error.response.data.message);
           } else {
-            toast.error("An error occurred. Please try again.", {
-              ...toastConfig,
-            });
+            // toast.error("An error occurred. Please try again.", {
+            //   ...toastConfig,
+            // });
+            showStatusReport("An error occurred. Please try again.");
           }
         }
       };
@@ -219,9 +222,6 @@ const CirkleDetailsModal = () => {
             </div>
 
             <div className="flex  mt-4 justify-center w-[90%] mx-auto">
-              {/* <button className="bg-[#00943F] text-white px-2 py-2 rounded-lg text-sm">
-                Pay Pie for October
-              </button> */}
               <button
                 className="border font-[400] border-gray-400 bg-[#00943F] text-white px-5 py-3 rounded-lg text-sm"
                 onClick={() => openModal("swap", transferData)}

@@ -6,6 +6,7 @@ import { FaUpload } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
 import { UserContext } from "../../contexts/userDetails";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 const EditProfileDesktop = ({ edit, setEdit }) => {
   const [fullName, setFullName] = useState("");
@@ -18,6 +19,7 @@ const EditProfileDesktop = ({ edit, setEdit }) => {
   const [image, setImage] = useState(null);
   const [imageFile, setImageFile] = useState(null); // New state to hold the file object
   const { user, refetchUser } = useContext(UserContext);
+  const { showStatusReport } = useModal();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -61,7 +63,8 @@ const EditProfileDesktop = ({ edit, setEdit }) => {
           throw new Error("Image upload failed");
         }
       } catch (error) {
-        toast.error("Image upload failed!", { ...toastConfig });
+        // toast.error("Image upload failed!", { ...toastConfig });
+        showStatusReport("Image upload failed!");
         console.log(error);
         setLoading(false);
         return;

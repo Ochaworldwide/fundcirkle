@@ -5,6 +5,7 @@ import { ROUTES } from "../../constants/routes";
 import { FaUpload } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 const EditProfile = () => {
   const [fullName, setFullName] = useState("");
@@ -16,6 +17,7 @@ const EditProfile = () => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [imageFile, setImageFile] = useState(null); // New state to hold the file object
+  const { showStatusReport } = useModal();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -58,7 +60,8 @@ const EditProfile = () => {
           throw new Error("Image upload failed");
         }
       } catch (error) {
-        toast.error("Image upload failed!", { ...toastConfig });
+        // toast.error("Image upload failed!", { ...toastConfig });
+        showStatusReport("Image upload failed!");
         console.log(error);
         setLoading(false);
         return;

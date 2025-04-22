@@ -3,8 +3,10 @@ import axiosInstance from "../../service";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
 import { FaCircleUser } from "react-icons/fa6";
+import { useModal } from "../Cirkles/ModalContext";
 
 const RequestCard = ({ data }) => {
+  const { showStatusReport } = useModal();
   const handleAccept = async () => {
     const payload = {
       email: data.email,
@@ -16,24 +18,33 @@ const RequestCard = ({ data }) => {
       );
 
       if (response.data.success) {
-        toast.success("Request accepted successfully!",{ ...toastConfig });
+        // toast.success("Request accepted successfully!",{ ...toastConfig });
+        showStatusReport("Request accepted successfully!");
       } else {
-        toast.error("Failed to accept request: " + response.data.message,{ ...toastConfig });
+        // toast.error("Failed to accept request: " + response.data.message,{ ...toastConfig });
+        showStatusReport("Failed to accept request: " + response.data.message);
+
       }
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        toast.error(
+        // toast.error(
+        //   "Warning: " +
+        //     (error.response.data.message || error.response.statusText),{ ...toastConfig }
+        // );
+        showStatusReport(
           "Warning: " +
-            (error.response.data.message || error.response.statusText),{ ...toastConfig }
+            (error.response.data.message || error.response.statusText)
         );
       } else if (error.request) {
         // The request was made but no response was received
-        toast.error("Warning: No response received from the server.",{ ...toastConfig });
+        // toast.error("Warning: No response received from the server.",{ ...toastConfig });
+        showStatusReport("Warning: No response received from the server.");
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast.error("Warning: " + error.message,{ ...toastConfig });
+        // toast.error("Warning: " + error.message,{ ...toastConfig });
+        showStatusReport("Warning: " + error.message);
       }
       console.error("Error details:", error);
     }
@@ -50,24 +61,32 @@ const RequestCard = ({ data }) => {
       );
 
       if (response.data.success) {
-        toast.success("Request declined successfully!",{ ...toastConfig });
+        // toast.success("Request declined successfully!",{ ...toastConfig });
+        showStatusReport("Request declined successfully!");
       } else {
-        toast.error("Failed to decline request: " + response.data.message,{ ...toastConfig });
+        // toast.error("Failed to decline request: " + response.data.message,{ ...toastConfig });
+        showStatusReport("Failed to decline request: " + response.data.message);
       }
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        toast.error(
+        // toast.error(
+        //   "Warning: " +
+        //     (error.response.data.message || error.response.statusText),{ ...toastConfig }
+        // );
+        showStatusReport(
           "Warning: " +
-            (error.response.data.message || error.response.statusText),{ ...toastConfig }
+            (error.response.data.message || error.response.statusText)
         );
       } else if (error.request) {
         // The request was made but no response was received
-        toast.error("Warning: No response received from the server.",{ ...toastConfig });
+        // toast.error("Warning: No response received from the server.",{ ...toastConfig });
+        showStatusReport("Warning: No response received from the server.");
       } else {
         // Something happened in setting up the request that triggered an Error
-        toast.error("Warning: " + error.message,{ ...toastConfig });
+        // toast.error("Warning: " + error.message,{ ...toastConfig });
+        showStatusReport("Warning: " + error.message);
       }
       console.error("Error details:", error);
     }

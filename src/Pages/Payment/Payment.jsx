@@ -12,6 +12,7 @@ import { UserContext } from "../../contexts/userDetails";
 import { useNotification } from "../../contexts/notificationContext";
 import { FaCircleUser } from "react-icons/fa6";
 import NotificationBox from "../../Component/Cirkles/NotificationBox";
+import { useModal } from "../../Component/Cirkles/ModalContext";
 
 const Payment = () => {
   const [due, setDue] = useState({});
@@ -20,6 +21,7 @@ const Payment = () => {
   const { user, refetchUser } = useContext(UserContext);
   const { notifications, clearNotifications } = useNotification();
   const [showNotification, setShowNotification] = useState(false);
+  const { showStatusReport } = useModal();
 
   const NotifyNum = notifications.length;
 
@@ -45,7 +47,8 @@ const Payment = () => {
         console.log(accountResponse.data);
         // setAccountData();
       } catch (error) {
-        toast.error("Error fetching initial data:", error, { ...toastConfig });
+        // toast.error("Error fetching initial data:", error, { ...toastConfig });
+        showStatusReport("Error fetching initial data:", error);
       }
     };
 

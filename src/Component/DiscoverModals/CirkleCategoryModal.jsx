@@ -11,6 +11,7 @@ const CirkleCategoryModal = ({closeModal, name, updateSelection}) => {
 
   const [categories, setCategories] = useState(null);
   const [ selectedCategories , setSelection ] = useState([]);
+  const { showStatusReport } = useModal();
 
 const fetchData = async () => {
   try {
@@ -23,9 +24,11 @@ const fetchData = async () => {
   } catch (error) {
     console.error(error);
     if (error.response?.data?.message) {
-      toast.error(error.response.data.message,{ ...toastConfig });
+      // toast.error(error.response.data.message,{ ...toastConfig });
+      showStatusReport(error.response.data.message);
     } else {
-      toast.error("An error occurred. Please try again.",{ ...toastConfig });
+      // toast.error("An error occurred. Please try again.",{ ...toastConfig });
+      showStatusReport("An error occurred. Please try again.");
     }
   } finally {
     // Uncomment or implement if needed

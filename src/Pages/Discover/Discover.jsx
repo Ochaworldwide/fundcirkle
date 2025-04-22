@@ -45,6 +45,8 @@ const slidesData = [
 ];
 
 function Discover() {
+
+  const { showStatusReport } = useModal();
   const fetchData = async () => {
     try {
       // Fetch data from the first API
@@ -67,9 +69,11 @@ function Discover() {
     } catch (error) {
       console.error(error);
       if (error.response?.data?.message) {
-        toast.error(error.response.data.message, { ...toastConfig });
+        // toast.error(error.response.data.message, { ...toastConfig });
+        showStatusReport(error.response.data.message);
       } else {
-        toast.error("An error occurred. Please try again.", { ...toastConfig });
+        // toast.error("An error occurred. Please try again.", { ...toastConfig });
+        showStatusReport("An error occurred. Please try again.");
       }
     } finally {
       // Uncomment or implement if necessary
@@ -91,22 +95,8 @@ function Discover() {
   const { filterOptions } = useModal();
   const [appliedFilters, setAppliedFilters] = useState(null);
   const [requested, setRequested] = useState(false);
+  
 
-  // const buttons = (
-  //   <button className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold">
-  //     Request to Join
-  //   </button>
-  // );
-
-  // const buttons = (
-  //   <button
-  //     className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold disabled:opacity-60"
-  //     onClick={() => setRequested(true)}
-  //     disabled={requested}
-  //   >
-  //     {requested ? "Requested" : "Request to Join"}
-  //   </button>
-  // );
 
   const handleSearch = async () => {
     try {
@@ -133,10 +123,12 @@ function Discover() {
       if (response.data.success) {
         setGroups(response.data.data); // Replace groups with search results
       } else {
-        toast.error("No results found.", { ...toastConfig });
+        // toast.error("No results found.", { ...toastConfig });
+        showStatusReport("No results found.");
       }
     } catch (err) {
-      toast.error(err.message, { ...toastConfig });
+      // toast.error(err.message, { ...toastConfig });
+      showStatusReport(err.message);
     } finally {
       setLoading(false);
     }

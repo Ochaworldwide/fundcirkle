@@ -13,6 +13,7 @@ const InviteCirkleDetailsModal = () => {
   const { isModalOpen, modalType, modalData, closeModal } = useModal();
   const [cirkleData, setCirkleData] = useState(null);
   const navigate = useNavigate();
+  const { showStatusReport } = useModal();
 
   useEffect(() => {
     if (isModalOpen && modalType === "invite") {
@@ -26,11 +27,13 @@ const InviteCirkleDetailsModal = () => {
         } catch (error) {
           console.error("Error fetching data:", error);
           if (error.response?.data?.message) {
-            toast.error(error.response.data.message, { ...toastConfig });
+            // toast.error(error.response.data.message, { ...toastConfig });
+            showStatusReport(error.response.data.message);
           } else {
-            toast.error("An error occurred. Please try again.", {
-              ...toastConfig,
-            });
+            // toast.error("An error occurred. Please try again.", {
+            //   ...toastConfig,
+            // });
+            showStatusReport("An error occurred. Please try again.");
           }
         }
       };
@@ -42,11 +45,7 @@ const InviteCirkleDetailsModal = () => {
   if (!isModalOpen || modalType !== "invite") return null;
 
   if (!cirkleData) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center ">
-        <FadeLoader size={50} color="#36D7B7" />
-      </div>
-    );
+    return;
   }
 
   const payoutData = {

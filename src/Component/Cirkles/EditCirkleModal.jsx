@@ -19,6 +19,7 @@ const EditCirkleModal = () => {
   const [ownerEmail, setOwnerEmail] = useState();
   const navigate = useNavigate();
   const { user, refetchUser } = useContext(UserContext);
+  const { showStatusReport } = useModal();
 
   useEffect(() => {
     if (isModalOpen && modalType === "edit") {
@@ -36,10 +37,14 @@ const EditCirkleModal = () => {
           }
         } catch (error) {
           console.error("Error fetching data:", error);
-          toast.error(
+          // toast.error(
+          //   error.response?.data?.message ||
+          //     "An error occurred. Please try again.",
+          //   { ...toastConfig }
+          // );
+          showStatusReport(
             error.response?.data?.message ||
-              "An error occurred. Please try again.",
-            { ...toastConfig }
+              "An error occurred. Please try again."
           );
         }
       };
@@ -70,14 +75,19 @@ const EditCirkleModal = () => {
       );
 
       if (response.data.success) {
-        toast.success("Cirkle updated successfully!", { ...toastConfig });
+        // toast.success("Cirkle updated successfully!", { ...toastConfig });
+        showStatusReport("Cirkle updated successfully!");
         openModal("detail", cirkleData.id);
       }
     } catch (error) {
       console.error("Error updating Cirkle:", error);
-      toast.error(error.response?.data?.message || "Failed to update Cirkle.", {
-        ...toastConfig,
-      });
+      // toast.error(error.response?.data?.message || "Failed to update Cirkle.", {
+      //   ...toastConfig,
+      // });
+
+      showStatusReport(
+        error.response?.data?.message || "Failed to update Cirkle."
+      );
     }
   };
 

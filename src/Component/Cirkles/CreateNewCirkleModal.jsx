@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useModal } from "./ModalContext";
 import SimpleDropdown from "./SimpleDropdown";
@@ -11,9 +11,11 @@ import MultiEmailInput from "../Common/multiEmailInput";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
+import { FaUpload } from "react-icons/fa";
+import { UserContext } from "../../contexts/userDetails";
+import StatusReportModal from "../StatusReport/StatusReportModal";
 
 const CreateNewCirkleModal = () => {
-
   const currentMonthName = new Date().toLocaleString("default", {
     month: "long",
   });
@@ -33,12 +35,17 @@ const CreateNewCirkleModal = () => {
   const [privacy, setPrivacy] = useState("public");
   const navigate = useNavigate();
   const [emails, setEmails] = useState([]);
+  const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
 
   const [states, setStates] = useState([]);
   const [state, setState] = useState();
   const [selectedMonth, setSelectedMonth] = useState(currentMonthName);
 
+  const { user, refetchUser } = useContext(UserContext);
+
   const { isModalOpen, modalType, closeModal } = useModal();
+  const { showStatusReport } = useModal();
 
   const resetState = () => {
     setCirkleName("");
@@ -134,6 +141,83 @@ const CreateNewCirkleModal = () => {
     setContribution_Month(id);
   };
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImage(e.target.result); // For displaying the image preview
+      };
+      reader.readAsDataURL(file);
+      setImageFile(file); // Store the file object
+    }
+  };
+
+  // const handleSubmit = async () => {
+  //   // Validate required fields
+  //   if (
+  //     !name ||
+  //     !category ||
+  //     !contribution_amount ||
+  //     !selectedMonth ||
+  //     !privacy
+  //   ) {
+  //     toast.error("Please fill in all required fields!", { ...toastConfig });
+  //     return;
+  //   }
+
+  //   const payload = {
+  //     name: name,
+  //     // members: emails,
+  //     ...(emails && { members: emails }),
+  //     max_members: members,
+  //     ...(description && { description }),
+  //     category: selectedCategoryId,
+  //     contribution_amount: contribution_amount,
+  //     contribution_frequency: frequency,
+  //     contribution_day: dueDate,
+  //     start_month: selectedMonth, // Month of the year
+  //     privacy: privacy,
+  //     state: state,
+  //     currency: "INR",
+  //   };
+
+  //   console.log("Payload:", payload);
+
+  //   try {
+  //     const response = await axiosInstance.post(
+  //       ROUTES.CIRKLE.GET_USER_CIRKLES,
+  //       payload
+  //     );
+
+  //     if (response.data.success) {
+  //       navigate("/creationsuccess");
+  //       closeModal();
+  //       resetState();
+  //       toast.success("Cirkle created successfully!", { ...toastConfig });
+  //     } else {
+  //       toast.error("Failed to create Cirkle: " + response.data.message, {
+  //         ...toastConfig,
+  //       });
+  //     }
+  //   } catch (error) {
+  //     if (error.response) {
+  //       toast.error(
+  //         "Warning: " +
+  //           (error.response.data.message || error.response.statusText),
+  //         { ...toastConfig }
+  //       );
+  //     } else if (error.request) {
+  //       toast.error("Network Error: No response received from the server.", {
+  //         ...toastConfig,
+  //       });
+  //     } else {
+  //       toast.error("Warning: " + error.message, { ...toastConfig });
+  //     }
+  //     console.error("Error details:", error);
+  //   }
+  // };
+
   const handleSubmit = async () => {
     // Validate required fields
     if (
@@ -143,63 +227,69 @@ const CreateNewCirkleModal = () => {
       !selectedMonth ||
       !privacy
     ) {
-      toast.error("Please fill in all required fields!", { ...toastConfig });
+        showStatusReport("Please fill in all required fields!");
+
       return;
     }
 
-    const payload = {
-      name: name,
-      // members: emails,
-      ...(emails && { members: emails }),
-      max_members: members,
-      ...(description && { description }),
-      category: selectedCategoryId,
-      contribution_amount: contribution_amount,
-      contribution_frequency: frequency,
-      contribution_day: dueDate,
-      start_month: selectedMonth, // Month of the year
-      privacy: privacy,
-      state: state,
-      currency: "INR",
-    };
+    const formData = new FormData();
+    formData.append("name", name);
+    if (emails && emails.length) {
+      emails.forEach((email, index) => {
+        formData.append(`members[${index}]`, email);
+      });
+    }
+    formData.append("max_members", members);
+    if (description) formData.append("description", description);
+    formData.append("category", selectedCategoryId);
+    formData.append("contribution_amount", contribution_amount);
+    formData.append("contribution_frequency", frequency);
+    formData.append("contribution_day", dueDate);
+    formData.append("start_month", selectedMonth);
+    formData.append("privacy", privacy);
+    formData.append("state", state);
+    formData.append("currency", "INR");
 
-    console.log("Payload:", payload);
+    // Add image file if it exists
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
 
     try {
       const response = await axiosInstance.post(
         ROUTES.CIRKLE.GET_USER_CIRKLES,
-        payload
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       if (response.data.success) {
         navigate("/creationsuccess");
         closeModal();
         resetState();
-        toast.success("Cirkle created successfully!", { ...toastConfig });
+        showStatusReport("Cirkle created successfully!");
       } else {
-        toast.error("Failed to create Cirkle: " + response.data.message, {
-          ...toastConfig,
-        });
+        showStatusReport("Failed to create Cirkle: " + response.data.message);
       }
     } catch (error) {
       if (error.response) {
-        toast.error(
-          "Warning: " +
-            (error.response.data.message || error.response.statusText),
-          { ...toastConfig }
+        showStatusReport(
+          "Warning: " + error.response.data.message || error.response.statusText
         );
+
       } else if (error.request) {
-        toast.error("Network Error: No response received from the server.", {
-          ...toastConfig,
-        });
+        showStatusReport(
+          "Network Error: No response received from the server."
+        );
       } else {
-        toast.error("Warning: " + error.message, { ...toastConfig });
+        showStatusReport("Warning: " + error.message);
       }
       console.error("Error details:", error);
     }
   };
-
-
 
   const handleNext = () => {
     const requiredFields = [
@@ -210,12 +300,22 @@ const CreateNewCirkleModal = () => {
       dueDate,
     ];
 
-    if (
-      requiredFields.some(
-        (field) => !field || (typeof field === "string" && field.trim() === "")
-      )
-    ) {
-      toast.error("Please fill in all required fields!", { ...toastConfig });
+    // if (
+    //   requiredFields.some(
+    //     (field) => !field || (typeof field === "string" && field.trim() === "")
+    //   )
+    // ) {
+    //   toast.error("Please fill in all required fields!", { ...toastConfig });
+    // } else {
+    //   setStep(2);
+    // }
+
+    const isInvalid = requiredFields.some(
+      (field) => !field || (typeof field === "string" && field.trim() === "")
+    );
+
+    if (isInvalid) {
+      showStatusReport("Please fill in all required fields!");
     } else {
       setStep(2);
     }
@@ -496,16 +596,31 @@ const CreateNewCirkleModal = () => {
               <div className="w-[90%] mx-auto mb-5 border-y  py-4">
                 <div className=" flex justify-between mb-3">
                   <div className=" text-[12px] flex items-center space-x-2 pl-3">
-                    <img
-                      src="/images/person4.svg"
-                      alt=""
-                      srcset=""
-                      className="h-10"
-                    />
+                    <div className="w-14 h-14 rounded-full border-2 mx-auto flex items-center justify-center relative ">
+                      <label className="flex w-full h-full items-center absolute justify-center border-2  rounded-full cursor-pointer overflow-hidden transition-all">
+                        {image ? (
+                          <img
+                            src={image}
+                            alt="Uploaded"
+                            className="w-full h-full object-cover rounded-full "
+                          />
+                        ) : (
+                          <div className="flex flex-col items-center text-gray-500  w-full">
+                            <FaUpload />
+                          </div>
+                        )}
+                        <input
+                          type="file"
+                          accept=".jpg,.jpeg,.png,.pdf"
+                          className="hidden"
+                          onChange={handleImageChange}
+                        />
+                      </label>
+                    </div>
 
                     <div>
-                      <h1>Bhaavik Arhaan</h1>
-                      <p>bhaavik.arhaan@xyz.com</p>
+                      <h1>{user.full_name}</h1>
+                      <p>{user.email}</p>
                     </div>
                   </div>
 

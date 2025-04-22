@@ -12,58 +12,101 @@ import NoActiveCirkle from "./NoActiveCirkle";
 import { FadeLoader } from "react-spinners";
 import { toastConfig } from "../../constants/toastConfig";
 import { formatNumber } from "../../utils/string";
+import { useUserCirkle } from "../../contexts/UserCirkleContext";
 
 function MyCirkles() {
   const [data, setData] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const { showStatusReport } = useModal();
 
-  const fetchData = async () => {
-    try {
-      const response = await axiosInstance.get(ROUTES.CIRKLE.GET_USER_CIRKLES);
-      if (response.data.success) {
-        // Transform the data to match the required structure
-        const transformedData = response.data.data.map((item) => ({
-          header: {
-            groupName: item.name,
-            groupImage: "/images/circlepeople.svg", // Use a default image or customize it per item
-            count: item.member_count,
-            id: item.id,
-            ownerName: item.owner_details.name,
-          },
-          contribution: {
-            amount: item.contribution_amount,
-            currencySymbol: item.currency,
-            paymentStatus: {
-              completed: 2, // Add real data if available
-              total: item.max_members,
-            },
-          },
-          dates: {
-            nextPayment: `${item.next_receiving_date}`, // Customize as needed
-          },
-        }));
+  const { cirkles, refreshCirkles } = useUserCirkle();
 
-        setData(transformedData);
-        // console.log("Transformed data:", transformedData);
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axiosInstance.get(ROUTES.CIRKLE.GET_USER_CIRKLES);
+  //     if (response.data.success) {
+  //       // Transform the data to match the required structure
+  //       const transformedData = response.data.data.map((item) => ({
+  //         header: {
+  //           groupName: item.name,
+  //           groupImage: "/images/circlepeople.svg", // Use a default image or customize it per item
+  //           count: item.member_count,
+  //           id: item.id,
+  //           ownerName: item.owner_details.name,
+  //         },
+  //         contribution: {
+  //           amount: item.contribution_amount,
+  //           currencySymbol: item.currency,
+  //           paymentStatus: {
+  //             completed: 2, // Add real data if available
+  //             total: item.max_members,
+  //           },
+  //         },
+  //         dates: {
+  //           nextPayment: `${item.next_receiving_date}`, // Customize as needed
+  //         },
+  //       }));
 
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      if (error.response?.data?.message) {
-        toast.error(error.response.data.message,{ ...toastConfig });
-      } else {
-        toast.error("An error occurred. Please try again.",{ ...toastConfig });
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  //       setData(transformedData);
+  //       // console.log("Transformed data:", transformedData);
+
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //     if (error.response?.data?.message) {
+  //       // toast.error(error.response.data.message,{ ...toastConfig });
+  //       showStatusReport(error.response.data.message);
+  //     } else {
+  //       // toast.error("An error occurred. Please try again.",{ ...toastConfig });
+  //       showStatusReport("An error occurred. Please try again.");
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  //   refreshCirkles();
+  // }, []);
+
 
   useEffect(() => {
-    fetchData();
+    // Refresh cirkle data when component mounts
+    refreshCirkles();
   }, []);
 
+
+  useEffect(() => {
+    if (cirkles && cirkles.length > 0) {
+      const transformedData = cirkles.map((item) => ({
+        header: {
+          groupName: item.name,
+          groupImage: "/images/circlepeople.svg",
+          count: item.member_count,
+          id: item.id,
+          ownerName: item.owner_details.name,
+        },
+        contribution: {
+          amount: item.contribution_amount,
+          currencySymbol: item.currency,
+          paymentStatus: {
+            completed: 2,
+            total: item.max_members,
+          },
+        },
+        dates: {
+          nextPayment: `${item.next_receiving_date}`,
+        },
+      }));
+      setData(transformedData);
+      setLoading(false);
+    } else {
+      setData([]);
+      setLoading(false);
+    }
+  }, [cirkles]);
 
   const handleNext = () => {
     if (data) {
@@ -101,7 +144,7 @@ function MyCirkles() {
   const { header, contribution, dates } = data[currentIndex];
   const { openModal } = useModal();
 
-  console.log(header)
+  // console.log(header);
 
   return (
     <div className="relative">

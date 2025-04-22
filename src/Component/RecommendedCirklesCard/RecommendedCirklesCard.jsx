@@ -9,6 +9,7 @@ import { FaCircleUser } from "react-icons/fa6";
 const RecommendedCirklesCard = ({ group }) => {
   const { openModal, isModalOpen } = useModal();
     const [requested, setRequested] = useState(false);
+    const { showStatusReport } = useModal();
 
   // Handle click function
   const handleGroupClick = () => {
@@ -65,18 +66,23 @@ const RecommendedCirklesCard = ({ group }) => {
        .then((response) => {
          if (response.data.success) {
           //  console.log("Cirkle joined successfully!");
-           toast.success("Cirkle joined successfully!", { ...toastConfig });
+          //  toast.success("Cirkle joined successfully!", { ...toastConfig });
+              showStatusReport("Cirkle joined successfully!");
          } else {
-           toast.error("Warning", response.data, { ...toastConfig });
+          //  toast.error("Warning", response.data, { ...toastConfig });
+           showStatusReport("Warning", response.data);
          }
        })
        .catch((error) => {
          if (error.response) {
-           toast.error("Warning:", error.response.data, { ...toastConfig });
+          //  toast.error("Warning:", error.response.data, { ...toastConfig });
+           showStatusReport("Warning:", error.response.data);
          } else if (error.request) {
-           toast.error("Warning:", error.request, { ...toastConfig });
+          //  toast.error("Warning:", error.request, { ...toastConfig });
+           showStatusReport("Warning:", error.request);
          } else {
-           toast.error("Warning:", error.message, { ...toastConfig });
+          //  toast.error("Warning:", error.message, { ...toastConfig });
+           showStatusReport("Warning:", error.message);
          }
        });
    };
