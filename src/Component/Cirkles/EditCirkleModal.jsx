@@ -95,30 +95,34 @@ const EditCirkleModal = () => {
     text: `You have been invited to join a cirkle. Please follow the link to accept.`,
     url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
   };
-  const handleShare = async () => {
 
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        console.log("Shared successfully");
-      } catch (err) {
-        console.error("Error sharing:", err);
-      }
-    } else {
-      // fallback - maybe copy to clipboard or show share options manually
-      alert("Sharing is not supported in this browser.");
-      // setShowOptions(true);
-    }
-  };
-    const copyToClipboard = async () => {
-      try {
-        await navigator.clipboard.writeText(shareData.url);
-        alert("Link copied to clipboard!");
-        setShowOptions(false);
-      } catch (err) {
-        console.error("Failed to copy:", err);
-      }
+  // const handleShare = async () => {
+
+  //   if (navigator.share) {
+  //     try {
+  //       await navigator.share(shareData);
+  //       console.log("Shared successfully");
+  //     } catch (err) {
+  //       console.error("Error sharing:", err);
+  //     }
+  //   } else {
+  //     // fallback - maybe copy to clipboard or show share options manually
+  //     alert("Sharing is not supported in this browser.");
+      
+  //   }
+  // };
+
+
+    const handleShare = async () => {
+      const data = {
+        type: "share",
+        text: `You have been invited to join a cirkle. Please follow the link to accept.`,
+        url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
+      };
+
+     window.ReactNativeWebView.postMessage(JSON.stringify(data));
     };
+
 
 
   return (
