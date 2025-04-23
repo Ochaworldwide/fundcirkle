@@ -106,8 +106,8 @@ const EditCirkleModal = () => {
       }
     } else {
       // fallback - maybe copy to clipboard or show share options manually
-      // alert("Sharing is not supported in this browser.");
-      setShowOptions(true);
+      alert("Sharing is not supported in this browser.");
+      // setShowOptions(true);
     }
   };
     const copyToClipboard = async () => {
@@ -221,7 +221,7 @@ const EditCirkleModal = () => {
             </div>
 
             {/* Fallback Share Options */}
-            {showOptions && (
+            {/* {showOptions && (
               <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50">
                 <div className="bg-white p-4 rounded-lg w-[80%] max-w-[300px] space-y-4 text-center">
                   <h3 className="font-semibold text-lg">Share Via</h3>
@@ -265,7 +265,7 @@ const EditCirkleModal = () => {
                   </button>
                 </div>
               </div>
-            )}
+            )} */}
 
             <div className="flex flex-col items-center justify-center rounded-md w-[100%]">
               <div className="flex bg-gray-200 rounded-lg mb-4 p-1">
