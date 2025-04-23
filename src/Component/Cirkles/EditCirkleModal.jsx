@@ -20,6 +20,7 @@ const EditCirkleModal = () => {
   const navigate = useNavigate();
   const { user, refetchUser } = useContext(UserContext);
   const { showStatusReport } = useModal();
+  const [showOptions, setShowOptions] = useState(false);
 
   useEffect(() => {
     if (isModalOpen && modalType === "edit") {
@@ -89,12 +90,12 @@ const EditCirkleModal = () => {
       );
     }
   };
+  const shareData = {
+    title: "Fundcirkle Invitation",
+    text: `You have been invited to join a cirkle. Please follow the link to accept.`,
+    url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
+  };
   const handleShare = async () => {
-    const shareData = {
-      title: "Fundcirkle Invitation",
-      text: `You have been invited to join a cirkle. Please follow the link to accept.`,
-      url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
-    };
 
     if (navigator.share) {
       try {
@@ -105,9 +106,19 @@ const EditCirkleModal = () => {
       }
     } else {
       // fallback - maybe copy to clipboard or show share options manually
-      alert("Sharing is not supported in this browser.");
+      // alert("Sharing is not supported in this browser.");
+      setShowOptions(true);
     }
   };
+    const copyToClipboard = async () => {
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        alert("Link copied to clipboard!");
+        setShowOptions(false);
+      } catch (err) {
+        console.error("Failed to copy:", err);
+      }
+    };
 
 
   return (
@@ -197,12 +208,64 @@ const EditCirkleModal = () => {
                 <p className="text-[10.5px]">Copy Link</p>
               </div>
 
-              <div className="px-2 cursor-pointer py-2 border rounded-lg flex items-center justify-evenly w-[45%]" onClick={()=>{handleShare()}}>
+              <div
+                className="px-2 cursor-pointer py-2 border rounded-lg flex items-center justify-evenly w-[45%]"
+                onClick={() => {
+                  handleShare();
+                }}
+              >
                 <img src="/images/share.svg" alt="" srcset="" />
 
                 <p className="text-[10.5px]">Share Link</p>
               </div>
             </div>
+
+            {/* Fallback Share Options */}
+            {showOptions && (
+              <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50">
+                <div className="bg-white p-4 rounded-lg w-[80%] max-w-[300px] space-y-4 text-center">
+                  <h3 className="font-semibold text-lg">Share Via</h3>
+
+                  <div className="flex flex-col space-y-2">
+                    <a
+                      href={`https://wa.me/?text=${encodeURIComponent(
+                        `${shareData.text} ${shareData.url}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-green-500 text-white py-2 rounded-md"
+                    >
+                      WhatsApp
+                    </a>
+
+                    <a
+                      href={`https://t.me/share/url?url=${encodeURIComponent(
+                        shareData.url
+                      )}&text=${encodeURIComponent(shareData.text)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-500 text-white py-2 rounded-md"
+                    >
+                      Telegram
+                    </a>
+
+                    <button
+                      onClick={copyToClipboard}
+                      className="bg-gray-700 text-white py-2 rounded-md"
+                    >
+                      Copy Link
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={() => setShowOptions(false)}
+                    className="text-red-500 font-semibold mt-2"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
 
             <div className="flex flex-col items-center justify-center rounded-md w-[100%]">
               <div className="flex bg-gray-200 rounded-lg mb-4 p-1">
