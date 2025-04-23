@@ -300,16 +300,6 @@ const CreateNewCirkleModal = () => {
       dueDate,
     ];
 
-    // if (
-    //   requiredFields.some(
-    //     (field) => !field || (typeof field === "string" && field.trim() === "")
-    //   )
-    // ) {
-    //   toast.error("Please fill in all required fields!", { ...toastConfig });
-    // } else {
-    //   setStep(2);
-    // }
-
     const isInvalid = requiredFields.some(
       (field) => !field || (typeof field === "string" && field.trim() === "")
     );
@@ -639,7 +629,7 @@ const CreateNewCirkleModal = () => {
                 </div>
               </div>
 
-              <div className="flex w-[70%] mx-auto justify-between mb-10">
+              {/* <div className="flex w-[70%] mx-auto justify-between mb-10">
                 <div className="px-2 py-2 border rounded-lg flex items-center justify-evenly w-[45%]">
                   <img src="/images/copy.svg" alt="" srcset="" />
 
@@ -651,7 +641,7 @@ const CreateNewCirkleModal = () => {
 
                   <p className="text-[10.5px]">Share Link</p>
                 </div>
-              </div>
+              </div> */}
 
               {/* Member Payment Schedule */}
 

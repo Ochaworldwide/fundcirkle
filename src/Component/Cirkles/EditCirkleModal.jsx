@@ -4,7 +4,7 @@ import { useModal } from "./ModalContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import MultiEmailInput from "../Common/multiEmailInput";
-import axiosInstance from "../../service";
+import axiosInstance, { BASE_URL } from "../../service";
 import { toastConfig } from "../../constants/toastConfig";
 import { UserContext } from "../../contexts/userDetails";
 
@@ -33,7 +33,7 @@ const EditCirkleModal = () => {
             setEmails(response.data.data.members || []);
             setOwnerName(response.data.data.owner_details.name);
             setOwnerEmail(response.data.data.owner.email);
-            console.log(response.data.data)
+            console.log(response.data.data);
           }
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -57,7 +57,6 @@ const EditCirkleModal = () => {
   const handleEmailsChange = (updatedEmails) => {
     setEmails(updatedEmails);
   };
-
 
   const handleSubmit = async () => {
     try {
@@ -90,6 +89,26 @@ const EditCirkleModal = () => {
       );
     }
   };
+  const handleShare = async () => {
+    const shareData = {
+      title: "Fundcirkle Invitation",
+      text: `You have been invited to join a cirkle. Please follow the link to accept.`,
+      url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        console.log("Shared successfully");
+      } catch (err) {
+        console.error("Error sharing:", err);
+      }
+    } else {
+      // fallback - maybe copy to clipboard or show share options manually
+      alert("Sharing is not supported in this browser.");
+    }
+  };
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen bg-opacity-50">
@@ -157,6 +176,32 @@ const EditCirkleModal = () => {
                 onEmailsChange={handleEmailsChange}
                 initialEmails={emails}
               />
+            </div>
+
+            <div className="flex w-[70%] mx-auto justify-between mb-10">
+              <div
+                className="px-2 py-2 cursor-pointer border rounded-lg flex items-center justify-evenly w-[45%]"
+                onClick={() => {
+                  const linkToCopy = `${BASE_URL}/invite/${cirkleData.id}`; // Replace with your actual link
+                  navigator.clipboard
+                    .writeText(linkToCopy)
+                    .then(() => {
+                      alert("Link copied to clipboard!");
+                    })
+                    .catch((err) => {
+                      console.error("Failed to copy: ", err);
+                    });
+                }}
+              >
+                <img src="/images/copy.svg" alt="Copy Icon" />
+                <p className="text-[10.5px]">Copy Link</p>
+              </div>
+
+              <div className="px-2 cursor-pointer py-2 border rounded-lg flex items-center justify-evenly w-[45%]" onClick={()=>{handleShare()}}>
+                <img src="/images/share.svg" alt="" srcset="" />
+
+                <p className="text-[10.5px]">Share Link</p>
+              </div>
             </div>
 
             <div className="flex flex-col items-center justify-center rounded-md w-[100%]">

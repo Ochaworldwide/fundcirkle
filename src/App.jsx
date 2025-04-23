@@ -59,6 +59,7 @@ import AddressProofDesktop from "./Pages/Kyc/AddressProofDesktop";
 import EditProfileDesktop from "./Pages/Settings/EditProfileDesktop";
 import ModalRenderer from "./Component/Cirkles/ModalRenderer";
 import { UserCirkleProvider } from "./contexts/UserCirkleContext";
+import InvitationRequest from "./Component/Cirkles/InvitationRequest";
 
 const App = () => {
   useEffect(() => {
@@ -78,6 +79,7 @@ const App = () => {
                 <Route path="/residence" element={<Residence />} />
                 <Route path="/authentication" element={<Authentication />} />
                 <Route path="/reset" element={<ResetFrom />} />
+                <Route path="/invite/:id" element={<InvitationRequest />} />
                 <Route
                   path="/password-reset/:reset_token"
                   element={<ResetPassword />}

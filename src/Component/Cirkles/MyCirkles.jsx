@@ -210,10 +210,10 @@ function MyCirkles() {
           )}
 
           <div className="">
-            <h1 className="ml-3 text-black text-xl text-left font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-[30px]">
+            <h1 className="ml-3 text-black text-xl text-left font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-3xl">
               {header.groupName}
             </h1>
-            <p className="ml-3 text-black  text-sm font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-[30px]">
+            <p className="ml-3 text-black  text-sm font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-3xl">
               {header.ownerName}
             </p>
           </div>
