@@ -65,6 +65,7 @@ function Discover() {
       if (response2.data.success) {
         setRequestData(response2.data.data); // Update state with the second API's data
         // console.log(response2.data.data);
+        console.log("see this",response2.data.data);
       }
     } catch (error) {
       console.error(error);

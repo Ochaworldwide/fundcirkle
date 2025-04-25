@@ -15,14 +15,14 @@ const PaymentOverview = ({due,validations,receive}) => {
         <div className="flex justify-between mb-5 text-[#141B3480] lg:justify-around">
           <p className="text-sm text-gray-500 lg:text-[16px]">You Owe</p>
           <h3 className="text-sm font-bold text-black border rounded-full bg-white lg:text-[16px] lg:px-2 lg:py-1 lg:rounded-md">
-            {due.amount}
+            {formatNumber(due.amount)}
           </h3>
         </div>
 
         <div className="flex justify-between text-sm text-[#141B3480] lg:justify-around">
           <p className="text-[10.5px] lg:text-[16px]">Across</p>
           <p className="text-sm font-bold text-black border rounded-full bg-white lg:text-[16px] lg:px-2 lg:py-1 lg:rounded-md">
-            {due.cirkle_count}
+            {formatNumber(due.cirkle_count)}
           </p>
           <p className="text-[10.5px] lg:text-[16px]">Cirkles</p>
         </div>
@@ -46,7 +46,7 @@ const PaymentOverview = ({due,validations,receive}) => {
 
         <div className="flex justify-between text-sm text-[#141B3480] lg:justify-around">
           <p className="text-sm font-bold text-black border rounded-full bg-white lg:text-[16px] lg:px-2 lg:py-1 lg:rounded-md">
-            {validations.cirkle_count}
+            {formatNumber(validations.cirkle_count)}
           </p>
           <p className="text-[10.5px] lg:text-[16px]">cirkles have paid</p>
         </div>

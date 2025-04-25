@@ -40,7 +40,7 @@ const CirkleActivity = ({ slide }) => {
         <p className="text-[10px] lg:text-base">Due by</p>
         <p className="text-[16px]  font-[700] lg:text-2xl">{formatUTCDate("2025-10-19")}</p>
       </div>
-      <div className="flex justify-center space-x-3">
+      <div className="flex justify-center ">
         {slide.last_payment && slide.last_payment.submitted_at == null && (
           <button
             onClick={() => openModal("payment submission", slide)}

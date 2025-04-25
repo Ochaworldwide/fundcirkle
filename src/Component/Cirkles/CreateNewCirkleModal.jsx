@@ -14,6 +14,7 @@ import { toastConfig } from "../../constants/toastConfig";
 import { FaUpload } from "react-icons/fa";
 import { UserContext } from "../../contexts/userDetails";
 import StatusReportModal from "../StatusReport/StatusReportModal";
+import { PulseLoader } from "react-spinners";
 
 const CreateNewCirkleModal = () => {
   const currentMonthName = new Date().toLocaleString("default", {
@@ -46,6 +47,7 @@ const CreateNewCirkleModal = () => {
 
   const { isModalOpen, modalType, closeModal } = useModal();
   const { showStatusReport } = useModal();
+  const [loading, setLoading] = useState(false);
 
   const resetState = () => {
     setCirkleName("");
@@ -220,6 +222,7 @@ const CreateNewCirkleModal = () => {
 
   const handleSubmit = async () => {
     // Validate required fields
+    setLoading(true);
     if (
       !name ||
       !category ||
@@ -279,7 +282,6 @@ const CreateNewCirkleModal = () => {
         showStatusReport(
           "Warning: " + error.response.data.message || error.response.statusText
         );
-
       } else if (error.request) {
         showStatusReport(
           "Network Error: No response received from the server."
@@ -288,6 +290,8 @@ const CreateNewCirkleModal = () => {
         showStatusReport("Warning: " + error.message);
       }
       console.error("Error details:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -740,8 +744,13 @@ const CreateNewCirkleModal = () => {
                   onClick={() => {
                     handleSubmit();
                   }}
+                  disabled={loading}
                 >
-                  Confirm and Create Cirkle
+                  {loading ? (
+                    <PulseLoader size={12} color="white" />
+                  ) : (
+                    "Confirm and Create Cirkle"
+                  )}
                 </button>
               </div>
             </>

@@ -93,7 +93,7 @@ function MyCirkles() {
           amount: item.contribution_amount,
           currencySymbol: item.currency,
           paymentStatus: {
-            completed: 2,
+            completed: item.last_receipt?.length || 0,
             total: item.max_members,
           },
         },
@@ -192,8 +192,8 @@ function MyCirkles() {
         </div>
 
         <div className="flex justify-between bg-[#E5F4EC] items-center mb-5 mt-5 mx-auto w-[95%] p-2 rounded-xl text-[10.5px]">
-          <p className="text-gray-600">Next Payment</p>
-          <p className="font-medium ml-auto p-2 border border-[#00000066] rounded-[8px] flex justify-center w-[45%] text-[#141B34]">
+          <p className="text-gray-600 text-sm">Next Payment</p>
+          <p className="font-medium ml-auto p-2 border border-[#00000066] rounded-[8px] flex justify-center w-[45%] text-[#141B34] text-sm">
             {dates.nextPayment}
           </p>
         </div>

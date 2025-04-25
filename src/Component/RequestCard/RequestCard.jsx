@@ -27,23 +27,13 @@ const RequestCard = ({ data }) => {
       }
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        // toast.error(
-        //   "Warning: " +
-        //     (error.response.data.message || error.response.statusText),{ ...toastConfig }
-        // );
         showStatusReport(
           "Warning: " +
             (error.response.data.message || error.response.statusText)
         );
       } else if (error.request) {
-        // The request was made but no response was received
-        // toast.error("Warning: No response received from the server.",{ ...toastConfig });
         showStatusReport("Warning: No response received from the server.");
       } else {
-        // Something happened in setting up the request that triggered an Error
-        // toast.error("Warning: " + error.message,{ ...toastConfig });
         showStatusReport("Warning: " + error.message);
       }
       console.error("Error details:", error);
@@ -69,23 +59,13 @@ const RequestCard = ({ data }) => {
       }
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        // toast.error(
-        //   "Warning: " +
-        //     (error.response.data.message || error.response.statusText),{ ...toastConfig }
-        // );
         showStatusReport(
           "Warning: " +
             (error.response.data.message || error.response.statusText)
         );
       } else if (error.request) {
-        // The request was made but no response was received
-        // toast.error("Warning: No response received from the server.",{ ...toastConfig });
         showStatusReport("Warning: No response received from the server.");
       } else {
-        // Something happened in setting up the request that triggered an Error
-        // toast.error("Warning: " + error.message,{ ...toastConfig });
         showStatusReport("Warning: " + error.message);
       }
       console.error("Error details:", error);
@@ -103,15 +83,24 @@ const RequestCard = ({ data }) => {
             alt="profile"
             className="w-14 h-14 rounded-full border"
           /> */}
+          {data?.user?.profile_pic ? (
+            <img
+              src={data.user.profile_pic}
+              alt="Group"
+              className="w-14 h-14 rounded-full"
+            />
+          ) : (
+            <FaCircleUser className="w-14 h-14 text-gray-500" />
+          )}
 
-          <FaCircleUser className=" text-gray-500 w-12 h-12 rounded-full border" />
+          {/* <FaCircleUser className=" text-gray-500 w-12 h-12 rounded-full border" /> */}
           <span className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></span>
         </div>
-        <h3 className="mt-2 text-sm font-[400]">{data.cirkle.name}</h3>
-        <p className="text-gray-500 text-xs">{data.cirkle.description}</p>
+        <h3 className="mt-2 text-sm font-[400]">{data.user.full_name}</h3>
+        <p className="text-gray-500 text-xs">{data.user.description}</p>
       </div>
       <div className="mt-4 text-xs text-gray-600 mx-auto">
-        <p className="text-center">
+        <p className="text-center mb-2">
           Lives in{" "}
           <span className="font-semibold bg-gray-200 px-2 py-1 rounded">
             {/* {data.location} */}
@@ -125,11 +114,7 @@ const RequestCard = ({ data }) => {
           Cirkles
         </p>
         <p className="mt-2 flex items-center justify-center">
-          Average monthly income &nbsp;
-          <span className="font-semibold flex items-center">
-            <img src={data.coinIcon} alt="coin icon" className="w-4 h-4" />
-            {data.income}
-          </span>
+          {data.user.phone}
         </p>
       </div>
       <div className="mt-4 flex justify-between text-xs  w-[250px]">

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import moreIcon from "/images/more.svg";
 import { useModal } from "./ModalContext";
 import InviteCirkleDetailsModal from "./InviteCirkleDetailsModal";
+import { formatNumber } from "../../utils/string";
 
 const InviteCard = ({ group, buttons}) => {
   const { openModal, isModalOpen } = useModal();
@@ -65,7 +66,8 @@ const InviteCard = ({ group, buttons}) => {
                   />
                 </svg>
               </span>
-              {group.amount}
+              {/* {group.amount} */}
+              {formatNumber(group.amount)}
             </p>
           </div>
 

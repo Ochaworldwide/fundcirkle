@@ -49,12 +49,9 @@ function InvitationRequest() {
   console.log(data);
 
   return (
-    <div className="lg:bg-[url('/images/auth-bg.png')] lg:bg-cover lg:bg-center lg:min-h-screen lg:flex lg:flex-col lg:items-center lg:justify-center">
+    <div className="">
       {/* <NavBar backLink="/sign-in" /> */}
 
-      <div className="lg:hidden">
-        <NavBar backLink="/sign-in" />
-      </div>
 
       <div className="hidden lg:block lg:w-[80%] lg:mx-auto lg:pb-5">
         <img src={logo} alt="" srcset="" />
@@ -81,9 +78,6 @@ function InvitationRequest() {
         </div>
       </div>
 
-      <div className="hidden lg:block lg:mr-auto lg:w-[89%] lg:mx-auto">
-        <NavBar backLink="/sign-in" />
-      </div>
     </div>
   );
 }

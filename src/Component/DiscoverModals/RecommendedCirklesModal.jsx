@@ -97,6 +97,13 @@ const RecommendedCirklesModal = () => {
     currency: "/images/green-currency.svg",
   };
 
+    const rawDate = cirkleData?.created_at;
+    const date = new Date(rawDate);
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "long", // "March"
+      year: "numeric", // "2025"
+    });
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50"
@@ -167,7 +174,8 @@ const RecommendedCirklesModal = () => {
 
               <div className="py-5 text-black w-[45%]">
                 <p className="text-[18px]">
-                  {`${cirkleData.contribution_day} of August 2024 - February 2025`}
+                  {/* {`${cirkleData.contribution_day} of August 2024 - February 2025`} */}
+                  <p className="text-[18px] text-right">{formattedDate}</p>
                 </p>
               </div>
             </div>

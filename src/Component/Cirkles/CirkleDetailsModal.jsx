@@ -8,6 +8,7 @@ import { FadeLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
 import { FaCircleUser } from "react-icons/fa6";
+import { formatNumber } from "../../utils/string";
 
 const CirkleDetailsModal = () => {
   
@@ -201,7 +202,7 @@ const CirkleDetailsModal = () => {
                   <img src={data.currency} alt="" srcset="" />
                 </div>
                 <div className="">
-                  <p>{cirkleData?.contribution_amount}</p>
+                  {formatNumber(cirkleData?.contribution_amount)}
                   <p className="text-xs text-black">Payment Amount</p>
                 </div>
               </div>

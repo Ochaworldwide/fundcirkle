@@ -57,35 +57,35 @@ function Invites() {
 
       console.log("Clicked Group ID:", group.id);
 
-      const payload = {
-        id: group.id,
-        user_id: group.user_id,
-        category_id: group.category_id,
-        name: group.name,
-        description: group.description,
-        contribution_amount: group.contribution_amount,
-        contribution_frequency: group.contribution_frequency,
-        contribution_week: group.contribution_week,
-        contribution_month: group.contribution_month,
-        contribution_day: group.contribution_day,
-        privacy: group.privacy,
-        max_members: group.max_members,
-        state_id: group.state_id,
-        locations: group.locations,
-        currency: group.currency,
-        status: group.status,
-        created_at: "2024-12-14T21:56:35.000000Z",
-        updated_at: "2024-12-14T23:00:17.000000Z",
-        slug: group.slug,
-        member_count: group.member_count,
-        is_owner: false,
-      };
+      // const payload = {
+      //   id: group.id,
+      //   user_id: group.user_id,
+      //   category_id: group.category_id,
+      //   name: group.name,
+      //   description: group.description,
+      //   contribution_amount: group.contribution_amount,
+      //   contribution_frequency: group.contribution_frequency,
+      //   contribution_week: group.contribution_week,
+      //   contribution_month: group.contribution_month,
+      //   contribution_day: group.contribution_day,
+      //   privacy: group.privacy,
+      //   max_members: group.max_members,
+      //   state_id: group.state_id,
+      //   locations: group.locations,
+      //   currency: group.currency,
+      //   status: group.status,
+      //   created_at: "2024-12-14T21:56:35.000000Z",
+      //   updated_at: "2024-12-14T23:00:17.000000Z",
+      //   slug: group.slug,
+      //   member_count: group.member_count,
+      //   is_owner: false,
+      // };
 
       // console.log("Payload:", payload);
       const cirkleId = group.id;
 
       axiosInstance
-        .post(`/cirkles/${cirkleId}/join`, payload)
+        .post(`/cirkles/${cirkleId}/join`)
         .then((response) => {
           if (response.data.success) {
             console.log("Cirkle created successfully!");

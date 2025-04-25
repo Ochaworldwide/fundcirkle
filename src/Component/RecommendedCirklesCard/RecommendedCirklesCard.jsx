@@ -5,11 +5,12 @@ import axiosInstance from "../../service";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
 import { FaCircleUser } from "react-icons/fa6";
+import { formatNumber } from "../../utils/string";
 
 const RecommendedCirklesCard = ({ group }) => {
   const { openModal, isModalOpen } = useModal();
-    const [requested, setRequested] = useState(false);
-    const { showStatusReport } = useModal();
+  const [requested, setRequested] = useState(false);
+  const { showStatusReport } = useModal();
 
   // Handle click function
   const handleGroupClick = () => {
@@ -18,74 +19,72 @@ const RecommendedCirklesCard = ({ group }) => {
     openModal("recommend", stateId);
   };
 
-    // const buttons = (
-    //   <button
-    //     className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold disabled:opacity-60"
-    //     onClick={() => setRequested(true)}
-    //     disabled={requested}
-    //   >
-    //     {requested ? "Requested" : "Request to Join"}
-    //   </button>
-    // );
+  // const buttons = (
+  //   <button
+  //     className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold disabled:opacity-60"
+  //     onClick={() => setRequested(true)}
+  //     disabled={requested}
+  //   >
+  //     {requested ? "Requested" : "Request to Join"}
+  //   </button>
+  // );
 
-  console.log(group)
+  console.log(group);
 
-   const handleRequestSubmit = (group) => {
-     console.log("Clicked Group ID:", group.id);
+  const handleRequestSubmit = (group) => {
+    console.log("Clicked Group ID:", group.id);
 
-     const payload = {
-       id: group.id,
-       user_id: group.user_id,
-       category_id: group.category_id,
-       name: group.name,
-       description: group.description,
-       contribution_amount: group.contribution_amount,
-       contribution_frequency: group.contribution_frequency,
-       contribution_week: group.contribution_week,
-       contribution_month: group.contribution_month,
-       contribution_day: group.contribution_day,
-       privacy: group.privacy,
-       max_members: group.max_members,
-       state_id: group.state_id,
-       locations: group.locations,
-       currency: group.currency,
-       status: group.status,
-       created_at: "2024-12-14T21:56:35.000000Z",
-       updated_at: "2024-12-14T23:00:17.000000Z",
-       slug: group.slug,
-       member_count: group.member_count,
-       is_owner: false,
-     };
-     // console.log("Payload:", payload);
-     const cirkleId = group.id;
+    //  const payload = {
+    //    id: group.id,
+    //    user_id: group.user_id,
+    //    category_id: group.category_id,
+    //    name: group.name,
+    //    description: group.description,
+    //    contribution_amount: group.contribution_amount,
+    //    contribution_frequency: group.contribution_frequency,
+    //    contribution_week: group.contribution_week,
+    //    contribution_month: group.contribution_month,
+    //    contribution_day: group.contribution_day,
+    //    privacy: group.privacy,
+    //    max_members: group.max_members,
+    //    state_id: group.state_id,
+    //    locations: group.locations,
+    //    currency: group.currency,
+    //    status: group.status,
+    //    created_at: "2024-12-14T21:56:35.000000Z",
+    //    updated_at: "2024-12-14T23:00:17.000000Z",
+    //    slug: group.slug,
+    //    member_count: group.member_count,
+    //    is_owner: false,
+    //  };
+    // console.log("Payload:", payload);
+    const cirkleId = group.id;
 
-     
-
-     axiosInstance
-       .post(`/cirkles/${cirkleId}/join`, payload)
-       .then((response) => {
-         if (response.data.success) {
+    axiosInstance
+      .post(`/cirkles/${cirkleId}/join`)
+      .then((response) => {
+        if (response.data.success) {
           //  console.log("Cirkle joined successfully!");
           //  toast.success("Cirkle joined successfully!", { ...toastConfig });
-              showStatusReport("Cirkle joined successfully!");
-         } else {
+          showStatusReport("Cirkle joined successfully!");
+        } else {
           //  toast.error("Warning", response.data, { ...toastConfig });
-           showStatusReport("Warning", response.data);
-         }
-       })
-       .catch((error) => {
-         if (error.response) {
+          showStatusReport("Warning", response.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
           //  toast.error("Warning:", error.response.data, { ...toastConfig });
-           showStatusReport("Warning:", error.response.data);
-         } else if (error.request) {
+          showStatusReport("Warning:", error.response.data);
+        } else if (error.request) {
           //  toast.error("Warning:", error.request, { ...toastConfig });
-           showStatusReport("Warning:", error.request);
-         } else {
+          showStatusReport("Warning:", error.request);
+        } else {
           //  toast.error("Warning:", error.message, { ...toastConfig });
-           showStatusReport("Warning:", error.message);
-         }
-       });
-   };
+          showStatusReport("Warning:", error.message);
+        }
+      });
+  };
 
   return (
     <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%] lg:border">
@@ -95,8 +94,17 @@ const RecommendedCirklesCard = ({ group }) => {
           alt={group.name}
           className="w-12 h-12 rounded-full border"
         /> */}
+        {group?.image_url ? (
+          <img
+            src={group.image_url}
+            alt="Group"
+            className="w-14 h-14 rounded-full"
+          />
+        ) : (
+          <FaCircleUser className="w-14 h-14 text-gray-500" />
+        )}
 
-        <FaCircleUser className=" text-gray-500 w-12 h-12 rounded-full border" />
+        {/* <FaCircleUser className=" text-gray-500 w-12 h-12 rounded-full border" /> */}
       </div>
 
       <div className="py-5  w-[80%]">
@@ -141,7 +149,8 @@ const RecommendedCirklesCard = ({ group }) => {
                   />
                 </svg>
               </span>
-              {group.contribution_amount}
+              {formatNumber(group.contribution_amount)}
+             
             </p>
           </div>
 
@@ -166,7 +175,3 @@ const RecommendedCirklesCard = ({ group }) => {
 };
 
 export default RecommendedCirklesCard;
-
-
-
-

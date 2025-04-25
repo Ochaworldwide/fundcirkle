@@ -7,6 +7,7 @@ import MultiEmailInput from "../Common/multiEmailInput";
 import axiosInstance, { BASE_URL } from "../../service";
 import { toastConfig } from "../../constants/toastConfig";
 import { UserContext } from "../../contexts/userDetails";
+import { Reorder } from "framer-motion";
 
 const EditCirkleModal = () => {
   const { isModalOpen, modalType, modalData, closeModal, openModal } =
@@ -21,6 +22,40 @@ const EditCirkleModal = () => {
   const { user, refetchUser } = useContext(UserContext);
   const { showStatusReport } = useModal();
   const [showOptions, setShowOptions] = useState(false);
+    const initialMembers = [
+      {
+        image: "/images/person1.svg",
+        name: "Priya",
+        memberDate: "Aug, 2024",
+      },
+      {
+        image: "/images/person2.svg",
+        name: "Ravi",
+        memberDate: "Aug, 2024",
+      },
+      {
+        image: "/images/person3.svg",
+        name: "Lyla",
+        memberDate: "Aug, 2024",
+      },
+      {
+        image: "/images/person4.svg",
+        name: "John",
+        memberDate: "Aug, 2024",
+      },
+      {
+        image: "/images/person5.svg",
+        name: "Hana",
+        memberDate: "Aug, 2024",
+      },
+      {
+        image: "/images/person6.svg",
+        name: "Steven",
+        memberDate: "Aug, 2024",
+      },
+    ];
+  const [members, setMembers] = useState(initialMembers);
+  
 
   useEffect(() => {
     if (isModalOpen && modalType === "edit") {
@@ -90,27 +125,8 @@ const EditCirkleModal = () => {
       );
     }
   };
-  const shareData = {
-    title: "Fundcirkle Invitation",
-    text: `You have been invited to join a cirkle. Please follow the link to accept.`,
-    url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
-  };
 
-  // const handleShare = async () => {
 
-  //   if (navigator.share) {
-  //     try {
-  //       await navigator.share(shareData);
-  //       console.log("Shared successfully");
-  //     } catch (err) {
-  //       console.error("Error sharing:", err);
-  //     }
-  //   } else {
-  //     // fallback - maybe copy to clipboard or show share options manually
-  //     alert("Sharing is not supported in this browser.");
-      
-  //   }
-  // };
 
 
     const handleShare = async () => {
@@ -193,6 +209,47 @@ const EditCirkleModal = () => {
               />
             </div>
 
+            {/* <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto">
+              {members.map((member, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <p className="text-xs text-gray-500">{member.name}</p>
+                  <p className="bg-[#00AAFF] rounded-sm px-1 py-[1px] text-[8px] text-white">
+                    {member.memberDate}
+                  </p>
+                </div>
+              ))}
+            </div> */}
+
+            <Reorder.Group
+              axis="x"
+              values={members}
+              onReorder={setMembers}
+              className="flex flex-wrap w-full mb-7 justify-between overflow-scroll mx-auto"
+            >
+              {members.map((member) => (
+                <Reorder.Item
+                  key={member.name}
+                  value={member}
+                  className="flex flex-col items-center cursor-grab active:cursor-grabbing"
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <p className="text-xs text-gray-500">{member.name}</p>
+                  <p className="bg-[#00AAFF] rounded-sm px-1 py-[1px] text-[8px] text-white">
+                    {member.memberDate}
+                  </p>
+                </Reorder.Item>
+              ))}
+            </Reorder.Group>
+
             <div className="flex w-[70%] mx-auto justify-between mb-10">
               <div
                 className="px-2 py-2 cursor-pointer border rounded-lg flex items-center justify-evenly w-[45%]"
@@ -223,53 +280,6 @@ const EditCirkleModal = () => {
                 <p className="text-[10.5px]">Share Link</p>
               </div>
             </div>
-
-            {/* Fallback Share Options */}
-            {/* {showOptions && (
-              <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50">
-                <div className="bg-white p-4 rounded-lg w-[80%] max-w-[300px] space-y-4 text-center">
-                  <h3 className="font-semibold text-lg">Share Via</h3>
-
-                  <div className="flex flex-col space-y-2">
-                    <a
-                      href={`https://wa.me/?text=${encodeURIComponent(
-                        `${shareData.text} ${shareData.url}`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-green-500 text-white py-2 rounded-md"
-                    >
-                      WhatsApp
-                    </a>
-
-                    <a
-                      href={`https://t.me/share/url?url=${encodeURIComponent(
-                        shareData.url
-                      )}&text=${encodeURIComponent(shareData.text)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-blue-500 text-white py-2 rounded-md"
-                    >
-                      Telegram
-                    </a>
-
-                    <button
-                      onClick={copyToClipboard}
-                      className="bg-gray-700 text-white py-2 rounded-md"
-                    >
-                      Copy Link
-                    </button>
-                  </div>
-
-                  <button
-                    onClick={() => setShowOptions(false)}
-                    className="text-red-500 font-semibold mt-2"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            )} */}
 
             <div className="flex flex-col items-center justify-center rounded-md w-[100%]">
               <div className="flex bg-gray-200 rounded-lg mb-4 p-1">
