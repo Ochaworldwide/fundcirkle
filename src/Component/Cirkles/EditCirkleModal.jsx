@@ -23,39 +23,8 @@ const EditCirkleModal = () => {
   const { user, refetchUser } = useContext(UserContext);
   const { showStatusReport } = useModal();
   const [showOptions, setShowOptions] = useState(false);
-  const initialMembers = [
-    {
-      image: "/images/person1.svg",
-      name: "Priya",
-      memberDate: "Aug, 2024",
-    },
-    {
-      image: "/images/person2.svg",
-      name: "Ravi",
-      memberDate: "Aug, 2024",
-    },
-    {
-      image: "/images/person3.svg",
-      name: "Lyla",
-      memberDate: "Aug, 2024",
-    },
-    {
-      image: "/images/person4.svg",
-      name: "John",
-      memberDate: "Aug, 2024",
-    },
-    {
-      image: "/images/person5.svg",
-      name: "Hana",
-      memberDate: "Aug, 2024",
-    },
-    {
-      image: "/images/person6.svg",
-      name: "Steven",
-      memberDate: "Aug, 2024",
-    },
-  ];
   const [members, setMembers] = useState([]);
+  
 
   const getCirkleMembers = async () => {
     try {
@@ -87,17 +56,11 @@ const EditCirkleModal = () => {
             setOwnerName(response.data.data.owner_details.name);
             setOwnerEmail(response.data.data.owner.email);
             setOwnerImage(response.data.data.owner.profile_pic);
-
             console.log(response.data.data);
-            console.log(members)
+            
           }
         } catch (error) {
           console.error("Error fetching data:", error);
-          // toast.error(
-          //   error.response?.data?.message ||
-          //     "An error occurred. Please try again.",
-          //   { ...toastConfig }
-          // );
           showStatusReport(
             error.response?.data?.message ||
               "An error occurred. Please try again."
@@ -120,25 +83,27 @@ const EditCirkleModal = () => {
         name: cirkleData.name,
         members: emails,
         ...(cirkleData.description && { description: cirkleData.description }),
-        // description: cirkleData.description,
         privacy,
       };
 
+
+
       const response = await axiosInstance.put(
-        `https://fundcirkle.techr.me/api/cirkles/${cirkleData.id}`,
+        `/cirkles/${cirkleData.id}`,
         updatedData
       );
 
       if (response.data.success) {
-        // toast.success("Cirkle updated successfully!", { ...toastConfig });
+        const order = members.map((member) => member.id);
+        const payload = {order}
+        await axiosInstance.post(
+        `/cirkles/${modalData}/reorder`,payload
+      );
         showStatusReport("Cirkle updated successfully!");
         openModal("detail", cirkleData.id);
       }
     } catch (error) {
       console.error("Error updating Cirkle:", error);
-      // toast.error(error.response?.data?.message || "Failed to update Cirkle.", {
-      //   ...toastConfig,
-      // });
 
       showStatusReport(
         error.response?.data?.message || "Failed to update Cirkle."
