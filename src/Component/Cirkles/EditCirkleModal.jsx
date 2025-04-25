@@ -18,6 +18,7 @@ const EditCirkleModal = () => {
   const [emails, setEmails] = useState([]);
   const [ownerName, setOwnerName] = useState();
   const [ownerEmail, setOwnerEmail] = useState();
+  const [ownerImage, setOwnerImage] = useState();
   const navigate = useNavigate();
   const { user, refetchUser } = useContext(UserContext);
   const { showStatusReport } = useModal();
@@ -85,6 +86,8 @@ const EditCirkleModal = () => {
             setEmails(response.data.data.members || []);
             setOwnerName(response.data.data.owner_details.name);
             setOwnerEmail(response.data.data.owner.email);
+            setOwnerImage(response.data.data.owner.profile_pic);
+
             console.log(response.data.data);
             console.log(members)
           }
@@ -196,7 +199,7 @@ const EditCirkleModal = () => {
             <div className=" flex justify-between mb-3">
               <div className=" text-[12px] flex items-center space-x-2 pl-3">
                 <img
-                  src={user.profile_pic}
+                  src={ownerImage}
                   alt="Profile"
                   className=" h-10 w-10 rounded-full"
                 />
@@ -220,22 +223,6 @@ const EditCirkleModal = () => {
                 initialEmails={emails}
               />
             </div>
-
-            {/* <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto">
-              {members.map((member, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <p className="text-xs text-gray-500">{member.name}</p>
-                  <p className="bg-[#00AAFF] rounded-sm px-1 py-[1px] text-[8px] text-white">
-                    {member.memberDate}
-                  </p>
-                </div>
-              ))}
-            </div> */}
 
             <Reorder.Group
               axis="x"
