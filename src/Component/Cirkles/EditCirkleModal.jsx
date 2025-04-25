@@ -22,40 +22,56 @@ const EditCirkleModal = () => {
   const { user, refetchUser } = useContext(UserContext);
   const { showStatusReport } = useModal();
   const [showOptions, setShowOptions] = useState(false);
-    const initialMembers = [
-      {
-        image: "/images/person1.svg",
-        name: "Priya",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person2.svg",
-        name: "Ravi",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person3.svg",
-        name: "Lyla",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person4.svg",
-        name: "John",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person5.svg",
-        name: "Hana",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person6.svg",
-        name: "Steven",
-        memberDate: "Aug, 2024",
-      },
-    ];
-  const [members, setMembers] = useState(initialMembers);
-  
+  const initialMembers = [
+    {
+      image: "/images/person1.svg",
+      name: "Priya",
+      memberDate: "Aug, 2024",
+    },
+    {
+      image: "/images/person2.svg",
+      name: "Ravi",
+      memberDate: "Aug, 2024",
+    },
+    {
+      image: "/images/person3.svg",
+      name: "Lyla",
+      memberDate: "Aug, 2024",
+    },
+    {
+      image: "/images/person4.svg",
+      name: "John",
+      memberDate: "Aug, 2024",
+    },
+    {
+      image: "/images/person5.svg",
+      name: "Hana",
+      memberDate: "Aug, 2024",
+    },
+    {
+      image: "/images/person6.svg",
+      name: "Steven",
+      memberDate: "Aug, 2024",
+    },
+  ];
+  const [members, setMembers] = useState([]);
+
+  const getCirkleMembers = async () => {
+    try {
+      const response = await axiosInstance.get(`/cirkles/${modalData}/members`);
+      // return response.data; // assuming the response is an array of members
+      setMembers(response.data.data)
+    } catch (error) {
+      console.error("Failed to fetch Cirkle members:", error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    if (modalData) {
+      getCirkleMembers();
+    }
+  }, [modalData]);
 
   useEffect(() => {
     if (isModalOpen && modalType === "edit") {
@@ -70,6 +86,7 @@ const EditCirkleModal = () => {
             setOwnerName(response.data.data.owner_details.name);
             setOwnerEmail(response.data.data.owner.email);
             console.log(response.data.data);
+            console.log(members)
           }
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -126,20 +143,15 @@ const EditCirkleModal = () => {
     }
   };
 
-
-
-
-    const handleShare = async () => {
-      const data = {
-        type: "share",
-        text: `You have been invited to join a cirkle. Please follow the link to accept.`,
-        url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
-      };
-
-     window.ReactNativeWebView.postMessage(JSON.stringify(data));
+  const handleShare = async () => {
+    const data = {
+      type: "share",
+      text: `You have been invited to join a cirkle. Please follow the link to accept.`,
+      url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
     };
 
-
+    window.ReactNativeWebView.postMessage(JSON.stringify(data));
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen bg-opacity-50">
@@ -238,13 +250,13 @@ const EditCirkleModal = () => {
                   className="flex flex-col items-center cursor-grab active:cursor-grabbing"
                 >
                   <img
-                    src={member.image}
+                    src={member.profile_pic}
                     alt={member.name}
                     className="w-8 h-8 rounded-full"
                   />
-                  <p className="text-xs text-gray-500">{member.name}</p>
+                  <p className="text-xs text-gray-500">{member.first_name}</p>
                   <p className="bg-[#00AAFF] rounded-sm px-1 py-[1px] text-[8px] text-white">
-                    {member.memberDate}
+                    {member.pivot.next_payment}
                   </p>
                 </Reorder.Item>
               ))}
