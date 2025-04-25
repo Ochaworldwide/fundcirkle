@@ -60,38 +60,38 @@ const CirkleDetailsModal = () => {
     payoutAmount: "420,000",
     amount: "420,000",
     dateRange: "August 2024 - February 2025",
-    members: [
-      {
-        image: "/images/person1.svg",
-        name: "Priya",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person2.svg",
-        name: "Ravi",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person3.svg",
-        name: "Lyla",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person4.svg",
-        name: "John",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person5.svg",
-        name: "Hana",
-        memberDate: "Aug, 2024",
-      },
-      {
-        image: "/images/person6.svg",
-        name: "Steven",
-        memberDate: "Aug, 2024",
-      },
-    ],
+    // members: [
+    //   {
+    //     image: "/images/person1.svg",
+    //     name: "Priya",
+    //     memberDate: "Aug, 2024",
+    //   },
+    //   {
+    //     image: "/images/person2.svg",
+    //     name: "Ravi",
+    //     memberDate: "Aug, 2024",
+    //   },
+    //   {
+    //     image: "/images/person3.svg",
+    //     name: "Lyla",
+    //     memberDate: "Aug, 2024",
+    //   },
+    //   {
+    //     image: "/images/person4.svg",
+    //     name: "John",
+    //     memberDate: "Aug, 2024",
+    //   },
+    //   {
+    //     image: "/images/person5.svg",
+    //     name: "Hana",
+    //     memberDate: "Aug, 2024",
+    //   },
+    //   {
+    //     image: "/images/person6.svg",
+    //     name: "Steven",
+    //     memberDate: "Aug, 2024",
+    //   },
+    // ],
     payoutDate: "25th of Nov 2024",
     cirkleAmount: "60,000",
     currency: "/images/green-currency.svg",
@@ -212,7 +212,7 @@ const CirkleDetailsModal = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto">
+            {/* <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto">
               {data.members.map((member, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <img
@@ -226,7 +226,7 @@ const CirkleDetailsModal = () => {
                   </p>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <div className="mb-10">
               <PayoutCard data={payoutData} />
