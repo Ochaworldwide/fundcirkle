@@ -241,7 +241,7 @@ const EditCirkleModal = () => {
               axis="x"
               values={members}
               onReorder={setMembers}
-              className="flex flex-wrap w-full mb-7 justify-between overflow-scroll mx-auto"
+              className="flex flex-wrap w-full mb-7 space-x-4 overflow-scroll mx-auto"
             >
               {members.map((member) => (
                 <Reorder.Item
