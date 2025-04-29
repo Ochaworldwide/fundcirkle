@@ -14,6 +14,8 @@ const InviteCard = ({ group, buttons}) => {
     openModal("invite", stateId);
   };
 
+  console.log(group)
+
   return (
     <div className="flex p-1 bg-white shadow-[0_0_20px_rgba(0,0,0,0.1)] border rounded-lg mb-4 w-[100%]">
       <div className="py-5  w-[20%]">

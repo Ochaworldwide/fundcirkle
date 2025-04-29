@@ -64,8 +64,6 @@ const RecommendedCirklesCard = ({ group }) => {
       .post(`/cirkles/${cirkleId}/join`)
       .then((response) => {
         if (response.data.success) {
-          //  console.log("Cirkle joined successfully!");
-          //  toast.success("Cirkle joined successfully!", { ...toastConfig });
           showStatusReport("Cirkle joined successfully!");
         } else {
           //  toast.error("Warning", response.data, { ...toastConfig });

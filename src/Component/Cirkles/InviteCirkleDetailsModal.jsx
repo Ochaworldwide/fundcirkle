@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { FadeLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { toastConfig } from "../../constants/toastConfig";
+import { formatNumber } from "../../utils/string";
 
 const InviteCirkleDetailsModal = () => {
   const { isModalOpen, modalType, modalData, closeModal } = useModal();
@@ -101,6 +102,76 @@ const InviteCirkleDetailsModal = () => {
     currency: "/images/green-currency.svg",
   };
 
+  const rawDate = cirkleData?.created_at;
+  const date = new Date(rawDate);
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "long", // "March"
+    year: "numeric", // "2025"
+  });
+
+  const handleAccept = () => {
+    // console.log("Clicked Group ID:", group.id);
+
+    // const cirkleId = group.id;
+    const cirkleId = modalData;
+
+    axiosInstance
+      .post(`/cirkles/${cirkleId}/join`)
+      .then((response) => {
+        if (response.data.success) {
+          showStatusReport("Cirkle joined successfully!");
+          navigate("/acceptedinvite");
+        } else {
+          //  toast.error("Warning", response.data, { ...toastConfig });
+          showStatusReport("Warning", response.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          //  toast.error("Warning:", error.response.data, { ...toastConfig });
+          showStatusReport("Warning:", error.response.data);
+        } else if (error.request) {
+          //  toast.error("Warning:", error.request, { ...toastConfig });
+          showStatusReport("Warning:", error.request);
+        } else {
+          //  toast.error("Warning:", error.message, { ...toastConfig });
+          showStatusReport("Warning:", error.message);
+        }
+      });
+  };
+
+  const handleDecline = () => {
+    // console.log("Clicked Group ID:", group.id);
+
+    // const cirkleId = group.id;
+    const cirkleId = modalData;
+
+    axiosInstance
+      .post(`/cirkles/${cirkleId}/decline`)
+      .then((response) => {
+        if (response.data.success) {
+          showStatusReport("Cirkle Declined successfully!");
+          // navigate("/acceptedinvite");
+        } else {
+          //  toast.error("Warning", response.data, { ...toastConfig });
+          showStatusReport("Warning", response.data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          //  toast.error("Warning:", error.response.data, { ...toastConfig });
+          showStatusReport("Warning:", error.response.data);
+        } else if (error.request) {
+          //  toast.error("Warning:", error.request, { ...toastConfig });
+          showStatusReport("Warning:", error.request);
+        } else {
+          //  toast.error("Warning:", error.message, { ...toastConfig });
+          showStatusReport("Warning:", error.message);
+        }
+      });
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen  bg-opacity-50"
@@ -143,8 +214,14 @@ const InviteCirkleDetailsModal = () => {
 
           <div className="p-3 mx-auto">
             <div className="items-center mb-5 flex space-x-10">
-              <img
+              {/* <img
                 src="/images/circlepeople.svg"
+                alt="Group"
+                className="w-12 h-12 rounded-full"
+              /> */}
+
+              <img
+                src={cirkleData.image_url}
                 alt="Group"
                 className="w-12 h-12 rounded-full"
               />
@@ -164,19 +241,17 @@ const InviteCirkleDetailsModal = () => {
                   <img src="/images/green-currency.svg" alt="" />
                 </div>
                 <div className="">
-                  <p>{cirkleData.contribution_amount}</p>
+                  <p>{formatNumber(cirkleData.contribution_amount)} </p>
                   <p className="text-xs text-black">Payout Amount</p>
                 </div>
               </div>
 
               <div className="py-5 text-black w-[45%]">
-                <p className="text-[18px]">
-                  {`${cirkleData.contribution_day} of August 2024 - February 2025`}
-                </p>
+                <p className="text-[18px] text-right">{formattedDate}</p>
               </div>
             </div>
 
-            <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto opacity-[0.1]">
+            {/* <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto opacity-[0.1]">
               {data.members.map((member, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <img
@@ -190,7 +265,7 @@ const InviteCirkleDetailsModal = () => {
                   </p>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <div className="p-5 mx-auto flex justify-between w-[80%] ">
               <p>Contribution Amount</p>
@@ -204,11 +279,14 @@ const InviteCirkleDetailsModal = () => {
             <div className="flex mt-4 justify-between w-[90%] mx-auto">
               <button
                 className="bg-[#00943F] text-white px-4 py-2 rounded-lg text-sm"
-                onClick={() => navigate("/acceptedinvite")}
+                onClick={() => handleAccept()}
               >
                 Accept to join
               </button>
-              <button className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm">
+              <button
+                className="border font-[400] border-gray-400 text-gray-600 px-4 py-2 rounded-lg text-sm"
+                onClick={() => handleDecline()}
+              >
                 Decline Invitation
               </button>
             </div>
