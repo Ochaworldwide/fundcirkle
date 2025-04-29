@@ -62,7 +62,7 @@ const Payment = () => {
         <h1 className="text-center">Payment</h1>
       </div>
 
-      <div className="w-[100%] mx-auto  items-center mb-5  h-[100px] hidden lg:flex">
+      <div className="w-[100%] mx-auto  items-center mb-5  h-[100px] hidden lg:flex sticky top-0 z-10 bg-white">
         <div className="w-[40%] flex items-center ">
           <div className="w-[100%] flex py-5 sticky top-0 bg-white lg:relative ">
             <p className="text-[22px] font-[600]">Payment</p>
@@ -116,7 +116,7 @@ const Payment = () => {
           <div>
             {user?.profile_pic ? (
               <img
-                src={user.profile_pic}
+                src={`${user?.profile_pic}?t=${Math.random()}`}
                 alt="Profile"
                 className="w-14 h-14 rounded-full"
               />
@@ -132,7 +132,7 @@ const Payment = () => {
       </div>
 
       {/* Payment Overview */}
-      <div className="w-[100%] px-5 lg:w-[60%] lg:mb-5">
+      <div className="w-[100%] px-5 lg:w-[80%] lg:mb-5">
         <h1 className="   text-[18px] font-bold">Payment Overview</h1>
         <PaymentOverview
           due={due}
@@ -231,93 +231,93 @@ const Payment = () => {
       </div>
 
       {/* Desktop version */}
-      <div className="hidden lg:flex justify-between h-[500px]">
-        <div className="w-[45%]">
+      <div className="hidden lg:flex lg:flex-col justify-between h-[500px]">
+        <div className="w-[90%]">
           <ManagePaymentCirkle />
         </div>
+      </div>
 
-        <div className="p-4 w-[45%] h-full overflow-scroll hide-scrollbar">
-          <h1 className="mb-5 text-[18px] font-bold ">Payment History</h1>
+      <div className="hidden lg:block p-4 w-[100%] overflow-scroll hide-scrollbar h-[500px]">
+        <h1 className="mb-5 text-[18px] font-bold ">Payment History</h1>
 
-          <div className="flex justify-between mb-5">
-            <div className="flex items-center space-x-1">
-              <img
-                src="/images/filter-history.svg"
-                alt=""
-                srcset=""
-                className="h-7"
-              />
-              <span className="text-[10.5px]">Filters</span>
-            </div>
-
-            <div className="flex border p-2 rounded-lg w-[70%]">
-              <img src="/images/search-01.svg" alt="" srcset="" className="" />
-              <input
-                type="text"
-                placeholder="Search for a Cirkle or a User"
-                className="outline-none pl-2 text-[10.5px]"
-              />
-            </div>
-
-            <img src="/images/download-02.svg" alt="" srcset="" />
+        <div className="flex justify-between mb-5">
+          <div className="flex items-center space-x-1">
+            <img
+              src="/images/filter-history.svg"
+              alt=""
+              srcset=""
+              className="h-7"
+            />
+            <span className="text-[10.5px]">Filters</span>
           </div>
 
-          {/* filters */}
-
-          <div className="flex space-x-5 mb-5 mx-auto w-fit">
-            <div className="flex text-[10px] items-center">
-              Mumbai
-              <img
-                src="/images/cancel-circle.svg"
-                alt=""
-                srcset=""
-                className="ml-1"
-              />
-            </div>
-
-            <div className="flex text-[10px] items-center">
-              Personal
-              <img
-                src="/images/cancel-circle.svg"
-                alt=""
-                srcset=""
-                className="ml-1"
-              />
-            </div>
-
-            <div className="flex text-[10px] items-center">
-              August
-              <img
-                src="/images/cancel-circle.svg"
-                alt=""
-                srcset=""
-                className="ml-1"
-              />
-            </div>
-
-            <div className="flex text-[10px] items-center">
-              Completed
-              <img
-                src="/images/cancel-circle.svg"
-                alt=""
-                srcset=""
-                className="ml-1"
-              />
-            </div>
+          <div className="flex border p-2 rounded-lg w-[70%]">
+            <img src="/images/search-01.svg" alt="" srcset="" className="" />
+            <input
+              type="text"
+              placeholder="Search for a Cirkle or a User"
+              className="outline-none pl-2 text-[10.5px]"
+            />
           </div>
 
-          {/* hand  icon */}
-
-          <div className="flex text-[10px] items-center justify-center border-y py-5">
-            <img src="/images/hand.svg" alt="" srcset="" />
-
-            <p>Swipe left to view the hidden columns of the table</p>
-          </div>
-
-          {/* table */}
-
-          <PaymentTable />
+          <img src="/images/download-02.svg" alt="" srcset="" />
         </div>
+
+        {/* filters */}
+
+        {/* <div className="flex space-x-5 mb-5 mx-auto w-fit">
+          <div className="flex text-[10px] items-center">
+            Mumbai
+            <img
+              src="/images/cancel-circle.svg"
+              alt=""
+              srcset=""
+              className="ml-1"
+            />
+          </div>
+
+          <div className="flex text-[10px] items-center">
+            Personal
+            <img
+              src="/images/cancel-circle.svg"
+              alt=""
+              srcset=""
+              className="ml-1"
+            />
+          </div>
+
+          <div className="flex text-[10px] items-center">
+            August
+            <img
+              src="/images/cancel-circle.svg"
+              alt=""
+              srcset=""
+              className="ml-1"
+            />
+          </div>
+
+          <div className="flex text-[10px] items-center">
+            Completed
+            <img
+              src="/images/cancel-circle.svg"
+              alt=""
+              srcset=""
+              className="ml-1"
+            />
+          </div>
+        </div> */}
+
+        {/* hand  icon */}
+
+        <div className="flex text-[10px] items-center justify-center border-y py-5">
+          <img src="/images/hand.svg" alt="" srcset="" />
+
+          <p>Swipe left to view the hidden columns of the table</p>
+        </div>
+
+        {/* table */}
+
+        <PaymentTable />
       </div>
     </div>
   );

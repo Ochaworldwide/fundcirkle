@@ -263,7 +263,7 @@ const Settings = () => {
           <div>
             {user?.profile_pic ? (
               <img
-                src={user.profile_pic}
+                src={`${user?.profile_pic}?t=${Math.random()}`}
                 alt="Profile"
                 className="w-14 h-14 rounded-full"
               />
@@ -290,9 +290,9 @@ const Settings = () => {
 
               {user?.profile_pic ? (
                 <img
-                  src={user.profile_pic}
+                  src={`${user?.profile_pic}?t=${Math.random()}`}
                   alt="Profile"
-                  className="w-full h-full rounded-full" 
+                  className="w-full h-full rounded-full"
                 />
               ) : (
                 <FaCircleUser className=" text-gray-500 w-full h-full" />
@@ -491,30 +491,6 @@ const Settings = () => {
             />
           </div>
         </div>
-
-        {/* General */}
-        {/* <h1 className="mb-3 text-[14px] ml-1">General</h1>
-        <div className="bg-[#E5F7FF] px-2 mb-7 border border-[#00000066] rounded-md">
-          <div className="flex items-center p-5">
-            <div>
-              <h1 className="text-[14px] mb-2">Language</h1>
-            </div>
-
-            <div className="ml-auto flex space-x-2">
-              <select
-                name="Language"
-                id=""
-                className=" p-1 rounded-md text-[#141B3480] text-[10.5px]"
-              >
-                <option value="">English</option>
-                <option value="">French</option>
-                <option value="">Indian</option>
-              </select>
-
-              <img src="/images/arrow-right.svg" alt="" srcset="" />
-            </div>
-          </div>
-        </div> */}
 
         {/* Logout */}
         <h1 className="mb-3 text-[14px] ml-1">Logout</h1>

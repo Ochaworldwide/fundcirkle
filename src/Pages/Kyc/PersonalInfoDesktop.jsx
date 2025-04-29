@@ -33,11 +33,11 @@ const PersonalInfoDesktop = () => {
 
   return (
     <div className="w-full p-6 font-poppins">
-      <div className="mb-10 h-28 flex items-center sticky top-0 bg-white">
+      {/* <div className="mb-10 h-28 flex items-center sticky top-0 bg-white">
         <button onClick={() => navigate("/startkyc")}>
           <img src="/images/arrowback.svg" alt="Back" />
         </button>
-      </div>
+      </div> */}
 
       <div className="bg-white rounded-lg w-full">
         <h1 className="mb-7 w-[80%] text-base">

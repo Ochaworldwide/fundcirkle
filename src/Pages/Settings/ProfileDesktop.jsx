@@ -64,7 +64,7 @@ const ProfileDesktop = ({edit,setEdit}) => {
           <div className="w-24 h-24 rounded-full border-2 relative mb-3">
             {user?.profile_pic ? (
               <img
-                src={user.profile_pic}
+                src={`${user?.profile_pic}?t=${Math.random()}`}
                 alt="Profile"
                 className="w-full h-full rounded-full"
               />
@@ -98,7 +98,7 @@ const ProfileDesktop = ({edit,setEdit}) => {
           </div>
         </div>
 
-        <div className="border rounded-md h-11 w-[22%] p-2 font-poppins mb-5">
+        <div className="border rounded-md h-11 w-[40%] p-2 font-poppins mb-5">
           {user?.is_verified ? (
             <div className="flex p-1 rounded-md space-x-3 h-full items-center">
               <img
@@ -155,7 +155,7 @@ const ProfileDesktop = ({edit,setEdit}) => {
       </div>
 
       <div className="w-[40%] flex flex-col space-y-10">
-        <h1 className="text-xl font-[400] font-[Poppins] w-[50%]">
+        <h1 className="text-xl font-[400] font-[Poppins] w-[100%]">
           Update your Profile Information
         </h1>
 

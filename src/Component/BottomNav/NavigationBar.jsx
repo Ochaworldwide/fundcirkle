@@ -24,7 +24,7 @@ const NavigationBar = () => {
   return (
     <div className="flex flex-col lg:flex-row lg:h-screen ">
       {/* Sidebar for large screens */}
-      <div className="hidden lg:flex lg:flex-col lg:justify-start lg:items-center lg:w-full lg:py-4 lg:px-2 lg:border-r lg:shadow-md lg:relative">
+      <div className="hidden lg:flex lg:flex-col lg:justify-start lg:items-center lg:w-full lg:py-4 lg:px-2 lg:border-r lg:shadow-md lg:relative lg:overflow-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar">
         <div className="hidden lg:block lg:w-[80%] lg:mx-auto lg:pb-5 lg:h-40">
           <img src={logo} alt="" srcset="" />
         </div>

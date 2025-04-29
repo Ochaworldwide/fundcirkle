@@ -163,8 +163,6 @@ function Discover() {
         <p className="text-[22px] font-[600]">Discover</p>
       </div>
 
-      
-
       <div className="w-[100%] mx-auto  items-center mb-5  h-[100px] hidden lg:flex">
         <div className="w-[40%] flex items-center ">
           <div className="w-[100%] flex py-5 sticky top-0 bg-white lg:relative ">
@@ -219,7 +217,7 @@ function Discover() {
           <div>
             {user?.profile_pic ? (
               <img
-                src={user.profile_pic}
+                src={`${user?.profile_pic}?t=${Math.random()}`}
                 alt="Profile"
                 className="w-14 h-14 rounded-full"
               />

@@ -6,6 +6,7 @@ import { ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
 import { useModal } from "../Cirkles/ModalContext";
+import { formatNumber } from "../../utils/string";
 
 const QuickStats = () => {
   const [stats, setStats] = useState(null);
@@ -29,19 +30,19 @@ const QuickStats = () => {
           },
           {
             label: "Your Total Contributions",
-            value: `${data.total_contributions.toLocaleString()} `,
+            value: `${data.total_contributions} `,
             bgColor: "bg-[#80C99F33]",
             currency: currency,
           },
           {
             label: "Total Payout Amount",
-            value: `${data.total_payout_amount.toLocaleString()} `,
+            value: `${data.total_payout_amount} `,
             bgColor: "bg-[#80D4FF33]",
             currency: currency,
           },
           {
             label: "Your Total Due Payment - October",
-            value: `${data.total_due.toLocaleString()} `,
+            value: `${data.total_due}`,
             bgColor: "bg-[#80C99F33]",
             currency: currency,
           },
@@ -80,14 +81,14 @@ const QuickStats = () => {
       {loading ? (
         <p className="text-center text-gray-500">Loading stats...</p>
       ) : (
-        <div className="flex overflow-x-auto space-x-3 py-4 hide-scrollbar">
+        <div className="flex overflow-x-auto space-x-3 lg:justify-between lg:space-x-0 py-4 hide-scrollbar">
           {stats?.map((stat, index) => (
             <div
               key={index}
-              className={`flex-shrink-0 flex flex-col justify-between w-2/6 py-4 px-2 border border-[#00000066] rounded-lg ${stat.bgColor} lg:w-[23%] lg:h-36 lg:border-none `}
+              className={`flex-shrink-0 flex flex-col justify-between w-2/6 py-4 px-2 border border-[#00000066] rounded-lg ${stat.bgColor} lg:w-[24%] lg:h-36 lg:border-none `}
             >
-              <p className="text-gray-700 text-xs font-[400] lg:text-[21px] lg:leading-normal">{stat.label}</p>
-              <p className="text-[20px] font-semibold mt-2 flex items-center justify-center text-[#292D32] lg:text-[25px]">
+              <p className="text-gray-700 text-xs font-[400] lg:text-lg lg:leading-normal">{stat.label}</p>
+              <p className="text-[20px] font-semibold mt-2 flex items-center justify-center text-[#292D32] lg:text-xl">
                 {stat.currency && (
                   <span className="text-white">
                     <img
@@ -97,7 +98,8 @@ const QuickStats = () => {
                     />
                   </span>
                 )}
-                {stat.value}
+                {formatNumber(stat.value)}
+                
               </p>
             </div>
           ))}

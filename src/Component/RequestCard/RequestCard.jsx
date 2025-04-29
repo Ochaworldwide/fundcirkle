@@ -46,7 +46,7 @@ const RequestCard = ({ data }) => {
     };
     try {
       const response = await axiosInstance.post(
-        `/cirkles/${data.id}/decline`,
+        `/cirkles/${data.cirkle_id}/decline`,
         payload
       );
 

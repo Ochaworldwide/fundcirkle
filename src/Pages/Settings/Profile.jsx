@@ -75,14 +75,12 @@ const Profile = () => {
 
         {user?.profile_pic ? (
           <img
-            src={user.profile_pic}
+            src={`${user?.profile_pic}?t=${Math.random()}`}
             alt="Profile"
             className="w-full h-full rounded-full"
-          />         
+          />
         ) : (
-
           <FaCircleUser className=" text-gray-500 w-full h-full" />
-
         )}
 
         <Link to="/editprofile">

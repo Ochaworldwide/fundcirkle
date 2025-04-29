@@ -40,23 +40,20 @@ function NewCirkle() {
         </Link>
       </div>
 
-
-      <div className='lg:flex hidden lg:w-[45%] lg:space-x-4 lg:my-5'>
-
+      <div className="lg:flex hidden lg:w-[50%] lg:justify-between lg:my-5 ">
         <button
-          className="bg-[#00943F] text-white text-sm py-3  mb-3 w-[45%] rounded-lg"
+          className="bg-[#00943F] text-white text-sm py-3 w-[45%] rounded-lg"
           onClick={() => openModal("create")}
         >
           Create New Cirkle
         </button>
 
-        <Link to="/discover" className="w-[100%]">
-          <button className="text-[#141B34] text-sm py-3  mb-1 w-[45%] rounded-lg border">
+        <Link to="/discover" className="w-[45%]">
+          <button className="text-[#141B34] text-sm py-3  w-[100%] rounded-lg border">
             Join a New Cirkle
           </button>
         </Link>
       </div>
-
     </div>
   );
 }

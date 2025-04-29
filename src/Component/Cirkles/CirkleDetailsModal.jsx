@@ -151,11 +151,6 @@ const CirkleDetailsModal = () => {
 
           <div className="p-3 mx-auto">
             <div className="items-center mb-5 flex justify-between">
-              {/* <img
-                src={data.image}
-                alt="Group"
-                className="w-12 h-12 rounded-full"
-              /> */}
               {data.image ? (
                 <img
                   src={data.image}
@@ -211,22 +206,6 @@ const CirkleDetailsModal = () => {
                 <p className="text-[18px] text-right">{formattedDate}</p>
               </div>
             </div>
-
-            {/* <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto">
-              {data.members.map((member, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <p className="text-xs text-gray-500">{member.name}</p>
-                  <p className="bg-[#00AAFF] rounded-sm px-1 py-[1px] text-[8px] text-white">
-                    {member.memberDate}
-                  </p>
-                </div>
-              ))}
-            </div> */}
 
             <div className="mb-10">
               <PayoutCard data={payoutData} />

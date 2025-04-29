@@ -1,14 +1,15 @@
-import React, { useState, ChangeEvent } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, ChangeEvent, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
 import { FaUpload } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { toastConfig } from "../../constants/toastConfig";
 import { useModal } from "../../Component/Cirkles/ModalContext";
+import { UserContext } from "../../contexts/userDetails";
 
 const EditProfile = () => {
-  const [fullName, setFullName] = useState("");
+  const [full_name, setfull_name] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [dob, setDob] = useState("");
@@ -17,7 +18,9 @@ const EditProfile = () => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [imageFile, setImageFile] = useState(null); // New state to hold the file object
+  const { user, refetchUser } = useContext(UserContext);
   const { showStatusReport } = useModal();
+  const navigate = useNavigate();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -56,6 +59,7 @@ const EditProfile = () => {
         if (imageResponse.data.success) {
           imageUrl = imageResponse.data.image_url; // Ensure this matches API response
           setLoading(false);
+          navigate("/profile");
         } else {
           throw new Error("Image upload failed");
         }
@@ -68,6 +72,37 @@ const EditProfile = () => {
       }
     }
 
+    // Step 2: Update the rest of the profile info
+    if ((full_name, email, phone, dob, address, occupation)) {
+      try {
+        const payload = {
+          full_name,
+          email,
+          phone,
+          dob,
+          address,
+          occupation,
+        };
+
+        const profileResponse = await axiosInstance.post(
+          "/account/profile",
+          payload
+        );
+
+        if (profileResponse.data.success) {
+          showStatusReport("Profile updated successfully!", "success");
+          navigate("/profile");
+          
+        } else {
+          showStatusReport("Profile update failed!");
+        }
+      } catch (error) {
+        showStatusReport("Profile update failed!");
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 
   return (
@@ -111,9 +146,9 @@ const EditProfile = () => {
           <input
             type="text"
             placeholder="Enter your name"
-            value={fullName}
-            disabled
-            onChange={(e) => setFullName(e.target.value)}
+            value={full_name}
+            disabled={user ? user.is_verified : false}
+            onChange={(e) => setfull_name(e.target.value)}
             className="border outline-none rounded-xl p-5 text-[12px] w-full"
           />
         </div>
@@ -125,7 +160,7 @@ const EditProfile = () => {
               type="email"
               placeholder="Enter your email address"
               value={email}
-              disabled
+              disabled={user ? user.is_verified : false}
               onChange={(e) => setEmail(e.target.value)}
               className="border outline-none rounded-xl p-5 text-[12px] w-full"
             />
@@ -137,7 +172,7 @@ const EditProfile = () => {
               type="text"
               placeholder="Enter your phone number"
               value={phone}
-              disabled
+              disabled={user ? user.is_verified : false}
               onChange={(e) => setPhone(e.target.value)}
               className="border outline-none rounded-xl p-5 text-[12px] w-full"
             />
@@ -149,7 +184,7 @@ const EditProfile = () => {
           <input
             type="date"
             value={dob}
-            disabled
+            disabled={user ? user.is_verified : false}
             onChange={(e) => setDob(e.target.value)}
             className="border outline-none rounded-xl p-5 text-[12px] w-full"
           />
@@ -161,7 +196,7 @@ const EditProfile = () => {
             type="text"
             placeholder="Enter your Address"
             value={address}
-            disabled
+            disabled={user ? user.is_verified : false}
             onChange={(e) => setAddress(e.target.value)}
             className="border outline-none rounded-xl p-5 text-[12px] w-full"
           />
@@ -173,7 +208,7 @@ const EditProfile = () => {
             type="text"
             placeholder="Enter your occupation"
             value={occupation}
-            disabled
+            disabled={user ? user.is_verified : false}
             onChange={(e) => setOccupation(e.target.value)}
             className="border outline-none rounded-xl p-5 text-[12px] w-full"
           />

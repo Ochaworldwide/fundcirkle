@@ -167,8 +167,8 @@ export default function ActivityTabs({ type }) {
               effect="coverflow"
               grabCursor
               centeredSlides
-              slidesPerView={1}
-              spaceBetween={25}
+              slidesPerView={1.5}
+              spaceBetween={50}
               loop
               coverflowEffect={{
                 rotate: 0,

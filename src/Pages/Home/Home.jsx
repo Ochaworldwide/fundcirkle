@@ -102,7 +102,7 @@ function Home() {
 
             {user?.profile_pic ? (
               <img
-                src={user.profile_pic}
+                src={`${user?.profile_pic}?t=${Math.random()}`}
                 alt="Profile"
                 className="w-full h-full rounded-full"
               />
@@ -190,15 +190,15 @@ function Home() {
         {/* Nav Bar */}
 
         <div className=" flex w-[100%] mx-auto  items-center mb-5  h-[100px]">
-          <div className="w-[40%] flex items-center ">
-            <div className="p-5 flex items-center space-x-2 text-3xl">
+          <div className="w-[50%] flex items-center ">
+            <div className=" flex items-center space-x-2 text-3xl">
               <p className=" font-[400]">Welcome back,</p>
 
               <h1 className="font-[400]">{user?.full_name}</h1>
             </div>
           </div>
 
-          <div className="ml-auto flex space-x-6 items-center">
+          <div className="ml-auto flex space-x-6 items-center ">
             <div className="border border-[#00000066] p-2 rounded-full relative ml-auto">
               {NotifyNum === 0 ? (
                 " "
@@ -245,7 +245,7 @@ function Home() {
             <div>
               {user?.profile_pic ? (
                 <img
-                  src={user.profile_pic}
+                  src={`${user?.profile_pic}?t=${Math.random()}`}
                   alt="Profile"
                   className="w-14 h-14 rounded-full"
                 />

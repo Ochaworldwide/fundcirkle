@@ -23,54 +23,13 @@ function MyCirkles() {
 
   const { cirkles, refreshCirkles } = useUserCirkle();
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axiosInstance.get(ROUTES.CIRKLE.GET_USER_CIRKLES);
-  //     if (response.data.success) {
-  //       // Transform the data to match the required structure
-  //       const transformedData = response.data.data.map((item) => ({
-  //         header: {
-  //           groupName: item.name,
-  //           groupImage: "/images/circlepeople.svg", // Use a default image or customize it per item
-  //           count: item.member_count,
-  //           id: item.id,
-  //           ownerName: item.owner_details.name,
-  //         },
-  //         contribution: {
-  //           amount: item.contribution_amount,
-  //           currencySymbol: item.currency,
-  //           paymentStatus: {
-  //             completed: 2, // Add real data if available
-  //             total: item.max_members,
-  //           },
-  //         },
-  //         dates: {
-  //           nextPayment: `${item.next_receiving_date}`, // Customize as needed
-  //         },
-  //       }));
+  const today = new Date();
 
-  //       setData(transformedData);
-  //       // console.log("Transformed data:", transformedData);
+  // Options for formatting
+  const options = { day: "numeric", month: "long" };
 
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //     if (error.response?.data?.message) {
-  //       // toast.error(error.response.data.message,{ ...toastConfig });
-  //       showStatusReport(error.response.data.message);
-  //     } else {
-  //       // toast.error("An error occurred. Please try again.",{ ...toastConfig });
-  //       showStatusReport("An error occurred. Please try again.");
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const currentDate = today.toLocaleDateString("en-US", options);
 
-  // useEffect(() => {
-  //   fetchData();
-  //   refreshCirkles();
-  // }, []);
 
 
   useEffect(() => {
@@ -80,6 +39,15 @@ function MyCirkles() {
 
 
   useEffect(() => {
+    // const contributionDays = cirkles.map(
+    //   (item) => item.contribution_day
+    // );
+    // const startMonth = cirkles.map((item) => item.start_month);
+    // console.log(startMonth);
+
+    // console.log(contributionDays);
+    // console.log(startMonth)
+
     if (cirkles && cirkles.length > 0) {
       const transformedData = cirkles.map((item) => ({
         header: {
@@ -88,6 +56,7 @@ function MyCirkles() {
           count: item.member_count,
           id: item.id,
           ownerName: item.owner_details.name,
+          startDate: item.start_month + " " + item.contribution_day,
         },
         contribution: {
           amount: item.contribution_amount,
@@ -142,7 +111,12 @@ function MyCirkles() {
     openModal("chat", chatObject);
   };
 
+  const handleEditClick = () =>{
+     openModal("edit", header.id);
+  }
+
   const { header, contribution, dates } = data[currentIndex];
+  // console.log(header.startDate);
   const { openModal } = useModal();
 
   // console.log(header);
@@ -170,12 +144,15 @@ function MyCirkles() {
         <div className="flex w-[95%] mx-auto justify-between">
           <div
             className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%] bg-[#00943F]"
-            onClick={() => {
-              handleMessageClick();
-            }}
+            onClick={
+              currentDate < header?.startDate
+                ? () => handleEditClick()
+                : () => handleMessageClick()
+            }
           >
             <p className="mx-auto text-[14px] font-medium text-white ">
-              Messages
+              {/* Messages */}
+              {currentDate < header?.startDate ? "Edit" : "Message"}
             </p>
           </div>
           <div
