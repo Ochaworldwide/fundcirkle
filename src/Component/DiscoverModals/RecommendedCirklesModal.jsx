@@ -6,6 +6,7 @@ import { FadeLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../Cirkles/ModalContext";
 import { toastConfig } from "../../constants/toastConfig";
+import { formatNumber } from "../../utils/string";
 
 const RecommendedCirklesModal = () => {
   const { isModalOpen, modalType, modalData, closeModal } = useModal();
@@ -147,7 +148,7 @@ const RecommendedCirklesModal = () => {
           <div className="p-3 mx-auto">
             <div className="items-center mb-5 flex space-x-10">
               <img
-                src="/images/circlepeople.svg"
+                src={cirkleData.image_url}
                 alt="Group"
                 className="w-12 h-12 rounded-full"
               />
@@ -167,7 +168,7 @@ const RecommendedCirklesModal = () => {
                   <img src="/images/green-currency.svg" alt="" />
                 </div>
                 <div className="">
-                  <p>{cirkleData.contribution_amount}</p>
+                  <p>{formatNumber(cirkleData.contribution_amount) }</p>
                   <p className="text-xs text-black">Payout Amount</p>
                 </div>
               </div>
@@ -180,7 +181,7 @@ const RecommendedCirklesModal = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto opacity-[0.1]">
+            {/* <div className="flex flex-wrap w-[100%] mb-7 justify-between overflow-scroll mx-auto opacity-[0.1]">
               {data.members.map((member, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <img
@@ -194,7 +195,7 @@ const RecommendedCirklesModal = () => {
                   </p>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <div className="p-5 mx-auto flex justify-between w-[80%] ">
               <p>Contribution Amount</p>

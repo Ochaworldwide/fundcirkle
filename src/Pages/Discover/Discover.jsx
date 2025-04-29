@@ -64,8 +64,7 @@ function Discover() {
       );
       if (response2.data.success) {
         setRequestData(response2.data.data); // Update state with the second API's data
-        // console.log(response2.data.data);
-        console.log("see this",response2.data.data);
+        // console.log("see this",response2.data.data);
       }
     } catch (error) {
       console.error(error);
@@ -147,7 +146,7 @@ function Discover() {
 
   const handleApplyFilters = (filters) => {
     setAppliedFilters(filters); // Save the filters in the parent component
-    console.log("Applied Filters:", filters);
+    // console.log("Applied Filters:", filters);
   };
 
   const { user, refetchUser } = useContext(UserContext);

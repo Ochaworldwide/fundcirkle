@@ -14,49 +14,16 @@ const RecommendedCirklesCard = ({ group }) => {
 
   // Handle click function
   const handleGroupClick = () => {
-    console.log(`Clicked group ID: ${group.id}`);
+    // console.log(`Clicked group ID: ${group.id}`);
     const stateId = group.id;
     openModal("recommend", stateId);
   };
 
-  // const buttons = (
-  //   <button
-  //     className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold disabled:opacity-60"
-  //     onClick={() => setRequested(true)}
-  //     disabled={requested}
-  //   >
-  //     {requested ? "Requested" : "Request to Join"}
-  //   </button>
-  // );
-
-  console.log(group);
+  // console.log(group);
 
   const handleRequestSubmit = (group) => {
-    console.log("Clicked Group ID:", group.id);
+    // console.log("Clicked Group ID:", group.id);
 
-    //  const payload = {
-    //    id: group.id,
-    //    user_id: group.user_id,
-    //    category_id: group.category_id,
-    //    name: group.name,
-    //    description: group.description,
-    //    contribution_amount: group.contribution_amount,
-    //    contribution_frequency: group.contribution_frequency,
-    //    contribution_week: group.contribution_week,
-    //    contribution_month: group.contribution_month,
-    //    contribution_day: group.contribution_day,
-    //    privacy: group.privacy,
-    //    max_members: group.max_members,
-    //    state_id: group.state_id,
-    //    locations: group.locations,
-    //    currency: group.currency,
-    //    status: group.status,
-    //    created_at: "2024-12-14T21:56:35.000000Z",
-    //    updated_at: "2024-12-14T23:00:17.000000Z",
-    //    slug: group.slug,
-    //    member_count: group.member_count,
-    //    is_owner: false,
-    //  };
     // console.log("Payload:", payload);
     const cirkleId = group.id;
 
@@ -87,11 +54,7 @@ const RecommendedCirklesCard = ({ group }) => {
   return (
     <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%] lg:border">
       <div className="py-5  w-[20%]">
-        {/* <img
-          src={group.image}
-          alt={group.name}
-          className="w-12 h-12 rounded-full border"
-        /> */}
+
         {group?.image_url ? (
           <img
             src={group.image_url}
@@ -102,7 +65,6 @@ const RecommendedCirklesCard = ({ group }) => {
           <FaCircleUser className="w-14 h-14 text-gray-500" />
         )}
 
-        {/* <FaCircleUser className=" text-gray-500 w-12 h-12 rounded-full border" /> */}
       </div>
 
       <div className="py-5  w-[80%]">
