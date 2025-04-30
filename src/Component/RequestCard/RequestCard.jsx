@@ -72,7 +72,7 @@ const RequestCard = ({ data }) => {
     }
   };
 
-
+  console.log(data)
 
   return (
     <div className="py-4 px-2 border border-gray-200 rounded-lg shadow-md mx-auto mt-2">
@@ -108,8 +108,7 @@ const RequestCard = ({ data }) => {
           </span>
           &nbsp; and active in{" "}
           <span className="font-semibold">
-            {data.activeCircles}
-            {5}
+            {data.user.cirkle_count}
           </span>{" "}
           Cirkles
         </p>
