@@ -143,7 +143,7 @@ const Confetti = ({
   const navigate = useNavigate();
 
   return (
-    <div className="h-screen bg-green-100 relative flex flex-col justify-end lg:h-fit lg:overflow-scroll">
+    <div className="h-screen bg-green-100 relative flex flex-col justify-end lg:h-full lg:overflow-scroll">
       {/* Profile Icon */}
       <motion.div
         initial={{ translateX: "0%", translateY: "100%", opacity: 0 }}
