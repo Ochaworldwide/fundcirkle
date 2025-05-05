@@ -100,7 +100,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useModal } from "../Cirkles/ModalContext";
 import { motion } from "framer-motion";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
@@ -109,22 +109,22 @@ import { useNavigate } from "react-router-dom";
 const members = [
   {
     id: 1,
-    name: "Rebecca Lee",
+    name: "Westempire",
     date: "Current",
     image: "https://randomuser.me/api/portraits/women/1.jpg",
   },
-  {
-    id: 2,
-    name: "Sharon White",
-    date: "May 24, 2024",
-    image: "https://randomuser.me/api/portraits/women/2.jpg",
-  },
-  {
-    id: 3,
-    name: "Viraj Kiaan",
-    date: "October 28, 2024",
-    image: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
+  // {
+  //   id: 2,
+  //   name: "Sharon White",
+  //   date: "May 24, 2024",
+  //   image: "https://randomuser.me/api/portraits/women/2.jpg",
+  // },
+  // {
+  //   id: 3,
+  //   name: "Viraj Kiaan",
+  //   date: "October 28, 2024",
+  //   image: "https://randomuser.me/api/portraits/men/1.jpg",
+  // },
 ];
 
 const PaymentSubmissionModal = () => {
@@ -136,6 +136,11 @@ const PaymentSubmissionModal = () => {
   const handleSubmit = () => {
     openModal("make payment", modalData);
   };
+
+  useEffect(() => {
+      console.log(modalData)
+  }, [modalData])
+  
 
   if (!isModalOpen || modalType !== "payment submission") return null;
 

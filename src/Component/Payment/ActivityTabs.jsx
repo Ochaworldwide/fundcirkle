@@ -12,6 +12,7 @@ import { formatNumber } from "../../utils/string";
 
 const CirkleActivity = ({ slide }) => {
   const { openModal } = useModal();
+  // console.log(slide)
 
   return (
     <div className="h-56">

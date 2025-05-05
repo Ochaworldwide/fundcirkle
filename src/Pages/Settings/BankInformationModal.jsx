@@ -85,7 +85,7 @@ const BankInformationModal = () => {
               </button>
             </div>
 
-            <h2 className="text-[14px] font-medium text-center text-gray-800">
+            <h2 className="text-[14px] font-medium text-center text-gray-800" onClick={() => closeModal()}>
               No Bank Details Found
             </h2>
           </div>

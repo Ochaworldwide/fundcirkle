@@ -96,7 +96,7 @@ const ConfirmPaymentModal = () => {
   const handleConfirmPayment = async () => {
     try {
       const response = await axiosInstance.post(
-        `/cirkles/${modalData?.id}/confirm-payment`,
+        `/cirkles/${modalData?.id}/validate`,
         {
           user: modalData?.user_id, // Ensure user ID is available
           comment: comment || "Received with thanks",

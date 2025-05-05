@@ -39,15 +39,6 @@ function MyCirkles() {
 
 
   useEffect(() => {
-    // const contributionDays = cirkles.map(
-    //   (item) => item.contribution_day
-    // );
-    // const startMonth = cirkles.map((item) => item.start_month);
-    // console.log(startMonth);
-
-    // console.log(contributionDays);
-    // console.log(startMonth)
-
     if (cirkles && cirkles.length > 0) {
       const transformedData = cirkles.map((item) => ({
         header: {

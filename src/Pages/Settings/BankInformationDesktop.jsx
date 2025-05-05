@@ -100,7 +100,7 @@ const BankInformationDesktop = () => {
   return (
     <div className="w-[45%] bg-white rounded-lg p-5 space-y-7 border lg:w-[50%]">
       <div className="flex justify-between items-center ">
-        <h2 className="text-2xl font-medium text-gray-800 lg:text-xl" onClick={closeModal}>
+        <h2 className="text-2xl font-medium text-gray-800 lg:text-xl" onClick={closeModal()}>
           Your Bank Details
         </h2>
 

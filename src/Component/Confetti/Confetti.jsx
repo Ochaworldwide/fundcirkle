@@ -143,7 +143,7 @@ const Confetti = ({
   const navigate = useNavigate();
 
   return (
-    <div className="h-screen bg-green-100 relative flex flex-col justify-end">
+    <div className="h-screen bg-green-100 relative flex flex-col justify-end lg:h-fit lg:overflow-scroll">
       {/* Profile Icon */}
       <motion.div
         initial={{ translateX: "0%", translateY: "100%", opacity: 0 }}
@@ -157,9 +157,9 @@ const Confetti = ({
           transition={{ duration: 1, delay: 2 }}
           src={"/images/explode.gif"}
           alt="Confetti Animation"
-          className="w-[100%] object-cover absolute"
+          className="w-[100%] object-cover absolute lg:relative lg:w-[30%] lg:object-contain  "
         />
-        <img src={"/images/good-mark.svg"} alt="Profile Icon" className="" />
+        <img src={"/images/good-mark.svg"} alt="Profile Icon" className=" lg:absolute" />
       </motion.div>
 
       {/* Content Section */}

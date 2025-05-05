@@ -26,22 +26,43 @@ const EditCirkleModal = () => {
   const [members, setMembers] = useState([]);
   
 
-  const getCirkleMembers = async () => {
-    try {
-      const response = await axiosInstance.get(`/cirkles/${modalData}/members`);
-      // return response.data; // assuming the response is an array of members
-      setMembers(response.data.data)
-    } catch (error) {
-      console.error("Failed to fetch Cirkle members:", error);
-      throw error;
-    }
-  };
+  // const getCirkleMembers = async () => {
+  //   try {
+  //     const response = await axiosInstance.get(`/cirkles/${modalData}/members`);
+  //     // return response.data; // assuming the response is an array of members
+  //     setMembers(response.data.data)
+  //   } catch (error) {
+  //     console.error("Failed to fetch Cirkle members:", error);
+  //     // throw error;
+  //   }
+  // };
 
-  useEffect(() => {
-    if (modalData) {
-      getCirkleMembers();
-    }
-  }, [modalData]);
+
+    useEffect(() => {
+      if (isModalOpen && modalType === "edit") {
+        const getCirkleMembers = async () => {
+          try {
+            const response = await axiosInstance.get(
+              `/cirkles/${modalData}/members`
+            );
+            // return response.data; // assuming the response is an array of members
+            setMembers(response.data.data);
+          } catch (error) {
+            console.error("Failed to fetch Cirkle members:", error);
+            throw error;
+          }
+        };
+        getCirkleMembers();
+      }
+    }, [isModalOpen, modalType]);
+  
+
+  // useEffect(() => {
+  //   // if (modalData) {
+  //   //   getCirkleMembers();
+  //   // }
+  //   getCirkleMembers();
+  // }, [modalData]);
 
   useEffect(() => {
     if (isModalOpen && modalType === "edit") {

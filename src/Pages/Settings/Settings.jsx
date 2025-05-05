@@ -65,6 +65,8 @@ const Settings = () => {
   const logout = () => {
     localStorage.removeItem("token"); // Remove the authentication token
     localStorage.removeItem("user"); // Remove the user info (if needed)
+    localStorage.removeItem("notifications");
+    localStorage.removeItem("userCirkles");
     location.reload(); // Refresh the page
   };
 
