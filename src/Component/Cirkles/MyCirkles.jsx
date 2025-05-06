@@ -181,7 +181,7 @@ function MyCirkles() {
             <h1 className="ml-3 text-black text-xl text-left font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-3xl">
               {header.groupName}
             </h1>
-            <p className="ml-3 text-black  text-sm font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-3xl">
+            <p className="ml-3 text-black  text-sm font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-xl">
               {header.ownerName}
             </p>
           </div>
@@ -200,6 +200,24 @@ function MyCirkles() {
           <img src="/images/arrow-right.svg" alt="" />
         </button>
       </div>
+
+      {/* Pagination Dots - adjusted spacing */}
+      {data.length > 1 && (
+        <div className="flex justify-center mt-3 md:mt-4 space-x-2">
+          {data.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
+                currentIndex === index
+                  ? "bg-[#00943F] scale-125"
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to item ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
