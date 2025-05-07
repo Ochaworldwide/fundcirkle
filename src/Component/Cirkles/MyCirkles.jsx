@@ -202,8 +202,8 @@ function MyCirkles() {
       </div>
 
       {/* Pagination Dots - adjusted spacing */}
-      {data.length > 1 && (
-        <div className="flex justify-center mt-3 md:mt-4 space-x-2">
+      {data.length > 0 && (
+        <div className="flex justify-center mt-3 md:mt-4 gap-2">
           {data.map((_, index) => (
             <button
               key={index}

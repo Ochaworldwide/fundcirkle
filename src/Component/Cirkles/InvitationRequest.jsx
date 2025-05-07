@@ -57,8 +57,8 @@ function InvitationRequest() {
         <img src={logo} alt="" srcset="" />
       </div>
 
-      <div className="mx-auto w-[90%] flex flex-col lg:flex-row  lg:items-center lg:w-[80%] lg:bg-white lg:rounded-2xl lg:overflow-hidden">
-        <div className="lg:px-10 lg:my-5 lg:w-[50%] lg:min-h-[500px]">
+      <div className="mx-auto w-[90%] flex flex-col lg:flex-row  lg:items-center lg:w-[80%] lg:bg-white lg:rounded-2xl lg:overflow-hidden  lg:justify-center">
+        <div className="lg:px-10 lg:my-5 lg:w-[60%] lg:min-h-[500px]">
           <h1 className="font-bold text-[22px] mb-10 poppins text-center">
             Invitation Request
           </h1>

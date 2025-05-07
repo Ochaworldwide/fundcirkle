@@ -24,7 +24,6 @@ const EditCirkleModal = () => {
   const { showStatusReport } = useModal();
   const [showOptions, setShowOptions] = useState(false);
   const [members, setMembers] = useState([]);
-  
 
   // const getCirkleMembers = async () => {
   //   try {
@@ -37,25 +36,23 @@ const EditCirkleModal = () => {
   //   }
   // };
 
-
-    useEffect(() => {
-      if (isModalOpen && modalType === "edit") {
-        const getCirkleMembers = async () => {
-          try {
-            const response = await axiosInstance.get(
-              `/cirkles/${modalData}/members`
-            );
-            // return response.data; // assuming the response is an array of members
-            setMembers(response.data.data);
-          } catch (error) {
-            console.error("Failed to fetch Cirkle members:", error);
-            throw error;
-          }
-        };
-        getCirkleMembers();
-      }
-    }, [isModalOpen, modalType]);
-  
+  useEffect(() => {
+    if (isModalOpen && modalType === "edit") {
+      const getCirkleMembers = async () => {
+        try {
+          const response = await axiosInstance.get(
+            `/cirkles/${modalData}/members`
+          );
+          // return response.data; // assuming the response is an array of members
+          setMembers(response.data.data);
+        } catch (error) {
+          console.error("Failed to fetch Cirkle members:", error);
+          throw error;
+        }
+      };
+      getCirkleMembers();
+    }
+  }, [isModalOpen, modalType]);
 
   // useEffect(() => {
   //   // if (modalData) {
@@ -78,7 +75,6 @@ const EditCirkleModal = () => {
             setOwnerEmail(response.data.data.owner.email);
             setOwnerImage(response.data.data.owner.profile_pic);
             console.log(response.data.data);
-            
           }
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -107,8 +103,6 @@ const EditCirkleModal = () => {
         privacy,
       };
 
-
-
       const response = await axiosInstance.put(
         `/cirkles/${cirkleData.id}`,
         updatedData
@@ -116,10 +110,8 @@ const EditCirkleModal = () => {
 
       if (response.data.success) {
         const order = members.map((member) => member.id);
-        const payload = {order}
-        await axiosInstance.post(
-        `/cirkles/${modalData}/reorder`,payload
-      );
+        const payload = { order };
+        await axiosInstance.post(`/cirkles/${modalData}/reorder`, payload);
         showStatusReport("Cirkle updated successfully!");
         openModal("detail", cirkleData.id);
       }
@@ -139,7 +131,39 @@ const EditCirkleModal = () => {
       url: `${BASE_URL}/invite/${cirkleData.id}`, // replace with your actual link
     };
 
-    window.ReactNativeWebView.postMessage(JSON.stringify(data));
+    // window.ReactNativeWebView.postMessage(JSON.stringify(data));
+
+    // Still send to ReactNativeWebView if available
+    if (window.ReactNativeWebView) {
+      window.ReactNativeWebView.postMessage(JSON.stringify(data));
+    }
+  };
+
+  // New wrapper that also supports Chrome
+  const handleShareUniversal = async () => {
+    await handleShare(); // Still send to React Native WebView if available
+
+    const shareUrl = `${BASE_URL}/invite/${cirkleData.id}`;
+
+    if (!window.ReactNativeWebView && navigator.share) {
+      try {
+        await navigator.share({
+          title: "Cirkle Invitation",
+          text: "You have been invited to join a cirkle. Please follow the link to accept.",
+          url: shareUrl,
+        });
+      } catch (error) {
+        console.error("Sharing failed:", error);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        alert("Link copied to clipboard!");
+      } catch (err) {
+        console.error("Failed to copy:", err);
+        prompt("Copy this link:", shareUrl); // Fallback prompt
+      }
+    }
   };
 
   return (
@@ -149,7 +173,7 @@ const EditCirkleModal = () => {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: "100%", opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[90%] bg-white overflow-scroll"
+        className="fixed bottom-0 left-0 right-0 rounded-lg mx-auto max-w-md z-50 h-[90%] bg-white overflow-scroll hide-scrollbar"
       >
         <div className="pb-10 rounded-lg max-w-md w-full">
           <div className="py-5 px-3 bg-[#E5F4EC] flex justify-between w-[100%] mx-auto rounded-xl mb-5 sticky top-0">
@@ -214,7 +238,7 @@ const EditCirkleModal = () => {
               axis="x"
               values={members}
               onReorder={setMembers}
-              className="flex flex-wrap w-full mb-7 space-x-4 overflow-scroll mx-auto"
+              className="flex flex-wrap w-full mb-7 space-x-4 overflow-scroll mx-auto hide-scrollbar"
             >
               {members.map((member) => (
                 <Reorder.Item
@@ -257,7 +281,8 @@ const EditCirkleModal = () => {
               <div
                 className="px-2 cursor-pointer py-2 border rounded-lg flex items-center justify-evenly w-[45%]"
                 onClick={() => {
-                  handleShare();
+                  // handleShare();
+                  handleShareUniversal();
                 }}
               >
                 <img src="/images/share.svg" alt="" srcset="" />
