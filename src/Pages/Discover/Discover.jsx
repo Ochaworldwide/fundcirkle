@@ -293,8 +293,8 @@ function Discover() {
 
       {/* Desktop version */}
 
-      <div className="hidden lg:flex w-[90%] bg-red-400">
-        <div className="max-h-[600px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar w-[50%] border">
+      <div className="hidden lg:flex w-[90%] ">
+        <div className="max-h-[600px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar w-[50%]">
           <div className="p-1">
             {groups.length > 0 ? (
               groups.map((group, index) => (
