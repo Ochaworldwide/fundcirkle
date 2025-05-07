@@ -52,8 +52,8 @@ const RecommendedCirklesCard = ({ group }) => {
   };
 
   return (
-    <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%] lg:border">
-      <div className="py-5  w-[20%]">
+    <div className="flex p-1 bg-white shadow-md rounded-lg mb-4 w-[100%] lg:border lg:p-3">
+      <div className="py-5 w-[20%]">
 
         {group?.image_url ? (
           <img

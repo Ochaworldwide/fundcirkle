@@ -156,7 +156,7 @@ function Discover() {
   const NotifyNum = notifications.length;
 
   return (
-    <div className="mb-32">
+    <div className="mb-32 lg:mb-0">
       {/* header */}
       <div className="w-[100%] flex justify-center py-5 sticky top-0 bg-white lg:relative lg:hidden">
         <p className="text-[22px] font-[600]">Discover</p>
@@ -293,8 +293,8 @@ function Discover() {
 
       {/* Desktop version */}
 
-      <div className="hidden lg:flex w-[90%]">
-        <div className="max-h-[420px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar w-[50%]">
+      <div className="hidden lg:flex w-[90%] bg-red-400">
+        <div className="max-h-[600px] overflow-y-scroll hide-scrollbar::-webkit-scrollbar hide-scrollbar w-[50%] border">
           <div className="p-1">
             {groups.length > 0 ? (
               groups.map((group, index) => (
