@@ -264,7 +264,7 @@ function Home() {
           <NewCirkle />
         </div>
 
-        <div className="flex w-full justify-evenly">
+        <div className="flex w-full justify-between">
           <div className="w-[65%]">
             {/* QuickStats */}
 
@@ -281,7 +281,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="ml-auto border rounded-2xl p-3 w-[29%]">
+          <div className="ml-auto border rounded-2xl p-3 w-[33%]">
             <h1 className="text-2xl font-bold">Invites</h1>
 
             <Invites />

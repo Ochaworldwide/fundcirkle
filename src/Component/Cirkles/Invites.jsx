@@ -127,9 +127,9 @@ function Invites() {
   };
 
   const buttons = (group) => (
-    <div className="flex gap-2">
+    <div className="flex gap-2 lg:w-[100%] lg:justify-between lg:gap-0">
       <button
-        className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold"
+        className="bg-[#00943F] text-white px-3 py-1 rounded-md text-xs font-semibold lg:w-[45%]"
         onClick={() => {
           handleSubmit(group), navigate("/acceptedinvite");
         }}
@@ -137,7 +137,7 @@ function Invites() {
         Accept
       </button>
       <button
-        className="border border-gray-400 text-gray-600 px-3 py-1 rounded-md text-xs font-semibold"
+        className="border border-gray-400 text-gray-600 px-3 py-1 rounded-md text-xs font-semibold lg:w-[45%]"
         onClick={() => {
           handleDecline(group);
         }}

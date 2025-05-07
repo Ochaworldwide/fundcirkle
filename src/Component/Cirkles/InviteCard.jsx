@@ -17,7 +17,7 @@ const InviteCard = ({ group, buttons}) => {
   console.log(group)
 
   return (
-    <div className="flex p-1 bg-white shadow-[0_0_20px_rgba(0,0,0,0.1)] border rounded-lg mb-4 w-[100%]">
+    <div className="flex p-1 bg-white shadow-[0_0_20px_rgba(0,0,0,0.1)] border rounded-lg mb-4 w-[100%] lg:p-2">
       <div className="py-5  w-[20%]">
         <img
           src={group.image}
@@ -73,7 +73,7 @@ const InviteCard = ({ group, buttons}) => {
             </p>
           </div>
 
-          <div className="flex gap-2">{buttons}</div>
+          <div className="flex gap-2 lg:w-[60%] lg:gap-0 lg:overflow-hidden  ">{buttons}</div>
         </div>
       </div>
     </div>

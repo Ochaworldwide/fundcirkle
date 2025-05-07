@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import CircularProgress from "./CircularProgress";
 import MyCirkles from "./MyCirkles";
@@ -33,6 +33,33 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
     }
   };
 
+  const [indicatorStyle, setIndicatorStyle] = useState({});
+  const buttonRefs = {
+    myCirkles: useRef(null),
+    invites: useRef(null),
+    newCirkle: useRef(null),
+  };
+
+  useEffect(() => {
+    const updateIndicator = () => {
+      const currentBtn = buttonRefs[activeTab].current;
+      if (currentBtn) {
+        const { offsetLeft, offsetWidth } = currentBtn;
+        setIndicatorStyle({
+          left: offsetLeft - 4,
+          width: offsetWidth + 8,
+        });
+      }
+    };
+
+    updateIndicator(); // Initial set
+    window.addEventListener("resize", updateIndicator); // Recalculate on resize
+
+    return () => {
+      window.removeEventListener("resize", updateIndicator); // Cleanup
+    };
+  }, [activeTab]);
+
 
   return (
     <motion.div
@@ -42,7 +69,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className="flex mb-4 w-[95%]  mx-auto">
-        <div className="flex w-[100%] bg-gray-100 p-1 rounded-lg justify-between ">
+        {/* <div className="flex w-[100%] bg-gray-100 p-1 rounded-lg justify-between ">
           <button
             className={` py-2 rounded-md text-[14px] w-[30%] ${
               activeTab === "myCirkles"
@@ -73,6 +100,33 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
           >
             New Cirkle
           </button>
+        </div> */}
+
+        <div className="relative flex w-full bg-gray-100 p-1 rounded-lg justify-between">
+          {/* Sliding Indicator */}
+          <div
+            className="absolute top-1 bottom-1 bg-white rounded-md z-0 shadow-md transition-all duration-300 ease-in-out"
+            style={indicatorStyle}
+          />
+
+          {[
+            { key: "myCirkles", label: "My Cirkles" },
+            { key: "invites", label: "Invites" },
+            { key: "newCirkle", label: "New Cirkle" },
+          ].map(({ key, label }) => (
+            <button
+              key={key}
+              ref={buttonRefs[key]}
+              className={`relative z-10 py-2 rounded-md text-base w-[30%] transition-colors duration-200 ${
+                activeTab === key
+                  ? "text-[#00943F] font-bold"
+                  : "text-[#0000004D]"
+              }`}
+              onClick={() => setActiveTab(key)}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
 
