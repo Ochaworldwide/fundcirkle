@@ -136,43 +136,27 @@ const EditCirkleModal = () => {
     // Still send to ReactNativeWebView if available
     if (window.ReactNativeWebView) {
       window.ReactNativeWebView.postMessage(JSON.stringify(data));
-    } else {
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        alert("Link copied to clipboard!");
-      } catch (err) {
-        console.error("Failed to copy:", err);
-        prompt("Copy this link:", shareUrl); // Fallback prompt
-      }
     }
   };
 
   // New wrapper that also supports Chrome
-  // const handleShareUniversal = async () => {
-  //   await handleShare(); // Still send to React Native WebView if available
+  const handleShareUniversal = async () => {
+    await handleShare(); // Still send to React Native WebView if available
 
-  //   const shareUrl = `${BASE_URL}/invite/${cirkleData.id}`;
+    const shareUrl = `${BASE_URL}/invite/${cirkleData.id}`;
 
-  //   if (!window.ReactNativeWebView && navigator.share) {
-  //     try {
-  //       await navigator.share({
-  //         title: "Cirkle Invitation",
-  //         text: "You have been invited to join a cirkle. Please follow the link to accept.",
-  //         url: shareUrl,
-  //       });
-  //     } catch (error) {
-  //       console.error("Sharing failed:", error);
-  //     }
-  //   } else {
-  //     try {
-  //       await navigator.clipboard.writeText(shareUrl);
-  //       alert("Link copied to clipboard!");
-  //     } catch (err) {
-  //       console.error("Failed to copy:", err);
-  //       prompt("Copy this link:", shareUrl); // Fallback prompt
-  //     }
-  //   }
-  // };
+    if (!window.ReactNativeWebView && navigator.share) {
+      try {
+        await navigator.share({
+          title: "Cirkle Invitation",
+          text: "You have been invited to join a cirkle. Please follow the link to accept.",
+          url: shareUrl,
+        });
+      } catch (error) {
+        console.error("Sharing failed:", error);
+      }
+    } 
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black h-screen bg-opacity-50">
@@ -289,8 +273,8 @@ const EditCirkleModal = () => {
               <div
                 className="px-2 cursor-pointer py-2 border rounded-lg flex items-center justify-evenly w-[45%]"
                 onClick={() => {
-                  handleShare();
-                  // handleShareUniversal();
+                  // handleShare();
+                  handleShareUniversal();
                 }}
               >
                 <img src="/images/share.svg" alt="" srcset="" />
