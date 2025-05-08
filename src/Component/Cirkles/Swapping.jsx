@@ -83,7 +83,7 @@ function Swapping() {
     <div className="">
       {/* <NavBar backLink="/sign-in" /> */}
 
-      <div className=" pb-10">
+      <div className=" pb-10 mt-10">
         <img src={logo} alt="" srcset="" className="mx-auto" />
       </div>
 
