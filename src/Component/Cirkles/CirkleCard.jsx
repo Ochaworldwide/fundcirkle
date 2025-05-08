@@ -117,7 +117,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
             <button
               key={key}
               ref={buttonRefs[key]}
-              className={`relative z-10 py-2 rounded-md text-base w-[30%] transition-colors duration-200 ${
+              className={`relative z-0 py-2 rounded-md text-base w-[30%] transition-colors duration-200 ${
                 activeTab === key
                   ? "text-[#00943F] font-bold"
                   : "text-[#0000009a]"
