@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../Component/Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import CustomForm from "../../Component/Form/CustomForm";
 import Toast from "../../Component/Toast/Toast";
 import { toast } from "react-toastify";
@@ -14,6 +14,7 @@ import { useModal } from "../../Component/Cirkles/ModalContext";
 
 function InvitationRequest() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const { showStatusReport } = useModal();
@@ -38,8 +39,11 @@ function InvitationRequest() {
   const handleAccept = async () => {
     try {
       const response = await axiosInstance.post(`/cirkles/${id}/join`);
+          if (response.status >= 200 && response.status < 300) {
+            navigate("/home"); // Redirect to home page
+          }
     } catch (error) {
-    //   console.error("Error making POST request:", error);
+      //   console.error("Error making POST request:", error);59
       showStatusReport("Error making POST request:", error);
     }
   };
