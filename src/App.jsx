@@ -79,7 +79,6 @@ const App = () => {
                 <Route path="/residence" element={<Residence />} />
                 <Route path="/authentication" element={<Authentication />} />
                 <Route path="/reset" element={<ResetFrom />} />
-                <Route path="/invite/:id" element={<InvitationRequest />} />
                 <Route
                   path="/password-reset/:reset_token"
                   element={<ResetPassword />}
@@ -135,6 +134,7 @@ const App = () => {
                   />
                   <Route path="/acceptedinvite" element={<AcceptedInvite />} />
                   <Route path="/goalachieved" element={<GoalAchieved />} />
+                  <Route path="/invite/:id" element={<InvitationRequest />} />
                 </Route>
 
                 {/* Add more routes for additional screens as needed */}

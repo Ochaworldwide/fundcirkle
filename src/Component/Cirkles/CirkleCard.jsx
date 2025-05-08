@@ -120,7 +120,7 @@ const CirkleCard = ({ tabs, header,  dates, members }) => {
               className={`relative z-10 py-2 rounded-md text-base w-[30%] transition-colors duration-200 ${
                 activeTab === key
                   ? "text-[#00943F] font-bold"
-                  : "text-[#0000004D]"
+                  : "text-[#0000009a]"
               }`}
               onClick={() => setActiveTab(key)}
             >
