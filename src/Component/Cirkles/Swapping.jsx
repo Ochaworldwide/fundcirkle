@@ -18,29 +18,16 @@ function Swapping() {
 
   const [loading, setLoading] = useState(false);
   const { showStatusReport } = useModal();
+    const [acceptLoading, setAcceptLoading] = useState(false);
+    const [declineLoading, setDeclineLoading] = useState(false);
 
   const { hash } = useParams();
 
-//   const [data, setData] = useState(null);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axiosInstance.get(`/cirkles/${id}`);
-//         setData(response.data.data);
-//       } catch (error) {
-//         console.error("Error fetching data:", error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []); // empty dependency array = runs once on mount
-
   const handleAccept = async () => {
-        payload = {
+        const payload = {
           swap_hash: hash,
         };
-        setLoading(true);
+        setAcceptLoading(true);
     try {
       const response = await axiosInstance.post(`/payment/swap/accept`, { payload });
           if (response.status >= 200 && response.status < 300) {
@@ -51,14 +38,15 @@ function Swapping() {
       showStatusReport("Error making POST request:", error);
     }
     finally {
-      setLoading(false);
+      setAcceptLoading(false);
     }
   };
 
   const handleDecline = async () => {
-    payload ={
+    const payload ={
         swap_hash : hash
     }
+    setDeclineLoading(true);
     try {
       const response = await axiosInstance.post(`/payment/swap/decline`, {
         payload,
@@ -70,18 +58,12 @@ function Swapping() {
       //   console.error("Error making POST request:", error);59
       showStatusReport("Error making POST request:", error);
     } finally {
-      setLoading(false);
+      setDeclineLoading(false);
     }
   };
 
-
-
-
-//   console.log(data);
-
   return (
     <div className="">
-      {/* <NavBar backLink="/sign-in" /> */}
 
       <div className=" pb-10 mt-10">
         <img src={logo} alt="" srcset="" className="mx-auto" />
@@ -105,9 +87,13 @@ function Swapping() {
               onClick={() => {
                 handleAccept();
               }}
-              disabled={loading}
+              disabled={acceptLoading || declineLoading}
             >
-              {loading ? <PulseLoader size={12} color="white" /> : "Accept"}
+              {acceptLoading ? (
+                <PulseLoader size={12} color="white" />
+              ) : (
+                "Accept"
+              )}
             </button>
 
             <button
@@ -115,9 +101,13 @@ function Swapping() {
               onClick={() => {
                 handleDecline();
               }}
-              disabled={loading}
+              disabled={acceptLoading || declineLoading}
             >
-              {loading ? <PulseLoader size={12} color="white" /> : "Decline"}
+              {declineLoading ? (
+                <PulseLoader size={12} color="white" />
+              ) : (
+                "Decline"
+              )}
             </button>
           </div>
         </div>
