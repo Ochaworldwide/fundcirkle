@@ -52,7 +52,6 @@ function InvitationRequest() {
     <div className="">
       {/* <NavBar backLink="/sign-in" /> */}
 
-
       <div className="hidden lg:block lg:w-[80%] lg:mx-auto lg:pb-5">
         <img src={logo} alt="" srcset="" />
       </div>
@@ -65,19 +64,26 @@ function InvitationRequest() {
 
           <h1 className="text-center mb-4 font-semibold">Hello,</h1>
           <p className="text-base mb-10 leading-relaxed text-center">
-            You have been invited to join {data?.name} by{" "}
-            {data?.owner?.first_name} cirkle. If you would like to accept this
-            invitation, click on the accept button below.
+            You have been invited to join the cirkle {" "}
+            <span className="font-bold capitalize">{data?.name}</span> by{" "}
+            <span className="font-bold capitalize">
+              {data?.owner?.first_name} 
+            </span>. If you would like to accept this invitation, click on the
+            accept button below.
           </p>
 
           <div className="w-[90%] mx-auto flex justify-center">
-            <button className="bg-[#00943F] font-bold text-white rounded-lg w-[80%] py-3" onClick={() => {handleAccept()}}>
+            <button
+              className="bg-[#00943F] font-bold text-white rounded-lg w-[80%] py-3"
+              onClick={() => {
+                handleAccept();
+              }}
+            >
               Accept
             </button>
           </div>
         </div>
       </div>
-
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "../../Component/Sign up/NavBar";
 import Button from "../../Component/Botton/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import CustomForm from "../../Component/Form/CustomForm";
 import axiosInstance from "../../service";
 import { ROUTES } from "../../constants/routes";
@@ -35,6 +35,8 @@ function SignIn() {
   const { showStatusReport } = useModal();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/home"; // fallback
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +55,8 @@ function SignIn() {
           showStatusReport("Login successful");
           localStorage.setItem("token", token);
           localStorage.setItem("user", response.data.data.user);
-          navigate("/home");
+          // navigate("/home");
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => {
