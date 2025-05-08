@@ -60,6 +60,7 @@ import EditProfileDesktop from "./Pages/Settings/EditProfileDesktop";
 import ModalRenderer from "./Component/Cirkles/ModalRenderer";
 import { UserCirkleProvider } from "./contexts/UserCirkleContext";
 import InvitationRequest from "./Component/Cirkles/InvitationRequest";
+import CirkleSwapping from "./Component/Cirkles/CirkleSwapping";
 
 const App = () => {
   useEffect(() => {
@@ -134,6 +135,7 @@ const App = () => {
                   />
                   <Route path="/acceptedinvite" element={<AcceptedInvite />} />
                   <Route path="/goalachieved" element={<GoalAchieved />} />
+                  <Route path="/cirkleswapping" element={<CirkleSwapping />} />
                   <Route path="/invite/:id" element={<InvitationRequest />} />
                 </Route>
 

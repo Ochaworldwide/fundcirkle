@@ -155,7 +155,7 @@ const SwapRequestModal = () => {
     axiosInstance
       .post(`/cirkles/${cirkleId}/swap`, payload)
       .then((response) => {
-        navigate("/goalachieved");
+        navigate("/cirkleswapping");
       })
       .catch((error) => console.error("Error posting data:", error))
       .finally(() => closeModal());    
