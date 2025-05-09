@@ -109,6 +109,11 @@ const EditCirkleModal = () => {
       );
 
       if (response.data.success) {
+        showStatusReport("Cirkle updated successfully!");
+        openModal("detail", cirkleData.id);
+      }
+
+      if (response.data.success && members.length > 0) {
         const order = members.map((member) => member.id);
         const payload = { order };
         await axiosInstance.post(`/cirkles/${modalData}/reorder`, payload);
@@ -155,7 +160,7 @@ const EditCirkleModal = () => {
       } catch (error) {
         console.error("Sharing failed:", error);
       }
-    } 
+    }
   };
 
   return (

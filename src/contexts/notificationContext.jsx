@@ -15,24 +15,18 @@ export const NotificationProvider = ({ children }) => {
     const savedNotifications = localStorage.getItem("notifications");
     if (!savedNotifications) return [];
 
-    try {
-      const parsed = JSON.parse(savedNotifications);
+    const parsed = JSON.parse(savedNotifications);
 
-      // Deduplicate by ID
-      const unique = Array.from(
-        new Map(parsed.map((notif) => [notif.id, notif])).values()
-      );
+    // Deduplicate by ID
+    const unique = Array.from(
+      new Map(parsed.map((notif) => [notif.id, notif])).values()
+    );
 
-      // Optional: Update localStorage to reflect the deduped version
-      localStorage.setItem("notifications", JSON.stringify(unique));
+    // Optional: Update localStorage to reflect the deduped version
+    localStorage.setItem("notifications", JSON.stringify(unique));
 
-      return unique;
-    } catch (err) {
-      console.error("Failed to parse notifications:", err);
-      return [];
-    }
+    return unique;
   });
-
 
   const { user, refetchUser } = useContext(UserContext);
 
@@ -60,7 +54,6 @@ export const NotificationProvider = ({ children }) => {
             localStorage.setItem("notifications", JSON.stringify(unique));
             return unique;
           });
-
         });
       }
     }
@@ -90,9 +83,3 @@ export const NotificationProvider = ({ children }) => {
 export const useNotification = () => {
   return useContext(NotificationContext);
 };
-
-
-
-
-
-
