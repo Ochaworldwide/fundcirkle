@@ -22,6 +22,8 @@ export const NotificationProvider = ({ children }) => {
       new Map(parsed.map((notif) => [notif.id, notif])).values()
     );
 
+    console.log(unique);
+
     // Optional: Update localStorage to reflect the deduped version
     localStorage.setItem("notifications", JSON.stringify(unique));
 
