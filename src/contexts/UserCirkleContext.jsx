@@ -15,7 +15,7 @@ export const UserCirkleProvider = ({ children }) => {
       const data = response.data?.data || [];
       setCirkles(data);
       localStorage.setItem("userCirkles", JSON.stringify(data));
-      console.log("it is working")
+      // console.log("it is working")
     } catch (error) {
       console.error("Failed to fetch cirkles:", error);
     }

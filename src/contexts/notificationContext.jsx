@@ -4,31 +4,29 @@ import { UserContext } from "./userDetails";
 const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children }) => {
-  // const [notifications, setNotifications] = useState(() => {
-  //   // Load notifications from localStorage on initial render
-  //   const savedNotifications = localStorage.getItem("notifications");
-  //   return savedNotifications ? JSON.parse(savedNotifications) : [];
-  // });
-
   const [notifications, setNotifications] = useState(() => {
     // Load notifications from localStorage on initial render
     const savedNotifications = localStorage.getItem("notifications");
-    if (!savedNotifications) return [];
-
-    const parsed = JSON.parse(savedNotifications);
-
-    // Deduplicate by ID
-    const unique = Array.from(
-      new Map(parsed.map((notif) => [notif.id, notif])).values()
-    );
-
-    console.log(unique);
-
-    // Optional: Update localStorage to reflect the deduped version
-    localStorage.setItem("notifications", JSON.stringify(unique));
-
-    return unique;
+    return savedNotifications ? JSON.parse(savedNotifications) : [];
   });
+
+  // const [notifications, setNotifications] = useState(() => {
+  //   // Load notifications from localStorage on initial render
+  //   const savedNotifications = localStorage.getItem("notifications");
+  //   if (!savedNotifications) return [];
+
+  //   const parsed = JSON.parse(savedNotifications);
+
+  //   // Deduplicate by ID
+  //   const unique = Array.from(
+  //     new Map(parsed.map((notif) => [notif.id, notif])).values()
+  //   );
+
+  //   // Optional: Update localStorage to reflect the deduped version
+  //   localStorage.setItem("notifications", JSON.stringify(unique));
+
+  //   return unique;
+  // });
 
   const { user, refetchUser } = useContext(UserContext);
 
@@ -66,6 +64,12 @@ export const NotificationProvider = ({ children }) => {
       }
     };
   }, [user]);
+
+  useEffect(() => {
+    console.log(notifications)
+  
+  }, [user])
+  
 
   // Function to clear all notifications
   const clearNotifications = () => {

@@ -19,6 +19,8 @@ import { EffectCoverflow, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 // import SwiperCore from "swiper";
 
 function MyCirkles() {
@@ -45,6 +47,7 @@ function MyCirkles() {
 
   useEffect(() => {
     if (cirkles && cirkles.length > 0) {
+      setLoading(true)
       const transformedData = cirkles.map((item) => ({
         header: {
           groupName: item.name,
@@ -88,8 +91,75 @@ function MyCirkles() {
     }
   };
 
+  if (loading && !data) {
+    return (
+      <div className="flex flex-col border border-[#00000066] bg-gray-50 rounded-lg mb-3 relative p-5">
+        <div className="pt-5 flex justify-between w-[95%] mx-auto">
+          <div className="w-[50%] flex flex-col justify-center">
+            <Skeleton height={30} width={120} />
+            <Skeleton height={20} width={100} className="mt-2" />
+          </div>
+          <div className="w-[50%] flex flex-col items-center">
+            <Skeleton circle height={60} width={60} />
+            <Skeleton height={20} width={120} className="mt-3" />
+          </div>
+        </div>
+
+        <div className="flex w-[95%] mx-auto justify-between mt-4">
+          <Skeleton height={40} width="45%" />
+          <Skeleton height={40} width="45%" />
+        </div>
+
+        <div className="flex justify-between bg-[#E5F4EC] items-center mb-5 mt-5 mx-auto w-[95%] p-2 rounded-xl">
+          <Skeleton width="40%" />
+          <Skeleton width="40%" />
+        </div>
+
+        <div className="flex items-center w-[95%] mx-auto mb-5 space-x-5">
+          <Skeleton circle width={56} height={56} />
+          <div>
+            <Skeleton width={120} height={24} />
+            <Skeleton width={100} height={18} className="mt-1" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (!data || data.length === 0) {
     return <NoActiveCirkle />;
+    // return (
+    //   <div className="flex flex-col border border-[#00000066] bg-gray-50 rounded-lg mb-3 relative p-5">
+    //     <div className="pt-5 flex justify-between w-[95%] mx-auto">
+    //       <div className="w-[50%] flex flex-col justify-center">
+    //         <Skeleton height={30} width={120} />
+    //         <Skeleton height={20} width={100} className="mt-2" />
+    //       </div>
+    //       <div className="w-[50%] flex flex-col items-center">
+    //         <Skeleton circle height={60} width={60} />
+    //         <Skeleton height={20} width={120} className="mt-3" />
+    //       </div>
+    //     </div>
+
+    //     <div className="flex w-[95%] mx-auto justify-between mt-4">
+    //       <Skeleton height={40} width="45%" />
+    //       <Skeleton height={40} width="45%" />
+    //     </div>
+
+    //     <div className="flex justify-between bg-[#E5F4EC] items-center mb-5 mt-5 mx-auto w-[95%] p-2 rounded-xl">
+    //       <Skeleton width="40%" />
+    //       <Skeleton width="40%" />
+    //     </div>
+
+    //     <div className="flex items-center w-[95%] mx-auto mb-5 space-x-5">
+    //       <Skeleton circle width={56} height={56} />
+    //       <div>
+    //         <Skeleton width={120} height={24} />
+    //         <Skeleton width={100} height={18} className="mt-1" />
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
   }
 
   const handleGroupClick = () => {
@@ -119,92 +189,6 @@ function MyCirkles() {
 
   return (
     <div className="relative">
-      {/* <div className="flex flex-col border border-[#00000066] bg-gray-50 rounded-lg mb-3">
-        <div className="pt-5 flex justify-between w-[95%] mx-auto">
-          <div className="w-[50%] flex flex-col justify-center">
-            <div className="text-[30px] font-[600] flex items-center overflow-hidden whitespace-nowrap truncate">
-              <img src={currency} alt="" className="h-7" />
-              {formatNumber(contribution.amount * header.count)}
-            </div>
-            <p className="text-[18px] font-medium truncate">Cirkle Amount</p>
-          </div>
-
-          <div className="w-[50%]">
-            <CircularProgress contribution={contribution} />
-            <p className="text-black mb-3 text-center text-[18px] font-medium">
-              Monthly Payers
-            </p>
-          </div>
-        </div>
-
-        <div className="flex w-[95%] mx-auto justify-between">
-          <div
-            className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%] bg-[#00943F]"
-            onClick={
-              currentDate < header?.startDate
-                ? () => handleEditClick()
-                : () => handleMessageClick()
-            }
-          >
-            <p className="mx-auto text-[14px] font-medium text-white ">
-              {currentDate < header?.startDate ? "Edit" : "Message"}
-            </p>
-          </div>
-          <div
-            className="border border-[#00943F] rounded-full flex items-center h-10 w-[45%] bg-[#00943F]"
-            // onClick={() => openModal("detail")}
-            onClick={() => {
-              handleGroupClick();
-            }}
-          >
-            <p className="mx-auto text-[14px] font-medium text-white">
-              Details
-            </p>
-          </div>
-        </div>
-
-        <div className="flex justify-between bg-[#E5F4EC] items-center mb-5 mt-5 mx-auto w-[95%] p-2 rounded-xl text-[10.5px]">
-          <p className="text-gray-600 text-sm">Next Payment</p>
-          <p className="font-medium ml-auto p-2 border border-[#00000066] rounded-[8px] flex justify-center w-[45%] text-[#141B34] text-sm">
-            {dates.nextPayment}
-          </p>
-        </div>
-
-        <div className="flex items-center w-[95%] mx-auto mb-5 space-x-5">
-          {header.groupImage ? (
-            <img
-              src={header.groupImage}
-              alt="Group"
-              className="w-14 h-14 rounded-full"
-            />
-          ) : (
-            <FaCircleUser className="w-14 h-14 text-gray-500" />
-          )}
-
-          <div className="">
-            <h1 className="ml-3 text-black text-xl text-left font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-3xl">
-              {header.groupName}
-            </h1>
-            <p className="ml-3 text-black  text-sm font-semibold rounded-[8px] text-ellipsis overflow-hidden lg:text-xl">
-              {header.ownerName}
-            </p>
-          </div>
-        </div>
-
-        <button
-          onClick={handlePrevious}
-          className="text-black border font-bold text-lg absolute top-56 p-1 -left-0 rounded-full"
-        >
-          <img src="/images/arrow-left.svg" alt="" />
-        </button>
-        <button
-          onClick={handleNext}
-          className="text-black border font-bold text-lg absolute top-56 -right-0 p-1 rounded-full"
-        >
-          <img src="/images/arrow-right.svg" alt="" />
-        </button>
-      </div> */}
-
       <Swiper
         effect="coverflow"
         grabCursor
