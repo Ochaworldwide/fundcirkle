@@ -62,6 +62,7 @@ import { UserCirkleProvider } from "./contexts/UserCirkleContext";
 import InvitationRequest from "./Component/Cirkles/InvitationRequest";
 import CirkleSwapping from "./Component/Cirkles/CirkleSwapping";
 import Swapping from "./Component/Cirkles/Swapping";
+import CirkleInvitation from "./Component/Cirkles/CirkleInvitation";
 
 const App = () => {
   useEffect(() => {
@@ -138,10 +139,8 @@ const App = () => {
                   <Route path="/goalachieved" element={<GoalAchieved />} />
                   <Route path="/cirkleswapping" element={<CirkleSwapping />} />
                   <Route path="/invite/:id" element={<InvitationRequest />} />
-                  <Route
-                    path="/payment/swap/:hash"
-                    element={<Swapping />}
-                  />
+                  <Route path="/cirkleinvitation/:token" element={<CirkleInvitation />} />
+                  <Route path="/payment/swap/:hash" element={<Swapping />} />
                 </Route>
 
                 {/* Add more routes for additional screens as needed */}
