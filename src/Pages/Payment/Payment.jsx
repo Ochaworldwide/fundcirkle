@@ -18,6 +18,7 @@ const Payment = () => {
   const [due, setDue] = useState({});
   const [validations, setValidations] = useState({});
   const [receive, setReceive] = useState({});
+  const [loading, setLoading] = useState(true);
   const { user, refetchUser } = useContext(UserContext);
   const { notifications, clearNotifications } = useNotification();
   const [showNotification, setShowNotification] = useState(false);
@@ -33,7 +34,6 @@ const Payment = () => {
         setDue(overview.data.total_due);
         setValidations(overview.data.total_validations);
         setReceive(overview.data.to_receive);
-
         // Fetch account data
         const accountResponse = await axiosInstance.get(
           ROUTES.ACCOUNT.GET_USER_ACCOUNT
@@ -49,6 +49,8 @@ const Payment = () => {
       } catch (error) {
         // toast.error("Error fetching initial data:", error, { ...toastConfig });
         showStatusReport("Error fetching initial data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -138,6 +140,7 @@ const Payment = () => {
           due={due}
           validations={validations}
           receive={receive}
+          loading={loading}
         />
       </div>
       {/* Manage Payment Cirkle */}
