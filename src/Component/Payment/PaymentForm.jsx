@@ -238,7 +238,9 @@ const PaymentForm = ({ handler, cirkle }) => {
           {paymentMethod === "Bank Transfer" && (
             <div className="relative">
               {!bank && (
-                <div className={`backdrop-blur flex items-center justify-center inset-0 absolute z-[100]`}>
+                <div
+                  className={`backdrop-blur flex items-center justify-center inset-0 absolute z-[100]`}
+                >
                   <p>No bank details</p>
                 </div>
               )}
@@ -255,7 +257,11 @@ const PaymentForm = ({ handler, cirkle }) => {
 
                 <div className="flex justify-between items-center mb-2 border-b px-3 py-2">
                   <span className="font-semibold text-sm text-gray-800 flex items-center space-x-2">
-                    <img src="/images/person4.svg" alt="" />
+                    <img
+                      src={cirkle.last_payment.receiver_pic}
+                      alt=""
+                      className="w-9"
+                    />
                     <p>{cirkle.last_payment.receiver}</p>
                   </span>
                   <button
@@ -285,8 +291,11 @@ const PaymentForm = ({ handler, cirkle }) => {
                   </button>
                 </div>
 
-                <div className="px-3 py-2 text-[10.5px]">
-                  Branch: {bank?.branch_address}
+                <div className="px-3 py-2 text-[10.5px] flex justify-between">
+                  <p>
+                   Branch: 
+                  </p>
+                   {bank?.branch_address}
                 </div>
               </div>
               {/* Upload Payment Proof */}
@@ -367,7 +376,7 @@ const PaymentForm = ({ handler, cirkle }) => {
         {/* Submit Button */}
         <div className="mt-6">
           <button
-            disabled = {!bank}
+            disabled={!bank}
             type="submit"
             className="w-full bg-green-500 text-white py-2 px-4 rounded "
           >

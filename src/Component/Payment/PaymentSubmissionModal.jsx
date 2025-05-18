@@ -183,11 +183,13 @@ const PaymentSubmissionModal = () => {
             <div className="mt-4 border rounded-lg p-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <img
-                  src={selectedMember.image}
+                  src={modalData.last_payment.receiver_pic}
                   alt={selectedMember.name}
                   className="w-10 h-10 rounded-full"
                 />
-                <span className="font-medium">{selectedMember.name}</span>
+                <span className="font-medium">
+                  {modalData.last_payment.receiver}
+                </span>
               </div>
               <FaCheckCircle className="text-green-500 text-xl" />
             </div>

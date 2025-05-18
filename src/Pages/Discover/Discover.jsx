@@ -158,7 +158,7 @@ function Discover() {
   return (
     <div className="mb-32 lg:mb-0">
       {/* header */}
-      <div className="w-[100%] flex justify-center py-5 sticky top-0 bg-white lg:relative lg:hidden">
+      <div className="w-[100%] flex justify-center py-5 sticky z-10 top-0 bg-white lg:relative lg:hidden">
         <p className="text-[22px] font-[600]">Discover</p>
       </div>
 
@@ -234,7 +234,7 @@ function Discover() {
       {/* search */}
 
       <div className="flex w-[90%] mx-auto mt-2 justify-between lg:w-[60%] lg:justify-start lg:space-x-5 lg:mx-0 ">
-        <div className="flex border border-[#00000066] py-1 w-[80%] rounded-md px-1 shadow h-fit relative">
+        <div className="flex border border-[#00000066] py-1 w-[80%] rounded-md px-1 shadow h-fit relative ">
           <img
             src="/images/search-01.svg"
             alt="search-icon"
