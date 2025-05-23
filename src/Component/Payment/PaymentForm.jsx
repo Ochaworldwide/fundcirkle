@@ -50,11 +50,16 @@ const PaymentForm = ({ handler, cirkle }) => {
 
   const { closeModal: close } = useModal();
   const { showStatusReport } = useModal();
+  const { modalData } =useModal();
+
+  const { selectedMember, ...rest } = modalData;
+
+  console.log(selectedMember)
 
   const bank =
     paymentTo == "admin"
       ? cirkle?.last_payment.admin_bank_details
-      : cirkle?.last_payment.bank_details;
+      : selectedMember?.bank_details;
 
   const navigate = useNavigate();
 
@@ -129,6 +134,8 @@ const PaymentForm = ({ handler, cirkle }) => {
     copyToClipboard(text);
     toast.info("copied to clipboard",{ ...toastConfig });
   };
+
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -257,12 +264,34 @@ const PaymentForm = ({ handler, cirkle }) => {
 
                 <div className="flex justify-between items-center mb-2 border-b px-3 py-2">
                   <span className="font-semibold text-sm text-gray-800 flex items-center space-x-2">
-                    <img
+                    {/* <img
                       src={cirkle.last_payment.receiver_pic}
                       alt=""
-                      className="w-9"
-                    />
-                    <p>{cirkle.last_payment.receiver}</p>
+                      className="w-9 h-9 rounded-full"
+                    /> */}
+
+                    {paymentTo === "admin" ? (
+                      <img
+                        src={cirkle.owner.profile_pic}
+                        alt=""
+                        className="w-9 h-9 rounded-full"
+                      />
+                    ) : (
+                      <img
+                        src={selectedMember.image}
+                        alt=""
+                        className="w-9 h-9 rounded-full"
+                      />
+                    )}
+
+                    {/* <p>{cirkle.last_payment.receiver}</p> */}
+                    {/* {paymentTo == 'admin'}
+                    <p>{cirkle.owner_details.name}</p> */}
+                    {paymentTo === "admin" ? (
+                      <p>{cirkle.owner_details.name}</p>
+                    ) : (
+                      <p>{selectedMember.name}</p>
+                    )}
                   </span>
                   <button
                     className="text-[10.5px] flex space-x-1"
@@ -292,10 +321,8 @@ const PaymentForm = ({ handler, cirkle }) => {
                 </div>
 
                 <div className="px-3 py-2 text-[10.5px] flex justify-between">
-                  <p>
-                   Branch: 
-                  </p>
-                   {bank?.branch_address}
+                  <p>Branch:</p>
+                  {bank?.branch_address}
                 </div>
               </div>
               {/* Upload Payment Proof */}
