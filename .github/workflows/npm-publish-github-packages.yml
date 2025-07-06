@@ -68,7 +68,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with: 
-        node-version: '20.18.0'
+        node-version: '20.19.3'
 
     - name: SSH into EC2 instance and deploy
       uses: appleboy/ssh-action@master
@@ -84,7 +84,7 @@ jobs:
           fi
 
           # Navigate to the project folder
-          mkdir -p fundcirkle
+          # mkdir -p fundcirkle
           cd fundcirkle
 
           # Initialize and update the repository
@@ -99,8 +99,8 @@ jobs:
           npm run build
 
           # Deploy built files
-          sudo mkdir -p /var/www/fundcirkle/html
-          sudo cp -r dist/* /var/www/fundcirkle/html
+          # sudo mkdir -p /var/www/fundcirkle/html
+          # sudo cp -r dist/* /var/www/fundcirkle/html
 
           echo "Deploy successful"
 
