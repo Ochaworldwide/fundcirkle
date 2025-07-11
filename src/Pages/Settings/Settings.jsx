@@ -17,6 +17,7 @@ import NotificationBox from "../../Component/Cirkles/NotificationBox";
 import { useNotification } from "../../contexts/notificationContext";
 import ProfileDesktop from "./General";
 import General from "./General";
+import { Trash2 } from "lucide-react";
 
 const Settings = () => {
   const [toggles, setToggles] = useState({
@@ -69,6 +70,10 @@ const Settings = () => {
     localStorage.removeItem("userCirkles");
     location.reload(); // Refresh the page
   };
+
+  const handleDelete = () =>{
+    navigate("/account-deletion")
+  }
 
   const [activeTab, setActiveTab] = useState("General");
 
@@ -507,6 +512,33 @@ const Settings = () => {
                 <h1 className="text-[14px] mb-2">Logout</h1>
                 <p className="text-[10.5px] text-[#141B3480]">
                   Logout of FundCirkle
+                </p>
+              </div>
+            </div>
+
+            <img
+              src="/images/arrow-right.svg"
+              alt=""
+              srcset=""
+              className="ml-auto"
+            />
+          </div>
+        </div>
+
+        {/* Delete ACCOUNT */}
+        <h1 className="mb-3 text-[14px] ml-1">Delete Account</h1>
+        <div
+          className="bg-[#E5F7FF] border border-[#00000066] rounded-md px-2 mb-7"
+          onClick={() => handleDelete()}
+        >
+          <div className="flex items-center  border-[#00000066] p-5">
+            <div className="flex items-center space-x-3">
+              {/* <img src="/images/logout-03.svg" alt="" srcset="" /> */}
+              <Trash2 className="w-5 h-5 mr-2 text-green-700" />
+              <div>
+                <h1 className="text-[14px] mb-2">Delete</h1>
+                <p className="text-[10.5px] text-[#141B3480]">
+                  Delete your Fundcirkle Account
                 </p>
               </div>
             </div>

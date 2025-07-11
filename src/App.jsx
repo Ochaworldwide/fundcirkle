@@ -64,6 +64,8 @@ import CirkleSwapping from "./Component/Cirkles/CirkleSwapping";
 import Swapping from "./Component/Cirkles/Swapping";
 import CirkleInvitation from "./Component/Cirkles/CirkleInvitation";
 import Privacy from "./Pages/Privacy/Privacy";
+import Deletion from "./Pages/AccountDeletion/AccountDeletion";
+import AccountDeletion from "./Pages/AccountDeletion/AccountDeletion";
 
 const App = () => {
   useEffect(() => {
@@ -146,6 +148,7 @@ const App = () => {
                     element={<CirkleInvitation />}
                   />
                   <Route path="/payment/swap/:hash" element={<Swapping />} />
+                  <Route path="/account-deletion" element={<AccountDeletion />} />
                 </Route>
 
                 {/* Add more routes for additional screens as needed */}
