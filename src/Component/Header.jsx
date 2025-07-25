@@ -18,24 +18,24 @@ const Header = () => {
             />
           </Link>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link
-              to="#features"
+            <a
+              href="#features"
               className="text-gray-600 hover:text-[#00943F] dark:text-gray-300 dark:hover:text-[#00943F] transition-colors"
             >
               Features
-            </Link>
-            <Link
-              to="#how-it-works"
+            </a>
+            <a
+              href="#how-it-works"
               className="text-gray-600 hover:text-[#00943F] dark:text-gray-300 dark:hover:text-[#00943F] transition-colors"
             >
               How It Works
-            </Link>
-            <Link
-              to="#faq"
+            </a>
+            <a
+              href="#faq"
               className="text-gray-600 hover:text-[#00943F] dark:text-gray-300 dark:hover:text-[#00943F] transition-colors"
             >
               FAQ
-            </Link>
+            </a>
           </nav>
           <Link
               to="/sign-up"
