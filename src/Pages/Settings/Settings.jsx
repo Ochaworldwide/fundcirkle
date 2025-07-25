@@ -289,11 +289,7 @@ const Settings = () => {
         <Link to="/profile">
           <div className="flex items-center bg-[#E5F7FF] border border-[#00000066] rounded-md p-3 mb-7">
             <div className="w-[80px] flex items-center justify-center rounded-full h-[80px] overflow-hidden">
-              {/* <img
-                src={user?.profile_pic}
-                alt=""
-                className="w-full h-full object-cover "
-              /> */}
+
 
               {user?.profile_pic ? (
                 <img

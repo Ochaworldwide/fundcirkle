@@ -66,6 +66,7 @@ import CirkleInvitation from "./Component/Cirkles/CirkleInvitation";
 import Privacy from "./Pages/Privacy/Privacy";
 import Deletion from "./Pages/AccountDeletion/AccountDeletion";
 import AccountDeletion from "./Pages/AccountDeletion/AccountDeletion";
+import Landing from "./Component/Home/page";
 
 const App = () => {
   useEffect(() => {
@@ -79,7 +80,8 @@ const App = () => {
             <Router>
               <ScrollToTop />
               <Routes>
-                <Route path="/" element={<SignIn />} />
+                <Route path="/" element={< Landing/>} />
+                {/* <Route path="/" element={<SignIn />} /> */}
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/residence" element={<Residence />} />
@@ -148,7 +150,10 @@ const App = () => {
                     element={<CirkleInvitation />}
                   />
                   <Route path="/payment/swap/:hash" element={<Swapping />} />
-                  <Route path="/account-deletion" element={<AccountDeletion />} />
+                  <Route
+                    path="/account-deletion"
+                    element={<AccountDeletion />}
+                  />
                 </Route>
 
                 {/* Add more routes for additional screens as needed */}
