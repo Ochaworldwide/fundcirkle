@@ -19,12 +19,8 @@ const RecommendedCirklesCard = ({ group }) => {
     openModal("recommend", stateId);
   };
 
-  // console.log(group);
 
   const handleRequestSubmit = (group) => {
-    // console.log("Clicked Group ID:", group.id);
-
-    // console.log("Payload:", payload);
     const cirkleId = group.id;
 
     axiosInstance
@@ -33,19 +29,18 @@ const RecommendedCirklesCard = ({ group }) => {
         if (response.data.success) {
           showStatusReport("Cirkle joined successfully!");
         } else {
-          //  toast.error("Warning", response.data, { ...toastConfig });
           showStatusReport("Warning", response.data);
         }
       })
       .catch((error) => {
         if (error.response) {
-          //  toast.error("Warning:", error.response.data, { ...toastConfig });
+          
           showStatusReport("Warning:", error.response.data);
         } else if (error.request) {
-          //  toast.error("Warning:", error.request, { ...toastConfig });
+          
           showStatusReport("Warning:", error.request);
         } else {
-          //  toast.error("Warning:", error.message, { ...toastConfig });
+          
           showStatusReport("Warning:", error.message);
         }
       });

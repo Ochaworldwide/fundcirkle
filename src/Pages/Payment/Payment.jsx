@@ -153,7 +153,7 @@ const Payment = () => {
       <div className="p-4 lg:hidden">
         <h1 className="mb-5 text-[18px] font-bold ">Payment History</h1>
 
-        <div className="flex justify-between mb-5">
+        {/* <div className="flex justify-between mb-5">
           <div className="flex items-center space-x-1">
             <img
               src="/images/filter-history.svg"
@@ -174,11 +174,11 @@ const Payment = () => {
           </div>
 
           <img src="/images/download-02.svg" alt="" srcset="" />
-        </div>
+        </div> */}
 
         {/* filters */}
 
-        <div className="flex space-x-5 mb-5 mx-auto w-fit">
+        {/* <div className="flex space-x-5 mb-5 mx-auto w-fit">
           <div className="flex text-[10px] items-center">
             Mumbai
             <img
@@ -218,7 +218,7 @@ const Payment = () => {
               className="ml-1"
             />
           </div>
-        </div>
+        </div> */}
 
         {/* hand  icon */}
 

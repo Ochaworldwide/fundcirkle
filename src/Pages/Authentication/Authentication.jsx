@@ -76,14 +76,12 @@ const Authentication = () => {
       .post(ROUTES.AUTH.VERIFY, payload)
       .then((response) => {
         if (response.data.success) {
-          // toast.success(response.data.message, { ...toastConfig });
           showStatusReport(response.data.message);
           navigate("/sign-in");
         }
       })
       .catch((error) => {
         console.log(error);
-        // toast.error(error.response.data.message, { ...toastConfig });
         showStatusReport(error.response.data.message);
         
       })
@@ -100,7 +98,6 @@ const Authentication = () => {
     axiosInstance
       .post(ROUTES.AUTH.RESENDOTP, payload)
       .then((response) => {
-        // toast.success("Resent OTP", { ...toastConfig });
         showStatusReport("Resent OTP");
       })
       .catch((error) => {

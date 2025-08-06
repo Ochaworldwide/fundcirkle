@@ -128,38 +128,6 @@ function MyCirkles() {
 
   if (!data || data.length === 0) {
     return <NoActiveCirkle />;
-    // return (
-    //   <div className="flex flex-col border border-[#00000066] bg-gray-50 rounded-lg mb-3 relative p-5">
-    //     <div className="pt-5 flex justify-between w-[95%] mx-auto">
-    //       <div className="w-[50%] flex flex-col justify-center">
-    //         <Skeleton height={30} width={120} />
-    //         <Skeleton height={20} width={100} className="mt-2" />
-    //       </div>
-    //       <div className="w-[50%] flex flex-col items-center">
-    //         <Skeleton circle height={60} width={60} />
-    //         <Skeleton height={20} width={120} className="mt-3" />
-    //       </div>
-    //     </div>
-
-    //     <div className="flex w-[95%] mx-auto justify-between mt-4">
-    //       <Skeleton height={40} width="45%" />
-    //       <Skeleton height={40} width="45%" />
-    //     </div>
-
-    //     <div className="flex justify-between bg-[#E5F4EC] items-center mb-5 mt-5 mx-auto w-[95%] p-2 rounded-xl">
-    //       <Skeleton width="40%" />
-    //       <Skeleton width="40%" />
-    //     </div>
-
-    //     <div className="flex items-center w-[95%] mx-auto mb-5 space-x-5">
-    //       <Skeleton circle width={56} height={56} />
-    //       <div>
-    //         <Skeleton width={120} height={24} />
-    //         <Skeleton width={100} height={18} className="mt-1" />
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
   }
 
   const handleGroupClick = () => {
