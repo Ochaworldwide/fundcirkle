@@ -53,10 +53,8 @@ function Residence() {
     try {
       const response = await axiosInstance.post(ROUTES.AUTH.SIGNUP, payload);
       navigate("/authentication", { state: { email: payload?.email } });
-      // toast.success(response.data.message, { ...toastConfig });
       showStatusReport(response.data.message);
     } catch (error) {
-      // toast.error(error.response.data.message, { ...toastConfig });
       showStatusReport(error.response.data.message);
     }
     setLoading(false);

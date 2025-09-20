@@ -38,84 +38,61 @@ function SignIn() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/home"; // fallback
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    console.log("sending req");
-    const payload = {
-      email: email,
-      password: password,
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      setLoading(true);
+      const payload = {
+        email,
+        password,
+      };
+
+      axiosInstance
+        .post(ROUTES.AUTH.LOGIN, payload)
+        .then(async (response) => {
+          if (response.data.success) {
+            const { token, user } = response.data.data;
+
+            // save to storage
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+
+            if (!user.email_verified_at) {
+              try {
+                // resend verification link
+                await axiosInstance.post("/auth/verify/resend", {
+                  email: user.email,
+                });
+                showStatusReport("Verification email sent");
+              } catch (err) {
+                showStatusReport(
+                  err?.response?.data?.message ||
+                    "Failed to send verification email"
+                );
+              }
+
+              // navigate to authentication page
+                navigate("/authentication", {
+                  replace: true,
+                  state: { email: user.email },
+                });
+            } else {
+              // show success
+              showStatusReport("Login successful");
+              // normal redirect
+              navigate(from, { replace: true });
+            }
+          }
+        })
+        .catch((error) => {
+          showStatusReport(error?.response?.data?.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+
+      console.log("Form submitted!");
     };
-    axiosInstance
-      .post(ROUTES.AUTH.LOGIN, payload)
-      .then((response) => {
-        if (response.data.success) {
-          const token = response.data.data.token;
-          // toast.success("Login successful", { ...toastConfig });
-          showStatusReport("Login successful");
-          localStorage.setItem("token", token);
-          localStorage.setItem("user", response.data.data.user);
-          // navigate("/home");
-          navigate(from, { replace: true });
-        }
-      })
-      .catch((error) => {
-        // toast.error(error?.response?.data?.message, { ...toastConfig });
-        showStatusReport(error?.response?.data?.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
 
-    console.log("Form submitted!");
-
-    // navigate("/home");
-  };
-
-
-    // const handleFormSubmit = async (e) => {
-    //       e.preventDefault();
-    //       setLoading(true);
-    //       const payload = {
-    //         email: email,
-    //         password: password,
-    //       };
-    //   try {
-    //     // Fetch data from the first API
-    //     const response1 = await axiosInstance.post("/auth/validate-email", {
-    //       email: email,
-    //     });
-    //     if (response1.data.success) {
-    //       // toast.success("Email is valid", { ...toastConfig });
-    //       showStatusReport("Email is valid");
-    //       navigate("/authentication");
-    //     }
-
-    //     // Fetch data from the second API
-    //     const response2 = await axiosInstance.get(ROUTES.AUTH.LOGIN, payload);
-    //     if (response2.data.success) {
-    //       const token = response2.data.data.token;
-    //       // toast.success("Login successful", { ...toastConfig });
-    //       showStatusReport("Login successful");
-    //       localStorage.setItem("token", token);
-    //       localStorage.setItem("user", response2.data.data.user);
-    //       // navigate("/home");
-    //       navigate(from, { replace: true });
-    //     }
-    //   } catch (error) {
-    //     console.error(error);
-    //     if (error.response?.data?.message) {
-    //       // toast.error(error.response.data.message, { ...toastConfig });
-    //       showStatusReport(error.response.data.message);
-    //     } else {
-    //       // toast.error("An error occurred. Please try again.", { ...toastConfig });
-    //       showStatusReport("An error occurred. Please try again.");
-    //     }
-    //   } finally {
-    //     // Uncomment or implement if necessary
-    //     // setLoading(false);
-    //   }
-    // };
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prevState) => !prevState);
