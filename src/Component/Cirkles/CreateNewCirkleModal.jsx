@@ -24,6 +24,8 @@ const CreateNewCirkleModal = () => {
   const [description, setDescription] = useState("");
   const [contribution_amount, setAmount] = useState();
   const [category, setCategory] = useState([]);
+    const [categories, setCategories] = useState([]);
+
   const [selectedCategoryId, setSelectedCategoryId] = useState("1");
   const [members, setMembers] = useState(2);
   const [frequency, setFrequency] = useState("monthly");
@@ -73,6 +75,12 @@ const CreateNewCirkleModal = () => {
           const countries = countriesResponse.data.data;
           setListCountries(countries);
 
+          //fetch categories
+          const categoriesResponse = await axiosInstance.get(
+            "/cirkle-categories"
+          );
+          setCategories(categoriesResponse.data.data);
+
           // Fetch user account details
           const userResponse = await axiosInstance.get("/account");
           const userCountry = userResponse.data.data.country;
@@ -120,10 +128,16 @@ const CreateNewCirkleModal = () => {
 
   if (!isModalOpen || modalType !== "create") return null;
 
+  // const handleCategoryChange = (e) => {
+  //   const newSelectedCategoryId = e.target.selectedOptions[0].id; // Get the id of the selected option
+  //   setCategory(e.target.value); // Update selected value
+  //   setSelectedCategoryId(newSelectedCategoryId); // Update selected id
+  // };
+
   const handleCategoryChange = (e) => {
-    const newSelectedCategoryId = e.target.selectedOptions[0].id; // Get the id of the selected option
-    setCategory(e.target.value); // Update selected value
-    setSelectedCategoryId(newSelectedCategoryId); // Update selected id
+    const newSelectedCategoryId = e.target.selectedOptions[0].id;
+    setCategory(e.target.value);
+    setSelectedCategoryId(newSelectedCategoryId);
   };
 
   const handleEmailsChange = (updatedEmails) => {
@@ -155,70 +169,6 @@ const CreateNewCirkleModal = () => {
     }
   };
 
-  // const handleSubmit = async () => {
-  //   // Validate required fields
-  //   if (
-  //     !name ||
-  //     !category ||
-  //     !contribution_amount ||
-  //     !selectedMonth ||
-  //     !privacy
-  //   ) {
-  //     toast.error("Please fill in all required fields!", { ...toastConfig });
-  //     return;
-  //   }
-
-  //   const payload = {
-  //     name: name,
-  //     // members: emails,
-  //     ...(emails && { members: emails }),
-  //     max_members: members,
-  //     ...(description && { description }),
-  //     category: selectedCategoryId,
-  //     contribution_amount: contribution_amount,
-  //     contribution_frequency: frequency,
-  //     contribution_day: dueDate,
-  //     start_month: selectedMonth, // Month of the year
-  //     privacy: privacy,
-  //     state: state,
-  //     currency: "INR",
-  //   };
-
-  //   console.log("Payload:", payload);
-
-  //   try {
-  //     const response = await axiosInstance.post(
-  //       ROUTES.CIRKLE.GET_USER_CIRKLES,
-  //       payload
-  //     );
-
-  //     if (response.data.success) {
-  //       navigate("/creationsuccess");
-  //       closeModal();
-  //       resetState();
-  //       toast.success("Cirkle created successfully!", { ...toastConfig });
-  //     } else {
-  //       toast.error("Failed to create Cirkle: " + response.data.message, {
-  //         ...toastConfig,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     if (error.response) {
-  //       toast.error(
-  //         "Warning: " +
-  //           (error.response.data.message || error.response.statusText),
-  //         { ...toastConfig }
-  //       );
-  //     } else if (error.request) {
-  //       toast.error("Network Error: No response received from the server.", {
-  //         ...toastConfig,
-  //       });
-  //     } else {
-  //       toast.error("Warning: " + error.message, { ...toastConfig });
-  //     }
-  //     console.error("Error details:", error);
-  //   }
-  // };
 
   const handleSubmit = async () => {
     // Validate required fields
@@ -465,17 +415,18 @@ const CreateNewCirkleModal = () => {
                       onChange={handleCategoryChange}
                       className="border outline-none rounded-lg px-3 py-2 border-[#00000066]"
                     >
-                      <option id="1" value="Personal">
-                        Personal
-                      </option>
-                      <option id="2" value="Business">
-                        Business
-                      </option>
-                      <option id="3" value="Others">
-                        Others
-                      </option>
+                      {categories.map((cat) => (
+                        <option
+                          key={cat.id}
+                          id={cat.id.toString()}
+                          value={cat.name}
+                        >
+                          {cat.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
+
                 </div>
 
                 <p className="text-[12px] font-medium mb-5 mx-auto w-fit mt-5">
