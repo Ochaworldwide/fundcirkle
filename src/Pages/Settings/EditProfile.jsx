@@ -133,7 +133,7 @@ const EditProfile = () => {
           )}
           <input
             type="file"
-            accept=".jpg,.jpeg,.png,.pdf"
+            accept="image/jpeg,image/jpg,image/png,application/pdf"
             className="hidden"
             onChange={handleImageChange}
           />
